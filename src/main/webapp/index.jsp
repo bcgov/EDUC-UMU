@@ -33,7 +33,6 @@
       </nav>
     
       <script>
-          <!-- This is a sample implementation and may vary depending on the front end framework/techstack being used. -->
         function setupSampleMenuControl() {
           const useCapture = false;
           const show = elem => elem.style.display = 'block';
