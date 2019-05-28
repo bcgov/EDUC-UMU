@@ -25,20 +25,14 @@ header {
     justify-content: flex-start;
     align-items: center;
     margin: 0 10px 0 0;
-    border-style: dotted;
-    border-width: 1px;
-    border-color: lightgrey;
   }
   
   header .other {
     display: flex;
     flex-grow: 1;
-    border-style: dotted;
-    border-width: 1px;
-    border-color: lightgrey;
   }
 
-  body div{
+  body div.middle{
       display: flex;
       margin-top: 65px;
   }
@@ -76,4 +70,22 @@ header {
     border-right: 1px solid #4b5e7e;
     padding-left: 5px;
     padding-right: 5px;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  :focus {
+    outline: 4px solid #3B99FC;
+    outline-offset: 1px;
+  }
+
+  .Beta-PhaseBanner {
+    color: #fcba19;
+    margin-top: -1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
   }

@@ -9,9 +9,11 @@
         <a href="https://gov.bc.ca" alt="British Columbia">
             <img src="assets/images/index.svg" height="43.4833" width="175px"/>
         </a>
+        <h1>OBIEE User Management</h1>
+        <div aria-label="This application is currently in Beta phase" class=Beta-PhaseBanner>Beta</div>
     </div>
 </header>
-<div>
+<div class="middle">
     <h1>Hello World</h1>
 </div>
 <footer class="footer">
