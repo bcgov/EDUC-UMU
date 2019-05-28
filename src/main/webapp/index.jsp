@@ -12,7 +12,55 @@
         <h1>OBIEE User Management</h1>
         <div aria-label="This application is currently in Beta phase" class=Beta-PhaseBanner>Beta</div>
     </div>
+    <div class="other">
+            <a class="nav-btn">
+              <i class="fas fa-bars" id="menu"></i>
+            </a>
+          <!-- 
+            This place is for anything that needs to be right aligned
+            beside the logo.
+          -->
+          </div>
 </header>
+<nav class="navigation-main" id="navbar">
+        <div class="container">
+          <ul>
+            <li><a href=".">Home</a></li>
+            <li><a href=".">Admin</a></li>
+            <li><a href=".">View Users</a></li>
+          </ul>
+        </div>
+      </nav>
+    
+      <script>
+          <!-- This is a sample implementation and may vary depending on the front end framework/techstack being used. -->
+        function setupSampleMenuControl() {
+          const useCapture = false;
+          const show = elem => elem.style.display = 'block';
+          const hide = elem => elem.style.display = 'none';
+          const toggle = (elem) => {
+            if (window.getComputedStyle(elem).display === 'block') {
+              hide(elem);
+              return;
+            }
+            show(elem);
+          };
+          // Listen for click events
+          const menuButton = document.getElementById('menu');
+          menuButton.addEventListener('click', (event) => {
+            // Filter events
+            if (event.target.id !== 'menu') return;
+            // Prevent default link behavior
+            event.preventDefault();
+            // Check for a valid target
+            const nav = document.getElementById('navbar')
+            if (!nav) return;
+            // Toggle
+            toggle(nav);
+          }, useCapture);
+        }
+        setupSampleMenuControl();
+      </script>
 <div height="1000px" class="middle">
     <h1>Hello World</h1>
 </div>
