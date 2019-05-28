@@ -4,18 +4,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body style="display: flex; flex-direction: column; height: 100vh;">
-        <header>
-                <div class="banner">
-                    <a href="https://gov.bc.ca" alt="British Columbia">
-                      <img src="../assets/images/index.svg" alt="Go to the Government of British Columbia website" />
-                    </a>
-                </div>
-                <div class="other">
-                <!-- 
-                  This place is for anything that needs to be right aligned
-                  beside the logo.  
-                -->
-            &nbsp;
+    <header>
+        <div class="banner">
+              <a href="https://gov.bc.ca" alt="British Columbia">
+              <img src="/assets/images/index.svg" alt="Go to the Government of British Columbia website" />
+             </a>
+          </div>
+         <div class="other">
+            <!-- 
+                This place is for anything that needs to be right aligned
+                beside the logo.  
+            -->
+        &nbsp;
         </div>
     </header>
     <div>
