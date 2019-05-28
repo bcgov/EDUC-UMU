@@ -8,6 +8,10 @@ p {
     color: #494949;
 }
 
+header h1{
+    font-size: 1.54912em;
+}
+
 header {
     background-color: #036;
     border-bottom: 2px solid #fcba19;
