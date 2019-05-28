@@ -6,7 +6,9 @@
 <body>
 <header>
     <div class="banner">
-        <img src="assets/images/index.svg"/>
+        <a href="https://gov.bc.ca" alt="British Columbia">
+            <img src="assets/images/index.svg"/>
+        </a>
     </div>
 </header>
 <div>
