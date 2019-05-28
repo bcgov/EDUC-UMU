@@ -50,6 +50,7 @@ header {
     color: #fff;
     font-family: ‘Noto Sans’, Verdana, Arial, sans-serif; 
     padding: 0px 65px;
+    bottom: 0;
   }
   
   footer .container {
@@ -78,7 +79,7 @@ header {
     padding: 0px 4px;
     margin: 0px 2px;
     color: rgb(255,255,255);
-    font-size: 0.813em;
+    font-size:  0.813em;
     text-transform: capitalize;
     font-weight: normal;
     text-decoration: none;
