@@ -37,3 +37,8 @@ header {
     border-width: 1px;
     border-color: lightgrey;
   }
+
+  body div{
+      display: fixed;
+      top: 65px;
+  }
