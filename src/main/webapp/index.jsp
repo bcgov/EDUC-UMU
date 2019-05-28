@@ -3,25 +3,24 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
 </head>
-<header>
+<body>
+    <header>
         <div class="banner">
-              <a href="https://gov.bc.ca" alt="British Columbia">
-              <img src="/src/main/webapp/assets/images/index.svg" alt="Go to the Government of British Columbia website" />
-             </a>
-          </div>
-         <div class="other">
-            <!-- 
-                This place is for anything that needs to be right aligned
-                beside the logo.  
-            -->
+            <a href="https://gov.bc.ca" alt="British Columbia">
+            <img src="/src/main/webapp/assets/images/index.svg" alt="Go to the Government of British Columbia website" />
+            </a>
+        </div>
+        <div class="other">
+         <!-- 
+        This place is for anything that needs to be right aligned
+         beside the logo.  
+         -->
         &nbsp;
         </div>
-</header>
-<body style="display: flex; flex-direction: column; height: 100vh;">
-    <div>
-        <h2>Hello World</h2>
-    </div>
-</body>
+    </header>
+<div>
+    <h1>Hello World</h1>
+</div>
 <footer class="footer">
     <div class="container">
         <ul>
@@ -34,4 +33,5 @@
         </ul>
     </div>
 </footer>
+</body>
 </html>
