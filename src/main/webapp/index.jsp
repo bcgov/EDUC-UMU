@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="display: flex; flex-direction: column; height: 100vh;">
         <header>
                 <div class="banner">
                     <a href="https://gov.bc.ca" alt="British Columbia">
@@ -18,10 +18,9 @@
             &nbsp;
         </div>
     </header>
-    <h2>Hello World</h2>
-    <div style="flex: 1 0 auto; padding: 20px;">
-            <h1>Sample Footer</h1>
-          </div>
+    <div>
+        <h2>Hello World</h2>
+    </div>
     <footer class="footer">
         <div class="container">
             <ul>
