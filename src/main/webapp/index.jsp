@@ -13,11 +13,11 @@
         <div aria-label="This application is currently in Beta phase" class=Beta-PhaseBanner>Beta</div>
     </div>
 </header>
-<div class="middle">
+<div height="1000px" class="middle">
     <h1>Hello World</h1>
 </div>
 <footer class="footer">
-    <div >
+    <div class="footer_box">
          <ul>
             <li><a href=".">Home</a></li>
             <li><a href=".">Disclaimer</a></li>

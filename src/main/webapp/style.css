@@ -42,6 +42,7 @@ header {
     border-top: 2px solid #fcba19;
     color: #fff;
     font-family: ‘Noto Sans’, Verdana, Arial, sans-serif; 
+    padding: 0px 65px;
   }
   
   footer .container {
@@ -52,24 +53,35 @@ header {
     height: 46px;
   }
   
+.footer_box{
+    display: flex;
+    align-items: 
+}
+
   footer ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0;
+    margin: 10px 0;
     color: #fff;
-    list-style: none;
-    align-items: center;
-    height: 100%;
+    list-style: outside none none;
   }
   
   footer ul li a {
+    padding: 0px 4px;
+    margin: 0px 2px;
+    color: rgb(255,255,255);
     font-size: 0.813em;
-    font-weight: normal;  /* 400 */
-    color: #fff;
-    border-right: 1px solid #4b5e7e;
-    padding-left: 5px;
-    padding-right: 5px;
+    text-transform: capitalize;
+    font-weight: normal;
+    text-decoration: none;
+  }
+
+  footer ul li {
+    padding: 0px 9px;
+    text-align: center;
+    margin-bottom: 0;
+    display: flex;
   }
 
   a:hover {
