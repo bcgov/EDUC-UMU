@@ -60,7 +60,7 @@
         }
         setupSampleMenuControl();
       </script>
-<divclass="middle">
+<div class="middle">
     <h1>Hello World</h1>
 </div>
 <footer class="footer">
