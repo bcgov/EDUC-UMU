@@ -23,7 +23,7 @@
     </div>
 </body>
 <footer class="footer">
-    <div class="container">
+    <div class="banner">
         <ul>
             <li><a href=".">Home</a></li>
             <li><a href=".">Disclaimer</a></li>

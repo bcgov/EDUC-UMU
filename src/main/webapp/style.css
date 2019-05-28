@@ -1,9 +1,11 @@
 body {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
+}
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    color: #494949;
   }
   
   .waver {
@@ -111,6 +113,16 @@ body {
     padding-right: 5px;
   }
   
+  footer .banner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 10px 0 0;
+    /* border-style: dotted;
+    border-width: 1px;
+    border-color: lightgrey; */
+  }
+
   a:hover {
     color: #fff;
     text-decoration: underline;
