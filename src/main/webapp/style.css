@@ -39,6 +39,6 @@ header {
   }
 
   body div{
-      display: fixed;
-      top: 65px;
+      display: flex;
+      margin-top: 65px;
   }
