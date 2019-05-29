@@ -1,5 +1,4 @@
 def templateName = 'hello-webapp'
-def templatePath = 'https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/pipeline/maven-pipeline.yaml'
 pipeline {
   agent any
   stages {
@@ -23,10 +22,10 @@ pipeline {
                         if (openshift.selector("secrets", templateName).exists()) { 
                             openshift.selector("secrets", templateName).delete()
                         }
-                        }
                     }
                 }
             }
+        }
     }
     stage('build') {
       steps {
