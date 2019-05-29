@@ -59,7 +59,7 @@ pipeline {
         }
       }
     }
-    stage('tag') {
+    stage('promote_to_test') {
       steps {
         script {
             openshift.withCluster() {
