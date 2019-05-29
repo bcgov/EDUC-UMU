@@ -4,14 +4,14 @@ pipeline {
     maven 'Maven 3.6.1'
   }
   stages {
-    stage('build') {
-      steps {
-        sh 'mvn build'
+    stage('check install'){
+      steps{
+        sh 'mvn --version'
       }
     }
-    stage('') {
-      steps{
-        sh 'mvn test' 
+    stage('build') {
+      steps {
+        sh 'mvn package'
       }
     }
   }
