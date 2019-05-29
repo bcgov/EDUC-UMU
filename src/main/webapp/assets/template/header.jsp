@@ -9,7 +9,7 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
         <a href="../../index.jsp" alt="British Columbia">
             <img src="assets/images/index.svg" height="43.4833" width="175px"/>
         </a>
-        <h1>OBIEE User Management</h1>
+        <h2>OBIEE User Management</h2>
         <div aria-label="This application is currently in Beta phase" class=Beta-PhaseBanner>Beta</div>
     </div>
     <div class="other">
