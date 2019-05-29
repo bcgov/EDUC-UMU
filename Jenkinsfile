@@ -28,17 +28,6 @@ pipeline {
                 }
             }
     }
-    stage('create') {
-      steps {
-        script {
-            openshift.withCluster() {
-                openshift.withProject() {
-                  openshift.newApp(templatePath) 
-                }
-            }
-        }
-      }
-    }
     stage('build') {
       steps {
         script {
@@ -48,22 +37,6 @@ pipeline {
                   timeout(5) { 
                     builds.untilEach(1) {
                       return (it.object().status.phase == "Complete")
-                    }
-                  }
-                }
-            }
-        }
-      }
-    }
-    stage('deploy') {
-      steps {
-        script {
-            openshift.withCluster() {
-                openshift.withProject() {
-                  def rm = openshift.selector("dc", templateName).rollout().latest()
-                  timeout(5) { 
-                    openshift.selector("dc", templateName).related('pods').untilEach(1) {
-                      return (it.object().status.phase == "Running")
                     }
                   }
                 }
