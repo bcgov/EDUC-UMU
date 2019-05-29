@@ -1,10 +1,13 @@
+<%-- 
+Header template that displays the BC Gov boilerplate header bar and nav menu
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <body>
 <header>
     <div class="banner">
         <a href="../../index.jsp" alt="British Columbia">
-            <img src="../images/index.svg" height="43.4833" width="175px"/>
+            <img src="assets/images/index.svg" height="43.4833" width="175px"/>
         </a>
         <h1>OBIEE User Management</h1>
         <div aria-label="This application is currently in Beta phase" class=Beta-PhaseBanner>Beta</div>
