@@ -64,7 +64,7 @@ pipeline {
         script {
             openshift.withCluster() {
                 openshift.withProject() {
-                  openshift.tag("${templateName}:latest", "${templateName}-prod:latest") 
+                  openshift.tag("${templateName}-test:latest", "${templateName}-prod:latest") 
                 }
             }
         }
