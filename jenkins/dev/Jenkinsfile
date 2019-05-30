@@ -62,7 +62,6 @@ pipeline {
     /* Testing pipeline */
     stage('promote_to_dev') {
       steps {
-        script {
             git([url: "https://github.com/bcgov/EDUC-UMU", branch: 'dev'])
             sh 'git config --global user.email "nathan.denny@gov.bc.ca"'
             sh 'git config --global user.name "ndenny1"'
@@ -71,7 +70,6 @@ pipeline {
             sh 'git merge upstream/tools'
             sh 'git commit -am "Merged tools branch to dev branch"'
             sh "git push origin master"
-        }
       }
     }
   }
