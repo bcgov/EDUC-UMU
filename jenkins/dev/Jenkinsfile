@@ -67,7 +67,6 @@ pipeline {
             sh 'git config --global user.name "ndenny1"'
             sh 'git config --global user.email "nathan.denny@gov.bc.ca"'
             sh 'git merge origin/tools'
-            sh 'git commit -am "Merged tools to dev"'
             sh 'git push origin dev'
               openshift.withCluster() {
                 openshift.withProject() {
