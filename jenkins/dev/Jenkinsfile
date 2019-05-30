@@ -64,6 +64,8 @@ pipeline {
       steps {
         script {
             git([url: "https://github.com/bcgov/EDUC-UMU", branch: 'dev'])
+            sh 'git config --global user.email "nathan.denny@gov.bc.ca"'
+            sh 'git config --global user.name "ndenny1"'
             sh 'git fetch --all'
             sh 'git checkout dev'
             sh 'git merge upstream/tools'
