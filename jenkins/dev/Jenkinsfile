@@ -63,17 +63,9 @@ pipeline {
     stage('promote_to_dev') {
       steps {
             git([url: "https://github.com/bcgov/EDUC-UMU", branch: 'dev'])
-<<<<<<< HEAD
-            sh 'git checkout dev'
-            sh 'git merge tools'
-            sh 'git commit -am "Merged tools branch to dev branch"'
-            sh "git push master"
-        }
-=======
             sh 'git merge origin/tools'
             sh 'git commit -am "Merged tools to dev"'
             sh 'git push origin dev'
->>>>>>> tools
       }
     }
   }
