@@ -59,7 +59,7 @@ pipeline {
         }
       }
     }
-    /* Added comment to test merging */
+    /* Testing pipeline */
     stage('promote_to_dev') {
       steps {
         script {
