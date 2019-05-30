@@ -63,6 +63,7 @@ pipeline {
       steps {
         script {
             git([url: "https://github.com/bcgov/EDUC-UMU", branch: 'dev'])
+            sh 'git checkout dev'
             sh 'git merge tools'
             sh 'git commit -am "Merged tools branch to dev branch"'
             sh "git push origin master"
