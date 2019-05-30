@@ -69,7 +69,7 @@ pipeline {
             sh 'git checkout dev'
             sh 'git merge upstream/tools'
             sh 'git commit -am "Merged tools branch to dev branch"'
-            sh "git push origin master"
+            sh "git push origin dev"
       }
     }
   }
