@@ -66,6 +66,13 @@ pipeline {
             sh 'git merge origin/tools'
             sh 'git commit -am "Merged tools to dev"'
             sh 'git push origin dev'
+            script {
+              openshift.withCluster() {
+                openshift.withProject() {
+                  openshift.tag("${appName}:latest", "${appName}-dev:latest") 
+                }
+            }
+        }
       }
     }
   }
