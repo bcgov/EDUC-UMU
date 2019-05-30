@@ -67,7 +67,7 @@ pipeline {
             sh 'git remote add upstream https://github.com/bcgov/EDUC-UMU'
             sh 'git fetch --all'
             sh 'git checkout dev'
-            sh 'git merge tools'
+            sh 'git merge upstream/tools'
             sh 'git commit -am "Merged tools branch to dev branch"'
             sh "git push origin master"
         }
