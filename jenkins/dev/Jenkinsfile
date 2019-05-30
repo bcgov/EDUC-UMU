@@ -64,6 +64,7 @@ pipeline {
       steps {
         script {
             git([url: "https://github.com/bcgov/EDUC-UMU", branch: 'dev'])
+            sh 'git remote add upstream https://github.com/bcgov/EDUC-UMU'
             sh 'git fetch --all'
             sh 'git checkout dev'
             sh 'git merge tools'
