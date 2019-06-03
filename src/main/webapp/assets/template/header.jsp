@@ -12,7 +12,7 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
         <img class="img-fluid d-md-none" src="../bootstrap-theme/dist/images/bcid-symbol-rev.svg" width="64" height="44" alt="B.C. Government Logo">
       </a>
       <div class="navbar-brand">
-        Hello World
+        OBIEE UserID Mgmt
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
