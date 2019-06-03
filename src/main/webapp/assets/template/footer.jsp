@@ -23,6 +23,9 @@ Boilerplate BC Gov footer bar
             <li class="nav-item">
               <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/contact-us" target="_blank">Contact Us</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/bcgov/EDUC-UMU/issues" target="_blank">Report Issues</a>
+            </li>
           </ul>
         </div>
       </nav>
