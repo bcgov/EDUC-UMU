@@ -7,6 +7,9 @@
 <%@ include file="assets/template/header.jsp" %>
 <div class="middle">
     <div class="wide_block">
+    <!-- 
+      Added comments to test openshift build config
+      -->
         <h2>Example</h2>
         <p>The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. </p>
     </div>
