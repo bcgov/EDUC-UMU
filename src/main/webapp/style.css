@@ -203,6 +203,14 @@ header {
     outline: 4px solid #3B99FC;
     outline-offset: 1px;
   }
+
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 70%;
+  }
   /* End Class Specific */
 
   /* Forms */
