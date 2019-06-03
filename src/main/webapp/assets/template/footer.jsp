@@ -7,11 +7,11 @@ Boilerplate BC Gov footer bar
         <div class="footer_box">
              <ul>
                 <li><a href="../../index.jsp">Home</a></li>
-                <li><a href="../../index.jsp">Disclaimer</a></li>
-                <li><a href="../../index.jsp">Privacy</a></li>
-                <li><a href="../../index.jsp">Accessibility</a></li>
-                <li><a href="../../index.jsp">Copyright</a></li>
-                <li><a href="../../index.jsp">Contact Us</a></li>
+                <li><a href="https://www2.gov.bc.ca/gov/content/home/disclaimer">Disclaimer</a></li>
+                <li><a href="https://www2.gov.bc.ca/gov/content/home/privacy">Privacy</a></li>
+                <li><a href="https://www2.gov.bc.ca/gov/content/home/accessibility">Accessibility</a></li>
+                <li><a href="https://www2.gov.bc.ca/gov/content/home/copyright">Copyright</a></li>
+                <li><a href="https://github.com/bcgov/EDUC-UMU/issues">Contact Us</a></li>
             </ul>
         </div>
 </footer>
