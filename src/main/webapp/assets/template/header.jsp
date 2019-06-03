@@ -8,8 +8,8 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="https://www2.gov.bc.ca">
-        <img class="img-fluid d-none d-md-block" src="/bootstrap-theme/dist/images/bcid-logo-rev-en.svg" width="181" height="44" alt="B.C. Government Logo">
-        <img class="img-fluid d-md-none" src="/bootstrap-theme/dist/images/bcid-symbol-rev.svg" width="64" height="44" alt="B.C. Government Logo">
+        <img class="img-fluid d-none d-md-block" src="../bootstrap-theme/dist/images/bcid-logo-rev-en.svg" width="181" height="44" alt="B.C. Government Logo">
+        <img class="img-fluid d-md-none" src="../bootstrap-theme/dist/images/bcid-symbol-rev.svg" width="64" height="44" alt="B.C. Government Logo">
       </a>
       <div class="navbar-brand">
         Hello World
@@ -19,7 +19,7 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/bootstrap-theme/">Home</a>
+          <a class="nav-item nav-link" href="../bootstrap-theme/">Home</a>
         </div>
       </div>
     </div>

@@ -11,13 +11,13 @@ Anything that goes in the head tag of every page can be referenced here
 
 <title>Hello World</title>
 
-<link href="/bootstrap-theme/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="../bootstrap-theme/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 <!-- Favicons -->
-<link rel="apple-touch-icon" href="/bootstrap-theme/dist/images/bcid-apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/bootstrap-theme/dist/images/bcid-favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/bootstrap-theme/dist/images/bcid-favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/bootstrap-theme/dist/images/manifest.json">
-<link rel="mask-icon" href="/bootstrap-theme/dist/images/bcid-apple-icon.svg" color="#036">
-<link rel="icon" href="/bootstrap-theme/dist/images/bcid-favicon-32x32.png">
-<meta name="msapplication-config" content="/bootstrap-theme/dist/images/browserconfig.xml">
+<link rel="apple-touch-icon" href="../bootstrap-theme/dist/images/bcid-apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="../bootstrap-theme/dist/images/bcid-favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../bootstrap-theme/dist/images/bcid-favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="../bootstrap-theme/dist/images/manifest.json">
+<link rel="mask-icon" href="../bootstrap-theme/dist/images/bcid-apple-icon.svg" color="#036">
+<link rel="icon" href="../bootstrap-theme/dist/images/bcid-favicon-32x32.png">
+<meta name="msapplication-config" content="../bootstrap-theme/dist/images/browserconfig.xml">
 <meta name="theme-color" content="#036">
