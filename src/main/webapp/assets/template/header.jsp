@@ -12,7 +12,7 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
         <img class="img-fluid d-md-none" src="/assets/images/bcid-symbol-rev.svg" width="64" height="44" alt="B.C. Government Logo">
       </a>
       <div class="navbar-brand">
-        OBIEE UserID Mgmt
+        OBIEE UserID Management
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,8 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="index.jsp">Home</a>
+          <a class="nav-item nav-link" href="index.jsp">View Users</a>
+          <a class="nav-item nav-link" href="index.jsp">Edit Privileges</a>
         </div>
       </div>
     </div>
