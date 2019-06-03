@@ -1,4 +1,4 @@
-def templateName = 'hello-webapp'
+def templateName = 'obiee-example'
 pipeline {
   agent any
   stages {
