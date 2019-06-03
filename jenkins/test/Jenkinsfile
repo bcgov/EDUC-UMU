@@ -1,4 +1,4 @@
-def templateName = 'obiee-example-dev'
+def templateName = 'obiee-example'
 pipeline {
   agent any
   stages {
