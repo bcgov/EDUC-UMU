@@ -10,8 +10,17 @@
     <!-- 
       Added comments to test openshift build config
       -->
-        <h2>Example</h2>
-        <p>The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. The quick red fox jumped over the lazy brown dog. </p>
+        <h3>Login</h3>
+        <form>
+          <div class="text_label">
+            <label>IDIR</label>
+          </div>
+          <input class="text_input" type="text" name="idir"><br>
+          <div class="text_label">
+            <label>Password</label>
+          </div> 
+          <input class="text_input" type="text" name="password"><br>
+        </form>
     </div>
 </div>
 <%@ include file="assets/template/footer.jsp" %>
