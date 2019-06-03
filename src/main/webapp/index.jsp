@@ -7,21 +7,24 @@
 <%@ include file="assets/template/header.jsp" %>
 <main role="main">
   <div class="container">
-    <div class="col-lg-5">
-      <h2>Login</h2>
-      <form>
-        <div class="form-group">
-          <label class="col-form-label control-label" for="idir">IDIR</label>
-          <input id="idir" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-          <label class="col-form-label control-label" for="password">Password</label>
-          <input id="password" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Login</button>
-        </div>
-      </form>
+    <div class="row">
+      <div class="col-lg-5">
+        <h1>Login</h1>
+        <form>
+          <div class="form-group">
+            <label class="col-form-label control-label" for="idir">IDIR</label>
+            <input id="idir" class="form-control" type="text">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label control-label" for="password">Password</label>
+            <input id="password" class="form-control" type="text">
+          </div>
+          <br/>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </main>
