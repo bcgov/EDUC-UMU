@@ -17,7 +17,8 @@
           </div>
           <div class="form-group">
             <label class="col-form-label control-label" for="password">Password</label>
-            <input id="password" class="form-control" type="text">
+            <input id="password" class="form-control"  type="text">
+
           </div>
           <br/>
           <div class="form-group">
