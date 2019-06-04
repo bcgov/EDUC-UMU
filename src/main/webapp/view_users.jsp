@@ -16,6 +16,7 @@
                         <th>ODBC Password</th>
                         <th>Portal Path</th>
                         <th>Authentication</th>
+                        <th>Privileges</th>
                     </tr>
                 </thead>
                 <tbody>
