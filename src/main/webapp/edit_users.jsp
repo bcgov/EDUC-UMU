@@ -8,10 +8,11 @@
 <main role="main">
   <div class="container">
     <div class="row">
-        <h1>Edit User Privileges</h1><br/>
+        <h1>Edit User Privileges</h1>
+        <br/>
         <div class="form-group">
             <label class="col-form-label col-form-label-lg control-label" for="search_box">Search Users</label>
-            <input id="inputLarge" class="form-control-lg" type="text">
+            <input id="search_box" class="form-control-lg" type="text">
         </div>
     </div>
   </div>
