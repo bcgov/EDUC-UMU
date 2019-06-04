@@ -16,7 +16,6 @@ Anything that goes in the head tag of every page can be referenced here
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
-
 <link href="/assets/template/bootstrap-theme.min.css" rel="stylesheet">
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="/assets/images/bcid-apple-touch-icon.png" sizes="180x180">
