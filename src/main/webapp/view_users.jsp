@@ -8,6 +8,11 @@
 
 <main role="main">
     <div class="container">
+        <div id="banner">
+            <div class="row">
+                <h1>OBIEE Users</h1>
+            </div>
+        </div>
         <div class="row">
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
