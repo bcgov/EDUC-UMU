@@ -25,18 +25,21 @@
                         <td>123456789</td>
                         <td>IDIR</td>
                         <td>NDENNY</td>
+                        <td>EDW Developer</td>
                     </tr>
                     <tr>
                         <td>Frank Reynolds</td>
                         <td>password1234</td>
                         <td>BCeID</td>
                         <td>5689546</td>
+                        <td>Full</td>
                     </tr>
                     <tr>
                         <td>Fake Name</td>
                         <td>notreal</td>
                         <td>GUID</td>
                         <td>123kjkgk452lhk564hkl</td>
+                        <td>EDW General, EDW EAB Analyst</td>
                     </tr>
                 </tbody>
             </table>    
