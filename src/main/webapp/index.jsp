@@ -8,11 +8,9 @@
 <main role="main">
   <div class="container">
     <div class="row">
-      <div class="col-lg-5">
         <p>Welcome to the OBIEE UserID Management application. From here you can view and edit entries in the Ministry of Eductation's Oracle database.</p>
         <br/>
-        <button class="btn btn-primary btn-lg btn-block" type="button"><a href=".">Login</a></button>
-      </div>
+        <a class="btn btn-primary btn-lg" href=".">Login</a>
     </div>
   </div>
 </main>
