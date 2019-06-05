@@ -20,8 +20,6 @@ Anything that goes in the head tag of every page can be referenced here
 <!-- Datatables CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-<script src="js/jquery.js" type="text/javascript"></script>
-<script src="js/jquery.dataTables.js" type="text/javascript"></script>
 
 <link href="/assets/template/bootstrap-theme.min.css" rel="stylesheet">
 <!-- Favicons -->
