@@ -3,7 +3,11 @@
 <html lang="en" class="fill-height-lg">
 <head>
   <%@ include file="assets/template/meta.jsp" %>
-  <script type="text/javascript" charset="utf8" src="/assets/js/tables.js"></script>
+  <script type="text/javascript" charset="utf8">
+    $(document).ready(function() {
+        $('#obiee_user').DataTable();
+    });
+  </script>
 </head>
 <%@ include file="assets/template/header.jsp" %>
 
@@ -15,7 +19,7 @@
             </div>
         </div>
         <div class="row">
-            <table class="table table-striped table-hover" id="obiee_user">
+            <table id="obiee_user" class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Display Name</th>
