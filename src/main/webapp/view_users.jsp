@@ -23,6 +23,7 @@
                         <th>Authentication</th>
                         <th>Privileges</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,7 @@
                         <td>NDENNY</td>
                         <td>EDW Developer</td>
                         <td><a href="view_users.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="view_users.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                     <tr>
                         <td>Frank Reynolds</td>
@@ -41,6 +43,7 @@
                         <td>5689546</td>
                         <td>Full</td>
                         <td><a href="view_users.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="view_users.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                     <tr>
                         <td>Fake Name</td>
@@ -49,6 +52,7 @@
                         <td>123kjkgk452lhk564hkl</td>
                         <td>EDW General, EDW EAB Analyst</td>
                         <td><a href="view_users.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="view_users.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                 </tbody>
             </table>    

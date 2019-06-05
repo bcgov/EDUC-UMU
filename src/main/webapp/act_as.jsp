@@ -19,23 +19,27 @@
                         <th>Display Name</th>
                         <th>Act as Privileges</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Nathan Denny</td>
                         <td>General Test</td>
-                        <td><i class="fas fa-edit"></i></td>
+                        <td><a href="act_as.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="act_as.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                     <tr>
                         <td>Frank Reynolds</td>
                         <td>Developer Test</td>
-                        <td><i class="fas fa-edit"></i></td>
+                        <td><a href="act_as.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="act_as.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                     <tr>
                         <td>Fake Name</td>
                         <td>Master Test</td>
-                        <td><i class="fas fa-edit"></i></td>
+                        <td><a href="act_as.jsp"><i class="fas fa-edit"></i></a></td>
+                        <td><a class="delete" href="act_as.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                 </tbody>
             </table>    
