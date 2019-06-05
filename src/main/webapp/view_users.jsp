@@ -61,7 +61,7 @@
 </main>
 <script>
     $(function() {
-        $('#obiee_user').DataTable();
+        $('#obiee_user').dataTable();
     })
 </script>
 
