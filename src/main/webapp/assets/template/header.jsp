@@ -20,10 +20,11 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="index.jsp">Home</a>
-          <a class="nav-item nav-link-disabled" href="view_users.jsp">View Users</a>
-          <a class="nav-item nav-link-disabled" href="act_as.jsp">Edit Privileges</a>
+          <a class="nav-item nav-link disabled" href="view_users.jsp">View Users</a>
+          <a class="nav-item nav-link disabled" href="act_as.jsp">Edit Privileges</a>
         </div>
       </div>
     </div>
   </nav>
 </header>
+<body>
