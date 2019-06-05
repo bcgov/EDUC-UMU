@@ -3,6 +3,7 @@
 <html lang="en" class="fill-height-lg">
 <head>
   <%@ include file="assets/template/meta.jsp" %>
+  <script type="text/javascript" charset="utf8" src="/assets/js/tables.js"></script>
 </head>
 <%@ include file="assets/template/header.jsp" %>
 
@@ -14,7 +15,7 @@
             </div>
         </div>
         <div class="row">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="obiee_user">
                 <thead class="thead-dark">
                     <tr>
                         <th>Display Name</th>
