@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row">
-            <table id="obiee_user" class="table table-striped table-hover">
+            <table id="obiee_user" class="table table-striped table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
                         <th>Display Name</th>
