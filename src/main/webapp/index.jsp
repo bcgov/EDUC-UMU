@@ -9,14 +9,7 @@
   <div class="container">
     <div class="row">
       <h1>OBIEE User Management Home</h1>
-      <p>Welcome to the OBIEE UserID Management application. From here you can view and edit entries in the Ministry of Eductation's Oracle database. You are also able to view and edit the "act as" privileges of users for development and testing purposes</p>
-      <div>
-        <ul class="nav nav-pills">
-          <li class="nav-item"><a class="nav-link" href=".">Login</a></li>
-          <li class="nav-item"><a class="nav-link disabled" href="view_users.jsp">User Table</a></li>
-          <li class="nav-item"><a class="nav-link disabled" href="act_as.jsp">Act as Table</a></li>
-        </ul>
-      </div>
+      <p>Welcome to the OBIEE UserID Management application. From here you can view and edit entries in the Ministry of Eductation's Oracle database. You are also able to view and edit the "act as" privileges of users for development and testing purposes.</p>
     </div>
   </div>
 </main>
