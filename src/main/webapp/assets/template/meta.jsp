@@ -12,6 +12,9 @@ Anything that goes in the head tag of every page can be referenced here
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <title>OBIEE UserID Mgmt</title>
 
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/5aa27c3917.js"></script>
+
 <!-- Datatables CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
