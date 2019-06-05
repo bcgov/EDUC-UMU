@@ -9,21 +9,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
-        <h1>Login</h1>
-        <form>
-          <div class="form-group">
-            <label class="col-form-label control-label" for="idir">IDIR</label>
-            <input id="idir" class="form-control" type="text">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label control-label" for="password">Password</label>
-            <input id="password" class="form-control"  type="text">
-          </div>
-          <br/>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">Login</button>
-          </div>
-        </form>
+        <p>Welcome to the OBIEE UserID Management application. From here you can view and edit entries in the Ministry of Eductation's Oracle database.</p>
+        <br/>
+        <button class="btn btn-primary btn-lg btn-block" type="button"><a href=".">Login</a></button>
       </div>
     </div>
   </div>
