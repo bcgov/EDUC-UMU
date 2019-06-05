@@ -8,13 +8,16 @@
 <main role="main">
   <div class="container">
     <div class="row">
+        <div class="col">
         <h1>Edit User Privileges</h1>
         <br/>
     </div>
     <div class="row">
-        <div class="form-group">
-            <label class="col-form-label col-form-label control-label" for="search_box">Search Users</label>
-            <input id="search_box" class="form-control" type="text">
+        <div class="">
+            <div class="form-group">
+                <label class="col-form-label col-form-label control-label" for="search_box">Search Users</label>
+                <input id="search_box" class="form-control" type="text">
+            </div>
         </div>
     </div>
   </div>
