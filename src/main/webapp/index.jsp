@@ -9,8 +9,6 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
-        <h1>Hello World dfsakjfdsflkj</h1>
-        <%--
         <h1>Login</h1>
         <form>
           <div class="form-group">
@@ -26,7 +24,6 @@
             <button class="btn btn-primary" type="submit">Login</button>
           </div>
         </form>
-      --%>
       </div>
     </div>
   </div>
