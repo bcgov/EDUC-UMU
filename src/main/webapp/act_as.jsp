@@ -25,17 +25,17 @@
                     <tr>
                         <td>Nathan Denny</td>
                         <td>General Test</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                     <tr>
                         <td>Frank Reynolds</td>
                         <td>Developer Test</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                     <tr>
                         <td>Fake Name</td>
                         <td>Master Test</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                 </tbody>
             </table>    

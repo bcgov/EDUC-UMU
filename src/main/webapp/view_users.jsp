@@ -32,7 +32,7 @@
                         <td>IDIR</td>
                         <td>NDENNY</td>
                         <td>EDW Developer</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                     <tr>
                         <td>Frank Reynolds</td>
@@ -40,7 +40,7 @@
                         <td>BCeID</td>
                         <td>5689546</td>
                         <td>Full</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                     <tr>
                         <td>Fake Name</td>
@@ -48,7 +48,7 @@
                         <td>GUID</td>
                         <td>123kjkgk452lhk564hkl</td>
                         <td>EDW General, EDW EAB Analyst</td>
-                        <td><i class="faa fa-edit"></i></td>
+                        <td><i class="fas fa-edit"></i></td>
                     </tr>
                 </tbody>
             </table>    
