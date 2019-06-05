@@ -3,11 +3,6 @@
 <html lang="en" class="fill-height-lg">
 <head>
   <%@ include file="assets/template/meta.jsp" %>
-  <script type="text/javascript" charset="utf8">
-    $(document).ready(function() {
-        $('#obiee_user').DataTable();
-    });
-  </script>
 </head>
 <%@ include file="assets/template/header.jsp" %>
 
@@ -64,6 +59,11 @@
         </div>
     </div>
 </main>
+<script>
+    $(function() {
+        $('#obiee_user').DataTable();
+    })
+</script>
 
 <%@ include file="assets/template/footer.jsp" %>
 </html>
