@@ -13,8 +13,8 @@
       <div>
         <ul class="nav nav-pills">
           <li class="nav-item"><a class="nav-link" href=".">Login</a></li>
-          <li class="nav-item"><a class="nav-link disabled" href=".">User Table</a></li>
-          <li class="nav-item"><a class="nav-link disabled" href=".">Act as Table</a></li>
+          <li class="nav-item"><a class="nav-link disabled" href="view_users.jsp">User Table</a></li>
+          <li class="nav-item"><a class="nav-link disabled" href="act_as.jsp">Act as Table</a></li>
         </ul>
       </div>
     </div>
