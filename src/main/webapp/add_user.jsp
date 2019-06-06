@@ -13,69 +13,69 @@
     </div>
     <div class="row">
         <br/>
-        <div class="col-lg-5">
-            <div class="form-group">
-                <label class="control-label" for="fullName">Full Name</label>
-                <input id="fullName" class="form-control" placeholder="Full Name">
-            </div>
-            <div class="form-group">
-                <label class="contol-label" for="email">Email Address</label>
-                <input id="email" class="form-control" placeholder="Email">
-            </div>
-            <legend>Enter at least one of the following</legend>
-            <div class="form-group">
-                <label class="control-label" for="bceid">BCeID</label>
-                <input id="bceid" class="form-control" placeholder="BCeID">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="idir">IDIR</label>
-                <input id="idir" class="form-control" placeholder="IDIR">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="guid">GUID</label>
-                <input id="guid" class="form-control" placeholder="GUID">
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <legend>User Privileges</legend>
-            <div class="form-group">
-                <input id="admin" class="form-check-input" type="radio" value="admin">
-                <label class="form-check-label" for="admin">EDW Administrator</label>
-            </div>
-            <div class="form-group">
-                <input id="dev" class="form-check-input" type="radio" value="dev">
-                <label class="form-check-label" for="dev">EDW Developer</label>
-            </div>
-            <div class="form-group">
-                <input id="analyst" class="form-check-input" type="radio" value="analyst">
-                <label class="form-check-label" for="analyst">EDW EAB Analyst</label>
-            </div>
-            <div class="form-group">
-                <input id="general" class="form-check-input" type="radio" value="general">
-                <label class="form-check-label" for="general">EDW General</label>
-            </div>
-            <div class="form-group">
-                <input id="super" class="form-check-input" type="radio" value="super">
-                <label class="form-check-label" for="super">EDW District Superintendent</label>
-            </div>
-            <div class="form-group">
-                <input id="principle" class="form-check-input" type="radio" value="principle">
-                <label class="form-check-label" for="principle">EDW School Principle</label>
-            </div>
-            <div class="form-group">
-                <input id="dimstud" class="form-check-input" type="radio" value="dimstud">
-                <label class="form-check-label" for="dimstud">EDW Dimstud</label>
+        <div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="control-label" for="fullName">Full Name</label>
+                    <input id="fullName" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label class="contol-label" for="email">Email Address</label>
+                    <input id="email" class="form-control" placeholder="Email">
+                </div>
+                <legend>Enter at least one of the following</legend>
+                <div class="form-group">
+                    <label class="control-label" for="bceid">BCeID</label>
+                    <input id="bceid" class="form-control" placeholder="BCeID">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="idir">IDIR</label>
+                    <input id="idir" class="form-control" placeholder="IDIR">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="guid">GUID</label>
+                    <input id="guid" class="form-control" placeholder="GUID">
+                </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="row">
+        <div>
+            <div class="col-lg-4">
+                <legend>User Privileges</legend>
+                <div class="form-group">
+                    <input id="admin" class="form-check-input" type="radio" value="admin">
+                    <label class="form-check-label" for="admin">EDW Administrator</label>
+                </div>
+                <div class="form-group">
+                    <input id="dev" class="form-check-input" type="radio" value="dev">
+                    <label class="form-check-label" for="dev">EDW Developer</label>
+                </div>
+                <div class="form-group">
+                    <input id="analyst" class="form-check-input" type="radio" value="analyst">
+                    <label class="form-check-label" for="analyst">EDW EAB Analyst</label>
+                </div>
+                <div class="form-group">
+                    <input id="general" class="form-check-input" type="radio" value="general">
+                    <label class="form-check-label" for="general">EDW General</label>
+                </div>
+                <div class="form-group">
+                    <input id="super" class="form-check-input" type="radio" value="super">
+                    <label class="form-check-label" for="super">EDW District Superintendent</label>
+                </div>
+                <div class="form-group">
+                    <input id="principle" class="form-check-input" type="radio" value="principle">
+                    <label class="form-check-label" for="principle">EDW School Principle</label>
+                </div>
+                <div class="form-group">
+                    <input id="dimstud" class="form-check-input" type="radio" value="dimstud">
+                    <label class="form-check-label" for="dimstud">EDW Dimstud</label>
+                </div>
+            </div>
+        </div>
+    <div>
+    <div class="col-lg-4">
         <legend>Act As Privileges (Optional)</legend>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
             <div class="form-group">
-                <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
+            <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
                 <label class="form-check-label" for="gen_test">EDW General Test</label>
             </div>
             <div class="form-group">
