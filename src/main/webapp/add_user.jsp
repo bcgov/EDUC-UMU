@@ -40,7 +40,7 @@
     <hr>
     <div class="row">
 
-            <div class="col-lg-5">
+            <div class="col-lg-7">
                 <legend>User Privileges</legend>
                 <div class="form-group">
                     <input id="admin" class="form-check-input" type="checkbox" value="admin">
@@ -61,10 +61,12 @@
                 <div class="form-group">
                     <input id="super" class="form-check-input" type="checkbox" value="super">
                     <label class="form-check-label" for="super">EDW District Superintendent</label>
+                    <input id="super_district" class="form-control" placeholder="District Numbers (comma seperated)"> 
                 </div>
                 <div class="form-group">
                     <input id="principle" class="form-check-input" type="checkbox" value="principle">
                     <label class="form-check-label" for="principle">EDW School Principle</label>
+                    <input id="school_id" class="form-control" placeholder="School IDs (comma seperated)">
                 </div>
                 <div class="form-group">
                     <input id="dimstud" class="form-check-input" type="checkbox" value="dimstud">
@@ -100,7 +102,7 @@
             </div>
     </div>
     <div class="row">
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" href="view_users.jsp">Submit</button>
         </form>
     </div>
 </main>
