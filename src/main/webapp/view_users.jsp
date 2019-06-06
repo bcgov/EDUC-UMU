@@ -81,7 +81,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="7" align="center">
-                            <a class="btn btn-primary" href=".">Add User</a>
+                            <a class="btn btn-primary" href="add_user.jsp">Add User</a>
                         </td>
                     </tr>
                 </tfoot>
