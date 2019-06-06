@@ -5,6 +5,9 @@
   <%@ include file="assets/template/meta.jsp" %>
 </head>
 <%@ include file="assets/template/header.jsp" %>
+
+<script type='text/javascript' src='assets/js/user_form.js'></script>
+
 <main role="main">
   <div class="container">
     <form>
