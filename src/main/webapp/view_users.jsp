@@ -6,6 +6,12 @@
 </head>
 <%@ include file="assets/template/header.jsp" %>
 
+<script>
+    $(document).ready(function() {
+        $('#obiee_user').DataTable();
+    } );
+</script>
+
 <main role="main">
     <div class="container">
         <div id="banner">
@@ -59,11 +65,6 @@
         </div>
     </div>
 </main>
-<script>
-    $(function() {
-        $('#obiee_user').DataTable();
-    })
-</script>
 
 <%@ include file="assets/template/footer.jsp" %>
 </html>
