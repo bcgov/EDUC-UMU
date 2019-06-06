@@ -9,6 +9,9 @@
 <script>
     $(document).ready(function() {
         $('#obiee_user').DataTable( {
+            "columnDefs": [
+                {"className": "dt-center", "targets": [5, 6]}
+            ],
             "columns": [
                 null,
                 null,

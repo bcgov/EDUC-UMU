@@ -10,6 +10,12 @@
     <script>
     $(document).ready(function() {
         $('#act_as').DataTable({
+            /*
+            Add options to the datatable here
+            */
+            "columnDefs": [
+                {"className": "dt-center", "targets": [2, 3]}
+            ],
             "columns": [
                 null,
                 null,
@@ -25,6 +31,7 @@
             <div class="row">
                 <h1>Act As Privileges</h1>
             </div>
+            <br/>
         </div>
         <div class="row">
             <table id="act_as" class="table table-striped table-hover" style="width:100%">
@@ -32,8 +39,8 @@
                     <tr>
                         <th>Display Name</th>
                         <th>Act as Privileges</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th align="center">Edit</th>
+                        <th align="center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
