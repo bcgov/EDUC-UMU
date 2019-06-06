@@ -45,31 +45,31 @@
             <div class="col-lg-5">
                 <legend>User Privileges</legend>
                 <div class="form-group">
-                    <input id="admin" class="form-check-input" type="radio" value="admin">
+                    <input id="admin" class="form-check-input" type="checkbox" value="admin">
                     <label class="form-check-label" for="admin">EDW Administrator</label>
                 </div>
                 <div class="form-group">
-                    <input id="dev" class="form-check-input" type="radio" value="dev">
+                    <input id="dev" class="form-check-input" type="checkbox" value="dev">
                     <label class="form-check-label" for="dev">EDW Developer</label>
                 </div>
                 <div class="form-group">
-                    <input id="analyst" class="form-check-input" type="radio" value="analyst">
+                    <input id="analyst" class="form-check-input" type="checkbox" value="analyst">
                     <label class="form-check-label" for="analyst">EDW EAB Analyst</label>
                 </div>
                 <div class="form-group">
-                    <input id="general" class="form-check-input" type="radio" value="general">
+                    <input id="general" class="form-check-input" type="checkbox" value="general">
                     <label class="form-check-label" for="general">EDW General</label>
                 </div>
                 <div class="form-group">
-                    <input id="super" class="form-check-input" type="radio" value="super">
+                    <input id="super" class="form-check-input" type="checkbox" value="super">
                     <label class="form-check-label" for="super">EDW District Superintendent</label>
                 </div>
                 <div class="form-group">
-                    <input id="principle" class="form-check-input" type="radio" value="principle">
+                    <input id="principle" class="form-check-input" type="checkbox" value="principle">
                     <label class="form-check-label" for="principle">EDW School Principle</label>
                 </div>
                 <div class="form-group">
-                    <input id="dimstud" class="form-check-input" type="radio" value="dimstud">
+                    <input id="dimstud" class="form-check-input" type="checkbox" value="dimstud">
                     <label class="form-check-label" for="dimstud">EDW Dimstud</label>
                 </div>
             </div>
@@ -78,27 +78,27 @@
             <div class="col-lg-5">
                 <legend>Act As Privileges (Optional)</legend>
                 <div class="form-group">
-                <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
+                <input id="gen_test" class="form-check-input" type="checkbox" value="gen_test">
                     <label class="form-check-label" for="gen_test">EDW General Test</label>
                 </div>
                 <div class="form-group">
-                    <input id="analyst_test" class="form-check-input" type="radio" value="analyst_test">
+                    <input id="analyst_test" class="form-check-input" type="checkbox" value="analyst_test">
                     <label class="form-check-label" for="analyst_test">EDW EAB Analyst Test</label>
                 </div>
                 <div class="form-group">
-                    <input id="dev_test" class="form-check-input" type="radio" value="dev_test">
+                    <input id="dev_test" class="form-check-input" type="checkbox" value="dev_test">
                     <label class="form-check-label" for="dev_test">EDW Developer Test</label>
                 </div>
                 <div class="form-group">
-                    <input id="adm_test" class="form-check-input" type="radio" value="adm_test">
+                    <input id="adm_test" class="form-check-input" type="checkbox" value="adm_test">
                     <label class="form-check-label" for="adm_test">EDW Administrator Test</label>
                 </div>
                 <div class="form-group">
-                    <input id="super_test" class="form-check-input" type="radio" value="super_test">
+                    <input id="super_test" class="form-check-input" type="checkbox" value="super_test">
                     <label class="form-check-label" for="super_test">EDW District Superintendent Test</label>
                 </div>
                 <div class="form-group">
-                    <input id="principle_test" class="form-check-input" type="radio" value="principle_test">
+                    <input id="principle_test" class="form-check-input" type="checkbox" value="principle_test">
                     <label class="form-check-label" for="principle_test">EDW School Principle Test</label>
                 </div>
             </div>
