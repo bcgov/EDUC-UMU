@@ -6,6 +6,13 @@
 </head>
 <%@ include file="assets/template/header.jsp" %>
 <main role="main">
+
+    <script>
+    $(document).ready(function() {
+        $('#act_as').DataTable();
+    } );
+    </script>
+
     <div class="container">
         <div id="banner">
             <div class="row">
@@ -13,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            <table class="table table-striped table-hover">
+            <table id="act_as" class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>Display Name</th>
