@@ -14,7 +14,7 @@
     <div class="row">
         <br/>
         <div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="form-group">
                     <label class="control-label" for="fullName">Full Name</label>
                     <input id="fullName" class="form-control" placeholder="Full Name">
@@ -42,7 +42,7 @@
     <hr>
     <div class="row">
         <div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <legend>User Privileges</legend>
                 <div class="form-group">
                     <input id="admin" class="form-check-input" type="radio" value="admin">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <legend>Act As Privileges (Optional)</legend>
                 <div class="form-group">
                 <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
@@ -103,9 +103,11 @@
                 </div>
             </div>
         </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
-  </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
 </main>
 <%@ include file="assets/template/footer.jsp" %>
 </html>
