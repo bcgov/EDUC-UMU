@@ -13,7 +13,6 @@
     </div>
     <div class="row">
         <br/>
-        <div>
             <div class="col-lg-5">
                 <div class="form-group">
                     <label class="control-label" for="fullName">Full Name</label>
@@ -37,11 +36,10 @@
                     <input id="guid" class="form-control" placeholder="GUID">
                 </div>
             </div>
-        </div>
     </div>
     <hr>
     <div class="row">
-        <div>
+
             <div class="col-lg-5">
                 <legend>User Privileges</legend>
                 <div class="form-group">
@@ -73,8 +71,6 @@
                     <label class="form-check-label" for="dimstud">EDW Dimstud</label>
                 </div>
             </div>
-        </div>
-        <div>
             <div class="col-lg-5">
                 <legend>Act As Privileges (Optional)</legend>
                 <div class="form-group">
@@ -102,7 +98,6 @@
                     <label class="form-check-label" for="principle_test">EDW School Principle Test</label>
                 </div>
             </div>
-        </div>
     </div>
     <div class="row">
         <button class="btn btn-primary" type="submit">Submit</button>
