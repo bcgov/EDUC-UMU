@@ -38,6 +38,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <hr>
+    <div class="row">
         <div>
             <div class="col-lg-4">
                 <legend>User Privileges</legend>
@@ -71,35 +74,35 @@
                 </div>
             </div>
         </div>
-    <div>
-    <div class="col-lg-4">
-        <legend>Act As Privileges (Optional)</legend>
-            <div class="form-group">
-            <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
-                <label class="form-check-label" for="gen_test">EDW General Test</label>
-            </div>
-            <div class="form-group">
-                <input id="analyst_test" class="form-check-input" type="radio" value="analyst_test">
-                <label class="form-check-label" for="analyst_test">EDW EAB Analyst Test</label>
-            </div>
-            <div class="form-group">
-                <input id="dev_test" class="form-check-input" type="radio" value="dev_test">
-                <label class="form-check-label" for="dev_test">EDW Developer Test</label>
-            </div>
-            <div class="form-group">
-                <input id="adm_test" class="form-check-input" type="radio" value="adm_test">
-                <label class="form-check-label" for="adm_test">EDW Administrator Test</label>
-            </div>
-            <div class="form-group">
-                <input id="super_test" class="form-check-input" type="radio" value="super_test">
-                <label class="form-check-label" for="super_test">EDW District Superintendent Test</label>
-            </div>
-            <div class="form-group">
-                <input id="principle_test" class="form-check-input" type="radio" value="principle_test">
-                <label class="form-check-label" for="principle_test">EDW School Principle Test</label>
+        <div>
+            <div class="col-lg-4">
+                <legend>Act As Privileges (Optional)</legend>
+                <div class="form-group">
+                <input id="gen_test" class="form-check-input" type="radio" value="gen_test">
+                    <label class="form-check-label" for="gen_test">EDW General Test</label>
+                </div>
+                <div class="form-group">
+                    <input id="analyst_test" class="form-check-input" type="radio" value="analyst_test">
+                    <label class="form-check-label" for="analyst_test">EDW EAB Analyst Test</label>
+                </div>
+                <div class="form-group">
+                    <input id="dev_test" class="form-check-input" type="radio" value="dev_test">
+                    <label class="form-check-label" for="dev_test">EDW Developer Test</label>
+                </div>
+                <div class="form-group">
+                    <input id="adm_test" class="form-check-input" type="radio" value="adm_test">
+                    <label class="form-check-label" for="adm_test">EDW Administrator Test</label>
+                </div>
+                <div class="form-group">
+                    <input id="super_test" class="form-check-input" type="radio" value="super_test">
+                    <label class="form-check-label" for="super_test">EDW District Superintendent Test</label>
+                </div>
+                <div class="form-group">
+                    <input id="principle_test" class="form-check-input" type="radio" value="principle_test">
+                    <label class="form-check-label" for="principle_test">EDW School Principle Test</label>
+                </div>
             </div>
         </div>
-    </div>
     <button class="btn btn-primary" type="submit">Submit</button>
     </form>
   </div>
