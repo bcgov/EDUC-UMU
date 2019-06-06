@@ -9,7 +9,14 @@
 
     <script>
     $(document).ready(function() {
-        $('#act_as').DataTable();
+        $('#act_as').DataTable({
+            "columns": [
+                null,
+                null,
+                {"orderable": false},
+                {"orderable": false}
+            ]
+        });
     } );
     </script>
 
@@ -20,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <table id="act_as" class="table table-striped table-hover">
+            <table id="act_as" class="table table-striped table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
                         <th>Display Name</th>

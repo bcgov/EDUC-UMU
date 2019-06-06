@@ -8,7 +8,20 @@
 
 <script>
     $(document).ready(function() {
-        $('#obiee_user').DataTable();
+        $('#obiee_user').DataTable( {
+            "columns": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                {"orderable": false},
+                {"orderable": false}
+            ]
+            /*
+            Add options to datatable here
+            */
+        });
     } );
 </script>
 
@@ -18,6 +31,7 @@
             <div class="row">
                 <h1>OBIEE Users</h1>
             </div>
+            <br/>
         </div>
         <div class="row">
             <table id="obiee_user" class="table table-striped table-hover" style="width:100%">
@@ -61,6 +75,13 @@
                         <td><a class="delete" href="view_users.jsp"><i class="fas fa-trash"></i></a></td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7" align="center">
+                            <a class="btn btn-primary" href=".">Add User</a>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>    
         </div>
     </div>
