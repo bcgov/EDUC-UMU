@@ -22,7 +22,7 @@
                     <label class="contol-label" for="email">Email Address</label>
                     <input id="email" class="form-control" placeholder="Email">
                 </div>
-                <legend>Enter at least one of the following</legend>
+                <legend>Enter at least one of the following:</legend>
                 <div class="form-group">
                     <label class="control-label" for="bceid">BCeID</label>
                     <input id="bceid" class="form-control" placeholder="BCeID">
