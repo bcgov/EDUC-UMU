@@ -9,8 +9,9 @@
   <div class="container">
     <div class="row">
       <h1>OBIEE User Management Home</h1>
+    </div>
+    <div class="row">
       <button class="btn btn-primary btn-lg" href=".">Login</button>
-
     </div>
   </div>
 </main>
