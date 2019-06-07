@@ -9,7 +9,8 @@
   <div class="container">
     <div class="row">
       <h1>OBIEE User Management Home</h1>
-      <p>Welcome to the OBIEE UserID Management application. From here you can view and edit entries in the Ministry of Eductation's Oracle database. You are also able to view and edit the "act as" privileges of users for development and testing purposes.</p>
+      <button class="btn btn-primary btn-lg" href=".">Login</button>
+
     </div>
   </div>
 </main>

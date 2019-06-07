@@ -22,7 +22,6 @@ Header template that displays the BC Gov boilerplate header bar and nav menu
           <a class="nav-item nav-link" href="index.jsp">Home</a>
           <a class="nav-item nav-link <%-- disabled --%>" href="view_users.jsp">View Users</a>
           <a class="nav-item nav-link <%-- disabled --%>" href="act_as.jsp">View Act As</a>
-          <a class="nav-item nav-link" href="index.jsp">Login</a>
         </div>
       </div>
     </div>
