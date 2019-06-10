@@ -1,0 +1,52 @@
+pipeline {
+    agent none
+    options {
+        disableResume()
+    }
+    stages {
+        stage('Build') {
+            agent { label 'build' }
+            steps {
+                script {
+                    openshift.withCluster() {
+                    openshift.withProject() {
+                    def builds = openshift.selector("bc", appName).related('builds')
+                    timeout(5) { 
+                    builds.untilEach(1) {
+                      return (it.object().status.phase == "Complete")
+                    }
+                  }
+                }
+            }
+                }
+            }
+        }
+        stage('Deploy (DEV)') {
+            agent { label 'deploy' }
+            steps {
+                echo "Deploying ..."
+
+            }
+        }
+        stage('Deploy (PROD)') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with deployment to PROD?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Deploying ..."
+                
+            }
+        }
+        stage('Acceptance') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with cleanup?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+            }
+        }
+    }
