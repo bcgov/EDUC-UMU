@@ -8,7 +8,8 @@
 <main role="main">
   <div class="container">
     <div class="row">
-      <h1>OBIEE User Management Home</h1>
+      <h1>OBIEE User Management</h1>
+      <br/>
     </div>
     <div class="row">
       <button class="btn btn-primary btn-lg" href=".">Login</button>

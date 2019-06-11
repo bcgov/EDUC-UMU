@@ -5,7 +5,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent { label 'build' }
+            agent { label 'master' }
             steps {
                 script {
                     openshift.withCluster() {
@@ -22,20 +22,20 @@ pipeline {
             }
         }
         stage('Deploy (DEV)') {
-            agent { label 'deploy' }
+            agent { label 'master' }
             steps {
                 echo "Deploying ..."
 
             }
         }
         stage('Deploy to (TEST)') {
-            agent { label 'deploy' }
+            agent { label 'master' }
             steps {
                 echo "Deploying ..."
             }
         }
         stage('Deploy (PROD)') {
-            agent { label 'deploy' }
+            agent { label 'master' }
             input {
                 message "Should we continue with deployment to PROD?"
                 ok "Yes!"
@@ -46,7 +46,7 @@ pipeline {
             }
         }
         stage('Acceptance') {
-            agent { label 'deploy' }
+            agent { label 'master' }
             input {
                 message "Should we continue with cleanup?"
                 ok "Yes!"
