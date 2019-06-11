@@ -28,7 +28,7 @@ pipeline {
 
             }
         }
-        stage('Deploy to (TEST)') {
+        stage('Deploy (TEST)') {
             agent { label 'master' }
             steps {
                 echo "Deploying ..."
