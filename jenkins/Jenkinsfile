@@ -28,6 +28,12 @@ pipeline {
 
             }
         }
+        stage('Deploy to (TEST)') {
+            agent { label 'deploy' }
+            steps {
+                echo "Deploying ..."
+            }
+        }
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
@@ -50,3 +56,4 @@ pipeline {
             }
         }
     }
+}
