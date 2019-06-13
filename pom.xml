@@ -23,19 +23,9 @@
               <artifactId>maven-war-plugin</artifactId>
               <version>3.2.1</version>
               <configuration>
-                <archive>
-                  <manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
-                </archive>
+                <warName>ROOT</warName>
               </configuration>
           </plugin>
-          <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.0</version>
-            <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-            </configuration>
-        </plugin>
       </plugins>
   </build>
 </project>
