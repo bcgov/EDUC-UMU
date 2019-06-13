@@ -12,7 +12,7 @@
     "enable-basic-auth" : false,
     "expose-token" : true,
      "credentials" : {
-        "secret" : "234234-234234-234234"
+        "secret" : "password"
      },
   
      "connection-pool-size" : 20,
