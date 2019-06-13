@@ -15,7 +15,7 @@
           <artifactId>javax.servlet-api</artifactId>
           <version>4.0.1</version>
       </dependency>
-    <!--
+
        <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
@@ -34,11 +34,11 @@
             <version>6.0.1</version>
             <scope>provided</scope>
         </dependency>
-        -->
+
   </dependencies>
 
   <build>
-    <finalName>getting-started-tomcat</finalName>
+    <finalName>obiee-umu</finalName>
       <plugins>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
