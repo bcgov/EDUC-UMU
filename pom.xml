@@ -4,7 +4,7 @@
   <groupId>educ-itmb</groupId>
   <artifactId>obiee-example</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>obiee-example-webapp</name>
   <url>http://maven.apache.org</url>
 
@@ -15,7 +15,7 @@
           <artifactId>javax.servlet-api</artifactId>
           <version>4.0.1</version>
       </dependency>
-      <!--
+    <!--
        <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
@@ -41,8 +41,9 @@
     <finalName>getting-started-tomcat</finalName>
       <plugins>
           <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-war-plugin</artifactId>
-              <version>3.2.1</version>
+              <version>3.2.3</version>
               <configuration>
                 <warName>ROOT</warName>
               </configuration>
