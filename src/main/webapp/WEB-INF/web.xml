@@ -2,6 +2,12 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
 "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+    <servlet>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <url-pattern>/obiee-umu/*</url-pattern>
+    </servlet-mapping>
     <display-name>OBIEE User Management</display-name>
 </web-app>

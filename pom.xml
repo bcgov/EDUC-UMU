@@ -15,6 +15,24 @@
           <artifactId>javax.servlet-api</artifactId>
           <version>3.1.0</version>
       </dependency>
+       <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-core</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-adapter-core</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-adapter-spi</artifactId>
+            <version>6.0.1</version>
+            <scope>provided</scope>
+        </dependency>
   </dependencies>
   <build>
     <finalName>getting-started-tomcat</finalName>
