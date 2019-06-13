@@ -25,7 +25,7 @@
               <version>3.2.1</version>
               <configuration>
                 <archive>
-                  <manifestFile>src/main/webapp/MANIFEST.MF</manifestFile>
+                  <manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
                 </archive>
               </configuration>
           </plugin>
