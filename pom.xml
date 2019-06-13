@@ -38,12 +38,14 @@
   </dependencies>
 
   <build>
-    <finalName>obiee-user-management</finalName>
+    <finalName>getting-started-tomcat</finalName>
       <plugins>
           <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-war-plugin</artifactId>
-              <version>3.2.3</version>
+              <version>3.2.1</version>
+              <configuration>
+                <warName>ROOT</warName>
+              </configuration>
           </plugin>
       </plugins>
   </build>
