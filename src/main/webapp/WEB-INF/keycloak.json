@@ -1,0 +1,24 @@
+{
+    "realm" : "example-realm",
+    "resource" : "account",
+    "realm-public-key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgP4iCJX514jVORj4rzrmFp50ntE+XN938JSrFjBj0wuXHXST+deLqwEOr+0mrXuJ9yEOia8fApwyrCOVwZASCForm58pf2ocZK+GFLT1k31PcrnEPQcBl9ojMS6PERay+zNRM6iocnwCfnjQPvvSy0EaTnY9q9Lrsgooy4hKvyfGy5vZLG7cck8u1WqXY+B9sr7Xn9QL4ylelBxsjTkqfeKhQ6HX+NfibRH9zOLt0zgBgNg/A7J8Qz5BagU09jFs8xymX6olbLbOG95EnbSpqC/BPQBu1rffVSWWbwb0fMeTJwZToY8JPOuTEROPtxceo6IjJWZgZFqjMe79b9rzTQIDAQAB",
+    "auth-server-url" : "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth/",
+    "ssl-required" : "all",
+    "use-resource-role-mappings" : false,
+    "enable-cors" : true,
+    "cors-max-age" : 1000,
+    "cors-allowed-methods" : "POST, PUT, DELETE, GET",
+    "bearer-only" : false,
+    "enable-basic-auth" : false,
+    "expose-token" : true,
+     "credentials" : {
+        "secret" : "234234-234234-234234"
+     },
+  
+     "connection-pool-size" : 20,
+     "disable-trust-manager": true,
+     "allow-any-hostname" : false,
+     "token-minimum-time-to-live" : 10,
+     "min-time-between-jwks-requests" : 10,
+     "public-key-cache-ttl": 86400
+}

@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
-<display-name>OBIEE User Management</display-name>
+  <display-name>OBIEE User Management</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 
-<!-->
-<login-config>
-  <auth-method>KEYCLOAK</auth-method>
-</login-config>
--->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Customers</web-resource-name>
+      <url-pattern>/customer/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>user</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>KEYCLOAK</auth-method>
+    <realm-name>keycloak-example</realm-name>
+  </login-config>
+
+  <security-role>
+    <role-name>admin</role-name>
+  </security-role>
+  <security-role>
+    <role-name>user</role-name>
+  </security-role>
+
+<extensions>
+  <extension module="org.keycloak.keycloak-adapter-subsystem"/>
+</extensions>
+
+<profile>
+  <subsystem xmlns="urn:jboss:domain:keycloak:1.1">
+     <secure-deployment name="WAR MODULE NAME.war">
+        <realm>demo</realm>
+        <auth-server-url>tps://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth</auth-server-url>
+        <ssl-required>external</ssl-required>
+        <resource>customer-portal</resource>
+        <credential name="secret">password</credential>
+     </secure-deployment>
+  </subsystem>
+</profile>
+
 </web-app>
