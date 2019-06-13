@@ -24,7 +24,9 @@
               <artifactId>maven-war-plugin</artifactId>
               <version>3.2.1</version>
               <configuration>
-                  <warSourceDirectory>WebContent</warSourceDirectory>
+                <archive>
+                  <manifestFile>src/main/webapp/MANIFEST.MF</manifestFile>
+                </archive>
               </configuration>
           </plugin>
           <plugin>
