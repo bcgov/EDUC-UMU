@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
 
   <display-name>OBIEE User Management</display-name>
+  <servlet>
+
+  </servlet>
+<!--
+
+    javax.ws.rs.core.Application
 
   <security-constraint>
     <web-resource-collection>
@@ -38,7 +44,6 @@
     <role-name>user</role-name>
   </security-role>
 
-<!--
 <profile>
   <subsystem xmlns="urn:jboss:domain:keycloak:1.1">
      <secure-deployment name="org.keycloak.keycloak-adapter-subsystem.war">
