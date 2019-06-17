@@ -1,8 +1,0 @@
-<subsystem xmlns="urn:jboss:domain:web:1.4" default-virtual-server="default-host" native="false">
-    ...(snip)...
-    <virtual-server name="default-host" enable-welcome-root="true">
-            <alias name="localhost"/>
-            <alias name="example.com"/>
-        </virtual-server>
-    <valve name="RequestDumperValve" module="org.jboss.as.web" class-name="org.apache.catalina.valves.RequestDumperValve"/>
-</subsystem>
