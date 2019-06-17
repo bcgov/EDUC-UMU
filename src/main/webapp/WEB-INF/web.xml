@@ -14,7 +14,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Users</web-resource-name>
-            <url-pattern>/user/*</url-pattern>
+            <url-pattern>/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
@@ -22,8 +22,8 @@
     </security-constraint>
 
     <login-config>
-        <auth-method>KEYCLOAK</auth-method>
-        <realm-name>Example-realm</realm-name>
+        <auth-method>BASIC<!--KEYCLOAK--></auth-method>
+        <realm-name>Obiee-login</realm-name>
     </login-config>
 
     <security-role>
