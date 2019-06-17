@@ -26,7 +26,16 @@
           <artifactId>javax.servlet-api</artifactId>
           <version>4.0.1</version>
       </dependency>
-
+        <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-wildfly-adapter-subsystem</artifactId>
+                <version>6.0.1</version>
+        </dependency>
+        <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-common</artifactId>
+                <version>6.0.1</version>
+</dependency>
        <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
