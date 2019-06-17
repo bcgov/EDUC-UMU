@@ -31,17 +31,17 @@
                 <artifactId>keycloak-wildfly-adapter</artifactId>
                 <version>6.0.1</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-common</artifactId>
                 <version>6.0.1</version>
-</dependency>
-       <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-core</artifactId>
-            <version>6.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+        </dependency>-->
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-core</artifactId>
+                <version>6.0.1</version>
+                <scope>provided</scope>
+            </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-adapter-core</artifactId>
@@ -54,7 +54,6 @@
             <version>6.0.1</version>
             <scope>provided</scope>
         </dependency>
-
   </dependencies>
 
   <build>
