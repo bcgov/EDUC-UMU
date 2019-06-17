@@ -28,7 +28,7 @@
       </dependency>
         <dependency>
                 <groupId>org.keycloak</groupId>
-                <artifactId>keycloak-wildfly-adapter-subsystem</artifactId>
+                <artifactId>keycloak-wildfly-adapter</artifactId>
                 <version>6.0.1</version>
         </dependency>
         <dependency>
