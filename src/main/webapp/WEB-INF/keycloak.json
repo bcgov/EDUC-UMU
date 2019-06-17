@@ -1,10 +1,10 @@
 {
-   "realm": "Example-realm",
-   "resource": "obiee-umu",
-   "auth-server-url": "/auth",
-   "ssl-required" : "external",
-   "expose-token": true,
-   "credentials": {
-       "secret": "password"
-   }
-}
+    "realm": "obiee-login",
+    "auth-server-url": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth",
+    "ssl-required": "external",
+    "resource": "obiee-access",
+    "credentials": {
+      "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
+    },
+    "confidential-port": 0
+  }

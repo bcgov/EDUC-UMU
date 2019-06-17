@@ -22,7 +22,7 @@
     </security-constraint>
 
     <login-config>
-        <auth-method>BASIC<!-- KEYCLOAK --></auth-method>
+        <auth-method>KEYCLOAK</auth-method>
         <realm-name>Example-realm</realm-name>
     </login-config>
 
