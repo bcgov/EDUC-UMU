@@ -25,7 +25,6 @@
             <artifactId>wildfly-common</artifactId>
             <version>1.5.1.Final</version>
         </dependency>
-      <!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
       <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>javax.servlet-api</artifactId>
