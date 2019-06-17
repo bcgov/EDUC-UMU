@@ -27,26 +27,31 @@
           <version>4.0.1</version>
       </dependency>
         
-        <!--<dependency>
+        <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-common</artifactId>
                 <version>6.0.1</version>
-        </dependency>-->
+        </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
                 <version>6.0.1</version>
                 <scope>provided</scope>
             </dependency>
-        <dependency>
+            <dependency>
             <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-adapter-core</artifactId>
+            <artifactId>keycloak-adapter-spi</artifactId>
             <version>6.0.1</version>
             <scope>provided</scope>
         </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-undertow-adapter-spi</artifactId>
+                <version>6.0.1</version>
+            </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-adapter-spi</artifactId>
+            <artifactId>keycloak-adapter-core</artifactId>
             <version>6.0.1</version>
             <scope>provided</scope>
         </dependency>
