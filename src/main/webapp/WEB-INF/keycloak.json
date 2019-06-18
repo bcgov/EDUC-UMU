@@ -2,10 +2,10 @@
     "realm": "obiee-login",
     "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmXHV0euhsrcr8C6uc4TMBv1zKgxY22sg+H5yXDie6S7zZ3CD0TWGxmlaelCy7ddZWplcYVbd2ZTaLf2Zmds4+DdWqD2RlpHe9n8i0BSh38IGP3DkVPKm9uJTkPuNhFtjlc48p7PetDzu+sovnlIo61W3dpedFY1ESiw1sq12tky/vOxfWgLNQhEM8ZadRcwrq2Dr6NL3Omat86EU/K4+FFB39MABJroWc+7Twu1B0bUvWHpR7cLQch0vlJbtL5DZlzLpWnzFLXLb8sHIVGlHYmmWklrGKpPla57gdI13kY1Epk9fhQ/sMsstGAkvJRNR1hyTFo6yTj+atshVtgi0HwIDAQAB",
     "auth-server-url": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth",
-    "ssl-required": "external",
+    "ssl-required": "all",
     "resource": "obiee-access",
     "credentials": {
       "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
     },
-    "confidential-port": 8443
+    "confidential-port": 443
   }
