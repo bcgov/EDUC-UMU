@@ -12,7 +12,7 @@
       <br/>
     </div>
     <div class="row">
-      <button class="btn btn-primary btn-lg" href="."><strong>Red Hat</strong> Single Sign On</button>
+
     </div>
   </div>
 </main>
