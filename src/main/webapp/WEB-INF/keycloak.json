@@ -7,5 +7,5 @@
     "credentials": {
       "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
     },
-    "confidential-port": 8080
+    "confidential-port": 8443
   }
