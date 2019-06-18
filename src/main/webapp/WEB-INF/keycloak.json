@@ -4,6 +4,10 @@
     "auth-server-url": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth",
     "ssl-required": "all",
     "resource": "obiee-access",
+    "policy-enforcer":{
+      "on-deny-redirect-to": "forbidden.jsp",
+      "lazy-load-paths": false
+    },
     "credentials": {
       "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
     },
