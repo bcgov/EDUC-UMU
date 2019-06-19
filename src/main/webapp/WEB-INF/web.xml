@@ -8,7 +8,7 @@
         </web-resource-collection>
         <auth-constraint>
             <!-- Allows all users who login through keycloak to access the site -->
-            <role-name>umu_authorization</role-name>
+            <role-name>uma_authorization</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -18,6 +18,6 @@
     </login-config>
 
     <security-role>
-        <role-name>umu_authorization</role-name>
+        <role-name>uma_authorization</role-name>
     </security-role>
 </web-app>
