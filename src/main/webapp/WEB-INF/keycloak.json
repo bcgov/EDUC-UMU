@@ -10,6 +10,5 @@
     "credentials": {
       "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
     },
-    "truststore": "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
     "confidential-port": 443
   }
