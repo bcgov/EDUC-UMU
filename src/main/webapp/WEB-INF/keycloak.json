@@ -6,7 +6,7 @@
   "credentials": {
     "jwt": {
       "client-key-password": "pass",
-      "client-keystore-file": "/META-INF/keystore.jks",
+      "client-keystore-file": "META-INF/keystore.jks",
       "client-keystore-password": "pass",
       "client-key-alias": "obiee-access",
       "token-timeout": 10,
