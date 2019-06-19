@@ -1,10 +1,17 @@
 {
   "realm": "obiee-login",
   "auth-server-url": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth",
-  "ssl-required": "none",
+  "ssl-required": "external",
   "resource": "obiee-access",
   "credentials": {
-    "secret": "44f93c5c-5347-401c-bbf3-265779075a9b"
+    "jwt": {
+      "client-key-password": "pass",
+      "client-keystore-file": "/META-INF/keystore.jks",
+      "client-keystore-password": "pass",
+      "client-key-alias": "obiee-access",
+      "token-timeout": 10,
+      "client-keystore-type": "jks"
+    }
   },
-  "confidential-port": 80
+  "confidential-port": 443
 }
