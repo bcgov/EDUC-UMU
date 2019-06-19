@@ -7,7 +7,6 @@
             <url-pattern>/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <!-- Allows all users who login through keycloak to access the site -->
             <role-name>uma_authorization</role-name>
         </auth-constraint>
     </security-constraint>
