@@ -1,6 +1,7 @@
 {
-    "name": "obiee-umu.gov.bc.ca",
-    "version" : "0.1",
+    "name": "obiee-umu",
+    "version" : "1.0.0",
+    "private": true,
     "repository": {
         "type": "git",
         "url": "git://github.com/bcgov/EDUC-UMU.git"
