@@ -1,3 +1,7 @@
+@import './mixins.scss';
+@import './variables.scss';
+@import '../node_modules/react-redux-toastr/src/styles/index.scss';
+
 body {
     margin: 0;
     padding: 0;
