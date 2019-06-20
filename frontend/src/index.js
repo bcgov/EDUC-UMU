@@ -5,7 +5,7 @@ import { OidcProvider } from 'redux-oidc';
 
 import './app/FontAwesome';
 
-import './store/store';
+import store from './store/store';
 import configureAxios from './store/authorizatinoInterceptor';
 import userManager from './store/oidc-usermanager';
 
