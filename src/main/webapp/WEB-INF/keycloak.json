@@ -4,14 +4,7 @@
   "ssl-required": "external",
   "resource": "obiee-access",
   "credentials": {
-    "jwt": {
-      "client-key-password": "password",
-      "client-keystore-file": "../META-INF/keystore.jks",
-      "client-keystore-password": "password",
-      "client-key-alias": "obiee-access",
-      "token-timeout": 10,
-      "client-keystore-type": "jks"
-    }
+    "secret": "58e0d452-c6f6-4b52-9772-1257d91bf402"
   },
   "confidential-port": 443
 }
