@@ -66,7 +66,7 @@ const setup = (io) => {
 
   });
 */
-  connect(io);
+  //connect(io);
 };
 
 const connect = (io) => {
