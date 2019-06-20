@@ -6,5 +6,3 @@ import { OidcProvider } from 'redux-oidc';
 import './app/FontAwesome';
 
 import '../styles/index.scss';
-
-// Inject the keycloak provider
