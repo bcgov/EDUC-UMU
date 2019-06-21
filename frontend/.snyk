@@ -16,4 +16,4 @@ patch:
     - socket.io-middleware > socket.io-client > engine.io-client > debug:
         patched: '2019-05-02T16:57:38.896Z'
     - socket.io-middleware > socket.io-client > socket.io-parser > debug:
-patched: '2019-05-02T16:57:38.896Z'
+        patched: '2019-05-02T16:57:38.896Z'

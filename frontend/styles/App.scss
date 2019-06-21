@@ -1,0 +1,38 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+#footerAdminLinks {
+  color: $white;
+  text-align: right;
+
+  div {
+    padding: 12px 10px;
+  }
+
+  ul {
+    float: left;
+  }
+}
+
+.capitalized {
+  text-transform: capitalize;
+}
+
+.btn-disabled {
+  background-color: $grey;
+}
+
+.error-alert {
+  font-size: 1.5rem;
+  padding-left: 6rem; /* allocate space for icon */
+  position: relative;
+
+  &:before {
+    @include vertical-middle {
+      font-size: 5rem;
+      left: 0;
+      text-align: center;
+      width: 8rem;
+    }
+  }
+}

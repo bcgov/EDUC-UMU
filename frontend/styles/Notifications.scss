@@ -1,0 +1,61 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.page_notifications {
+  .actions-container {
+    float: right;
+    margin-bottom: 1rem;
+
+    .btn-group .btn {
+      margin: 0;
+    }
+  }
+
+  .col-actions {
+    align-self: center;
+    font-size: 1.75rem;
+    text-align: center;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .col-credit-trade {
+    align-self: center;
+    text-align: center;
+  }
+
+  .col-date, .col-notification, .col-organization, .col-user {
+    align-self: center;
+    text-align: left;
+  }
+
+  .col-mark {
+    text-align: center;
+
+    .fa-square, .fa-check-square {
+      align-self: center;
+      cursor: pointer;
+      font-size: 2.5rem;
+    }
+  }
+
+  .ReactTable {
+    clear: both;
+
+    button {
+      background: none;
+      border: none;
+      color: $blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .unread {
+    font-weight: bold;
+  }
+}

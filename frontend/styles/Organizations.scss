@@ -1,0 +1,80 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.page_organization {
+  .actions-container {
+    margin-bottom: 1rem;
+  }
+
+  .address, .status {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+
+    dd {
+      margin-left: 80px;
+    }
+
+    dt {
+      font-weight: normal;
+      text-align: left;
+      width: 80px;
+    }
+  }
+
+  .btn-container {
+    margin-top: 20px;
+    text-align: right;
+  }
+
+  .col-actions {
+    a {
+      margin: 0 0.5rem;
+    }
+  }
+
+  .col-status {
+    text-align: center;
+  }
+
+  .credit_balance {
+    float: right;
+  }
+}
+
+.page_organizations {
+  .actions-container {
+    margin-bottom: 1rem;
+  }
+
+  .ReactTable {
+    a {
+      font-weight: bold;
+    }
+
+    .col-actions-type-display, .col-status-display {
+      text-align: center;
+    }
+
+    .col-credit-balance, .col-id, .col-last-transaction {
+      text-align: right;
+    }
+  }
+}
+
+.organization-edit-details {
+  .main-form {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    label {
+      font-weight: normal;
+      width: 100%;
+    }
+  }
+
+  .organization-actions {
+    .btn-container {
+      text-align: right;
+    }  
+  }
+}

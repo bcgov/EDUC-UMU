@@ -1,0 +1,41 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.page_secure_document_upload {
+  #new-submission {
+    margin: 0;
+  }
+
+  .right-toolbar-container .actions-container {
+    margin-bottom: 1rem;
+  }
+
+  .ReactTable {
+    clear: both;
+
+    .col-date, .col-id {
+      text-align: right;
+    }
+
+    .col-actions, .col-status {
+      text-align: center;
+    }
+
+    .scan-failed {
+      background-color: $red;
+      color: $white;
+
+      svg {
+        color: $white;
+      }
+
+      &:hover {
+        color: $font;
+
+        svg {
+          color: $link-color;
+        }
+      }
+    }
+  }
+}

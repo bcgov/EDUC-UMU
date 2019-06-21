@@ -1,0 +1,93 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.page-admin-fuel-code {
+  label {
+    font-weight: normal;
+    width: 100%;
+  }
+
+  .btn-container {
+    position: relative;
+    text-align: right;
+    z-index: 100;
+  }
+
+  .main-form {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .partially-renewable {
+    * {
+      display: inline-block;
+      vertical-align: middle;  
+    }
+
+    .value {
+      font-weight: bold;
+    }
+  }
+}
+
+.page-fuel-codes {
+  .col-id, .col-carbon-intensity, .col-date {
+    text-align: right;
+  }
+
+  .col-status {
+    text-align: center;
+  }
+
+  .right-toolbar-container .actions-container {
+    margin-bottom: 1rem;
+  }
+
+  .ReactTable .rt-tr.has-error {
+    background-color: $red;
+    color: $white;
+
+    &.-odd {
+      background-color: $dark-red;
+    }
+
+    &:hover {
+      background-color: $yellow;
+      color: $font;
+    }
+  }
+}
+
+.page-fuel-code-details {
+  .btn-container {
+    text-align: right;
+  }
+
+  .fuel-code-details {
+    label {
+      font-weight: normal;
+    }
+
+    div.value {
+      font-weight: bold;
+      min-height: 2.5rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+.adjust-tooltip {
+  z-index: 99;
+
+  &.adjust-for-facility-nameplate {
+    .tooltip-inner, .tooltip-arrow {
+      margin-bottom: 1.5rem;
+      white-space: normal;
+    }  
+  }
+
+  .tooltip-inner {
+    margin-left: -15rem;
+    white-space: nowrap;
+  }
+}

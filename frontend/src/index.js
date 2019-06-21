@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 
-import './app/FontAwesome';
-
 import store from './store/store';
-import configureAxios from './store/authorizatinoInterceptor';
-import userManager from './store/oidc-usermanager';
+
+import './app/FontAwesome';
 
 import Router from './router';
 
 import '../styles/index.scss';
+
+import configureAxios from './store/authorizationInterceptor';
+import userManager from './store/oidc-usermanager';
+
+// Inject the keycloak provider
 
 configureAxios();
 

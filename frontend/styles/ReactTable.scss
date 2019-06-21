@@ -1,0 +1,28 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.ReactTable {
+  .-filters .rt-th input[type=text] {
+    border-color: $border-grey;
+  }
+
+  .-header .rt-th {
+    border-color: $border-grey;
+    outline: none;
+  }
+
+  .rt-tr {
+    &.-odd {
+      background-color: $background-grey;
+    }
+
+    &.clickable:hover {
+      background-color: $yellow;
+      cursor: pointer;
+    }
+  }
+
+  .col-actions {
+    text-align: center;
+  }
+}

@@ -10,7 +10,7 @@ if (Object.keys(global).includes('__BUILD_NUMBER__')) {
   build = __BUILD_NUMBER__;
 }
 
-if (build && window.location.host === 'obiee-umu.pathfinder.gov.bc.ca') {
+if (build && window.location.host === 'dev-lowcarbonfuels.pathfinder.gov.bc.ca') {
   config = {
     basename: `/${__BUILD_NUMBER__}`
   };

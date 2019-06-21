@@ -24,7 +24,7 @@ function getSigningKey(header, callback) {
 }
 
 const setup = (io) => {
-/*
+
   if (!jwksURI) {
     console.log('No KEYCLOAK_CERTS_URL in environment,' +
       ' cannot validate tokens and will not serve socket.io clients');
@@ -65,8 +65,8 @@ const setup = (io) => {
     );
 
   });
-*/
-  //connect(io);
+
+  connect(io);
 };
 
 const connect = (io) => {
