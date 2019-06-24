@@ -1,7 +1,5 @@
 #!groovy
-library identifier: 'devops-library@master', retriever: modernSCM(
-  [$class: 'GitSCMSource',
-   remote: 'https://github.com/BCDevOps/jenkins-pipeline-shared-lib.git'])
+@Library('devops-library')
 import bcgov.GitHubHelper
 
 pipeline{
