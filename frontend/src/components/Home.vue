@@ -20,8 +20,9 @@
       <v-layout row wrap>
         <v-flex xs12>
           <v-card class='sectionCard'>
-            <v-spacer></vspacer>
+            <v-spacer></v-spacer>
             <UserTable/>
+            <v-spacer></v-spacer>
           </v-card>
         </v-flex>
       </v-layout>
