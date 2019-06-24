@@ -75,7 +75,7 @@ pipeline{
 
                                 //build from template and tag
                                 openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
-                                openshfit.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+                                openshift.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
 
                                 //notifyStageStatus("Frontend", "SUCCESS")
                             }
