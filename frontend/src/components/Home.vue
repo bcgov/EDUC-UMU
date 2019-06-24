@@ -28,6 +28,10 @@
     </v-container>
 </template>
 
+<script>
+  import UserTable from './UserTable.vue';
+</script>
+
 <style>
 .sectionCard {
   margin-bottom: 20px;
