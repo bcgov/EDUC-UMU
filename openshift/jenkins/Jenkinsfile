@@ -64,14 +64,14 @@ pipeline{
                                 //notifyStageStatus('Frontend', 'PENDING')
 
                                 //define buildConfig
-                                def bcFrontend = openshift.process('-f', '../obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+                                def bcFrontend = openshift.process('-f', 'openshift/obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
                                 
                                 //build from template and tag
                                 openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')
                                 openshift.tag("${REPO_NAME}-frontend:latest", "${REPO_NAME}-frontend:${JOB_NAME}")
 
                                 //define buildconfig for server
-                                def bcFrontendStatic = openshift.process('-f', '../obiee-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
+                                def bcFrontendStatic = openshift.process('-f', 'openshift/obiee-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
 
                                 //build from template and tag
                                 openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
