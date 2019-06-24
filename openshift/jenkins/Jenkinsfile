@@ -61,7 +61,7 @@ pipeline{
                         openshift.withProject(){
                             Frontend: {
                             try{
-                                notifyStageStatus('Frontend', 'PENDING')
+                                //notifyStageStatus('Frontend', 'PENDING')
 
                                 //define buildConfig
                                 def bcFrontend = openshift.process('-f', '../obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
@@ -77,11 +77,11 @@ pipeline{
                                 openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
                                 openshfit.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
 
-                                notifyStageStatus("Frontend", "SUCCESS")
+                                //notifyStageStatus("Frontend", "SUCCESS")
                             }
                             catch(e){
                                 echo "Frontend build failed"
-                                notifyStageStatus('Frontend', 'FAILURE')
+                                //notifyStageStatus('Frontend', 'FAILURE')
                                 throw e
                             }
                         }
@@ -131,11 +131,11 @@ pipeline{
             post{
                 success{
                     createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
-                    notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
                     createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
-                    notifyStageStatus('Deploy - Dev', 'FAILURE')
+                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
         }
@@ -147,7 +147,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
     input("Deploy to ${projectEnv}?")
   }
 
-  notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
+  //notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
 
   openshift.withCluster() {
     openshift.withProject(projectEnv) {
