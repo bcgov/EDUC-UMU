@@ -6,6 +6,8 @@ pipeline{
     agent any
 
     environment{
+        DEBUG_OUTPUT = 'false'
+
         DEV_PROJECT = 'pbuo5q-dev'
         TEST_PROJECT = 'pbuo5q-test'
         PROD_PROJECT = 'pbuo5q-prod'
