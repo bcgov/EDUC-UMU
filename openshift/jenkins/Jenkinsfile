@@ -58,7 +58,7 @@ pipeline{
             steps{
                 script {
                     openshift.withCluster(){
-                        openshift.withProject(){
+                        openshift.withProject(TOOLS_PROJECT){
                             Frontend: {
                             try{
                                 //notifyStageStatus('Frontend', 'PENDING')
