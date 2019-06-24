@@ -1,0 +1,207 @@
+#!groovy
+import bcgov.GitHubHelper
+
+pipeline{
+    agent any
+
+    environment{
+        DEV_PROJECT = 'pbuo5q-dev'
+        TEST_PROJECT = 'pbuo5q-test'
+        PROD_PROJECT = 'pbuo5q-prod'
+        TOOLS_PROJECT = 'pbuo5q-tools'
+
+        REPO_NAME = 'EDUC-UMU'
+
+        JOB_NAME = 'demo'
+        
+        SOURCE_REPO_RAW = 'https://github.com/bcgov/${REPO_NAME}/master'
+        SOURCE_REPO_REF = 'master'
+        SOURCE_REPO_URL = 'https://github.com/bcgov/${REPO_NAME}.git'
+
+        APP_NAME = 'obiee-umu'
+        APP_DOMAIN = '.pathfinder.gov.bc.ca'
+
+        DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
+        /*
+        TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
+        PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
+        */
+    }
+
+    stages {
+        stage('Initialize') {
+            agent any
+            steps {
+                // Cancel any running builds in progress
+                timeout(10) {
+                echo "Cancelling previous ${APP_NAME}-${JOB_NAME} builds in progress..."
+                abortAllPreviousBuildInProgress(currentBuild)
+                }
+
+                script {
+                    if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+                        // Force OpenShift Plugin directives to be verbose
+                        openshift.logLevel(1)
+
+                        // Print all environment variables
+                        echo 'DEBUG - All pipeline environment variables:'
+                        echo sh(returnStdout: true, script: 'env')
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            agent any
+            steps{
+                script {
+                    openshift.withCluster(){
+                        openshift.withProject(){
+                            Frontend: {
+                            try{
+                                notifyStageStatus('Frontend', 'PENDING')
+
+                                //define buildConfig
+                                def bcFrontend = openshift.process('-f', '../obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+                                
+                                //build from template and tag
+                                openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')
+                                openshift.tag("${REPO_NAME}-frontend:latest", "${REPO_NAME}-frontend:${JOB_NAME}")
+
+                                //define buildconfig for server
+                                def bcFrontendStatic = openshift.process('-f', '../obiee-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
+
+                                //build from template and tag
+                                openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
+                                openshfit.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+
+                                notifyStageStatus("Frontend", "SUCCESS")
+                            }
+                            catch(e){
+                                echo "Frontend build failed"
+                                notifyStageStatus('Frontend', 'FAILURE')
+                                throw e
+                            }
+                        }
+                        }
+                    }
+                }
+            }
+            post{
+                success {
+                    echo 'Cleanup Backend BuildConfigs...'
+                    script {
+                        openshift.withCluster() {
+                        openshift.withProject(TOOLS_PROJECT) {
+                            if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+                            echo "DEBUG - Using project: ${openshift.project()}"
+                            } else {
+                                def bcBackend = openshift.selector('bc', "${REPO_NAME}-backend-${JOB_NAME}")
+                                def bcFrontend = openshift.selector('bc', "${REPO_NAME}-frontend-${JOB_NAME}")
+                                def bcFrontendStatic = openshift.selector('bc', "${REPO_NAME}-frontend-static-${JOB_NAME}")
+
+                                if(bcBackend.exists()) {
+                                    echo "Removing BuildConfig ${REPO_NAME}-backend-${JOB_NAME}..."
+                                    bcBackend.delete()
+                                }
+                                if(bcFrontend.exists()) {
+                                    echo "Removing BuildConfig ${REPO_NAME}-frontend-${JOB_NAME}..."
+                                    bcFrontend.delete()
+                                }
+                                if(bcFrontendStatic.exists()) {
+                                    echo "Removing BuildConfig ${REPO_NAME}-frontend-static-${JOB_NAME}..."
+                                    bcFrontendStatic.delete()
+                                }
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy - Dev'){
+            agent any
+            steps{
+                script{
+                    deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
+                }
+            }
+            post{
+                success{
+                    createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+                    notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                }
+                failure{
+                    createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+                    notifyStageStatus('Deploy - Dev', 'FAILURE')
+                }
+            }
+        }
+    }
+}
+
+def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
+  if (!stageEnv.equalsIgnoreCase('Dev')) {
+    input("Deploy to ${projectEnv}?")
+  }
+
+  notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
+
+  openshift.withCluster() {
+    openshift.withProject(projectEnv) {
+      if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
+        echo "DEBUG - Using project: ${openshift.project()}"
+      }
+
+      echo "Tagging Image ${REPO_NAME}-frontend-static:${JOB_NAME}..."
+      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend-static:${JOB_NAME}", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+
+      echo "Processing DeploymentConfig ${REPO_NAME}-frontend-static..."
+      def dcFrontendStaticTemplate = openshift.process('-f',
+        'openshift/frontend-static.dc.yaml',
+        "REPO_NAME=${REPO_NAME}",
+        "JOB_NAME=${JOB_NAME}",
+        "NAMESPACE=${projectEnv}",
+        "APP_NAME=${APP_NAME}",
+        "HOST_ROUTE=${hostRouteEnv}"
+      )
+
+      createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
+
+      echo "Applying Deployment ${REPO_NAME}-frontend-static..."
+      def dcFrontendStatic = openshift.apply(dcFrontendStaticTemplate).narrow('dc')
+
+      // Wait for deployments to roll out
+      timeout(10) {
+        Frontend: {
+            dcFrontendStatic.rollout().status('--watch=true')
+        }
+      }
+    }
+  }
+}
+
+def createDeploymentStatus(String environment, String status, String hostUrl) {
+  def ghDeploymentId = new GitHubHelper().createDeployment(
+    this,
+    SOURCE_REPO_REF,
+    [
+      'environment': environment,
+      'task': "deploy:master"
+    ]
+  )
+
+  new GitHubHelper().createDeploymentStatus(
+    this,
+    ghDeploymentId,
+    status,
+    ['targetUrl': "https://${hostUrl}"]
+  )
+
+  if (status.equalsIgnoreCase('SUCCESS')) {
+    echo "${environment} deployment successful at https://${hostUrl}"
+  } else if (status.equalsIgnoreCase('PENDING')) {
+    echo "${environment} deployment pending..."
+  } else if (status.equalsIgnoreCase('FAILURE')) {
+    echo "${environment} deployment failed"
+  }
+}
