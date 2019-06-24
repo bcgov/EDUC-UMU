@@ -66,5 +66,5 @@ Mason Porter 	Chile 	Gloucester 	$78,615
                     { Name: 'John Smith', Email: 'jsmith@email.com', IDIR: 'JSMITH', Privileges: 'EDW_School_Principle' }  
                 ]
         })
-    }
+    };
 </script>

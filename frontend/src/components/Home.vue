@@ -33,13 +33,13 @@
 </script>
 
 <style>
-.sectionCard {
-  margin-bottom: 20px;
-}
-.jsonText textarea {
-  font-family: 'Courier New', Courier, monospace;
-}
-.underRadioField {
-  padding-left: 32px;
-}
+  .sectionCard {
+    margin-bottom: 20px;
+  }
+  .jsonText textarea {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .underRadioField {
+    padding-left: 32px;
+  }
 </style>
