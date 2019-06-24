@@ -13,7 +13,7 @@ pipeline{
         PROD_PROJECT = 'pbuo5q-prod'
         TOOLS_PROJECT = 'pbuo5q-tools'
 
-        REPO_NAME = 'EDUC-UMU'
+        REPO_NAME = 'educ-umu'
 
         JOB_NAME = 'demo'
         
