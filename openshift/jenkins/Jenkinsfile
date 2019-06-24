@@ -22,7 +22,7 @@ pipeline{
         SOURCE_REPO_URL = 'https://github.com/bcgov/${REPO_NAME}.git'
 
         APP_NAME = 'obiee-umu'
-        APP_DOMAIN = '.pathfinder.gov.bc.ca'
+        APP_DOMAIN = 'pathfinder.gov.bc.ca'
 
         TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
         DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
