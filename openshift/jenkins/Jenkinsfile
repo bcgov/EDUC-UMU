@@ -1,5 +1,5 @@
 #!groovy
-//import bcgov.GitHubHelper
+import bcgov.GitHubHelper
 
 pipeline{
     agent any
@@ -127,11 +127,11 @@ pipeline{
             }
             post{
                 success{
-                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+                    createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
                     notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
-                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+                    createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
                     notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
@@ -165,7 +165,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         "HOST_ROUTE=${hostRouteEnv}"
       )
 
-     // createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
+      createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
 
       echo "Applying Deployment ${REPO_NAME}-frontend-static..."
       def dcFrontendStatic = openshift.apply(dcFrontendStaticTemplate).narrow('dc')
@@ -179,7 +179,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
     }
   }
 }
-/*
+
 def createDeploymentStatus(String environment, String status, String hostUrl) {
   def ghDeploymentId = new GitHubHelper().createDeployment(
     this,
@@ -205,4 +205,3 @@ def createDeploymentStatus(String environment, String status, String hostUrl) {
     echo "${environment} deployment failed"
   }
 }
-*/
