@@ -142,6 +142,17 @@ pipeline{
     }
 }
 
+def notifyStageStatus(String name, String status) {
+  def sha1 = GIT_COMMIT
+  if(JOB_BASE_NAME.startsWith('PR-')) {
+    sha1 = GitHubHelper.getPullRequestLastCommitId(this)
+  }
+
+  GitHubHelper.createCommitStatus(
+    this, sha1, status, BUILD_URL, '', "Stage: ${name}"
+  )
+}
+
 def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
   if (!stageEnv.equalsIgnoreCase('Dev')) {
     input("Deploy to ${projectEnv}?")
