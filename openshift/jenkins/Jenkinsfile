@@ -24,6 +24,7 @@ pipeline{
         APP_NAME = 'obiee-umu'
         APP_DOMAIN = '.pathfinder.gov.bc.ca'
 
+        TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
         DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
         TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
         PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
@@ -118,7 +119,7 @@ pipeline{
             agent any
             steps{
                 script{
-                    deployStage('Tools', TOOL_PROJECT, TOOL_HOST_ROUTE)
+                    deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
                 }
             }
             post{
@@ -137,7 +138,7 @@ pipeline{
         stage('Deploy - Dev'){
             agent any
             steps{
-                script{
+                script {
                     deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
                 }
             }
