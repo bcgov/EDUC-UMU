@@ -89,21 +89,16 @@ pipeline{
             }
             post{
                 success {
-                    echo 'Cleanup Backend BuildConfigs...'
+                    echo 'Cleanup Frontend BuildConfigs...'
                     script {
                         openshift.withCluster() {
                         openshift.withProject(TOOLS_PROJECT) {
                             if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
                             echo "DEBUG - Using project: ${openshift.project()}"
                             } else {
-                                def bcBackend = openshift.selector('bc', "${REPO_NAME}-backend-${JOB_NAME}")
                                 def bcFrontend = openshift.selector('bc', "${REPO_NAME}-frontend-${JOB_NAME}")
                                 def bcFrontendStatic = openshift.selector('bc', "${REPO_NAME}-frontend-static-${JOB_NAME}")
 
-                                if(bcBackend.exists()) {
-                                    echo "Removing BuildConfig ${REPO_NAME}-backend-${JOB_NAME}..."
-                                    bcBackend.delete()
-                                }
                                 if(bcFrontend.exists()) {
                                     echo "Removing BuildConfig ${REPO_NAME}-frontend-${JOB_NAME}..."
                                     bcFrontend.delete()
@@ -116,6 +111,26 @@ pipeline{
                             }
                         }
                     }
+                }
+            }
+        }
+        stage('Deploy - Tools'){
+            agent any
+            steps{
+                script{
+                    deployStage('Tools', TOOL_PROJECT, TOOL_HOST_ROUTE)
+                }
+            }
+            post{
+                success{
+                    echo 'Deployment to Tools was successful'
+                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                }
+                failure{
+                    echo 'Deployment to Tools failed'
+                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
         }
