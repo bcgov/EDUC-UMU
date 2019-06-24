@@ -25,10 +25,8 @@ pipeline{
         APP_DOMAIN = '.pathfinder.gov.bc.ca'
 
         DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
-        /*
         TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
         PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
-        */
     }
 
     stages {
@@ -37,8 +35,8 @@ pipeline{
             steps {
                 // Cancel any running builds in progress
                 timeout(10) {
-                echo "Cancelling previous ${APP_NAME}-${JOB_NAME} builds in progress..."
-                abortAllPreviousBuildInProgress(currentBuild)
+                    echo "Cancelling previous ${APP_NAME}-${JOB_NAME} builds in progress..."
+                    abortAllPreviousBuildInProgress(currentBuild)
                 }
 
                 script {
@@ -130,15 +128,55 @@ pipeline{
             }
             post{
                 success{
-                    createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+                    echo 'Deployment to Dev was successful'
+                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
-                    createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
+                    echo 'Deployment to Dev failed'
+                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
         }
+        /*
+        stage('Deploy - Test'){
+            agent any
+            steps{
+                script{
+                    deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
+                }
+            }
+            post{
+                success{
+                    //createDeploymentStatus(TEST_PROJECT, 'SUCCESS', TEST_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                }
+                failure{
+                    //createDeploymentStatus(TEST_PROJECT, 'FAILURE', TEST_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
+                }
+            }
+        }
+        stage('Deploy - Prod'){
+            agent any
+            steps{
+                script{
+                    deployStage('Prod', PROD_PROJECT, PROD_HOST_ROUTE)
+                }
+            }
+            post{
+                success{
+                    //createDeploymentStatus(PROD_PROJECT, 'SUCCESS', PROD_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                }
+                failure{
+                    //createDeploymentStatus(PROD_PROJECT, 'FAILURE', PROD_HOST_ROUTE)
+                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
+                }
+            }
+        }
+        */
     }
 }
 
@@ -168,7 +206,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         "HOST_ROUTE=${hostRouteEnv}"
       )
 
-      createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
+      //createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
 
       echo "Applying Deployment ${REPO_NAME}-frontend-static..."
       def dcFrontendStatic = openshift.apply(dcFrontendStaticTemplate).narrow('dc')
