@@ -35,7 +35,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
-        <td align="center"><v-btn class="gov-blue">Edit User</v-btn></td>
+        <td align="center"><v-btn color="#003366"><span class="white--text">Edit User</span></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -44,7 +44,7 @@
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
-      <v-btn class="gov-blue">Add User</v-btn>
+      <v-btn color="#003366"><span class="white--text">Add User</span></v-btn>
     </div>
   </material-card>
 </template>
