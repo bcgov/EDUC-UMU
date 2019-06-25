@@ -6,7 +6,9 @@
 -->
     <v-container v-else>
       <v-layout row wrap>
+        <v-flex xs12 sm6 offset-sm3>
           <UserTable></UserTable>
+        </v-flex>
       </v-layout>
     </v-container>
 </template>

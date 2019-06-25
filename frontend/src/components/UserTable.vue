@@ -19,7 +19,7 @@
         slot="headerCell"
         slot-scope="{ header }">
         <span
-          class="subheading font-weight-light text-success text--darken-3" style="color: white; background-color: #003366;"
+          class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
       <template
