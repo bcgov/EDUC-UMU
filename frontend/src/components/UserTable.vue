@@ -34,7 +34,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
-        <td><v-btn class="gov-blue"><font-awesome-icon icon="edit"/></v-btn></td>
+        <td><v-btn class="gov-blue">Edit User</v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
