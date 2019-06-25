@@ -15,6 +15,9 @@
       :items="items"
       :search="search"
       hide-actions>
+      <template slot="headerCell" slot-scope="props">
+
+      </template>
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -75,3 +78,14 @@
         })
     };
 </script>
+
+<style>
+  .v-data-table.th{
+      background-color: #003366;
+      color: white;
+  }
+  .v-card-title{
+      background-color: #003366;
+      color: white;
+  }
+</style>
