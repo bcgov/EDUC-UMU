@@ -10,16 +10,24 @@
           <UserTable></UserTable>
         </v-flex>
       </v-layout>
+      <v-spacer></v-spacer>
+      <v-layout row wrap justify-center>
+        <v-flex>
+          <ProxyTable></ProxyTable>
+        </v-flex>
+      </v-layout>
     </v-container>
 </template>
 
 <script>
   import UserTable from './UserTable.vue';
+  import ProxyTable from './ProxyTable.vue';
 
   export default{
     name: 'home',
     components: {
-      UserTable
+      UserTable,
+      ProxyTable
     },
     data() {
       return {

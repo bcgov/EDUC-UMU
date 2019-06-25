@@ -1,8 +1,8 @@
-<template>
+  <template>
   <v-card>
     <div class="gov-blue">
       <v-card-title>
-        <span class="white--text">OBIEE Users Table</span>
+        <span class="white--text">OBIEE Proxy Users Table</span>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -31,10 +31,8 @@
       <template
         slot="items"
         slot-scope="{ item }">
-        <td>{{ item.Name }}</td>
-        <td>{{ item.Email }}</td>
-        <td>{{ item.IDIR }}</td>
-        <td>{{ item.Privileges }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.proxy }}</td>
         <td align="center"><v-btn class="gov-blue">Edit User</v-btn></td>
       </template>
       <template v-slot:no-results>
@@ -57,30 +55,19 @@
                 {
                     sortable: true,
                     text: 'Name',
-                    value: 'Name'
+                    value: 'name'
                 },
                 {
                     sortable: true,
-                    text: 'Email',
-                    value: 'Email'
-                },
-                {
-                    sortable: true,
-                    text: 'IDIR',
-                    value: 'IDIR'
-                },
-                {
-                    sortable: true,
-                    text: 'Privileges',
-                    value: 'Privileges',
+                    text: 'Proxy Privileges',
+                    value: 'proxy',
                 }
             ],
             items: [
-                    { Name: 'Nathan Denny', Email: 'nathan.denny@gov.bc.ca', IDIR: 'NDENNY', Privileges: 'EDW_Developer' },
-                    { Name: 'Frank Reynolds', Email: 'freynolds@wolfcola.eu', IDIR: 'FREYNOLDS', Privileges: 'EDW_Administrator' },
-                    { Name: 'Peter Holland', Email: 'peter.holland@gov.bc.ca', IDIR: 'PHOLLAND', Privileges: 'EDW_General' },
-                    { Name: 'Fake Name', Email: 'fake@notreal.no', IDIR: 'FNAME', Privileges: 'EDW_Superintendant' },
-                    { Name: 'John Smith', Email: 'jsmith@email.com', IDIR: 'JSMITH', Privileges: 'EDW_School_Principle' }  
+                    { name: "Nathan Denny", proxy: "EDW_General_Test"},
+                    { name: "Frank Reynolds", proxy: "EDW_Developer_Test"},
+                    { name: "John Smith", proxy: "EDW_Adm_Test"},
+                    { name: "Fake Name", proxy: "EDW_Sch_Princpl_Test"}
                 ]
         })
     };
