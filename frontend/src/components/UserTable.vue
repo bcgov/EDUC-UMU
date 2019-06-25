@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <div class="blue">
+    <div class="gov-blue">
       <v-card-title>
         <span class="white--text">OBIEE Users</span>
       <v-spacer></v-spacer>
@@ -9,7 +9,7 @@
         append-icon="search"
         label="Search"
         single-line
-        hide-details></v-text-field>
+        hide-details class="white--text"></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -34,6 +34,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
+        <td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -41,6 +42,9 @@
         </v-alert>
       </template>
     </v-data-table>
+    <div>
+      <v-btn class="gov-blue">Add User</v-btn>
+    </div>
   </material-card>
 </template>
 
@@ -80,3 +84,8 @@
         })
     };
 </script>
+<style>
+  .gov-blue{
+    color: #003366
+  }
+</style>
