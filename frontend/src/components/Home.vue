@@ -5,8 +5,8 @@
     </v-container>
 -->
     <v-container v-else>
-      <v-layout row wrap>
-        <v-flex xs12 sm6 offset-sm3>
+      <v-layout row wrap justify-center>
+        <v-flex>
           <UserTable></UserTable>
         </v-flex>
       </v-layout>

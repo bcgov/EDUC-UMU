@@ -1,7 +1,8 @@
 <template>
   <v-card>
+    <div class="blue">
       <v-card-title>
-        OBIEE Users
+        <span class="white--text">OBIEE Users</span>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -10,6 +11,7 @@
         single-line
         hide-details></v-text-field>
       </v-card-title>
+    </div>
     <v-data-table
       :headers="headers"
       :items="items"
@@ -78,14 +80,3 @@
         })
     };
 </script>
-
-<style>
-  .v-data-table.th{
-      background-color: #003366;
-      color: white;
-  }
-  .v-card-title{
-      background-color: #003366;
-      color: white;
-  }
-</style>
