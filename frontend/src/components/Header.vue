@@ -15,12 +15,13 @@
         <v-btn class="title hidden-sm-and-down" color="text" flat>{{ appTitle }}</v-btn>
       </v-toolbar-title>
 
-      <v-spacer></v-spacer>
-
       <div>
         <v-btn flat id="nav-home" :href="authRoutes.HOME">View Users</v-btn>
         <v-btn flat id="nav-user-form" :href="authRoutes.USERFORM">Add User</v-btn>
       </div>
+      
+      <v-spacer></v-spacer>
+
       <div v-if="isAuthenticated">
         <v-btn flat id="nav-logout" @click="clearStorage" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
