@@ -10,7 +10,7 @@
         label="Search"
         single-line
         hide-details
-        :class=""></v-text-field>
+        color="white"></v-text-field>
       </v-card-title>
     </div>
     <v-data-table

@@ -10,7 +10,7 @@
         label="Search"
         single-line
         hide-details
-        :class=""></v-text-field>
+        color="white"></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -44,7 +44,6 @@
     <div class="text-xs-center pt-2">
       <v-btn class="gov-blue">Add User</v-btn>
     </div>
-  </material-card>
 </template>
 
 <script>
