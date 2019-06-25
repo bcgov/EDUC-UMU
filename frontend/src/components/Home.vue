@@ -4,13 +4,15 @@
         <h1>Not Logged In</h1>
     </v-container>
 -->
-    <v-container v-else>
+    <v-container>
       <v-layout row wrap justify-center>
         <v-flex>
           <UserTable></UserTable>
         </v-flex>
       </v-layout>
-      <v-spacer></v-spacer>
+    </v-container>
+    <v-spacer></v-spacer>
+    <v-container>
       <v-layout row wrap justify-center>
         <v-flex>
           <ProxyTable></ProxyTable>

@@ -10,6 +10,7 @@
         label="Search"
         single-line
         hide-details
+        autofocus
         color="white"></v-text-field>
       </v-card-title>
     </div>
