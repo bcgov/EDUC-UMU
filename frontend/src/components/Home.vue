@@ -5,18 +5,6 @@
     </v-container>
     -->
     <v-container>
-      <v-layout wrap>
-        <v-flex xs8>
-          <v-img
-            :src="require('@/assets/images/bcid-symbol.svg')"
-            class="my-3"
-            contain
-            height="150"
-            position="left"
-          ></v-img>
-        </v-flex>
-      </v-layout>
-
       <v-layout row wrap>
         <v-flex xs12>
           <v-card class='sectionCard'>
