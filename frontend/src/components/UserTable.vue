@@ -1,17 +1,25 @@
 <template>
-  <material-card
-    color="#003366"
-    title="OBIEE User Table"
-    text="demo">
+  <v-card>
+      <v-card-title>
+        OBIEE Users
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details></v-text-field>
+      </v-card-title>
     <v-data-table
       :headers="headers"
       :items="items"
+      :search="search"
       hide-actions>
       <template
         slot="headerCell"
         slot-scope="{ header }">
         <span
-          class="subheading font-weight-light text-success text--darken-3"
+          class="subheading font-weight-light text-success text--darken-3" style="color: white; background-color: #003366;"
           v-text="header.text"/>
       </template>
       <template
@@ -22,6 +30,11 @@
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
       </template>
+      <template v-slot:no-results>
+        <v-alert :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </template>
     </v-data-table>
   </material-card>
 </template>
@@ -29,6 +42,7 @@
 <script>
     export default{
         data: () => ({
+            search: '',
             headers: [
                 {
                     sortable: true,

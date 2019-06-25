@@ -6,9 +6,7 @@
 -->
     <v-container v-else>
       <v-layout row wrap>
-          <v-card class='sectionCard'>
-            <UserTable/>
-          </v-card>
+          <UserTable></UserTable>
       </v-layout>
     </v-container>
 </template>
