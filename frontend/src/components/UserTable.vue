@@ -1,29 +1,22 @@
-Mason Porter 	Chile 	Gloucester 	$78,615
-
 <template>
   <material-card
     color="#003366"
     title="OBIEE User Table"
-    text=""
-  >
+    text="">
     <v-data-table
       :headers="headers"
       :items="items"
-      hide-actions
-    >
+      hide-actions>
       <template
         slot="headerCell"
-        slot-scope="{ header }"
-      >
+        slot-scope="{ header }">
         <span
           class="subheading font-weight-light text-success text--darken-3"
-          v-text="header.text"
-        />
+          v-text="header.text"/>
       </template>
       <template
         slot="items"
-        slot-scope="{ item }"
-      >
+        slot-scope="{ item }">
         <td>{{ item.Name }}</td>
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
