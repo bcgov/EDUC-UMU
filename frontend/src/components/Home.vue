@@ -1,9 +1,9 @@
 <template>
-
+  <!--
     <v-container v-if="!isAuthenticated">
         <h1>Not Logged In</h1>
     </v-container>
-
+-->
     <v-container v-else>
       <v-layout row wrap>
           <v-card class='sectionCard'>
@@ -15,6 +15,18 @@
 
 <script>
   import UserTable from './UserTable.vue';
+
+  export default{
+    name: 'home',
+    components: {
+      UserTable
+    },
+    data() {
+      return {
+        dialog: false
+      };
+    }
+  };
 </script>
 
 <style>
