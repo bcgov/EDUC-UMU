@@ -1,10 +1,10 @@
 <template>
-    <!--
+
     <v-container v-if="!isAuthenticated">
         <h1>Not Logged In</h1>
     </v-container>
-    -->
-    <v-container>
+
+    <v-container v-else>
       <v-layout row wrap>
         <v-flex xs12>
           <v-card class='sectionCard'>
