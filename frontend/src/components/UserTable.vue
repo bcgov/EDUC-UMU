@@ -2,7 +2,7 @@
   <material-card
     color="#003366"
     title="OBIEE User Table"
-    text="">
+    text="demo">
     <v-data-table
       :headers="headers"
       :items="items"

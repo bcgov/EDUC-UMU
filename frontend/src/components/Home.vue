@@ -6,13 +6,9 @@
 
     <v-container v-else>
       <v-layout row wrap>
-        <v-flex xs12>
           <v-card class='sectionCard'>
-            <v-spacer></v-spacer>
             <UserTable/>
-            <v-spacer></v-spacer>
           </v-card>
-        </v-flex>
       </v-layout>
     </v-container>
 </template>

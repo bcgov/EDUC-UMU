@@ -25,10 +25,12 @@ First, you must install all dependencies of the application
 ``` sh
 npm install
 ```
+
 If you wish to build the application you can run:
 ``` sh
 npm run build
 ```
+
 You can check linting by running
 ``` sh
 npm run lint
