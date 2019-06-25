@@ -42,7 +42,7 @@
         </v-alert>
       </template>
     </v-data-table>
-    <div>
+    <div class="text-xs-center pt-2">
       <v-btn class="gov-blue">Add User</v-btn>
     </div>
   </material-card>
@@ -86,6 +86,6 @@
 </script>
 <style>
   .gov-blue{
-    color: #003366;
+    background-color: #003366;
   }
 </style>
