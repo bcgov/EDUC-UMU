@@ -5,7 +5,7 @@
     </v-container>
 -->
     <v-container>
-      <v-layout column justify-start align-center>
+      <v-layout column justify-start wrap align-center>
           <v-flex>
             <UserTable></UserTable>
           </v-flex>
