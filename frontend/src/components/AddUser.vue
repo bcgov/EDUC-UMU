@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row wrap justify-center>
-            <v-flex>
+            <v-flex xs6>
                 <UserForm></UserForm>
             </v-flex>
         </v-layout>
@@ -30,7 +30,7 @@ export default {
     margin-top: 15px;
     margin-bottom: 15px;
     padding-right: 20px;
-    padding-left: 20px;
+    padding-bottom: 10px;
     padding-top: 15px;
     padding-left: 15px;
   }
