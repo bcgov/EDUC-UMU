@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
         <span class="white--text">OBIEE Users Table</span>
@@ -92,5 +92,10 @@
   }
   tbody tr:nth-of-type(odd){
     background-color: rgba(0,0,0,0.05);
+  }
+  .round{
+    border-radius: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 </style>

@@ -1,5 +1,5 @@
   <template>
-  <v-card>
+  <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
         OBIEE Proxy Users Table
@@ -9,7 +9,8 @@
         append-icon="search"
         label="Search"
         single-line
-        hide-details></v-text-field>
+        hide-details
+        color="white"></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -82,5 +83,10 @@
   }
   tbody tr:nth-of-type(odd){
     background-color: rgba(0,0,0,0.05);
+  }
+  .round{
+    border-radius: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 </style>
