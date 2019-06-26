@@ -6,17 +6,17 @@
 -->
     <v-container>
       <v-layout column justify-start align-center>
-        <div class="table-container">
           <v-flex>
+            <div class="table-container">
             <UserTable></UserTable>
+            </div>
           </v-flex>
-        </div>
       <v-spacer></v-spacer>
-        <div class="table-container">
           <v-flex>
+            <div class="table-container">
             <ProxyTable></ProxyTable>
+            </div>
           </v-flex>
-        </div>
       </v-layout>
     </v-container>
 </template>
