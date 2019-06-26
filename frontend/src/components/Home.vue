@@ -5,11 +5,13 @@
     </v-container>
 -->
     <v-container>
-      <v-layout column justify-start wrap align-center>
+      <v-layout row wrap justify-center>
           <v-flex>
             <UserTable></UserTable>
           </v-flex>
+      </v-layout>
       <v-spacer></v-spacer>
+      <v-layout row wrap justify-center>
           <v-flex>
             <ProxyTable></ProxyTable>
           </v-flex>
