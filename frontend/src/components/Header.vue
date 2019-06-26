@@ -16,8 +16,8 @@
       </v-toolbar-title>
 
       <div>
-        <v-btn flat id="nav-home"><router-link to="/">View Users</router-link></v-btn>
-        <v-btn flat id="nav-user-form"><router-link to="/add_user">Add User</router-link></v-btn>
+        <v-btn flat id="nav-home">View Users</v-btn>
+        <v-btn flat id="nav-user-form">Add User</v-btn>
       </div>
       
       <v-spacer></v-spacer>
