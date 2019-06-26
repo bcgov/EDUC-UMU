@@ -2,16 +2,14 @@
   <v-card>
     <div class="gov-blue">
       <v-card-title>
-        <span class="white--text">OBIEE Proxy Users Table</span>
+        OBIEE Proxy Users Table
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
         append-icon="search"
         label="Search"
         single-line
-        hide-details
-        autofocus
-        color="white"></v-text-field>
+        hide-details></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -34,7 +32,7 @@
         slot-scope="{ item }">
         <td>{{ item.name }}</td>
         <td>{{ item.proxy }}</td>
-        <td align="center"><v-btn color="#003366"><span class="white--text">Edit User</span></v-btn></td>
+        <td align="center"><v-btn color="#5475a7"><span class="white--text">Edit User</span></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -43,7 +41,7 @@
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
-      <v-btn color="#003366"><span class="white--text">Add User</span></v-btn>
+      <v-btn color="#5475a7"><span class="white--text">Add User</span></v-btn>
     </div>
 </template>
 
@@ -73,8 +71,12 @@
     };
 </script>
 <style>
+    .card-colour{
+        background-color: #7590b9;
+        color: white
+    }
   .gov-blue{
-    background-color: #003366;
+    background-color: #5475a7;
     color: white;
   }
   tbody tr:nth-of-type(odd){
