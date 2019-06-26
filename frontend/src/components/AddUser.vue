@@ -23,3 +23,15 @@ export default {
     }
 };
 </script>
+
+<style>
+.round{
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+</style>
