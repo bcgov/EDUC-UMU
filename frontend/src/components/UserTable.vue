@@ -10,6 +10,7 @@
         label="Search"
         single-line
         hide-details
+        dark
         color="white"></v-text-field>
       </v-card-title>
     </div>
@@ -44,7 +45,7 @@
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
-      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>Add User</span></v-btn>
+      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
     </div>
   </v-card>
 </template>
@@ -97,5 +98,8 @@
     border-radius: 50px;
     padding-top: 15px;
     padding-bottom: 15px;
+  }
+  .v-table tbody tr:not(:last-child){
+    border-bottom: 1px solid #5475a7;
   }
 </style>
