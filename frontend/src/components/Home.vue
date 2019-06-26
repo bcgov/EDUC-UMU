@@ -5,14 +5,18 @@
     </v-container>
 -->
     <v-container>
-      <v-layout column justify-center>
-        <v-flex>
-          <UserTable></UserTable>
-        </v-flex>
+      <v-layout column justify-start align-center>
+        <div class="table-container">
+          <v-flex>
+            <UserTable></UserTable>
+          </v-flex>
+        </div>
       <v-spacer></v-spacer>
-        <v-flex>
-          <ProxyTable></ProxyTable>
-        </v-flex>
+        <div class="table-container">
+          <v-flex>
+            <ProxyTable></ProxyTable>
+          </v-flex>
+        </div>
       </v-layout>
     </v-container>
 </template>
@@ -46,5 +50,10 @@
   }
   .underRadioField {
     padding-left: 32px;
+  }
+  .table-container{
+    border: 1px solid #5475a7;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 </style>

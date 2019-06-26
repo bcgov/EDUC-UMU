@@ -9,7 +9,6 @@
         append-icon="search"
         label="Search"
         single-line
-        autofocus
         hide-details
         color="white"></v-text-field>
       </v-card-title>
