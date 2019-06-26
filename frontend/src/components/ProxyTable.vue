@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    export default{
+    export default {
         data: () => ({
             search: '',
             headers: [

@@ -24,8 +24,8 @@
 </template>
 
 <script>
-export default{
-    data: () -> ({
+export default {
+    data: () => ({
         valid: true,
         name: '',
         nameRules: [

@@ -23,7 +23,7 @@
   import UserTable from './UserTable.vue';
   import ProxyTable from './ProxyTable.vue';
 
-  export default{
+  export default {
     name: 'home',
     components: {
       UserTable,

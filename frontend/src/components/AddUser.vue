@@ -11,7 +11,7 @@
 <script>
 import UserForm from './UserForm.vue';
 
-export default{
+export default {
     name: 'add_user',
     components: {
         AddUser
