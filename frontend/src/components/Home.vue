@@ -49,9 +49,16 @@
   .underRadioField {
     padding-left: 32px;
   }
-  .table-container{
-    border: 1px solid #5475a7;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  tbody tr:nth-of-type(odd){
+    background-color: rgba(0,0,0,0.05);
+  }
+  .round{
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  .v-table tbody tr:last-child{
+    border-bottom: 1px solid #5475a7;
   }
 </style>

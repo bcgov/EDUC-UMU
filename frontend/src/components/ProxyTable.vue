@@ -91,7 +91,7 @@
     margin-bottom: 15px;
   }
 
-  .v-table tbody tr:not(:last-child){
+  .v-table tbody tr:last-child{
     border-bottom: 1px solid #5475a7;
   }
 </style>

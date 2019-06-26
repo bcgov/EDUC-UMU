@@ -91,15 +91,4 @@
     background-color: #5475a7;
     color: white;
   }
-  tbody tr:nth-of-type(odd){
-    background-color: rgba(0,0,0,0.05);
-  }
-  .round{
-    border-radius: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  .v-table tbody tr:not(:last-child){
-    border-bottom: 1px solid #5475a7;
-  }
 </style>
