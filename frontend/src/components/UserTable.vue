@@ -71,7 +71,7 @@
                 },
                 {
                     sortable: true,
-                    text: 'Privileges',
+                    text: 'Roles',
                     value: 'Privileges',
                 }
             ],

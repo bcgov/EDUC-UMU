@@ -58,7 +58,7 @@
                 },
                 {
                     sortable: true,
-                    text: 'Proxy Privileges',
+                    text: 'Proxy Roles',
                     value: 'proxy',
                 }
             ],
