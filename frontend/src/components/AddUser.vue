@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style>
-.round{
+.user-form{
     border-radius: 15px;
     margin-top: 15px;
     margin-bottom: 15px;

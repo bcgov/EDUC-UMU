@@ -1,5 +1,5 @@
 <template>
-    <v-card class="round">
+    <v-card class="user-form">
             <v-form
             ref="form"
             v-model="valid"
