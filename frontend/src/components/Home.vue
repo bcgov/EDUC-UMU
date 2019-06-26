@@ -7,15 +7,11 @@
     <v-container>
       <v-layout column justify-start align-center>
           <v-flex>
-            <div class="table-container">
             <UserTable></UserTable>
-            </div>
           </v-flex>
       <v-spacer></v-spacer>
           <v-flex>
-            <div class="table-container">
             <ProxyTable></ProxyTable>
-            </div>
           </v-flex>
       </v-layout>
     </v-container>
