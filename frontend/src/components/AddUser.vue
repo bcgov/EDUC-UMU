@@ -19,6 +19,8 @@
                             label="IDIR"
                             required
                         ></v-text-field>
+                        <v-text-field>
+                        </v-text-field>
                         <v-btn :disabled="!valid" @click="validate">Submit</v-btn>
                     </v-form>
                 </v-card>
@@ -48,7 +50,7 @@ export default{
             }
         }
     }
-}
+};
 </script>
 
 <style>

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '@/components/Home.vue';
-import Add_User from '@/components/AddUser.vue';
+import AddUser from '@/components/AddUser.vue';
 import { AuthRoutes } from '@/utils/constants';
 import store from './store';
 
@@ -20,7 +20,7 @@ const router = new VueRouter({
     {
       path: '/add_user',
       name: 'add_user',
-      component: Add_User
+      component: AddUser
     },
     {
       path: '*',
