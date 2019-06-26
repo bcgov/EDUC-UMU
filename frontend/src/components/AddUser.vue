@@ -14,7 +14,7 @@ import UserForm from './UserForm.vue';
 export default {
     name: 'add_user',
     components: {
-        AddUser
+        UserForm
     },
     data() {
       return {
