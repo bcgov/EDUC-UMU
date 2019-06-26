@@ -32,7 +32,7 @@
         slot-scope="{ item }">
         <td>{{ item.name }}</td>
         <td>{{ item.proxy }}</td>
-        <td align="center"><v-btn color="#5475a7"><span class="white--text">Edit User</span></v-btn></td>
+        <td align="center"><v-btn color="#5475a7"><i class="fas fa-edit" style="color:white"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -41,7 +41,7 @@
       </template>
     </v-data-table>
     <div class="text-xs-center pt-2">
-      <v-btn color="#5475a7"><span class="white--text">Add User</span></v-btn>
+      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>Add User</span></v-btn>
     </div>
 </template>
 
