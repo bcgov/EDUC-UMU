@@ -10,9 +10,9 @@
                 <v-expansion-panel>
                   <v-expansion-panel-content>
                     <div slot="header">OBIEE User Table</div>
-                  <v-expansion-panel-content>
+                      <UserTable></UserTable>
+                    <v-expansion-panel-content>
                 </v-expansion-panel>
-                <UserTable></UserTable>
               </v-flex>
           </v-layout>
       <v-spacer></v-spacer>
