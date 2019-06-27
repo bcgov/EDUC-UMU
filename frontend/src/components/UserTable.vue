@@ -44,9 +44,9 @@
         </v-alert>
       </template>
     </v-data-table>
-    <div class="text-xs-center pt-2">
+    <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
-    </div>
+    </div>-->
   </v-card>
 </template>
 
