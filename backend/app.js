@@ -6,7 +6,9 @@ const log = require('npmlog');
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
+var dbConfig = require('./dbconfig.js');
 import oracledb from 'oracledb';
+
 
 const apiRouter = express.Router();
 
@@ -16,11 +18,22 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use()
-
 var dbcon = await oracledb.getConnection({
-    user: {"ENV": "ORACLE_DB_PASS"},
+    user: "",
     password : "",
     connectString : "" // "12.2.0.1:443/service_name"               [//]host_name[:port][/service_name][:server_type][/instance_name]
-});
-console.log(dbcon);
+    },
+    function(err, connection) {
+        if(err) {
+            console.error(err.message);
+            return;
+    }
+    console.log("Connection successful!");
+    connection.close(
+        function(err) {
+          if (err) {
+            console.error(err.message);
+            return;
+          }
+        });
+  });
