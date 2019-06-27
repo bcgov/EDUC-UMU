@@ -31,35 +31,37 @@
                         label="BCeID"
                         required
                     ></v-text-field>
-                    <v-btn :disabled="!valid" @click="validate">Submit</v-btn>
                 </div>
                 <div class="form-right">
                   <h2>User Proxy Roles</h2>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_General_Test">EDW_General_Test</v-checkbox>
+                        :label="`EDW_General_Test`">EDW_General_Test</v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_EAB_Analyst_Test"></v-checkbox>
+                        :label="`EDW_EAB_Analyst_Test`"></v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_Developer_Test"></v-checkbox>
+                        :label="`EDW_Developer_Test`"></v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_Adm_Test"></v-checkbox>
+                        :label="`EDW_Adm_Test`"></v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_Dist_Super_Test"></v-checkbox>
+                        :label="`EDW_Dist_Super_Test`"></v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="EDW_Sch_Princpl_Test"></v-checkbox>
+                        :label="`EDW_Sch_Princpl_Test`"></v-checkbox>
                 </div>
+            </v-layout>
+            <v-layout>
+                <v-btn :disabled="!valid" @click="validate">Submit</v-btn>
             </v-layout>
             </v-form>
         </v-card>
