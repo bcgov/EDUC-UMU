@@ -38,12 +38,50 @@
                         required
                     ></v-text-field>
                 </div>
+                <div class="form-middle">
+                    <h2>User Roles</h2>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_Administrator`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_Developer`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_EAB_Analyst`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_General`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_District_Superintendant`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_School_Principle`">
+                        </v-checkbox>
+                        <v-checkbox
+                            color="#003366"
+                            v-model="checkbox"
+                            :label="`EDW_Dimstud`">
+                        </v-checkbox>
+                </div>
                 <div class="form-right">
                   <h2>User Proxy Roles</h2>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
-                        :label="`EDW_General_Test`">EDW_General_Test</v-checkbox>
+                        :label="`EDW_General_Test`"></v-checkbox>
                     <v-checkbox
                         color="#003366"
                         v-model="checkbox"
@@ -110,14 +148,17 @@ export default {
 </script>
 <style>
     .form-right{
-        width: 500px;
+        width: 420px;
         padding-left: 20px;
         padding-bottom: 10px;
     }
     .form-left{
-        width: 500px;
+        width: 420px;
         padding-right: 20px;
         padding-bottom: 10px;
         padding-left: 10px;
+    }
+    .form-middle{
+        width: 420px;
     }
 </style>
