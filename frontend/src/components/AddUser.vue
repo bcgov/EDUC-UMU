@@ -2,12 +2,7 @@
     <v-container>
         <v-layout row wrap justify-center>
             <v-flex xs12>
-                <v-expandsion-panel>
-                    <h3 v-slot="header"></h3>
-                    <v-expansion-panel-content>
-                        <UserForm></UserForm>
-                    </v-expansion-panel-content>
-                </v-expansion-panel>
+                <UserForm></UserForm>
             </v-flex>
         </v-layout>
     </v-container>
