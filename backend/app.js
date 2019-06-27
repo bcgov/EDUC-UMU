@@ -8,6 +8,8 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 import oracledb from 'oracledb';
 
+const apiRouter = express.Router();
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({
@@ -17,7 +19,7 @@ app.use(express.urlencoded({
 app.use()
 
 var dbcon = await oracledb.getConnection({
-    user: "",
+    user: {"ENV": "ORACLE_DB_PASS"},
     password : "",
     connectString : "" // "12.2.0.1:443/service_name"               [//]host_name[:port][/service_name][:server_type][/instance_name]
 });
