@@ -5,17 +5,25 @@
     </v-container>
 -->
     <v-container>
-      <v-layout row wrap justify-center>
-          <v-flex xs10>
-            <UserTable></UserTable>
-          </v-flex>
-      </v-layout>
+      <v-expansion-panel>
+        <v-expansion-panel-content>
+          <v-layout row wrap justify-center>
+              <v-flex xs10>
+                <UserTable></UserTable>
+              </v-flex>
+          </v-layout>
+        <v-expansion-panel-content>
+      </v-expansion-panel>
       <v-spacer></v-spacer>
-      <v-layout row wrap justify-center>
-          <v-flex xs10>
-            <ProxyTable></ProxyTable>
-          </v-flex>
-      </v-layout>
+      <v-expansion-panel>
+        <v-expansion-panel-content>
+          <v-layout row wrap justify-center>
+              <v-flex xs10>
+                <ProxyTable></ProxyTable>
+              </v-flex>
+          </v-layout>
+        <v-expansion-panel-content>
+      </v-expansion-panel>
     </v-container>
 </template>
 
