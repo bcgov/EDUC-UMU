@@ -2,7 +2,7 @@
   <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
-        <span class="white--text">OBIEE Users Table</span>
+        <h2 class="white--text">OBIEE Users Table</h2>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -36,7 +36,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
-        <td align="center"><v-btn color="#5475a7"><i class="fas fa-edit" style="color:white"></i></v-btn></td>
+        <td align="center"><v-btn color="#003366"><i class="fas fa-edit" style="color:white"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -88,7 +88,7 @@
 </script>
 <style>
   .gov-blue{
-    background-color: #5475a7;
+    background-color: #003366;
     color: white;
   }
 </style>

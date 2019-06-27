@@ -6,13 +6,13 @@
 -->
     <v-container>
       <v-layout row wrap justify-center>
-          <v-flex>
+          <v-flex xs10>
             <UserTable></UserTable>
           </v-flex>
       </v-layout>
       <v-spacer></v-spacer>
       <v-layout row wrap justify-center>
-          <v-flex>
+          <v-flex xs10>
             <ProxyTable></ProxyTable>
           </v-flex>
       </v-layout>
