@@ -7,7 +7,14 @@
     <v-container>
           <v-layout row wrap justify-center>
               <v-flex xs10>
-                <UserTable></UserTable>
+                <v-expansion-panel>
+                  <v-expansion-panel-content>
+                    <template v-slot:header>
+                      <div>OBIEE User Table</div>
+                    </template>
+                    <UserTable></UserTable>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
               </v-flex>
           </v-layout>
       <v-spacer></v-spacer>
