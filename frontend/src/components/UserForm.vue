@@ -31,6 +31,12 @@
                         label="BCeID"
                         required
                     ></v-text-field>
+                    <v-text-field
+                        v-model="guid"
+                        :rules="guidRules"
+                        label="GUID"
+                        required
+                    ></v-text-field>
                 </div>
                 <div class="form-right">
                   <h2>User Proxy Roles</h2>
@@ -86,6 +92,10 @@ export default {
         bceid: '',
         bceidRules: [
             v => !!v || 'BCeID is required'
+        ],
+        guid: '',
+        guidRules: [
+            v => !!v || 'GUID is required'
         ]
     }),
 
@@ -108,5 +118,6 @@ export default {
         width: 500px;
         padding-right: 20px;
         padding-bottom: 10px;
+        padding-left: 10px;
     }
 </style>

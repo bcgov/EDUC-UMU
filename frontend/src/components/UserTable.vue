@@ -2,7 +2,7 @@
   <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
-        <h2 class="white--text">OBIEE Users Table</h2>
+        <h3 class="white--text">OBIEE Users Table</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -36,7 +36,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
-        <td align="center"><v-btn color="#003366"><i class="fas fa-edit" style="color:white"></i></v-btn></td>
+        <td align="center"><i class="fas fa-edit" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -74,6 +74,10 @@
                     sortable: true,
                     text: 'Roles',
                     value: 'Privileges',
+                },
+                {
+                  sortable: false,
+                  text: 'Edit User'
                 }
             ],
             items: [
@@ -90,5 +94,8 @@
   .gov-blue{
     background-color: #003366;
     color: white;
+  }
+  .fa-edit:hover{
+    color: #5475a7;
   }
 </style>

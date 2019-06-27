@@ -2,7 +2,7 @@
   <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
-        <h2>OBIEE Proxy Users Table</h2>
+        <h3>OBIEE Proxy Users Table</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -34,7 +34,7 @@
         slot-scope="{ item }">
         <td>{{ item.name }}</td>
         <td>{{ item.proxy }}</td>
-        <td align="center"><v-btn color="#003366"><i class="fas fa-edit" style="color:white"></i></v-btn></td>
+        <td align="center"><i class="fas fa-edit" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
