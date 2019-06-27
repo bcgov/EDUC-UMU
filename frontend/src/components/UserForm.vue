@@ -104,8 +104,13 @@
                         :label="`EDW_Sch_Princpl_Test`"></v-checkbox>
                 </div>
             </v-layout>
-            <v-layout>
-                <v-btn color="#E0E0E0" :disabled="!valid" @click="validate">Submit</v-btn>
+            <v-layout row>
+                <div>
+                    <v-btn color="#E0E0E0" :disabled="!valid" @click="validate">Submit</v-btn>
+                </div>
+                <div>
+                    <v-btn color="#E0E0E0">Add CSV File</v-btn>
+                </div>
             </v-layout>
             </v-form>
         </v-card>
@@ -149,7 +154,6 @@ export default {
 <style>
     .form-right{
         width: 420px;
-        padding-left: 20px;
         padding-bottom: 10px;
     }
     .form-left{
@@ -160,5 +164,7 @@ export default {
     }
     .form-middle{
         width: 420px;
+        padding-left: 20px;
+        padding-bottom: 10px;
     }
 </style>
