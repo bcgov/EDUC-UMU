@@ -5,25 +5,27 @@
     </v-container>
 -->
     <v-container>
-      <v-expansion-panel>
-        <v-expansion-panel-content>
           <v-layout row wrap justify-center>
               <v-flex xs10>
+                <v-expansion-panel>
+                  <v-expansion-panel-content>
+                    <div slot="header">OBIEE User Table</div>
+                  <v-expansion-panel-content>
+                </v-expansion-panel>
                 <UserTable></UserTable>
               </v-flex>
           </v-layout>
-        <v-expansion-panel-content>
-      </v-expansion-panel>
       <v-spacer></v-spacer>
-      <v-expansion-panel>
-        <v-expansion-panel-content>
           <v-layout row wrap justify-center>
               <v-flex xs10>
-                <ProxyTable></ProxyTable>
+                <v-expansion-panel name="User Proxy Table">
+                  <v-expansion-panel-content>
+                    <div slot="header">OBIEE User Proxy Table</div>
+                      <ProxyTable></ProxyTable>
+                    <v-expansion-panel-content>
+                  </v-expansion-panel>
               </v-flex>
           </v-layout>
-        <v-expansion-panel-content>
-      </v-expansion-panel>
     </v-container>
 </template>
 
