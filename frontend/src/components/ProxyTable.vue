@@ -34,7 +34,7 @@
         slot-scope="{ item }">
         <td>{{ item.name }}</td>
         <td>{{ item.proxy }}</td>
-        <td align="center"><i class="fas fa-edit" style="color:#003366"></i></td>
+        <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -62,6 +62,10 @@
                     sortable: true,
                     text: 'Proxy Roles',
                     value: 'proxy',
+                },
+                {
+                  sotable: false,
+                  text: 'Edit Roles'
                 }
             ],
             items: [

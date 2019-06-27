@@ -36,7 +36,7 @@
         <td>{{ item.Email }}</td>
         <td>{{ item.IDIR }}</td>
         <td>{{ item.Privileges }}</td>
-        <td align="center"><i class="fas fa-edit" style="color:#003366"></i></td>
+        <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -95,7 +95,7 @@
     background-color: #003366;
     color: white;
   }
-  .fa-edit:hover{
-    color: #5475a7;
+  .hover-chantge:hover{
+    color: #81D4FA;
   }
 </style>

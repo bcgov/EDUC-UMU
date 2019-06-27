@@ -67,7 +67,7 @@
                 </div>
             </v-layout>
             <v-layout>
-                <v-btn :disabled="!valid" @click="validate">Submit</v-btn>
+                <v-btn color="#E0E0E0" :disabled="!valid" @click="validate">Submit</v-btn>
             </v-layout>
             </v-form>
         </v-card>
