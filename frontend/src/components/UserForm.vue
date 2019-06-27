@@ -155,12 +155,14 @@ export default {
     .form-right{
         width: 420px;
         padding-bottom: 10px;
+        border-left: 1px solid black;
     }
     .form-left{
         width: 420px;
         padding-right: 20px;
         padding-bottom: 10px;
         padding-left: 10px;
+        border-right: 1px solid black;
     }
     .form-middle{
         width: 420px;
