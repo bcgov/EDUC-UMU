@@ -1,0 +1,9 @@
+{
+    "connect": {
+        "database": {"ENV": "ORACLEDB_NAME"},
+        "host": {"ENV": "ORACLEDB_HOST"},
+        "port": {"ENV": "ORACLEDB_PORT"},
+        "password": {"ENV": "ORACLEDB_PASSWORD"},
+        "username": {"ENV": "ORACLEDB_USERNAME"}
+    }
+}
