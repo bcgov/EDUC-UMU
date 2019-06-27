@@ -2,7 +2,6 @@
   <v-card class="round">
     <div class="gov-blue">
       <v-card-title>
-        <h3>OBIEE Proxy Users Table</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

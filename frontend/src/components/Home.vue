@@ -17,6 +17,7 @@
                 </v-expansion-panel>
               </v-flex>
           </v-layout>
+      <v-divider></v-divider>
       <v-spacer></v-spacer>
           <v-layout row wrap justify-center>
               <v-flex xs10>

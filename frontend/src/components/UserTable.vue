@@ -1,6 +1,6 @@
 <template>
   <v-card class="round">
-    <div>
+    <div class="gov-blue">
       <v-card-title>
       <v-text-field
         v-model="search"
@@ -8,6 +8,8 @@
         label="Search"
         single-line
         hide-details
+        dark
+        color="white"
         ></v-text-field>
       </v-card-title>
     </div>
