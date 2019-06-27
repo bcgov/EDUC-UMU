@@ -104,6 +104,7 @@
                         :label="`EDW_Sch_Princpl_Test`"></v-checkbox>
                 </div>
             </v-layout>
+            <v-divider></v-divider>
             <v-layout row>
                 <div>
                     <v-btn color="#E0E0E0" :disabled="!valid" @click="validate">Submit</v-btn>
