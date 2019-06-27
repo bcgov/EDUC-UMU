@@ -7,23 +7,13 @@
     <v-container>
           <v-layout row wrap justify-center>
               <v-flex xs10>
-                <v-expansion-panel>
-                  <v-expansion-panel-content>
-                    <div slot="header">OBIEE User Table</div>
-                      <UserTable></UserTable>
-                    <v-expansion-panel-content>
-                </v-expansion-panel>
+                <UserTable></UserTable>
               </v-flex>
           </v-layout>
       <v-spacer></v-spacer>
           <v-layout row wrap justify-center>
               <v-flex xs10>
-                <v-expansion-panel name="User Proxy Table">
-                  <v-expansion-panel-content>
-                    <div slot="header">OBIEE User Proxy Table</div>
-                      <ProxyTable></ProxyTable>
-                    <v-expansion-panel-content>
-                  </v-expansion-panel>
+                <ProxyTable></ProxyTable>
               </v-flex>
           </v-layout>
     </v-container>
