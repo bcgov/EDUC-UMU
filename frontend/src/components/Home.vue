@@ -58,7 +58,4 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
   }
-  .v-table tbody tr:last-child{
-    border-bottom: 1px solid #5475a7;
-  }
 </style>

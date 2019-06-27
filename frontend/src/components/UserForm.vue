@@ -5,7 +5,7 @@
             v-model="valid"
             lazy-validation>
             <v-layout row>
-                <div class="form-side">
+                <div class="form-left">
                     <h2>User Information</h2>
                     <v-text-field
                         v-model="name"
@@ -33,26 +33,26 @@
                     ></v-text-field>
                     <v-btn :disabled="!valid" @click="validate">Submit</v-btn>
                 </div>
-                <div class="form-side">
+                <div class="form-right">
                   <h2>User Proxy Roles</h2>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_General_Test"></checkbox>
+                        :label="EDW_General_Test">EDW_General_Test</v-checkbox>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_EAB_Analyst_Test"></checkbox>
+                        :label="EDW_EAB_Analyst_Test"></v-checkbox>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_Developer_Test"></checkbox>
+                        :label="EDW_Developer_Test"></v-checkbox>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_Adm_Test"></checkbox>
+                        :label="EDW_Adm_Test"></v-checkbox>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_Dist_Super_Test"></checkbox>
+                        :label="EDW_Dist_Super_Test"></v-checkbox>
                     <v-checkbox
                         v-model="checkbox"
-                        :label="EDW_Sch_Princpl_Test"></checkbox>
+                        :label="EDW_Sch_Princpl_Test"></v-checkbox>
                 </div>
             </v-layout>
             </v-form>
@@ -91,7 +91,14 @@ export default {
 };
 </script>
 <style>
-    .form-side{
-        width: 400px;
+    .form-right{
+        width: 500px;
+        padding-left: 20px;
+        padding-bottom: 10px;
+    }
+    .form-left{
+        width: 500px;
+        padding-right: 20px;
+        padding-bottom: 10px;
     }
 </style>
