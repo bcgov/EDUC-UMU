@@ -30,6 +30,10 @@ pipeline{
         PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
     }
 
+    options {
+        parrallelsAlwaysFailFast()
+    }
+
     stages {
         stage('Initialize') {
             agent any
@@ -58,48 +62,68 @@ pipeline{
                 script {
                     openshift.withCluster(){
                         openshift.withProject(TOOLS_PROJECT){
-                            Frontend: {
-                            try{
-                                //notifyStageStatus('Frontend', 'PENDING')
+                            parallel(
+                                Backend: {
+                                    try{
+                                        def bcBackend = openshift.process('-f', 'openshift/obiee-backend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
 
-                                //define buildConfig
-                                def bcFrontend = openshift.process('-f', 'openshift/obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
-                                
-                                //build from template and tag
-                                openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')
-                                openshift.tag("${REPO_NAME}-frontend:latest", "${REPO_NAME}-frontend:${JOB_NAME}")
+                                        openshift.apply(bcBackend).narrow('bc').startBuild('-w').logs('-f')
 
-                                //define buildconfig for server
-                                def bcFrontendStatic = openshift.process('-f', 'openshift/obiee-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
+                                        openshift.tag("${REPO_NAME}-backend:latest", "${REPO_NAME}-backend:${JOB_NAME}")
+                                    }
+                                    catch(e) {
+                                        echo "Backend build failed"
+                                        throw e
+                                    }
+                                }
+                                Frontend: {
+                                    try{
+                                        //notifyStageStatus('Frontend', 'PENDING')
 
-                                //build from template and tag
-                                openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
-                                openshift.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+                                        //define buildConfig
+                                        def bcFrontend = openshift.process('-f', 'openshift/obiee-frontend.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "SOURCE_REPO_URL=${SOURCE_REPO_URL}", "SOURCE_REPO_REF=${SOURCE_REPO_REF}")
+                                        
+                                        //build from template and tag
+                                        openshift.apply(bcFrontend).narrow('bc').startBuild('-w').logs('-f')
+                                        openshift.tag("${REPO_NAME}-frontend:latest", "${REPO_NAME}-frontend:${JOB_NAME}")
 
-                                //notifyStageStatus("Frontend", "SUCCESS")
+                                        //define buildconfig for server
+                                        def bcFrontendStatic = openshift.process('-f', 'openshift/obiee-frontend-static.bc.yaml', "REPO_NAME=${REPO_NAME}", "JOB_NAME=${JOB_NAME}", "NAMESPACE=${TOOLS_PROJECT}")
+
+                                        //build from template and tag
+                                        openshift.apply(bcFrontendStatic).narrow('bc').startBuild('-w').logs('-f')
+                                        openshift.tag("${REPO_NAME}-frontend-static:latest", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+
+                                        //notifyStageStatus("Frontend", "SUCCESS")
+                                    }
+                                    catch(e){
+                                        echo "Frontend build failed"
+                                        //notifyStageStatus('Frontend', 'FAILURE')
+                                        throw e
+                                    }
                             }
-                            catch(e){
-                                echo "Frontend build failed"
-                                //notifyStageStatus('Frontend', 'FAILURE')
-                                throw e
-                            }
-                        }
+                        )
                         }
                     }
                 }
             }
             post{
                 success {
-                    echo 'Cleanup Frontend BuildConfigs...'
+                    echo 'Cleanup BuildConfigs...'
                     script {
                         openshift.withCluster() {
                         openshift.withProject(TOOLS_PROJECT) {
                             if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
-                            echo "DEBUG - Using project: ${openshift.project()}"
+                                echo "DEBUG - Using project: ${openshift.project()}"
                             } else {
+                                def bcBackend = openshift.selector('bc', "${REPO_NAME}-backend-${JOB_NAME}")
                                 def bcFrontend = openshift.selector('bc', "${REPO_NAME}-frontend-${JOB_NAME}")
                                 def bcFrontendStatic = openshift.selector('bc', "${REPO_NAME}-frontend-static-${JOB_NAME}")
 
+                                if(bcBackend.exists()){
+                                    echo "Removing BuildConfig ${REPO_NAME}-backend-${JOB_NAME}..."
+                                    bcBackend.delete()
+                                }
                                 if(bcFrontend.exists()) {
                                     echo "Removing BuildConfig ${REPO_NAME}-frontend-${JOB_NAME}..."
                                     bcFrontend.delete()
@@ -209,9 +233,21 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       if(DEBUG_OUTPUT.equalsIgnoreCase('true')) {
         echo "DEBUG - Using project: ${openshift.project()}"
       }
+      echo "Tagging Image ${REPO_NAME}-backend:${JOB_NAME}..."
+      openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-backend:${JOB_NAME}", "${REPO_NAME}-backend:${JOB_NAME}")
 
       echo "Tagging Image ${REPO_NAME}-frontend-static:${JOB_NAME}..."
       openshift.tag("${TOOLS_PROJECT}/${REPO_NAME}-frontend-static:${JOB_NAME}", "${REPO_NAME}-frontend-static:${JOB_NAME}")
+
+      echo "Processing DeploymentConfig ${REPO_NAME}-backend..."
+      def dcBackendTemplate = openshift.process('-f',
+        'openshift/obiee-backend.dc.yaml',
+        "REPO_NAME=${REPO_NAME}",
+        "JOB_NAME=${JOB_NAME}",
+        "NAMESPACE=${projectEnv}",
+        "APP_NAME=${APP_NAME}",
+        "HOST_ROUTE=${hostRouteEnv}"
+      )
 
       echo "Processing DeploymentConfig ${REPO_NAME}-frontend-static..."
       def dcFrontendStaticTemplate = openshift.process('-f',
@@ -224,15 +260,22 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
       )
 
       //createDeploymentStatus(projectEnv, 'PENDING', hostRouteEnv)
+      echo "Applying Deployment ${REPO_NAME}-backend..."
+      def dcBackend = openshift.apply(dcBackendTemplate).narrow('dc')
 
       echo "Applying Deployment ${REPO_NAME}-frontend-static..."
       def dcFrontendStatic = openshift.apply(dcFrontendStaticTemplate).narrow('dc')
 
       // Wait for deployments to roll out
       timeout(10) {
-        Frontend: {
-            dcFrontendStatic.rollout().status('--watch=true')
-        }
+        parallel(
+            Backend: {
+                dcBackend.rollout().status('--watch=true')
+            }
+            Frontend: {
+                dcFrontendStatic.rollout().status('--watch=true')
+            }
+        )
       }
     }
   }
