@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const passport = require('passport');
 const oracledb = require('oracledb');
 
+
+const utils = require('./src/components/utils');
+
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
@@ -24,7 +27,7 @@ log.addLevel('debug', 1500, {
   fg: 'cyan'
 });
 
-log.debug('Config', utils.prettyStringify(config));
+//log.debug('Config', utils.prettyStringify(config));
 
 var dbcon =  oracledb.getConnection({
     user: "",
