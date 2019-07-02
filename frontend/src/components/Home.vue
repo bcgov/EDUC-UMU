@@ -12,12 +12,14 @@
                 color="#003366"
                 dark
                 slider-color="#fcba19">
-                <v-tab>
-                      <UserTable></UserTable>
-                </v-tab>
-                <v-tab>
-                    <ProxyTable></ProxyTable>
-                </v-tab>
+                <v-tab>OBIEE User Table</v-tab>
+                <v-tab-item>
+                  <UserTable></UserTable>
+                </v-tab-item>
+                <v-tab>OBIEE User Proxy Table</v-tab>
+                <v-tab-item>
+                  <ProxyTable></ProxyTable>
+                </v-tab-item>
               </v-tabs>
             </v-flex>
           </v-layout>
