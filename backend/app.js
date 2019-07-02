@@ -15,7 +15,7 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-var dbcon = await oracledb.getConnection({
+var dbcon = oracledb.getConnection({
     user: "",
     password : "",
     connectString : "" // "12.2.0.1:443/service_name"               [//]host_name[:port][/service_name][:server_type][/instance_name]
