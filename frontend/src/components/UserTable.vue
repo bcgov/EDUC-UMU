@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="no-round">
     <div class="gov-blue">
       <v-card-title>
         <v-spacer></v-spacer>
@@ -90,12 +90,3 @@
         })
     };
 </script>
-<style>
-  .gov-blue{
-    background-color: #003366;
-    color: white;
-  }
-  .hover-chantge:hover{
-    color: #81D4FA;
-  }
-</style>

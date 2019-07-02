@@ -1,5 +1,5 @@
   <template>
-  <v-card>
+  <v-card class="no-round">
     <div class="gov-blue">
       <v-card-title>
         <v-spacer></v-spacer>
@@ -77,20 +77,3 @@
         })
     };
 </script>
-<style>
-    .card-colour{
-        background-color: #003366;
-        color: white
-    }
-  .gov-blue{
-    background-color: #003366;
-    color: white;
-  }
-  tbody tr:nth-of-type(odd){
-    background-color: rgba(0,0,0,0.05);
-  }
-  .table-card{
-    border-radius: 0px;
-    margin-bottom: 15px;
-  }
-</style>

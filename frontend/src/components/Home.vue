@@ -65,4 +65,22 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
   }
+  .gov-blue{
+    background-color: #003366;
+    color: white;
+  }
+  .hover-change:hover{
+    color: #81D4FA;
+  }
+  .no-round{
+    border-radius: 0px;
+  }
+  .card-colour{
+    background-color: #003366;
+    color: white
+  }
+  .table-card{
+    border-radius: 0px;
+    margin-bottom: 15px;
+  }
 </style>
