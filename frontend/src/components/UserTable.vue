@@ -85,7 +85,9 @@
                     { Name: 'Frank Reynolds', Email: 'freynolds@wolfcola.eu', IDIR: 'FREYNOLDS', Privileges: 'EDW_Administrator' },
                     { Name: 'Peter Holland', Email: 'peter.holland@gov.bc.ca', IDIR: 'PHOLLAND', Privileges: 'EDW_General' },
                     { Name: 'Fake Name', Email: 'fake@notreal.no', IDIR: 'FNAME', Privileges: 'EDW_Superintendant' },
-                    { Name: 'John Smith', Email: 'jsmith@email.com', IDIR: 'JSMITH', Privileges: 'EDW_School_Principle' }  
+                    { Name: 'John Smith', Email: 'jsmith@email.com', IDIR: 'JSMITH', Privileges: 'EDW_School_Principle' },
+                    { Name: 'Eugene Krabs', Email: 'ekrabs@gmail.com', IDIR: 'EKRABS', Privileges: 'EDW_Dimstud'},
+                    { Name: 'Michael Scarn', Email: 'mscarn@yahoo.com', IDIR: 'MSCARN', Privileges: 'EDW_General'}  
                 ]
         })
     };
