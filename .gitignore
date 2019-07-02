@@ -18,6 +18,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+local.json
+
 # Editor directories and files
 .idea
 .vscode
