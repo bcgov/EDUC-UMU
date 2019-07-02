@@ -75,7 +75,7 @@ pipeline{
                                         echo "Backend build failed"
                                         throw e
                                     }
-                                }
+                                },
                                 Frontend: {
                                     try{
                                         //notifyStageStatus('Frontend', 'PENDING')
@@ -271,7 +271,7 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         parallel(
             Backend: {
                 dcBackend.rollout().status('--watch=true')
-            }
+            },
             Frontend: {
                 dcFrontendStatic.rollout().status('--watch=true')
             }
