@@ -11,7 +11,7 @@
                 v-model="active"
                 color="#003366"
                 dark
-                slider-color="yellow">
+                slider-color="#fcba19">
                 <v-tab>
                       <UserTable></UserTable>
                 </v-tab>
