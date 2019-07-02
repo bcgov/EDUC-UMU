@@ -60,70 +60,8 @@ objects:
             timeoutSeconds: 1
           resources: {}
           env:
-          - name: OIDC_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: getok-oidc-secret
-          - name: OIDC_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: getok-oidc-secret
-          - name: OIDC_PUBLICKEY
-            valueFrom:
-              secretKeyRef:
-                key: publickey
-                name: getok-oidc-secret
           - name: SERVER_FRONTEND
             value: "http://${HOST_ROUTE}"
-          - name: SC_GETOKINT_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: getok-sc-getokint-secret
-          - name: SC_GETOKINT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: getok-sc-getokint-secret
-          - name: SC_GETOKTEST_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: getok-sc-getoktest-secret
-          - name: SC_GETOKTEST_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: getok-sc-getoktest-secret
-          - name: SC_GETOKPROD_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: getok-sc-getokprod-secret
-          - name: SC_GETOKPROD_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: getok-sc-getokprod-secret
-          - name: SC_MSSC_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: getok-sc-mssc-secret
-          - name: SC_MSSC_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: password
-                name: getok-sc-mssc-secret
-          envFrom:
-          - configMapRef:
-              name: getok-oidc-config
-          - configMapRef:
-              name: getok-sc-config
-          - configMapRef:
-              name: getok-server-config
     test: false
     triggers:
     - type: ConfigChange
@@ -151,6 +89,10 @@ objects:
       port: 8080
       protocol: TCP
       targetPort: 8080
+    - name: 443-https
+      port: 443
+      protocol: TCP 
+      targetPort: 443
     selector:
       app: "${APP_NAME}-${JOB_NAME}"
       deploymentconfig: "${APP_NAME}-backend-${JOB_NAME}"
