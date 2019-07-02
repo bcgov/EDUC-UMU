@@ -3,6 +3,6 @@
         "frontend": "http://localhost:8080",
         "logLevel": "debug",
         "morganFormat": "dev",
-        "port": "80"
+        "port": "8080"
     }
 }
