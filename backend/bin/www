@@ -6,8 +6,10 @@
 const config = require('config');
 const http = require('http');
 const log = require('npmlog');
+const express = require('express');
 
-const app = require('../app.js');
+//const app = require('../app');
+const app = express();
 
 /**
  * Get port from environment and store in Express.
