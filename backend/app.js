@@ -2,13 +2,12 @@ const config = require('config');
 const express = require('express');
 const session = require('express-session');
 const log = require('npmlog');
+const oracledb = require('oracledb');
 
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 var dbConfig = require('./dbconfig.js');
-import oracledb from 'oracledb';
-
 
 const apiRouter = express.Router();
 
