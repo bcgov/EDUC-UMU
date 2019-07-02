@@ -6,30 +6,20 @@
 -->
     <v-container>
           <v-layout row wrap justify-center>
-              <v-flex xs10>
-                <v-expansion-panel>
-                  <v-expansion-panel-content>
-                    <template v-slot:header>
-                      OBIEE User Table
-                    </template>
-                    <UserTable></UserTable>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-flex>
-          </v-layout>
-      <v-divider></v-divider>
-      <v-spacer></v-spacer>
-          <v-layout row wrap justify-center>
-              <v-flex xs10>
-                <v-expansion-panel>
-                  <v-expansion-panel-content>
-                    <template v-slot:header>
-                      OBIEE Proxy User Table
-                    </template>
+            <v-flex xs10>
+              <v-tabs
+                v-model="active"
+                color="#003366"
+                dark
+                slider-color="yellow">
+                <v-tab>
+                      <UserTable></UserTable>
+                </v-tab>
+                <v-tab>
                     <ProxyTable></ProxyTable>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-flex>
+                </v-tab>
+              </v-tabs>
+            </v-flex>
           </v-layout>
     </v-container>
 </template>
