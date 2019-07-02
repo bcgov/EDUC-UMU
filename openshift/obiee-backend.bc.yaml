@@ -79,7 +79,6 @@ objects:
       type: Docker
       dockerStrategy:
         dockerfilePath: /backend/Dockerfile
-      type: Source
 parameters:
 - name: REPO_NAME
   description: Application repository name
