@@ -30,10 +30,6 @@ pipeline{
         PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
     }
 
-    options {
-        parrallelsAlwaysFailFast()
-    }
-
     stages {
         stage('Initialize') {
             agent any
