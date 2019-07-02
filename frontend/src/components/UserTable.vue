@@ -2,15 +2,16 @@
   <v-card>
     <div class="gov-blue">
       <v-card-title>
-      <v-text-field
-        v-model="search"
-        append-icon="search"
-        label="Search"
-        single-line
-        hide-details
-        dark
-        color="white"
-        ></v-text-field>
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          append-icon="search"
+          label="Search"
+          single-line
+          hide-details
+          dark
+          color="white"
+          ></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
