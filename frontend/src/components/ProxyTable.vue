@@ -1,8 +1,7 @@
   <template>
-  <v-card class="round">
+  <v-card>
     <div class="gov-blue">
       <v-card-title>
-      <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
         append-icon="search"
@@ -89,9 +88,8 @@
   tbody tr:nth-of-type(odd){
     background-color: rgba(0,0,0,0.05);
   }
-  .round{
-    border-radius: 15px;
-    margin-top: 15px;
+  .table-card{
+    border-radius: 0px;
     margin-bottom: 15px;
   }
 </style>

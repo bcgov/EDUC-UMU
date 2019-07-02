@@ -1,5 +1,5 @@
 <template>
-  <v-card class="round">
+  <v-card>
     <div class="gov-blue">
       <v-card-title>
       <v-text-field
