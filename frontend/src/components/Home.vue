@@ -11,7 +11,8 @@
                 v-model="active"
                 color="#003366"
                 dark
-                slider-color="#fcba19">
+                slider-color="#fcba19"
+                class="top-round">
                 <v-tab>OBIEE User Table</v-tab>
                 <v-tab-item>
                   <UserTable></UserTable>
@@ -72,8 +73,15 @@
   .hover-change:hover{
     color: #81D4FA;
   }
-  .no-round{
-    border-radius: 0px;
+  .top-round{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .bottom-round{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   .card-colour{
     background-color: #003366;

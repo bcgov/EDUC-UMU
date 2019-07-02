@@ -1,5 +1,5 @@
   <template>
-  <v-card class="no-round">
+  <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
         <v-spacer></v-spacer>
