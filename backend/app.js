@@ -28,6 +28,43 @@ log.addLevel('debug', 1500, {
 });
 
 //log.debug('Config', utils.prettyStringify(config));
+// GetOK Base API Directory
+apiRouter.get('/', (_req, res) => {
+  res.status(200).json({
+    endpoints: [
+      '/api/auth',
+      '/api/v1'
+    ],
+    versions: [
+      1
+    ]
+  });
+});
+
+// Root level Router
+app.use(/(\/getok)?(\/api)?/, apiRouter);
+
+app.use((err, _req, res, next) => {
+  log.error(err.stack);
+  res.status(500).json({
+    status: 500,
+    message: 'Internal Server Error: ' + err.stack.split('\n', 1)[0]
+  });
+  next();
+});
+
+// Handle 404
+app.use((_req, res) => {
+  res.status(404).json({
+    status: 404,
+    message: 'Page Not Found'
+  });
+});
+
+// Prevent unhandled errors from crashing application
+process.on('unhandledRejection', err => {
+  log.error(err.stack);
+});
 
 var dbcon =  oracledb.getConnection({
     user: "",
@@ -48,3 +85,5 @@ var dbcon =  oracledb.getConnection({
           }
       });
   });
+
+  module.exports = app;

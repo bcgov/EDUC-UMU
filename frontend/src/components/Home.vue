@@ -13,9 +13,9 @@
                 dark
                 slider-color="#fcba19">
                 <v-tab>OBIEE User Table</v-tab>
-                <v-tab-item :transition="false" :reverse-transition="false">
+                <v-tab-item>
                   <UserTable></UserTable>
-                </v-tab-item :transition="false" :reverse-transition="false">
+                </v-tab-item>
                 <v-tab>OBIEE User Proxy Table</v-tab>
                 <v-tab-item>
                   <ProxyTable></ProxyTable>
