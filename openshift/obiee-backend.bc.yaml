@@ -21,10 +21,10 @@ objects:
       local: false
     tags:
     - annotations:
-        openshift.io/imported-from: registry.access.redhat.com/openshift3/nodejs-010-rhel7:latest
+        openshift.io/imported-from: registry.access.redhat.com/openshift3/nodejs-6-rhel7:latest
       from:
         kind: DockerImage
-        name: registry.access.redhat.com/openshift3/nodejs-010-rhel7:latest
+        name: registry.access.redhat.com/openshift3/nodejs-6-rhel7:latest
       generation:
       importPolicy: {}
       name: latest
