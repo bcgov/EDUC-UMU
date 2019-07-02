@@ -7,8 +7,6 @@ const oracledb = require('oracledb');
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
-var dbConfig = require('./dbconfig.js');
-
 const apiRouter = express.Router();
 
 const app = express();
