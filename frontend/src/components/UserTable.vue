@@ -18,7 +18,6 @@
       :headers="headers"
       :items="items"
       :search="search"
-      :pagination.sync="pagination"
       hide-actions>
       <template slot="headerCell" slot-scope="props">
 
@@ -55,9 +54,6 @@
     export default{
         data: () => ({
             search: '',
-            pagination: {
-              sortBy: 'name'
-            },
             headers: [
                 {
                     sortable: true,
