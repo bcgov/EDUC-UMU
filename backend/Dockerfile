@@ -1,6 +1,8 @@
 #pre-combined version of node with oracle libraries
 FROM node:10
 
+WORKDIR /opt/app-root/src
+
 RUN apt-get update \
  && apt-get install -y libaio1 \
  && apt-get install -y build-essential \
@@ -24,8 +26,9 @@ RUN echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 
 # Install NPM Dependencies
-COPY package*.json ./
-RUN npm ci
+COPY package*.json ./opt/app-root/src
+
+RUN npm install
 # --no-optional --production
 
 EXPOSE 8080
