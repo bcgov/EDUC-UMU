@@ -33,4 +33,4 @@ RUN npm install
 
 EXPOSE 8080
 # Build Application
-CMD ["node"]
+CMD ["npm", "start"]
