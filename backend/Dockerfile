@@ -24,7 +24,7 @@ RUN echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 # Install NPM Dependencies
 COPY package*.json ./
-#RUN npm ci
+RUN npm ci
 # --no-optional --production
 
 # Build Application
