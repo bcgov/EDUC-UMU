@@ -26,11 +26,11 @@ RUN echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 
 # Install NPM Dependencies
-COPY package*.json ./opt/app-root/src
+COPY package*.json ./opt/app-root/src/
 
 RUN npm install
 # --no-optional --production
 
 EXPOSE 8080
 # Build Application
-CMD ["npm","start"]
+CMD ["node"]
