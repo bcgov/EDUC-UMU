@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row wrap justify-center>
-            <v-flex xs12>
+            <v-flex xs10>
                 <UserForm></UserForm>
             </v-flex>
         </v-layout>
