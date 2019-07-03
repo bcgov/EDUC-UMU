@@ -33,7 +33,8 @@ apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/api/auth',
-      '/api/v1'
+      '/api/v1',
+      '/api/db'
     ],
     versions: [
       1
