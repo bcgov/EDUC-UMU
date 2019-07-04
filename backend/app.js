@@ -12,6 +12,10 @@ const utils = require('./src/components/utils');
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
+
+const utils = require('./src/components/utils');
+const authRouter = require('./src/routes/auth');
+
 const apiRouter = express.Router();
 
 const app = express();
@@ -27,7 +31,67 @@ log.addLevel('debug', 1500, {
   fg: 'cyan'
 });
 
-//log.debug('Config', utils.prettyStringify(config));
+log.debug('Config', utils.prettyStringify(config));
+
+utils.getOidcDiscovery().then(discovery => {
+  // Add Passport OIDC Strategy
+  passport.use('oidc', new OidcStrategy({
+    issuer: discovery.issuer,
+    authorizationURL: discovery.authorization_endpoint,
+    tokenURL: discovery.token_endpoint,
+    userInfoURL: discovery.userinfo_endpoint,
+    clientID: config.get('oidc.clientID'),
+    clientSecret: config.get('oidc.clientSecret'),
+    callbackURL: '/getok/api/auth/callback',
+    scope: discovery.scopes_supported
+  }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
+    if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
+      (typeof (refreshToken) === 'undefined') || (refreshToken === null)) {
+      return done('No access token', null);
+    }
+
+    profile.jwt = accessToken;
+    profile.refreshToken = refreshToken;
+    return done(null, profile);
+  }));
+
+  // Add Passport JWT Strategy
+  passport.use('jwt', new JWTStrategy({
+    algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
+    audience: config.get('oidc.clientID'),
+    issuer: discovery.issuer,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: config.get('oidc.publicKey')
+  }, (jwtPayload, done) => {
+    if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
+      return done('No JWT token', null);
+    }
+
+    done(null, {
+      email: jwtPayload.email,
+      familyName: jwtPayload.family_name,
+      givenName: jwtPayload.given_name,
+      jwt: jwtPayload,
+      name: jwtPayload.name,
+      preferredUsername: jwtPayload.preferred_username,
+    });
+  }));
+});
+passport.serializeUser((user, next) => next(null, user));
+passport.deserializeUser((obj, next) => next(null, obj));
+
+apiRouter.get('/', (_req, res) => {
+  res.status(200).json({
+    endpoints: [
+      '/api/auth',
+    ],
+    versions: [
+      1
+    ]
+  });
+});
+
+
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
@@ -44,6 +108,8 @@ apiRouter.get('/', (_req, res) => {
 
 // Root level Router
 app.use(/(\/getok)?(\/api)?/, apiRouter);
+
+apiRouter.use('/auth', authRouter);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
