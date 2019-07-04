@@ -28,7 +28,8 @@ ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 # Install NPM Dependencies
 COPY package*.json ./
 
-RUN npm install -g
+RUN rm -rf node_modules
+RUN npm install
 # --no-optional --production
 
 COPY . /opt/app-root/src
