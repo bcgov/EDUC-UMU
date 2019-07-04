@@ -28,7 +28,7 @@ ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 # Install NPM Dependencies
 COPY package*.json ./
 
-RUN rm -rf node_modules
+#RUN rm -rf node_modules
 RUN npm install
 # --no-optional --production
 
@@ -36,4 +36,5 @@ COPY . /opt/app-root/src
 
 EXPOSE 8080
 # Tell application how to serve build
-CMD ["node", "./bin/www"]
+CMD ["echo", "hello"]
+#RUN node ./bin/www

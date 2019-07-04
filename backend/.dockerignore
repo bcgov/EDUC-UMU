@@ -1,4 +1,2 @@
 config/*
 dist
-Dockerfile
-node_modules
