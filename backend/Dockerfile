@@ -36,5 +36,5 @@ COPY . /opt/app-root/src
 
 EXPOSE 8080
 # Tell application how to serve build
-CMD ["echo", "hello"]
+CMD ["npm", "start"]
 #RUN node ./bin/www
