@@ -26,6 +26,15 @@ app.use(express.urlencoded({
 
 app.use(morgan(config.get('server.morganFormat')));
 
+
+app.use(session({
+  secret: config.get('oidc.clientSecret'),
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 log.level = config.get('server.logLevel');
 log.addLevel('debug', 1500, {
   fg: 'cyan'
