@@ -15,6 +15,12 @@ nconf.overrides({
     }
 });
 
-nconf.argv().env().file( { file: path.join(__dirname, 'default.json') });
+nconf.argv()
+    .env()
+    .file('./default.json');
 
+
+nconf.defaults({
+
+});
 export default nconf;
