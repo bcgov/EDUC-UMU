@@ -23,7 +23,7 @@ router.use('/callback',
     failureRedirect: 'error'
   }),
   (_req, res) => {
-    res.redirect(config.get('server.frontend'));
+    res.redirect(config.get('server:frontend'));
   }
 );
 
@@ -40,7 +40,7 @@ router.get('/login', passport.authenticate('oidc', {
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect(config.get('server.frontend'));
+  res.redirect(config.get('server:frontend'));
 });
 
 router.post('/refresh', [
