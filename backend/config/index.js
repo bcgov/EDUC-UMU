@@ -13,8 +13,8 @@ nconf.overrides({
     },
     server: {
         frontend: process.env.SERVER_FRONTEND,
-        logLevel: debug,
-        morganFormat: dev,
+        logLevel: "debug",
+        morganFormat: "dev",
         port: 8080
     }
 });
