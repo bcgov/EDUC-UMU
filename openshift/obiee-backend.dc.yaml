@@ -67,10 +67,10 @@ objects:
               secretKeyRef:
                 key: SSO_CLIENT_ID
                 name: sso-credentials
-          - name: SSO_CLIENT_SECRET
+          - name: SSO_USER_SECRET
             valueFrom:
               secretKeyRef:
-                key: SSO_CLIENT_SECRET
+                key: SSO_USER_SECRET
                 name: sso-credentials
           - name: SSO_PUBLIC_KEY
             valueFrom:
