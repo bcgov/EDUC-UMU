@@ -1,4 +1,4 @@
-const config = require('config');
+const config = require('../../config/index');
 const passport = require('passport');
 const router = require('express').Router();
 const {
