@@ -1,4 +1,4 @@
-import config from('./config');
+const config = require('./config/index');
 const express = require('express');
 const session = require('express-session');
 const log = require('npmlog');

@@ -1,8 +1,6 @@
-'use strict';
-
-import nconf from 'nconf';
-import dotenv from 'dotenv';
-import path from 'path';
+const nconf = require('nconf');
+const dotenv = require('dotenv');
+const path = require('path');
 
 dotenv.config();
 
@@ -26,4 +24,4 @@ nconf.defaults({
 
 });
 
-export default nconf;
+module.exports = nconf

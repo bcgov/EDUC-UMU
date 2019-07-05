@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-import config from ('./config');
+const config = require('./config/index');
 const http = require('http');
 const log = require('npmlog');
 require('dotenv');
