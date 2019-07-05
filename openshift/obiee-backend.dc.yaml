@@ -62,6 +62,21 @@ objects:
           env:
           - name: SERVER_FRONTEND
             value: "http://${HOST_ROUTE}"
+          - name: SSO_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: SSO_CLIENT_ID
+                name: sso-credentials
+          - name: SSO_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: SSO_CLIENT_SECRET
+                name: sso-credentials
+          - name: SSO_PUBLIC_KEY
+            valueFrom:
+              secretKeyRef:
+                key: SSO_PUBLIC_KEY
+                name: sso-credentials
     test: false
     triggers:
     - type: ConfigChange
@@ -131,5 +146,5 @@ parameters:
   description: Application name
   required: true
 - name: HOST_ROUTE
-  description: The host the route will use to expose service outside cluster
-required: true
+  description: The host the route will use to expose service outside cluster 
+  required: true

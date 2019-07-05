@@ -1,15 +1,10 @@
 {
     "oidc": {
-        "discovery": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth/realms/obiee-umu/.well-known/openid-configuration",
-        "clientID": "obiee-auth",
-        "clientSecret": "40b8e2e7-ac66-402b-8742-07bf6d9a571d",
-        "publicKey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApv5XU6y3Vm87AFOJbzncWpSeSUX6khkadBYUqYWYXGU50BSqfGpwiWv3jSHUyitenajZT8dgN0WPqZBEe8w0HxfLjIcBb1bU+d2LBhvpjkAYmp/yi3jA/d3mKPTUQH/pFrZ2OK+Mq3whnUWtR0RmXaHOu4mT9bqcHlyJphoIX5gMonGeb4lne2g3a49GNnC0ELJLako5YVNWcTa5VSmrmewS30sEhF7wrtLVcrJut3GTJlsygO3gioF6lXsuRcHPuGIpa8T1v+B36yvE/O8fi7qFyAgKE75YCu3fmMwImVHO4whSUagjPefjWUPz9tJ7EuCpS5ZSLW6A9ne58d/yvwIDAQAB"
+        "discovery": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth/realms/obiee-umu/.well-known/openid-configuration"
     },
     "server": {
-        "frontend": "https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/",
         "logLevel": "debug",
         "morganFormat": "dev",
         "port": "8080"
     }
-
 }
