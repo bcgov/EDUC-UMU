@@ -1,5 +1,5 @@
 #pre-combined version of node with oracle libraries
-FROM node:10-alpine
+FROM node:10
 
 WORKDIR /opt/app-root/src
 
