@@ -7,7 +7,7 @@ dotenv.config();
 nconf.overrides({
     oidc: {
         clientID: process.env.SSO_CLIENT_ID,
-        clientSecret: process.env.SSO_CLIENT_SECRET,
+        clientSecret: process.env.SSO_USER_SECRET,
         publicKey: process.env.SSO_PUBLIC_KEY
     },
     server: {
