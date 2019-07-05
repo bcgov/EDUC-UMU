@@ -1,6 +1,6 @@
 const atob = require('atob');
 const axios = require('axios');
-const config = require('config');
+const config = require('../../config/index');
 const log = require('npmlog');
 const qs = require('querystring');
 
@@ -35,8 +35,8 @@ const auth = {
       const discovery = await utils.getOidcDiscovery();
       const response = await axios.post(discovery.token_endpoint,
         qs.stringify({
-          client_id: config.get('oidc.clientID'),
-          client_secret: config.get('oidc.clientSecret'),
+          client_id: config.get('oidc:clientID'),
+          client_secret: config.get('oidc:clientSecret'),
           grant_type: 'refresh_token',
           refresh_token: refreshToken,
           scope: discovery.scopes_supported

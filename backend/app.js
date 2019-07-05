@@ -21,18 +21,18 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(morgan(config.get('server.morganFormat')));
+app.use(morgan(config.get('server:morganFormat')));
 
 
 app.use(session({
-  secret: config.get('oidc.clientSecret'),
+  secret: config.get('oidc:clientSecret'),
   resave: false,
   saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-log.level = config.get('server.logLevel');
+log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
   fg: 'cyan'
 });
@@ -46,8 +46,8 @@ utils.getOidcDiscovery().then(discovery => {
     authorizationURL: discovery.authorization_endpoint,
     tokenURL: discovery.token_endpoint,
     userInfoURL: discovery.userinfo_endpoint,
-    clientID: config.get('oidc.clientID'),
-    clientSecret: config.get('oidc.clientSecret'),
+    clientID: config.get('oidc:clientID'),
+    clientSecret: config.get('oidc:clientSecret'),
     callbackURL: '/getok/api/auth/callback',
     scope: discovery.scopes_supported
   }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
@@ -64,10 +64,10 @@ utils.getOidcDiscovery().then(discovery => {
   // Add Passport JWT Strategy
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
-    audience: config.get('oidc.clientID'),
+    audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc.publicKey')
+    secretOrKey: config.get('oidc:publicKey')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
