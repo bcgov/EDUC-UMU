@@ -1,4 +1,7 @@
 import nconf from 'nconf';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 nconf.overrides({
     oidc: {

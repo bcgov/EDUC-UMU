@@ -6,6 +6,7 @@
 const config = require('config');
 const http = require('http');
 const log = require('npmlog');
+require('dotenv');
 
 const app = require('./app');
 
