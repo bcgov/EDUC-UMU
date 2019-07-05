@@ -1,5 +1,6 @@
 import nconf from 'nconf';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
@@ -13,5 +14,7 @@ nconf.overrides({
         frontend: process.env.SERVER_FRONTEND
     }
 });
+
+nconf.argv().env().file( { file: path.join(__dirname, 'default.json') });
 
 export default nconf;
