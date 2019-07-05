@@ -9,7 +9,7 @@
         "frontend": "https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/",
         "logLevel": "debug",
         "morganFormat": "dev",
-        "port": "2015"
+        "port": "8080"
     }
-    
+
 }
