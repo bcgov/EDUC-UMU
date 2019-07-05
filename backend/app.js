@@ -1,4 +1,4 @@
-const config = require('config');
+import config from('./config');
 const express = require('express');
 const session = require('express-session');
 const log = require('npmlog');

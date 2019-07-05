@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const config = require('config');
+import config from('../config');
 const http = require('http');
 const log = require('npmlog');
 

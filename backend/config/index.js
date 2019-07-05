@@ -1,3 +1,5 @@
+'use strict';
+
 import nconf from 'nconf';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -17,10 +19,11 @@ nconf.overrides({
 
 nconf.argv()
     .env()
-    .file('./default.json');
+    .file({ file: path.join(__dirname, 'default.json')});
 
 
 nconf.defaults({
 
 });
+
 export default nconf;
