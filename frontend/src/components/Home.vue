@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import UserTable from './UserTable.vue';
   import ProxyTable from './ProxyTable.vue';
 

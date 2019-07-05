@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import UserForm from './UserForm.vue';
 
 export default {
