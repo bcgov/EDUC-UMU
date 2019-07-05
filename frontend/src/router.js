@@ -30,7 +30,7 @@ const router = new VueRouter({
   ]
 });
 
-// TODO: Consider creating an explicit login landing page route
+// Checks authentication BEFORE rendering to show (or not) password protected locations
 router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isAuthenticated) {
