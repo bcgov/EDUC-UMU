@@ -40,6 +40,9 @@
       return {
         dialog: false
       };
+    },
+    computed: {
+      ...mapGetters('auth', ['isAuthenticated'])
     }
   };
 </script>
