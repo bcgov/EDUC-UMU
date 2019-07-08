@@ -43,14 +43,20 @@
       </template>
       <template slot="footer">
         <td>
-          <v-text-field label="Proxy ID"></v-text-field>
+          <v-text-field label="Proxy ID"
+            :rules="v => !!v || 'Proxy ID is required'"
+            required
+          ></v-text-field>
         </td>
 
         <td>
-          <v-text-field label="Target ID"></v-text-field>
+          <v-text-field label="Target ID"
+            :rules="v => !!v || 'Target ID is required'"
+            required
+          ></v-text-field>
         </td>
 
-        <td align="center"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></td>
+        <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -87,6 +93,13 @@
                 }
             ],
             items: []
-        })
+        }),
+        methods: {
+            validate () {
+                if (this.$refs.form.validate()){
+                    this.snackbar=true
+                }
+            }
+        }
     };
 </script>

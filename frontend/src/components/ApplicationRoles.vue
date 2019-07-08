@@ -44,6 +44,7 @@
         </v-alert>
       </template>
       <template slot="footer">
+        <v-form>
         <td>
           <v-select
             :items="systems"
@@ -55,7 +56,8 @@
           <v-text-field label="Role"></v-text-field>
         </td>
 
-        <td align="center"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></td>
+        <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        </v-form>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -97,6 +99,14 @@
                 }
             ],
             items: []
-        })
+        }),
+
+        methods: {
+            validate () {
+                if (this.$refs.form.validate()){
+                    this.snackbar=true
+                }
+            }
+        }
     };
 </script>
