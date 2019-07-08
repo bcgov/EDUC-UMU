@@ -55,9 +55,6 @@
           <v-text-field label="Role"></v-text-field>
         </td>
 
-        <td></td>
-        <td></td>
-
         <td align="center"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
