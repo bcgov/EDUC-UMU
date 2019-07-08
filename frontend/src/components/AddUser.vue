@@ -65,10 +65,11 @@ export default {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  .bottom-round{
+  .form-box{
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding-top: 15px;
   }
 </style>

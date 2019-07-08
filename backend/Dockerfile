@@ -24,6 +24,7 @@ RUN cd /opt/oracle/instantclient \
 RUN echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
+ENV ORACLE_SID=EDW2D
 
 # Install NPM Dependencies
 COPY package*.json ./
@@ -34,8 +35,7 @@ RUN npm install
 
 COPY . /opt/app-root/src
 
-EXPOSE 1521
-EXPOSE 8080
+EXPOSE 8080 1521 443
 # Tell application how to serve build
 CMD ["npm", "start"]
 #RUN node ./bin/www

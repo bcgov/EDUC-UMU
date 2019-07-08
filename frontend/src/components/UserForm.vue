@@ -1,5 +1,5 @@
 <template>
-    <v-card class="user-form">
+    <v-card class="form-box">
             <v-form
             ref="form"
             v-model="valid"
