@@ -5,7 +5,7 @@
 
     <v-container v-else>
           <v-layout row wrap justify-center>
-            <v-flex xs10>
+            <v-flex xs12>
               <v-tabs
                 v-model="active"
                 color="#003366"

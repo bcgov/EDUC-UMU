@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '@/components/Home.vue';
-import AddUser from '@/components/AddUser.vue';
 import { AuthRoutes } from '@/utils/constants';
 import store from './store';
 
@@ -16,11 +15,6 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/add_user',
-      name: 'add_user',
-      component: AddUser
     },
     {
       path: '*',
