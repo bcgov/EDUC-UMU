@@ -95,6 +95,7 @@
     border-top-right-radius: 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding-bottom: 10px;
   }
   .card-colour{
     background-color: #003366;

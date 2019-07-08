@@ -44,7 +44,7 @@
         </v-alert>
       </template>
       <template slot="footer">
-        <v-form>
+        <v-form ref="form" v-model="valid" lazy-validation>
         <td>
           <v-select
             :items="systems"
