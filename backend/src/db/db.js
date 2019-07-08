@@ -3,6 +3,8 @@ var oracledb = require('oracledb');
 var db = {};
 
 db.init = function(){
+    const logger = require('npmlog');
+
     db = oracledb.getConnection({
         user: process.env.ORACLE_USER,
         password : process.env.ORACLE_PASSWORD,
