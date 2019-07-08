@@ -34,6 +34,7 @@ RUN npm install
 
 COPY . /opt/app-root/src
 
+EXPOSE 1521
 EXPOSE 8080
 # Tell application how to serve build
 CMD ["npm", "start"]
