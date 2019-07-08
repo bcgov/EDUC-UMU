@@ -6,7 +6,26 @@
     <v-container v-else>
         <v-layout row wrap justify-center>
             <v-flex xs10>
-                <UserForm></UserForm>
+                <v-tabs
+                v-model="active"
+                color="#003366"
+                dark
+                slider-color="#fcba19"
+                class="top-round">
+                <v-tab>SEC Authorization</v-tab>
+                <v-tab-item>
+                  <UserForm></UserForm>
+                </v-tab-item>
+
+                <v-tab>User Proxies</v-tab>
+                <v-tab-item>
+                  <UserForm></UserForm>
+                </v-tab-item>
+
+                <v-tab>SEC Application</v-tab>
+                <v-tab-item>
+                  <UserForm></UserForm>
+                </v-tab-item>
             </v-flex>
         </v-layout>
     </v-container>
@@ -41,5 +60,15 @@ export default {
     padding-bottom: 10px;
     padding-top: 15px;
     padding-left: 15px;
+  }
+  .top-round{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .bottom-round{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 </style>

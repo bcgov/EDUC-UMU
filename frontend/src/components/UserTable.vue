@@ -32,10 +32,12 @@
       <template
         slot="items"
         slot-scope="{ item }">
-        <td>{{ item.Name }}</td>
-        <td>{{ item.Email }}</td>
-        <td>{{ item.IDIR }}</td>
-        <td>{{ item.Privileges }}</td>
+        <td>{{ item.system }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.value }}</td>
+        <td>{{ item.guid }}</td>
+        <td>{{ item.create }}</td>
+        <td>{{ item.update }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
@@ -57,38 +59,36 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'Name',
-                    value: 'Name'
+                    text: 'System',
+                    value: 'system'
                 },
                 {
                     sortable: true,
-                    text: 'Email',
-                    value: 'Email'
+                    text: 'Username',
+                    value: 'username'
                 },
                 {
                     sortable: true,
-                    text: 'IDIR',
-                    value: 'IDIR'
+                    text: 'Value',
+                    value: 'value'
                 },
                 {
                     sortable: true,
-                    text: 'Roles',
-                    value: 'Privileges',
+                    text: 'User GUID',
+                    value: 'guid',
                 },
                 {
-                  sortable: false,
-                  text: 'Edit User'
+                  sortable: true,
+                  text: 'Created By',
+                  value: 'create'
+                },
+                {
+                  sortable: true,
+                  text: 'Updated By',
+                  value: 'update'
                 }
             ],
-            items: [
-                    { Name: 'Nathan Denny', Email: 'nathan.denny@gov.bc.ca', IDIR: 'NDENNY', Privileges: 'EDW_Developer' },
-                    { Name: 'Frank Reynolds', Email: 'freynolds@wolfcola.eu', IDIR: 'FREYNOLDS', Privileges: 'EDW_Administrator' },
-                    { Name: 'Peter Holland', Email: 'peter.holland@gov.bc.ca', IDIR: 'PHOLLAND', Privileges: 'EDW_General' },
-                    { Name: 'Fake Name', Email: 'fake@notreal.no', IDIR: 'FNAME', Privileges: 'EDW_Superintendant' },
-                    { Name: 'John Smith', Email: 'jsmith@email.com', IDIR: 'JSMITH', Privileges: 'EDW_School_Principle' },
-                    { Name: 'Eugene Krabs', Email: 'ekrabs@gmail.com', IDIR: 'EKRABS', Privileges: 'EDW_Dimstud'},
-                    { Name: 'Michael Scarn', Email: 'mscarn@yahoo.com', IDIR: 'MSCARN', Privileges: 'EDW_General'}  
-                ]
+            items: []
         })
     };
 </script>

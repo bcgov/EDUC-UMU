@@ -12,14 +12,22 @@
                 dark
                 slider-color="#fcba19"
                 class="top-round">
-                <v-tab>OBIEE User Table</v-tab>
+                <v-tab>SEC Authorization Table</v-tab>
                 <v-tab-item>
                   <UserTable></UserTable>
                 </v-tab-item>
-                <v-tab>OBIEE User Proxy Table</v-tab>
+
+                <v-tab>User Proxies Table</v-tab>
                 <v-tab-item>
                   <ProxyTable></ProxyTable>
                 </v-tab-item>
+
+                <v-tab>SEC Application Roles</v-tab>
+                <v-tab-item>
+                  <ApplicationRoles></ApplicationRoles>
+                </v-tab-item>
+
+                <v-tab>
               </v-tabs>
             </v-flex>
           </v-layout>
@@ -30,12 +38,14 @@
   import { mapGetters } from 'vuex';
   import UserTable from './UserTable.vue';
   import ProxyTable from './ProxyTable.vue';
+  import ApplicationRoles from './ApplicationRoles.vue';
 
   export default {
     name: 'home',
     components: {
       UserTable,
-      ProxyTable
+      ProxyTable,
+      ApplicationRoles
     },
     data() {
       return {

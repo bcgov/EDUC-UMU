@@ -1,4 +1,4 @@
-  <template>
+<template>
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
@@ -10,7 +10,8 @@
           single-line
           hide-details
           dark
-          color="white"></v-text-field>
+          color="white"
+          ></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -31,9 +32,10 @@
       <template
         slot="items"
         slot-scope="{ item }">
-        <td>{{ item.proxy }}</td>
-        <td>{{ item.target }}</td>
-        <td>{{ item.level }}</td>
+        <td>{{ item.system }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.create }}</td>
+        <td>{{ item.update }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
@@ -49,25 +51,29 @@
 </template>
 
 <script>
-    export default {
+    export default{
         data: () => ({
             search: '',
             headers: [
                 {
                     sortable: true,
-                    text: 'Proxy ID',
-                    value: 'proxy'
+                    text: 'System',
+                    value: 'system'
                 },
                 {
                     sortable: true,
-                    text: 'Target ID',
-                    value: 'target',
+                    text: 'Application Role',
+                    value: 'role'
                 },
                 {
-                  sotable: false,
-                  text: 'Proxy Level',
-                  value: 'level',
-                  align: 'center'
+                    sortable: true,
+                    text: 'Created By',
+                    value: 'create'
+                },
+                {
+                    sortable: true,
+                    text: 'Updated By',
+                    value: 'update'
                 }
             ],
             items: []
