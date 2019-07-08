@@ -142,7 +142,7 @@ process.on('unhandledRejection', err => {
 var dbcon =  oracledb.getConnection({
     user: "",
     password : "",
-    connectString : "" // "12.2.0.1:443/service_name"               [//]host_name[:port][/service_name][:server_type][/instance_name]
+    connectString : "" //   host_name[:port][/service_name][:server_type][/instance_name]
     },
     function(err, connection) {
       if(err) {
