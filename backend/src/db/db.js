@@ -11,14 +11,14 @@ db.init = function(){
         connectString : process.env.ORACLE_CONNECT
     });
 
-    db.on('error', function(error){
+    /*db.on('error', function(error){
         logger.error(error);
         throw(error);
     });
 
     db.once('open', function(){
         logger.debug("db connection established");
-    });
+    });*/
 };
 
 module.exports = db;
