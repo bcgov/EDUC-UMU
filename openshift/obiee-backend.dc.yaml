@@ -77,6 +77,21 @@ objects:
               secretKeyRef:
                 key: SSO_PUBLIC_KEY
                 name: sso-credentials
+          - name: ORACLE_USER
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_USER
+                name: oracledb-config
+          - name: ORACLE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_PASSWORD
+                name: oracledb-config
+          - name: ORACLE_CONNECT
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_CONNECT
+                name: oracledb-config
     test: false
     triggers:
     - type: ConfigChange

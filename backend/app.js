@@ -5,6 +5,7 @@ const log = require('npmlog');
 const morgan = require('morgan');
 const passport = require('passport');
 const oracledb = require('oracledb');
+const dotenv = require('dotenv');
 
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -14,6 +15,8 @@ const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
 
 const apiRouter = express.Router();
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -140,9 +143,9 @@ process.on('unhandledRejection', err => {
 });
 
 var dbcon =  oracledb.getConnection({
-    user: "",
-    password : "",
-    connectString : "" //   host_name[:port][/service_name][:server_type][/instance_name]
+    user: process.env.ORACLE_USER,
+    password : process.env.ORACLE_PASSWORD,
+    connectString : process.env.ORACLE_CONNECT
     },
     function(err, connection) {
       if(err) {
