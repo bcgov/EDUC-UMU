@@ -52,11 +52,11 @@
           <v-text-field label="Username"></v-text-field>
         </td>
 
-        <td>
+        <td colspan="2">
           <v-text-field label="Value"></v-text-field>
         </td>
 
-        <td>
+        <td colspan="2">
           <v-text-field label="GUID"></v-text-field>
         </td>
 

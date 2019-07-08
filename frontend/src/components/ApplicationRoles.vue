@@ -51,7 +51,7 @@
             ></v-select>
         </td>
 
-        <td>
+        <td colspan="2">
           <v-text-field label="Role"></v-text-field>
         </td>
 
