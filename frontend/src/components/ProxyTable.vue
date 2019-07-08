@@ -44,14 +44,14 @@
       <template slot="footer">
         <td>
           <v-text-field label="Proxy ID"
-            :rules="v => !!v || 'Proxy ID is required'"
+            :rules="rules"
             required
           ></v-text-field>
         </td>
 
         <td>
           <v-text-field label="Target ID"
-            :rules="v => !!v || 'Target ID is required'"
+            :rules="rules"
             required
           ></v-text-field>
         </td>
@@ -73,7 +73,11 @@
 <script>
     export default {
         data: () => ({
+            valid: true,
             search: '',
+            rules: [
+              v => !!v || 'Value is required'
+            ],
             headers: [
                 {
                     sortable: true,

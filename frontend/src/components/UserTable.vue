@@ -45,28 +45,28 @@
           <v-select
             :items="systems"
             label="System"
-            :rules="v => !!v || 'System is required'"
+            :rules="rules"
             required
             ></v-select>
         </td>
 
         <td>
           <v-text-field label="Username"
-            :rules="v => !!v || 'Username is required'"
+            :rules="rules"
             required
             ></v-text-field>
         </td>
 
         <td colspan="2">
           <v-text-field label="Value"
-            :rules="v => !!v || 'Value is required'"
+            :rules="rules"
             required
           ></v-text-field>
         </td>
 
         <td colspan="2">
           <v-text-field label="GUID"
-            :rules="v => !!v || 'GUID is required'"
+            :rules="rules"
             required
           ></v-text-field>
         </td>
@@ -88,8 +88,12 @@
 <script>
     export default{
         data: () => ({
+            valid: true,
             systems: ['EDW', 'SIS'],
             search: '',
+            rules: [
+              v => !!v || 'Required'
+            ],
             headers: [
                 {
                     sortable: true,

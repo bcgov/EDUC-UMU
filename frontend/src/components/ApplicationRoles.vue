@@ -48,12 +48,17 @@
         <td>
           <v-select
             :items="systems"
+            :rules="rules"
             label="System"
+            required
             ></v-select>
         </td>
 
         <td colspan="2">
-          <v-text-field label="Role"></v-text-field>
+          <v-text-field label="Role"
+            :rules="rules"
+            required
+          ></v-text-field>
         </td>
 
         <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
@@ -74,8 +79,12 @@
 <script>
     export default{
         data: () => ({
+            valid: true,
             systems: ['EDW', 'SIS'],
             search: '',
+            rules: [
+                v => !!v || 'Required'
+            ],
             headers: [
                 {
                     sortable: true,
