@@ -22,7 +22,7 @@
                   <ProxyTable></ProxyTable>
                 </v-tab-item>
 
-                <v-tab>SEC Application Roles</v-tab>
+                <v-tab>SEC Application Roles Table</v-tab>
                 <v-tab-item>
                   <ApplicationRoles></ApplicationRoles>
                 </v-tab-item>

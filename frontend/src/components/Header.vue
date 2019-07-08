@@ -14,12 +14,14 @@
       <v-toolbar-title>
         <v-btn class="title hidden-sm-and-down" color="text" flat>{{ appTitle }}</v-btn>
       </v-toolbar-title>
-
+      
+      <!--
       <div>
         <v-btn flat id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
         <v-btn flat id="nav-user-form" color="text" :to="{ path: '/add_user'}">Add User</v-btn>
       </div>
-      
+      -->
+
       <v-spacer></v-spacer>
 
       <div v-if="isAuthenticated">
