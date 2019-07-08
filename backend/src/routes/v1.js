@@ -4,7 +4,7 @@ const passport = require('passport');
 
 // const auth = require('./auth/auth');
 const checksRouter = require('./v1/checks');
-const dbRouter = require('./v1/db')
+const dbRouter = require('./v1/db');
 
 // Base v1 Responder
 router.get('/', (_req, res) => {
@@ -31,9 +31,9 @@ router.get('/api-spec.yaml', (_req, res) => {
 router.use('/checks', passport.authenticate('jwt', {
   session: false
 }), checksRouter);
-
+/*
 router.use('/db_router', passport.authenticate('jwt', {
     session: false
 }), dbRouter);
-
+*/
 module.exports = router;
