@@ -13,7 +13,7 @@ nconf.overrides({
     },
     server: {
         frontend: 'https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca',
-        logLevel: "debug",
+        logLevel: "silent",
         morganFormat: "dev",
         port: 8080
     }
