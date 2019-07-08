@@ -41,6 +41,23 @@
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
+      <template slot="footer">
+        <td>
+          <v-text-field label="Proxy ID"></v-text-field>
+        </td>
+
+        <td>
+          <v-text-field label="Target ID"></v-text-field>
+        </td>
+
+        <td></td>
+        <td align="center"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></td>
+      </template>
+      <template v-slot:no-results>
+        <v-alert :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </template>
     </v-data-table>
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>

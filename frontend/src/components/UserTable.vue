@@ -40,6 +40,30 @@
         <td>{{ item.update }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
+      <template slot="footer">
+        <td>
+          <v-select
+            :items="systems"
+            label="System"
+            ></v-select>
+        </td>
+
+        <td>
+          <v-text-field label="Username"></v-text-field>
+        </td>
+
+        <td>
+          <v-text-field label="Value"></v-text-field>
+        </td>
+
+        <td>
+          <v-text-field label="GUID"></v-text-field>
+        </td>
+
+        <td></td>
+        <td></td>
+        <td align="center"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></td>
+      </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -55,6 +79,7 @@
 <script>
     export default{
         data: () => ({
+            systems: ['EDW', 'SIS'],
             search: '',
             headers: [
                 {
