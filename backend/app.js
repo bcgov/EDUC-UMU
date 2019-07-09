@@ -13,7 +13,7 @@ const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
-const v1Router = require('./src/routes/v1')
+const v1Router = require('./src/routes/v1');
 
 const apiRouter = express.Router();
 
