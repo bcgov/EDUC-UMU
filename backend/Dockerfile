@@ -1,35 +1,13 @@
 #pre-combined version of node with oracle libraries
-FROM node:10-stretch
+FROM oraclelinux:7.6
 
 WORKDIR /opt/app-root/src
 
-RUN apt-get update \
- && apt-get install -y libaio1 \
- && apt-get install -y build-essential \
- && apt-get install -y unzip \
- && apt-get install -y curl
-
-#ADD ORACLE INSTANT CLIENT
-RUN mkdir -p opt/oracle
-ADD ./oracle/linux/ .
-
-# 12.2
-RUN unzip instantclient-basic-linux.x64-12.2.0.1.0 -d /opt/oracle \
- && mv /opt/oracle/instantclient_12_2 /opt/oracle/instantclient
-
-RUN unzip instantclient-basic-linux.x64-12.2.0.1.0.zip -d /opt/oracle \
- && unzip instantclient-sdk-linux.x64-12.2.0.1.0.zip -d /opt/oracle  \
- && mv /opt/oracle/instantclient_12_2 /opt/oracle/instantclient \
- && ln -s /opt/oracle/instantclient/libclntsh.so.12.2 /opt/oracle/instantclient/libclntsh.so \
-&& ln -s /opt/oracle/instantclient/libocci.so.12.2 /opt/oracle/instantclient/libocci.so
-
-ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
-ENV OCI_HOME="/opt/oracle/instantclient"
-ENV OCI_LIB_DIR="/opt/oracle/instantclient"
-ENV OCI_INCLUDE_DIR="/opt/oracle/instantclient/sdk/include"
-ENV OCI_VERSION=12
-
-RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_client.conf && ldconfig
+RUN  yum -y install oracle-release-el7 && yum-config-manager --enable ol7_oracle_instantclient && \
+     yum -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus && \
+     rm -rf /var/cache/yum
+RUN yum install -y oracle-nodejs-release-el7 oracle-release-el7 && \
+    yum install nodejs
 
 # TODO: Find SID for database
 
