@@ -45,22 +45,22 @@
       </template>
       <template slot="footer">
         <v-form ref="form" v-model="valid" lazy-validation>
-        <td>
-          <v-select
-            :items="systems"
-            :rules="rules"
-            label="System"
-            required
-            ></v-select>
-        </td>
+          <td>
+            <v-select
+              :items="systems"
+              :rules="rules"
+              label="System"
+              required
+              ></v-select>
+          </td>
 
-        <td colspan="2">
-          <v-text-field label="Role"
-            :rules="rules"
-            required
-          ></v-text-field>
-        </td>
-
+          <td colspan="2">
+            <v-text-field label="Role"
+              v-model="role"
+              :rules="rules"
+              required
+            ></v-text-field>
+          </td>
         <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
         </v-form>
       </template>

@@ -139,9 +139,9 @@ pipeline{
             agent any
             steps{
                 echo 'Deploying to tools...'
-                script{
+                /*script{
                     deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
-                }
+                }*/
             }
             post{
                 success{
