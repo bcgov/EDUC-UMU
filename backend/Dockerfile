@@ -9,8 +9,8 @@ ARG update=3
 RUN  yum -y install oracle-release-el7 && yum-config-manager --enable ol7_oracle_instantclient && \
      yum -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus && \
      rm -rf /var/cache/yum
-RUN yum install -y oracle-nodejs-release-el7 oracle-release-el7 && \
-    yum install nodejs
+RUN yum -y install oracle-nodejs-release-el7 oracle-release-el7
+RUN yum -y install nodejs
 
 # TODO: Find SID for database
 
