@@ -15,7 +15,7 @@ RUN  yum -y install oracle-release-el7 && yum-config-manager --enable ol7_oracle
 ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
 
 RUN yum -y install oracle-node-release-el7 oracle-release-el7
-RUN yum -y install --disablerepo=ol7_developer_EPEL nodejs node-oracledb-node10
+RUN yum -y install nodejs
 
 # TODO: Find SID for database
 
