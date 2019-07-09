@@ -24,7 +24,8 @@ RUN cd /opt/oracle/instantclient \
 RUN echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 
 ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
-ENV ORACLE_SID=EDW2D
+# TODO: Find SID for database
+#ENV ORACLE_SID=EDW2D
 
 # Install NPM Dependencies
 COPY package*.json ./
