@@ -49,6 +49,10 @@ objects:
           ports:
           - containerPort: 8080
             protocol: TCP
+          - containerPort: 443
+            protocol: TCP 
+          - containerPort: 1521
+            protocol: TCP 
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -123,6 +127,10 @@ objects:
       port: 443
       protocol: TCP 
       targetPort: 443
+    - name: db-port
+      port: 1521
+      protocol: TCP
+      targetPort: 1521
     selector:
       app: "${APP_NAME}-${JOB_NAME}"
       deploymentconfig: "${APP_NAME}-backend-${JOB_NAME}"
