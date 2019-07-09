@@ -19,7 +19,8 @@ RUN yum -y install --disablerepo=ol7_developer_EPEL nodejs node-oracledb-node10
 
 # TODO: Find SID for database
 
-ENV ORACLE_SID=edw2d
+ENV ORACLE_SID=edw2d.world
+ENV TWO_TASK=edw2d.world
 
 # Install NPM Dependencies
 COPY package*.json ./
