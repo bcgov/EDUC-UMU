@@ -17,7 +17,7 @@
       :headers="headers"
       :items="items"
       :search="search"
-      hide-actions>
+      >
       <template slot="headerCell" slot-scope="props">
 
       </template>
@@ -92,8 +92,7 @@
                 {
                   sotable: false,
                   text: 'Proxy Level',
-                  value: 'level',
-                  align: 'center'
+                  value: 'level'
                 }
             ],
             items: [

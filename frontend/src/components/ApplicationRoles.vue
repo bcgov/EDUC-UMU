@@ -18,7 +18,7 @@
       :headers="headers"
       :items="items"
       :search="search"
-      hide-actions>
+      >
       <template slot="headerCell" slot-scope="props">
 
       </template>
