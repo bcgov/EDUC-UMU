@@ -105,7 +105,22 @@
                     value: 'update'
                 }
             ],
-            items: []
+            items: [
+              {system: 'SIS', role: 'SISAuthor_SD84', create: 'landrews', update: '-'},
+              {system: 'SIS', role: 'SISAuthor_SD21', create: 'landrews', update: '-'},
+              {system: 'SIS', role: 'SISAuthor_SD92', create: 'landrews', update: '-'},
+              {system: 'SIS', role: 'SISAuthor_SD98', create: 'landrews', update: '-'},
+              {system: 'SIS', role: 'SISAuthor_SD43', create: 'landrews', update: '-'},
+              {system: 'EDW', role: 'EDW_General', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_Developer', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_Dimstud', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_School_Principle', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_STP_SME', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_EAB_Analyst', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_EDAS_SME', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_District_Superintendant', create: 'gewebste', update: '-'},
+              {system: 'EDW', role: 'EDW_Administrator', create: 'gewebste', update: '-'},
+            ]
         }),
 
         methods: {
