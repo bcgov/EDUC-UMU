@@ -16,7 +16,8 @@ ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
 
 RUN yum -y install oracle-nodejs-release-el7 oracle-release-el7
 RUN yum -y install --disablerepo=ol7_developer_EPEL nodejs node-oracledb-node10
-RUN yum -y install telnet telnet-server
+# Install telnet only to test connections to database (too bulky and unused otherwise)
+#RUN yum -y install telnet telnet-server
 
 # TODO: Find SID for database
 
