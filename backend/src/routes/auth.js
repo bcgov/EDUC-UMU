@@ -40,7 +40,6 @@ router.get('/login', passport.authenticate('oidc', {
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('https://sso-dev.pathfinder.gov.bc.ca/auth/realms/idir/protocol/openid-connect/logout');
   res.redirect(config.get('server:frontend'));
 });
 
