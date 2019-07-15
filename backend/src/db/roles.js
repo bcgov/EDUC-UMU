@@ -24,7 +24,7 @@ Roles.prototype.selectAll = function( callback){
     db.execute(`select * from :1`, [process.env.ROLES_TABLE], callback);
 };
 
-AuthUser.prototype.select = function(id, callback){
+Roles.prototype.select = function(id, callback){
     db.execute(`select * from :1 where id=:2`, [process.env.ROLES_TABLE, id], callback);
 }
 
