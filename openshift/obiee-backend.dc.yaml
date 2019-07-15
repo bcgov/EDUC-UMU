@@ -96,6 +96,21 @@ objects:
               secretKeyRef:
                 key: ORACLE_CONNECT
                 name: oracledb-config
+          - name: AUTH_TABLE
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_TABLE
+                name: oracle-tables
+          - name: PROXY_TABLE
+            valueFrom:
+              secretKeyRef:
+                key: PROXY_TABLE
+                name: oracle-tables
+          - name: ROLES_TABLE
+            valueFrom:
+              secretKeyRef:
+                key: ROLES_TABLE
+                name: oracle-tables
     test: false
     triggers:
     - type: ConfigChange
