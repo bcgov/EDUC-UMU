@@ -31,9 +31,9 @@ router.get('/api-spec.yaml', (_req, res) => {
 router.use('/checks', passport.authenticate('jwt', {
   session: false
 }), checksRouter);
-/*
-router.use('/db_router', passport.authenticate('jwt', {
+
+router.use('/access_db', passport.authenticate('jwt', {
     session: false
 }), dbRouter);
-*/
+
 module.exports = router;
