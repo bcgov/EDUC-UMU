@@ -3,7 +3,7 @@ const Database = require('../../db/Database');
 
 var database = new Database();
 
-router.get('/', (_req, res) => {
+dbRouter.get('/', (_req, res) => {
     res.status(200).json({
       endpoints: [
         '/users',
