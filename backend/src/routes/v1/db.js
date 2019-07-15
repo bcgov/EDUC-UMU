@@ -8,7 +8,7 @@ router.get('/', (_req, res) => {
       endpoints: [
         '/users',
         '/proxy',
-        '/rolse'
+        '/roles'
       ]
     });
   });
