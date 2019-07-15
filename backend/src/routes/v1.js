@@ -32,7 +32,7 @@ router.use('/checks', passport.authenticate('jwt', {
   session: false
 }), checksRouter);
 
-router.use('/access_db', passport.authenticate('jwt', {
+router.use('/database', passport.authenticate('jwt', {
     session: false
 }), dbRouter);
 

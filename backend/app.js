@@ -17,9 +17,6 @@ const v1Router = require('./src/routes/v1');
 
 const apiRouter = express.Router();
 
-require('./src/db/Database');
-var database = new Database();
-
 dotenv.config();
 
 const app = express();
