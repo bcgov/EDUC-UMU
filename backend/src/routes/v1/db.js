@@ -4,7 +4,8 @@ const Database = require('../../db/Database');
 var database = new Database();
 
 dbRouter.get('/users', async(_req, res) => {
-    database.selectUsers();
+    var response = database.selectUsers();
+    res.json(response);
 });
 dbRouter.put('/users', async(_req, res) => {
     let data = _req.body.data;
@@ -18,6 +19,7 @@ dbRouter.post('/users', async(_req, res) => {
 
 dbRouter.get('/proxy', async(_req, res) => {
     database.selectProxies();
+    res.json(response);
 });
 dbRouter.put('/proxy', async(_req, res) => {
     let data = _req.body.data;
@@ -31,6 +33,7 @@ dbRouter.post('/proxy', async(_req, res) => {
 
 dbRouter.get('/roles', async(_req, res) => {
     database.selectRole();
+    res.json(response);
 });
 dbRouter.put('/roles', async(_req, res) => {
     let data = _req.body.data;
