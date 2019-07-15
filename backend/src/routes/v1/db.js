@@ -3,6 +3,16 @@ const Database = require('../../db/Database');
 
 var database = new Database();
 
+router.get('/', (_req, res) => {
+    res.status(200).json({
+      endpoints: [
+        '/users',
+        '/proxy',
+        '/rolse'
+      ]
+    });
+  });
+
 dbRouter.get('/users', async(_req, res) => {
     const response = await database.selectUsers();
     if(response instanceof Array){
