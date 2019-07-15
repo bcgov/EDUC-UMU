@@ -11,7 +11,7 @@ router.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/checks',
-      '/db_router'
+      '/database'
     ]
   });
 });
