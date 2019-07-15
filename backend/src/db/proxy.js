@@ -24,7 +24,7 @@ Proxy.prototype.selectAll = function(callback){
     db.execute(`select * from :1`, [process.env.PROXY_TABLE], callback);
 };
 
-AuthUser.prototype.select = function(id, callback){
+Proxy.prototype.select = function(id, callback){
     db.execute(`select * from :1 where id=:2`, [process.env.PROXY_TABLE, id], callback);
 }
 
