@@ -5,6 +5,7 @@ export default {
   async getAuthToken() {
     try {
       const response = await axios.get(AuthRoutes.TOKEN);
+      console.log("Got JWT Token!");
       return response.data;
     } catch (e) {
       console.log(`Failed to acquire JWT token - ${e}`); // eslint-disable-line no-console
