@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const path = require('path');
 const passport = require('passport');
 
 // const auth = require('./auth/auth');
@@ -14,8 +13,6 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', passport.authenticate('jwt', {
-  session: false
-}), dbRouter);
+router.use('/database', passport.authenticate('jwt', {session: false}), dbRouter);
 
 module.exports = router;
