@@ -13,8 +13,7 @@ router.get('/', (_req, res) => {
     ]
   });
 });
-
-// Checks
+// Database
 router.use('/database', passport.authenticate('jwt', {
   session: false
 }), dbRouter);
