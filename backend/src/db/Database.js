@@ -8,6 +8,10 @@ class Database {
         this.proxy = new Proxy();
         this.roles = new Roles();
     }
+
+/**********************************************************/
+/*********             User Functions             *********/
+/**********************************************************/
     createUser(authUser, callback) {
         this.authUsers.select(authUser.userId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
@@ -34,6 +38,11 @@ class Database {
     selectUsers(callback) {
         this.authUsers.selectAll(callback);
     }
+
+
+/**********************************************************/
+/*********             Proxy Functions            *********/
+/**********************************************************/
     createProxy(proxyDetails, callback) {
         this.proxy.select(proxyDetails.proxyId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
@@ -60,6 +69,10 @@ class Database {
     selectProxies(callback) {
         this.proxy.selectAll(callback);
     }
+
+/**********************************************************/
+/*********             Role Functions             *********/
+/**********************************************************/
     createRole(roleDetails, callback) {
         this.roles.select(rolesDetails.roleId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
@@ -87,21 +100,5 @@ class Database {
         this.proxy.selectAll(callback);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = Database;
