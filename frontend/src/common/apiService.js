@@ -86,5 +86,14 @@ Body: ${JSON.stringify(response.data, null, 2)}`;
       console.log(`Failed to fetch from API - ${e}`); // eslint-disable-line no-console
       throw e;
     }
+  },
+
+  async databaseQuery(data, route){
+    try{
+      const response = await apiAxios.get();
+    } catch(e) {
+      console.log(`Failed to fetch from Database - ${e}`); // eslint-disable-line no-console
+      throw e;
+    }
   }
 };

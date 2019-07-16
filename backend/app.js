@@ -107,7 +107,7 @@ apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/api/auth',
-      '/api/api'
+      '/api/main'
     ],
     versions: [
       1
