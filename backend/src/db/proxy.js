@@ -9,21 +9,21 @@ let db = oracledb.getConnection({
 class Proxy {
     constructor() {
     }
-    create(options, callback) {
+    async create(options, callback) {
         db.execute(`insert into :1(PROXYID, TARGETID, PROXYLEVEL) values(:2, :3, :4);`, [process.env.PROXY_TABLE, options.proxy, options.target, options.level], () => {
             db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
         });
     }
-    delete(id, callback) {
+    async delete(id, callback) {
         db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
     }
-    selectAll(callback) {
+    async selectAll(callback) {
         db.execute(`select * from :1`, [process.env.PROXY_TABLE], callback);
     }
-    select(id, callback) {
+    async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.PROXY_TABLE, id], callback);
     }
-    update(options, callback) {
+    async update(options, callback) {
         db.execute(`update :1 set PROXYID=:2, TARGETID=:3, PROXYLEVEL=:4;`, [process.env.PROXY_TABLE, options.proxy, options.target, options.level], () => {
             db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
         });

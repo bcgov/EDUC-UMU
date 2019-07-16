@@ -12,7 +12,7 @@ class Database {
 /**********************************************************/
 /*********             User Functions             *********/
 /**********************************************************/
-    createUser(authUser, callback) {
+    async createUser(authUser, callback) {
         this.authUsers.select(authUser.userId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
                 this.authUsers.create(authUser, ifError({ notify: callback }).otherwise((rows) => {
@@ -27,15 +27,15 @@ class Database {
             }
         }));
     }
-    updateUser(authUser, callback) {
+    async updateUser(authUser, callback) {
         this.authUsers.update(authUser, ifError({ notify: callback }).otherwise((rows) => {
             callback(rows[0].last_value);
         }));
     }
-    deleteUser(authUser, callback) {
+    async deleteUser(authUser, callback) {
         this.authUsers.delete(authUser.userId, callback);
     }
-    selectUsers(callback) {
+    async selectUsers(callback) {
         this.authUsers.selectAll(callback);
     }
 
@@ -43,7 +43,7 @@ class Database {
 /**********************************************************/
 /*********             Proxy Functions            *********/
 /**********************************************************/
-    createProxy(proxyDetails, callback) {
+    async createProxy(proxyDetails, callback) {
         this.proxy.select(proxyDetails.proxyId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
                 this.proxy.create(proxyDetails, ifError({ notify: callback }).otherwise((rows) => {
@@ -58,22 +58,22 @@ class Database {
             }
         }));
     }
-    updateProxy(proxyDetails, callback) {
+    async updateProxy(proxyDetails, callback) {
         this.proxy.update(proxyDetails, ifError({ notify: callback }).otherwise((rows) => {
             callback(rows[0].last_value);
         }));
     }
-    deleteProxy(proxyDetails, callback) {
+    async deleteProxy(proxyDetails, callback) {
         this.proxy.delete(proxyDetails.proxyId, callback);
     }
-    selectProxies(callback) {
+    async selectProxies(callback) {
         this.proxy.selectAll(callback);
     }
 
 /**********************************************************/
 /*********             Role Functions             *********/
 /**********************************************************/
-    createRole(roleDetails, callback) {
+    async createRole(roleDetails, callback) {
         this.roles.select(rolesDetails.roleId, ifError({ notify: callback }).otherwise((rows) => {
             if (!rows || rows.length === 0) {
                 this.roles.create(roleDetails, ifError({ notify: callback }).otherwise((rows) => {
@@ -88,15 +88,15 @@ class Database {
             }
         }));
     }
-    updateRole(roleDetails, callback) {
+    async updateRole(roleDetails, callback) {
         this.roles.update(roleDetails, ifError({ notify: callback }).otherwise((rows) => {
             callback(rows[0].last_value);
         }));
     }
-    deleteRole(roleDetails, callback) {
+    async deleteRole(roleDetails, callback) {
         this.roles.delete(roleDetails.roleId, callback);
     }
-    selectRole(callback) {
+    async selectRole(callback) {
         this.proxy.selectAll(callback);
     }
 }
