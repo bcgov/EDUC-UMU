@@ -28,7 +28,7 @@ ENV TWO_TASK=edw2d.world
 COPY package*.json ./
 
 #RUN rm -rf node_modules
-RUN npm ci
+RUN npm install
 # --no-optional --production
 
 COPY . /opt/app-root/src
