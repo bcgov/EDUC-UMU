@@ -8,15 +8,12 @@ const {
 
 const auth = require('../components/auth');
 
-const dbRouter = require('./db');
-
 router.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/login',
       '/logout',
-      '/token',
-      '/database'
+      '/token'
     ]
   });
 });
@@ -70,9 +67,5 @@ router.use('/token', auth.removeExpired, (req, res) => {
     });
   }
 });
-
-router.use('/database', passport.authenticate('jwt', {
-  session: false
-}), dbRouter);
 
 module.exports = router;

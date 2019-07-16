@@ -13,7 +13,7 @@ const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
-const v1Router = require('./src/routes/v1');
+const apiRouter = require('./src/routes/api');
 
 const apiRouter = express.Router();
 
@@ -107,7 +107,7 @@ apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/api/auth',
-      '/api/v1'
+      '/api/api'
     ],
     versions: [
       1
@@ -120,7 +120,7 @@ app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
 
-apiRouter.use('/v1', v1Router);
+apiRouter.use('/api', apiRouter);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);

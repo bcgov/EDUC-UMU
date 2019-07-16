@@ -1,5 +1,5 @@
 const dbRouter = require('express').Router();
-const Database = require('../db/Database');
+const Database = require('../../db/Database');
 
 var database = new Database();
 
