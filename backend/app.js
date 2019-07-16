@@ -13,7 +13,7 @@ const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
-const apiRouter = require('./src/routes/api');
+const mainRouter = require('./src/routes/api');
 
 const apiRouter = express.Router();
 
@@ -120,7 +120,7 @@ app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
 
-apiRouter.use('/api', apiRouter);
+apiRouter.use('/main', mainRouter);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
