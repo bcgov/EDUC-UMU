@@ -143,6 +143,8 @@ var dbcon =  oracledb.getConnection({
         return;
       }
       console.log("Connection successful!");
+      let result = await connection.execute('SELECT * FROM SEC_AUTHORIZATION');
+      console.log(result);
       connection.close(
         function(err) {
           if (err) {
@@ -150,6 +152,7 @@ var dbcon =  oracledb.getConnection({
             return;
           }
       });
+
   });
 
   module.exports = app;
