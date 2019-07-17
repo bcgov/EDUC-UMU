@@ -112,7 +112,7 @@
                   sortable: true,
                   text: 'Name',
                   value: 'NAME'
-                }
+                },
                 {
                     sortable: true,
                     text: 'Value',
@@ -122,7 +122,7 @@
                   sortable: true,
                   text: 'Auth source',
                   value: 'AUTHDIRNAME'
-                }
+                },
                 {
                     sortable: true,
                     text: 'User GUID',
@@ -142,15 +142,15 @@
             items: []
           }
         },
+        mounted: function() {
+          this.axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
+        },
         methods: {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             }
-        },
-        mounted: function() {
-          this.axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         }
     };
 </script>
