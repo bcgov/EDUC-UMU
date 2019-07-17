@@ -46,6 +46,7 @@
   import UserTable from './UserTable.vue';
   import ProxyTable from './ProxyTable.vue';
   import ApplicationRoles from './ApplicationRoles.vue';
+  import axios from 'axios';
 
   export default {
     name: 'home',
