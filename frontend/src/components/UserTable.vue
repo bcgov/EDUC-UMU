@@ -90,6 +90,7 @@
 
     export default{
         data () {
+          return {
             valid: true,
             systems: ['EDW', 'SIS'],
             search: '',
@@ -129,6 +130,7 @@
                 }
             ],
             items: []
+          }
         },
         methods() {
             validate () {
@@ -138,7 +140,7 @@
             }
         },
         mounted() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
+          this.axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         }
     };
 </script>
