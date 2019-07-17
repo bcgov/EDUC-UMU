@@ -52,7 +52,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.user(keycloak.middleware());
+app.use(keycloak.middleware());
 
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
@@ -112,8 +112,7 @@ passport.deserializeUser((obj, next) => next(null, obj));
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
-      '/api/auth',
-      '/api/main'
+      '/api/auth'
     ],
     versions: [
       1
@@ -138,7 +137,7 @@ app.get('/database', keycloak.protect(), (_req, res) => {
     });
   });
 
-app.get('/database/users', keycloak.protect(), async(_req, res) => {
+app.get('/api/database/users', keycloak.protect(), async(_req, res) => {
     const response = await database.selectUsers();
     if(response instanceof Array){
         res.status(200).json({ users : response });
@@ -167,7 +166,7 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-app.get('/database/proxy', keycloak.protect(), async(_req, res) => {
+app.get('/api/database/proxy', keycloak.protect(), async(_req, res) => {
     const response = await database.selectProxies();
     if(response instanceof Array){
         res.status(200).json({ proxies : response });
@@ -197,7 +196,7 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-app.get('/database/roles', keycloak.protect(), async(_req, res) => {
+app.get('/api/database/roles', keycloak.protect(), async(_req, res) => {
     const response = await database.selectRole();
     if(response instanceof Array){
         res.status(200).json({ roles : response });
