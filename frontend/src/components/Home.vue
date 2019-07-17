@@ -68,7 +68,7 @@
     methods: {
       async getUsers(){
         try{
-          const response = await axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users");
+          const response = await axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users");
           const body = response.data;
 
           if(!body) {

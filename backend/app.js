@@ -6,8 +6,6 @@ const morgan = require('morgan');
 const passport = require('passport');
 const oracledb = require('oracledb');
 const dotenv = require('dotenv');
-const Keycloak = require('keycloak-connect');
-const Database = require('./src/db/Database');
 
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -15,25 +13,11 @@ const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
+const mainRouter = require('./src/routes/api');
 
 const apiRouter = express.Router();
 
 dotenv.config();
-
-let keyConfig = {
-  "resource": process.env.SSO_CLIENT_ID,
-  "ssl-required": "external",
-  "auth-server-url": "https://sso-dev.pathfinder.gov.bc.ca/auth",
-  "realm": "jsgbqlip",
-  "credentials": {
-    "secret": process.env.SSO_USER_SECRET
-  },
-  "confidential-port": 0,
-  "policy-enforcer": {}
-};
-
-var memoryStore = new session.MemoryStore();
-var keycloak = new Keycloak({store: memoryStore}, keyConfig);
 
 const app = express();
 app.use(express.json());
@@ -48,13 +32,9 @@ app.use(session({
   secret: config.get('oidc:clientSecret'),
   resave: false,
   saveUninitialized: true,
-  store: memoryStore
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(keycloak.middleware({
-  logout: '/logout'
-}));
 
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
@@ -72,7 +52,7 @@ utils.getOidcDiscovery().then(discovery => {
     userInfoURL: discovery.userinfo_endpoint,
     clientID: config.get('oidc:clientID'),
     clientSecret: config.get('oidc:clientSecret'),
-    callbackURL: '/getok/api/auth/callback',
+    callbackURL: '/api/auth/callback',
     scope: discovery.scopes_supported
   }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
     if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
@@ -91,7 +71,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey')
+    secretOrKey: config.get('oidc:clientSecret')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
@@ -114,7 +94,8 @@ passport.deserializeUser((obj, next) => next(null, obj));
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
-      '/api/auth'
+      '/api/auth',
+      '/api/main'
     ],
     versions: [
       1
@@ -127,105 +108,7 @@ app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
 
-var database = new Database();
-
-app.get('/database', keycloak.protect(), (_req, res) => {
-    res.status(200).json({
-      endpoints: [
-        '/users',
-        '/proxy',
-        '/roles'
-      ]
-    });
-  });
-
-app.get('/api/database/users', keycloak.protect(), async(_req, res) => {
-    const response = await database.selectUsers();
-    if(response instanceof Array){
-        res.status(200).json({ users : response });
-    } else{
-        res.status(500).json({ message : "Unable to retrieve users from database"});
-    }
-});
-/*
-dbRouter.put('/users', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.updateUser(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "User successfully updated!"});
-    } else {
-        res.status(500).json({ message: "Unable to update user"});
-    }
-});
-dbRouter.post('/users', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.createUser(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "User successfully added to database!"});
-    } else {
-        res.status(500).json({ message: "Unable to add user to database"});
-    }
-});
-*/
-
-app.get('/api/database/proxy', keycloak.protect(), async(_req, res) => {
-    const response = await database.selectProxies();
-    if(response instanceof Array){
-        res.status(200).json({ proxies : response });
-    } else{
-        res.status(500).json({ message : "Unable to retrieve proxies from database"});
-    }
-});
-/*
-dbRouter.put('/proxy', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.updateProxy(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "User proxy successfully updated!"});
-    } else {
-        res.status(500).json({ message: "Unable to update user proxy."});
-    }
-});
-dbRouter.post('/proxy', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.createProxy(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "User proxy successfully added to database!"});
-    } else {
-        res.status(500).json({ message: "Unable to add user proxy to database."});
-    }
-});
-*/
-
-
-app.get('/api/database/roles', keycloak.protect(), async(_req, res) => {
-    const response = await database.selectRole();
-    if(response instanceof Array){
-        res.status(200).json({ roles : response });
-    } else {
-        res.status(500).json({ message : "Unable to retrieve roles from database"});
-    }
-});
-/*
-dbRouter.put('/roles', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.updateRole(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "Successfully updated role!"});
-    } else {
-        res.status(500).json({ message: "Unable to update role."});
-    }
-});
-dbRouter.post('/roles', async(_req, res) => {
-    let data = _req.body.data;
-    const response = await database.createRole(data);
-    if(response instanceof Array){
-        res.status(200).json({ message: "Successfully added role to database!"});
-    } else {
-        res.status(500).json({ message: "Unable to add role to database."});
-    }
-});
-*/
+apiRouter.use('/main', mainRouter);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
