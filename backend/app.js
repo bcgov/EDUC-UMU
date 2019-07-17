@@ -137,7 +137,7 @@ var dbcon =  oracledb.getConnection({
     password : process.env.ORACLE_PASSWORD,
     connectString : process.env.ORACLE_CONNECT
     },
-    function(err, connection) {
+    async function(err, connection) {
       if(err) {
         console.error(err.message);
         return;
