@@ -20,7 +20,7 @@ class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         let result = await connection.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
-        
+        console.log(result);
         if(connection){
             try{
                 await connection.close();
@@ -29,7 +29,6 @@ class AuthUser {
             }
         }
         let jsonRes = JSON.stringify(result.rows);
-        console.log(jsonRes);
         return jsonRes;
     }/*
     async select(id, callback) {

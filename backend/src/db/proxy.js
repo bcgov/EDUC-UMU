@@ -9,6 +9,7 @@ let db = oracledb.getConnection({
 class Proxy {
     constructor() {
     }
+    /*
     async create(options, callback) {
         db.execute(`insert into :1(PROXYID, TARGETID, PROXYLEVEL) values(:2, :3, :4);`, [process.env.PROXY_TABLE, options.proxy, options.target, options.level], () => {
             db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
@@ -28,6 +29,7 @@ class Proxy {
             db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
         });
     }
+    */
 }
 
 
