@@ -3,7 +3,7 @@ const Database = require('../../db/Database');
 
 var database = new Database();
 
-dbRouter.get('/database', keycloak.protect(), (_req, res) => {
+dbRouter.get('/database', (_req, res) => {
     res.status(200).json({
       endpoints: [
         '/users',
@@ -13,7 +13,7 @@ dbRouter.get('/database', keycloak.protect(), (_req, res) => {
     });
   });
 
-dbRouter.get('/database/users', keycloak.protect(), async(_req, res) => {
+dbRouter.get('/users', async(_req, res) => {
     const response = await database.selectUsers();
     res.status(200).json({ users : response });
 });
@@ -38,7 +38,7 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-dbRouter.get('/database/proxy', keycloak.protect(), async(_req, res) => {
+dbRouter.get('/proxy', async(_req, res) => {
     const response = await database.selectProxies();
     if(response instanceof Array){
         res.status(200).json({ proxies : response });
@@ -68,7 +68,7 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-dbRouter.get('/database/roles', keycloak.protect(), async(_req, res) => {
+dbRouter.get('/roles', async(_req, res) => {
     const response = await database.selectRole();
     if(response instanceof Array){
         res.status(200).json({ roles : response });
