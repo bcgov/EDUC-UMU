@@ -19,7 +19,7 @@ class AuthUser {
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
         });
-        let result = await connection.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
+        let result = await connection.execute(`SELECT * FROM SEC_AUTHORIZATION`);
         console.log(result);
         if(connection){
             try{
