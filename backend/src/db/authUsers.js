@@ -28,7 +28,8 @@ class AuthUser {
                 console.error(err);
             }
         }
-        return result;
+        let jsonRes = JSON.stringify(result.rows);
+        return jsonRes;
     }/*
     async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.AUTH_TABLE, id], callback);
