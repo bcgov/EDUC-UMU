@@ -52,7 +52,9 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(keycloak.middleware());
+app.use(keycloak.middleware({
+  logout: '/logout'
+}));
 
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
