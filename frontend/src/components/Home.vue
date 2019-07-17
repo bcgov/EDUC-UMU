@@ -32,7 +32,9 @@
             </v-flex>
             <v-flex xs12>
               <v-card>
-                {{testBody}}
+                <v-flex><v-btn @click="getUsers()">Get Users</v-btn></v-flex>
+                <v-flex v-if="testBody">{{testBody}}</v-flex>
+                <v-flex v-if="bodyError" error>{{bodyError}}</v-flex>
               </v-card>
             </v-flex>
           </v-layout>
@@ -54,7 +56,9 @@
     },
     data() {
       return {
-        dialog: false
+        dialog: false,
+        testBody: '',
+        bodyError: ''
       };
     },
     computed: {
@@ -76,7 +80,7 @@
         } catch (e) {
           console.log('Error getting users from database');
           console.log(e);
-          this.testBody = 'error :p';
+          this.bodyError = 'error :p';
         }
       }
     }
