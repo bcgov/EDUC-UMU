@@ -89,7 +89,7 @@
     import axios from 'axios'
 
     export default{
-        data: () => ({
+        data () {
             valid: true,
             systems: ['EDW', 'SIS'],
             search: '',
@@ -129,15 +129,15 @@
                 }
             ],
             items: []
-        }),
-        methods: {
+        },
+        methods() {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             }
         },
-        mounted: {
+        mounted() {
           axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         }
     };
