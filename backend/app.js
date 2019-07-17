@@ -90,18 +90,6 @@ utils.getOidcDiscovery().then(discovery => {
 passport.serializeUser((user, next) => next(null, user));
 passport.deserializeUser((obj, next) => next(null, obj));
 
-apiRouter.get('/', (_req, res) => {
-  res.status(200).json({
-    endpoints: [
-      '/api/auth',
-    ],
-    versions: [
-      1
-    ]
-  });
-});
-
-
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
