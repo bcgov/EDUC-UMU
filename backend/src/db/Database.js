@@ -35,8 +35,8 @@ class Database {
     async deleteUser(authUser, callback) {
         this.authUsers.delete(authUser.userId, callback);
     }
-    async selectUsers(callback) {
-        this.authUsers.selectAll(callback);
+    async selectUsers() {
+        this.authUsers.selectAll();
     }
 
 

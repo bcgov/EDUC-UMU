@@ -86,6 +86,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default{
         data: () => ({
             valid: true,
@@ -126,23 +128,7 @@
                   value: 'update'
                 }
             ],
-            items: [
-              {system: 'EDW', username: 'NDENNY', value: 'EDW_General', guid: 'ASDFGQHW34R23789EHFAWEKFB348143694', create: 'system', update: '-'},
-              {system: 'EDW', username: 'NDENNY', value: 'EDW_EAB_Analyst', guid: 'ASDFGQHW34R23789EHFAWEKFB348143694', create: 'system', update: '-'},
-              {system: 'EDW', username: 'NDENNY', value: 'EDW_Dimstud', guid: 'ASDFGQHW34R23789EHFAWEKFB348143694', create: 'system', update: '-'},
-              {system: 'EDW', username: 'EGOMBOC', value: 'EDW_Dimstud', guid: 'AHFAW89Y34593457ERUIOWEIY5439DFO' , create: 'system', update: 'OBIEE_SYS_UAT'},
-              {system: 'EDW', username: 'EGOMBOC', value: 'EDW_General', guid: 'AHFAW89Y34593457ERUIOWEIY5439DFO', create: 'OBIEE_SYS_UAT', update: '-'},
-              {system: 'EDW', username: 'RAUJLA', value: 'EDW_Dimstud', guid: 'NHAKASDFJLHWAEFKJABNWNFAB3705721', create: 'system', update: '-'},
-              {system: 'EDW', username: 'RAUJLA', value: 'EDW_EAB_Analyst', guid: '273HGWFA98EFQW389RYH23HRRWERWER', create: 'OBIEE_SYS_UAT', update: 'system'},
-              {system: 'EDW', username: 'SDAMANI', value: 'EDW_Developer', guid: 'FWH3453H5324HLKDFH893495HERFJKL', create: 'system', update: 'system'},
-              {system: 'EDW', username: 'SDAMANI', value: 'EDW_School_Principle', guid: 'FWH3453H5324HLKDFH893495HERFJKL', create: 'OBIEE_SYS_UAT', update: '-'},
-              {system: 'EDW', username: 'SDAMANI', value: 'EDW_Administrator', guid: 'FWH3453H5324HLKDFH893495HERFJKL', create: 'system', update: '-'},
-              {system: 'EDW', username: 'SDAMANI', value: 'EDW_Dimstud', guid: 'FWH3453H5324HLKDFH893495HERFJKL', create: 'system', update: '-'},
-              {system: 'EDW', username: 'HWANG', value: 'EDW_Administrator', guid: '3489ASDHFHASKWEH28328923H3RH2389', create: 'system', update: 'system'},
-              {system: 'EDW', username: 'HWANG', value: 'EDW_Dimstud', guid: '3489ASDHFHASKWEH28328923H3RH2389', create: 'OBIEE_SYS_UAT', update: '-'},
-              {system: 'EDW', username: 'HWANG', value: 'EDW_Developer', guid: '3489ASDHFHASKWEH28328923H3RH2389', create: 'system', update: '-'},
-              {system: 'EDW', username: 'YAZHANG', value: 'EDW_Administrator', guid: '849HGUEFH8ER89423H2R3RHWEHWEIR', create: 'system', update: '-'}
-            ]
+            items: []
         }),
         methods: {
             validate () {
@@ -150,6 +136,27 @@
                     this.snackbar=true
                 }
             }
+            async getUsers(){
+              try{
+                const response = await axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users");
+                const users = response.rows;
+
+                if(!body) {
+                  throw new Error('no body in response');
+                }
+                if(body.error){
+                  throw new Error(body.error);
+                }
+                this.testBody = users;
+              } catch (e) {
+                console.log('Error getting users from database');
+                console.log(e);
+                this.bodyError = 'error :p';
+              }
+          }
+        },
+        mounted: {
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         }
     };
 </script>

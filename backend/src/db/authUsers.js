@@ -17,8 +17,8 @@ class AuthUser {
     async delete(id, callback) {
         db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
     }
-    async selectAll(callback) {
-        db.execute(`select * from :1`, [process.env.AUTH_TABLE]);
+    async selectAll() {
+        db.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
     }
     async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.AUTH_TABLE, id], callback);
@@ -29,11 +29,6 @@ class AuthUser {
         });
     }
 }
-
-
-
-
-
 
 module.exports = {
     AuthUser:AuthUser

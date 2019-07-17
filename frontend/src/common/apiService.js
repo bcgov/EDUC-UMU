@@ -91,7 +91,7 @@ Body: ${JSON.stringify(response.data, null, 2)}`;
   async getUsers(){
     try{
       const response = await apiAxios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users");
-      return response;
+      return response.rows;
     } catch (e) {
       console.log("Could not retrieve users from database");
       throw e;

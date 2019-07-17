@@ -71,7 +71,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:clientSecret')
+    secretOrKey: config.get('oidc:publicKey')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
@@ -83,7 +83,7 @@ utils.getOidcDiscovery().then(discovery => {
       givenName: jwtPayload.given_name,
       jwt: jwtPayload,
       name: jwtPayload.name,
-      preferredUsername: jwtPayload.preferred_username,
+      preferredUsername: jwtPayload.preferred_username
     });
   }));
 });
@@ -143,8 +143,6 @@ var dbcon =  oracledb.getConnection({
         return;
       }
       console.log("Connection successful!");
-      let result = await connection.execute('SELECT * FROM SEC_AUTHORIZATION');
-      console.log(result);
       connection.close(
         function(err) {
           if (err) {
