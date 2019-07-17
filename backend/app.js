@@ -132,6 +132,8 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 
+//The following variable can be used to test connections to the database (probably shouldn't test queries though)
+/*
 var dbcon =  oracledb.getConnection({
     user: process.env.ORACLE_USER,
     password : process.env.ORACLE_PASSWORD,
@@ -152,5 +154,5 @@ var dbcon =  oracledb.getConnection({
       });
 
   });
-
+*/
   module.exports = app;

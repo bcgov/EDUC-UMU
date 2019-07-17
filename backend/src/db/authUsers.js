@@ -20,11 +20,13 @@ class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         let result = await connection.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
-    
-        try{
-            await connection.close();
-        } catch(err){
-            console.error(err);
+        
+        if(connection){
+            try{
+                await connection.close();
+            } catch(err){
+                console.error(err);
+            }
         }
         return result;
     }/*
