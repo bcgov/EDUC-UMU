@@ -1,14 +1,10 @@
 var oracledb = require('oracledb');
 require('dotenv');
-let db = oracledb.getConnection({
-    user: process.env.ORACLE_USER,
-    password : process.env.ORACLE_PASSWORD,
-    connectString : process.env.ORACLE_CONNECT
-});
 
 class AuthUser {
     constructor() {
     }
+    /*
     async create(options, callback) {
         db.execute(`insert into :1(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATED_BY) values(:2, :3, :4, :5, :6, :7, :8);`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirnmae, options.guid, options.createdBy], () => {
             db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
@@ -16,10 +12,22 @@ class AuthUser {
     }
     async delete(id, callback) {
         db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
-    }
+    }*/
     async selectAll() {
-        db.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
-    }
+        let connection = await oracledb.getConnection({
+            user: process.env.ORACLE_USER,
+            password : process.env.ORACLE_PASSWORD,
+            connectString : process.env.ORACLE_CONNECT
+        });
+        let result = await connection.execute(`SELECT * FROM :1`, [process.env.AUTH_TABLE]);
+    
+        try{
+            await connection.close();
+        } catch(err){
+            console.error(err);
+        }
+        return result;
+    }/*
     async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.AUTH_TABLE, id], callback);
     }
@@ -28,6 +36,7 @@ class AuthUser {
             db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
         });
     }
+    */
 }
 
 module.exports = {
