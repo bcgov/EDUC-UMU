@@ -101,45 +101,55 @@
                 {
                     sortable: true,
                     text: 'System',
-                    value: 'system'
+                    value: 'SYSTEM'
                 },
                 {
                     sortable: true,
                     text: 'Username',
-                    value: 'username'
+                    value: 'USERNAME'
                 },
+                {
+                  sortable: true,
+                  text: 'Name',
+                  value: 'NAME'
+                }
                 {
                     sortable: true,
                     text: 'Value',
-                    value: 'value'
+                    value: 'VALUE'
                 },
+                {
+                  sortable: true,
+                  text: 'Auth source',
+                  value: 'AUTHDIRNAME'
+                }
                 {
                     sortable: true,
                     text: 'User GUID',
-                    value: 'guid',
+                    value: 'USERGUID',
                 },
                 {
                   sortable: true,
                   text: 'Created By',
-                  value: 'create'
+                  value: 'CREATE_BY'
                 },
                 {
                   sortable: true,
                   text: 'Updated By',
-                  value: 'update'
+                  value: 'UPDATE_BY'
                 }
             ],
             items: []
           }
         },
-        methods() {
+        methods: {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             }
         },
-        mounted() {
+        mounted: function() {
           this.axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         }
     };
