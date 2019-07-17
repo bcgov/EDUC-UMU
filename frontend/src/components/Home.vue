@@ -30,6 +30,11 @@
                 <v-tab>
               </v-tabs>
             </v-flex>
+            <v-flex xs12>
+              <v-card>
+                {{testBody}}
+              </v-card>
+            </v-flex>
           </v-layout>
     </v-container>
 </template>
@@ -54,6 +59,26 @@
     },
     computed: {
       ...mapGetters('auth', ['isAuthenticated'])
+    },
+    methods: {
+      async getUsers(){
+        try{
+          const response = await axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users");
+          const body = response.data;
+
+          if(!body) {
+            throw new Error('no body in response');
+          }
+          if(body.error){
+            throw new Error(body.error);
+          }
+          this.testBody = body;
+        } catch (e) {
+          console.log('Error getting users from database');
+          console.log(e);
+          this.testBody = 'error :p';
+        }
+      }
     }
   };
 </script>

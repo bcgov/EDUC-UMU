@@ -21,6 +21,7 @@ dbRouter.get('/users', async(_req, res) => {
         res.status(500).json({ message : "Unable to retrieve users from database"});
     }
 });
+/*
 dbRouter.put('/users', async(_req, res) => {
     let data = _req.body.data;
     const response = await database.updateUser(data);
@@ -39,7 +40,7 @@ dbRouter.post('/users', async(_req, res) => {
         res.status(500).json({ message: "Unable to add user to database"});
     }
 });
-
+*/
 
 dbRouter.get('/proxy', async(_req, res) => {
     const response = await database.selectProxies();
@@ -49,6 +50,7 @@ dbRouter.get('/proxy', async(_req, res) => {
         res.status(500).json({ message : "Unable to retrieve proxies from database"});
     }
 });
+/*
 dbRouter.put('/proxy', async(_req, res) => {
     let data = _req.body.data;
     const response = await database.updateProxy(data);
@@ -67,6 +69,7 @@ dbRouter.post('/proxy', async(_req, res) => {
         res.status(500).json({ message: "Unable to add user proxy to database."});
     }
 });
+*/
 
 
 dbRouter.get('/roles', async(_req, res) => {
@@ -77,6 +80,7 @@ dbRouter.get('/roles', async(_req, res) => {
         res.status(500).json({ message : "Unable to retrieve roles from database"});
     }
 });
+/*
 dbRouter.put('/roles', async(_req, res) => {
     let data = _req.body.data;
     const response = await database.updateRole(data);
@@ -95,5 +99,5 @@ dbRouter.post('/roles', async(_req, res) => {
         res.status(500).json({ message: "Unable to add role to database."});
     }
 });
-
+*/
 module.exports = dbRouter;

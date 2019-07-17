@@ -88,11 +88,12 @@ Body: ${JSON.stringify(response.data, null, 2)}`;
     }
   },
 
-  async databaseQuery(data, route){
+  async getUsers(){
     try{
-      const response = await apiAxios.get();
-    } catch(e) {
-      console.log(`Failed to fetch from Database - ${e}`); // eslint-disable-line no-console
+      const response = await apiAxios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users");
+      return response;
+    } catch (e) {
+      console.log("Could not retrieve users from database");
       throw e;
     }
   }

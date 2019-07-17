@@ -15,4 +15,7 @@ router.get('/', (_req, res) => {
 // Database
 router.use('/database', passport.authenticate('jwt', {session: false}), dbRouter);
 
+//TODO implement database check (connection, response, etc)
+//router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);
+
 module.exports = router;
