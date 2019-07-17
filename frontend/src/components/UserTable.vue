@@ -32,12 +32,14 @@
       <template
         slot="items"
         slot-scope="{ item }">
-        <td>{{ item.system }}</td>
-        <td>{{ item.username }}</td>
-        <td>{{ item.value }}</td>
-        <td>{{ item.guid }}</td>
-        <td>{{ item.create }}</td>
-        <td>{{ item.update }}</td>
+        <td>{{ item.SYSTEM }}</td>
+        <td>{{ item.USERNAME }}</td>
+        <td>{{ item.NAME }}</td>
+        <td>{{ item.VALUE }}</td>
+        <td>{{ item.AUTHDIRNAME}}
+        <td>{{ item.USERGUID }}</td>
+        <td>{{ item.CREATE_BY }}</td>
+        <td>{{ item.UPDATE_BY }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template slot="footer">
@@ -143,7 +145,7 @@
           }
         },
         mounted: function() {
-          this.axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
         },
         methods: {
             validate () {
