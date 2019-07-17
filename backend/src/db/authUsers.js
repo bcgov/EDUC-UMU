@@ -29,6 +29,7 @@ class AuthUser {
             }
         }
         let jsonRes = JSON.stringify(result.rows);
+        console.log(jsonRes);
         return jsonRes;
     }/*
     async select(id, callback) {
