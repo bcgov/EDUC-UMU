@@ -25,7 +25,7 @@
       <v-spacer></v-spacer>
 
       <div v-if="isAuthenticated">
-        <v-btn flat id="nav-logout" @click="clearStorage" href="https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/logout">Logout</v-btn>
+        <v-btn flat id="nav-logout" @click="clearStorage" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
       <v-btn v-else flat id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
     </v-toolbar>

@@ -15,11 +15,7 @@ dbRouter.get('/database', keycloak.protect(), (_req, res) => {
 
 dbRouter.get('/database/users', keycloak.protect(), async(_req, res) => {
     const response = await database.selectUsers();
-    if(response instanceof Array){
-        res.status(200).json({ users : response });
-    } else{
-        res.status(500).json({ message : "Unable to retrieve users from database"});
-    }
+    res.status(200).json({ users : response });
 });
 /*
 dbRouter.put('/users', async(_req, res) => {
