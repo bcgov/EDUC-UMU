@@ -8,13 +8,14 @@ const dbRouter = require('./db_routes/db');
 router.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
-      '/database'
+      '/database',
+      '/validation'
     ]
   });
 });
 // Database
 router.use('/database', passport.authenticate('jwt', {
-  failureRedirect: 'error'
+  session: false
 }),  dbRouter);
 
 //TODO implement database check (connection, response, etc)
