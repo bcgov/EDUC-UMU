@@ -19,6 +19,13 @@
       :items="items"
       :search="search"
       >
+
+      <template v-slot:no-data>
+        <div class='text-xs-center'>
+          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+        </div>
+      </template>
+
       <template slot="headerCell" slot-scope="props">
 
       </template>
@@ -31,11 +38,11 @@
       </template>
       <template
         slot="items"
-        slot-scope="{ item }">
-        <td>{{ item.system }}</td>
-        <td>{{ item.role }}</td>
-        <td>{{ item.create }}</td>
-        <td>{{ item.update }}</td>
+        slot-scope="props">
+        <td>{{ props.item[0] }}</td>
+        <td>{{ props.item[1] }}</td>
+        <td>{{ props.item[2] }}</td>
+        <td>{{ props.item[4] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template v-slot:no-results>
@@ -75,6 +82,8 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default{
         data: () => ({
             valid: true,
@@ -86,43 +95,26 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'System',
-                    value: 'system'
+                    text: 'System'
                 },
                 {
                     sortable: true,
-                    text: 'Application Role',
-                    value: 'role'
+                    text: 'Application Role'
                 },
                 {
                     sortable: true,
-                    text: 'Created By',
-                    value: 'create'
+                    text: 'Created By'
                 },
                 {
                     sortable: true,
-                    text: 'Updated By',
-                    value: 'update'
+                    text: 'Updated By'
                 }
             ],
-            items: [
-              {system: 'SIS', role: 'SISAuthor_SD84', create: 'landrews', update: '-'},
-              {system: 'SIS', role: 'SISAuthor_SD21', create: 'landrews', update: '-'},
-              {system: 'SIS', role: 'SISAuthor_SD92', create: 'landrews', update: '-'},
-              {system: 'SIS', role: 'SISAuthor_SD98', create: 'landrews', update: '-'},
-              {system: 'SIS', role: 'SISAuthor_SD43', create: 'landrews', update: '-'},
-              {system: 'EDW', role: 'EDW_General', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_Developer', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_Dimstud', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_School_Principle', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_STP_SME', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_EAB_Analyst', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_EDAS_SME', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_District_Superintendant', create: 'gewebste', update: '-'},
-              {system: 'EDW', role: 'EDW_Administrator', create: 'gewebste', update: '-'},
-            ]
+            items: []
         }),
-
+        mounted: function() {
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data});
+        },
         methods: {
             validate () {
                 if (this.$refs.form.validate()){

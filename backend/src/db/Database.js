@@ -68,7 +68,8 @@ class Database {
         this.proxy.delete(proxyDetails.proxyId, callback);
     }
     async selectProxies(callback) {
-        this.proxy.selectAll(callback);
+        let result = this.proxy.selectAll(callback);
+        return result;
     }
 
 /**********************************************************/
@@ -98,7 +99,8 @@ class Database {
         this.roles.delete(roleDetails.roleId, callback);
     }
     async selectRole(callback) {
-        this.proxy.selectAll(callback);
+        let result = this.proxy.selectAll(callback);
+        return result;
     }
 }
 

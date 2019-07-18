@@ -20,7 +20,9 @@
       :search="search"
     >
       <template v-slot:no-data>
-        <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+        <div class='text-xs-center'>
+          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+        </div>
       </template>
       <!--
     <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>

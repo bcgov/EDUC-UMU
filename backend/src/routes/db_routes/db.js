@@ -40,12 +40,8 @@ dbRouter.post('/users', async(_req, res) => {
 */
 
 dbRouter.get('/proxy', async(_req, res) => {
-    const response = await database.selectProxies();
-    if(response instanceof Array){
-        res.status(200).json({ proxies : response });
-    } else{
-        res.status(500).json({ message : "Unable to retrieve proxies from database"});
-    }
+    let response = await database.selectProxies();
+    res.status(200).json(response);
 });
 /*
 dbRouter.put('/proxy', async(_req, res) => {
@@ -70,12 +66,8 @@ dbRouter.post('/proxy', async(_req, res) => {
 
 
 dbRouter.get('/roles', async(_req, res) => {
-    const response = await database.selectRole();
-    if(response instanceof Array){
-        res.status(200).json({ roles : response });
-    } else {
-        res.status(500).json({ message : "Unable to retrieve roles from database"});
-    }
+    let response = await database.selectRole();
+    res.status(200).json(response);
 });
 /*
 dbRouter.put('/roles', async(_req, res) => {

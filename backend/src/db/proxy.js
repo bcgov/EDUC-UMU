@@ -1,10 +1,5 @@
 var oracledb = require('oracledb');
 require('dotenv');
-let db = oracledb.getConnection({
-    user: process.env.ORACLE_USER,
-    password : process.env.ORACLE_PASSWORD,
-    connectString : process.env.ORACLE_CONNECT
-});
 
 class Proxy {
     constructor() {
@@ -17,10 +12,25 @@ class Proxy {
     }
     async delete(id, callback) {
         db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
+    }*/
+    async selectAll() {
+        let connection = await oracledb.getConnection({
+            user: process.env.ORACLE_USER,
+            password : process.env.ORACLE_PASSWORD,
+            connectString : process.env.ORACLE_CONNECT
+        });
+        let result = db.execute(`select * from :table`, [process.env.PROXY_TABLE]);
+        console.log(result.metadata);
+        if(connection){
+            try{
+                await connection.close();
+            } catch(err){
+                console.error(err);
+            }
+        }
+        return result.rows;
     }
-    async selectAll(callback) {
-        db.execute(`select * from :1`, [process.env.PROXY_TABLE], callback);
-    }
+    /*
     async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.PROXY_TABLE, id], callback);
     }
