@@ -107,4 +107,7 @@
     border-radius: 0px;
     margin-bottom: 15px;
   }
+  .container{
+    max-width: 1500px;
+  }
 </style>

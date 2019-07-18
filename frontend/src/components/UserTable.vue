@@ -31,17 +31,17 @@
       </template>
       <template
         slot="items"
-        slot-scope="{ item }">
-        <td>{{ item[0] }}</td>
-        <td>{{ item[1] }}</td>
-        <td>{{ item[2] }}</td>
-        <td>{{ item[3] }}</td>
-        <td>{{ item[4] }}</td>
-        <td>{{ item[5] }}</td>
-        <td>{{ item[6] }}</td>
-        <td>{{ item[7] }}</td>
-        <td>{{ item[8] }}</td>
-        <td>{{ item[9] }}</td>
+        slot-scope="props">
+        <td>{{ props.item[0] }}</td>
+        <td>{{ props.item[1] }}</td>
+        <td>{{ props.item[2] }}</td>
+        <td>{{ props.item[3] }}</td>
+        <td>{{ props.item[4] }}</td>
+        <td>{{ props.item[5] }}</td>
+        <td>{{ props.item[6] }}</td>
+        <td>{{ props.item[7] }}</td>
+        <td>{{ props.item[8] }}</td>
+        <td>{{ props.item[9] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template slot="footer">
