@@ -22,7 +22,6 @@ class Roles {
         });
         const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
         let result = await connection.execute(query);
-        console.log(result.metadata);
         if(connection){
             try{
                 await connection.close();

@@ -50,39 +50,6 @@
         <td>{{ props.item[8] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
-      <template slot="footer">
-        <td>
-          <v-select
-            :items="systems"
-            label="System"
-            :rules="rules"
-            required
-            ></v-select>
-        </td>
-
-        <td>
-          <v-text-field label="Username"
-            :rules="rules"
-            required
-            ></v-text-field>
-        </td>
-
-        <td>
-          <v-text-field label="Value"
-            :rules="rules"
-            required
-          ></v-text-field>
-        </td>
-
-        <td colspan="2">
-          <v-text-field label="GUID"
-            :rules="rules"
-            required
-          ></v-text-field>
-        </td>
-
-        <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
-      </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.

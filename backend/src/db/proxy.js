@@ -21,7 +21,6 @@ class Proxy {
         });
         const query = 'SELECT * FROM ' + process.env.PROXY_TABLE;
         let result = await connection.execute(query);
-        console.log(result.metadata);
         if(connection){
             try{
                 await connection.close();

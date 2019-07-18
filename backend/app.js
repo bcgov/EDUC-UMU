@@ -4,7 +4,6 @@ const session = require('express-session');
 const log = require('npmlog');
 const morgan = require('morgan');
 const passport = require('passport');
-const oracledb = require('oracledb');
 const dotenv = require('dotenv');
 
 const JWTStrategy = require('passport-jwt').Strategy;

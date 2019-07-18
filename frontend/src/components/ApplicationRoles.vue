@@ -50,25 +50,6 @@
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
-      <template slot="footer">
-          <td>
-            <v-select
-              :items="systems"
-              :rules="rules"
-              label="System"
-              required
-              ></v-select>
-          </td>
-
-          <td colspan="2">
-            <v-text-field label="Role"
-              v-model="role"
-              :rules="rules"
-              required
-            ></v-text-field>
-          </td>
-        <td align="center"><v-btn :disabled="!valid" @click="validate"><i class="fas fa-plus fa-lg hover-change" style="color:#003366"></i></v-btn></td>
-      </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.

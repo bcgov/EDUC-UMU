@@ -20,7 +20,6 @@ class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-        let result = await connection.execute(query);
         console.log(result.metadata);
         if(connection){
             try{
