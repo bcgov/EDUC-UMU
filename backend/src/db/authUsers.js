@@ -20,7 +20,7 @@ class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         let result = await connection.execute('SELECT * FROM SEC_AUTHORIZATION');
-        console.log(typeof(result));
+        console.log('Oracle Response: '+ typeof(result));
         if(connection){
             try{
                 await connection.close();
@@ -28,7 +28,7 @@ class AuthUser {
                 console.error(err);
             }
         }
-        return result;
+        return result.rows;
     }/*
     async select(id, callback) {
         db.execute(`select * from :1 where id=:2`, [process.env.AUTH_TABLE, id], callback);
