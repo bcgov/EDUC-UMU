@@ -14,8 +14,8 @@ dbRouter.get('/database', (_req, res) => {
   });
 
 dbRouter.get('/users', async(_req, res) => {
-    const response = await database.selectUsers();
-    JSON.stringify(response);
+    let response = await database.selectUsers();
+    JSON.parse(response);
     res.status(200).json(response);
 });
 /*
