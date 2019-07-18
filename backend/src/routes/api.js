@@ -13,9 +13,9 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', /*passport.authenticate('oidc', {
+router.use('/database', passport.authenticate('oidc', {
   failureRedirect: 'error'
-}),*/  dbRouter);
+}),  dbRouter);
 
 //TODO implement database check (connection, response, etc)
 //router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);

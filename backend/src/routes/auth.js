@@ -11,8 +11,10 @@ const auth = require('../components/auth');
 router.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
+      '/callback',
       '/login',
       '/logout',
+      '/refresh',
       '/token'
     ]
   });
