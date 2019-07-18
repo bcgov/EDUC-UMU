@@ -19,7 +19,7 @@
       :items="items"
       :search="search"
     >
-    <v-progress-linear v-slot:progress color="#003366" indeterminate v-show="isLoading"></v-progress-linear>
+    <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>
       <template slot="headerCell" slot-scope="props">
 
       </template>
