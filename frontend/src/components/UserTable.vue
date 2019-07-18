@@ -32,14 +32,16 @@
       <template
         slot="items"
         slot-scope="{ item }">
-        <td>{{ item.SYSTEM }}</td>
-        <td>{{ item.USERNAME }}</td>
-        <td>{{ item.NAME }}</td>
-        <td>{{ item.VALUE }}</td>
-        <td>{{ item.AUTHDIRNAME}}
-        <td>{{ item.USERGUID }}</td>
-        <td>{{ item.CREATE_BY }}</td>
-        <td>{{ item.UPDATE_BY }}</td>
+        <td>{{ item[0] }}</td>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>{{ item[4] }}</td>
+        <td>{{ item[5] }}</td>
+        <td>{{ item[6] }}</td>
+        <td>{{ item[7] }}</td>
+        <td>{{ item[8] }}</td>
+        <td>{{ item[9] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template slot="footer">
@@ -137,15 +139,25 @@
                 },
                 {
                   sortable: true,
+                  text: 'Create date',
+                  value: 'CREATE_DATE'
+                },
+                {
+                  sortable: true,
                   text: 'Updated By',
                   value: 'UPDATE_BY'
+                },
+                {
+                  sortable: true,
+                  text: 'Update date',
+                  value: 'UPDATE_DATE'
                 }
             ],
             items: []
           }
         },
         mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.rows});
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response});
         },
         methods: {
             validate () {
