@@ -19,6 +19,7 @@
       :items="items"
       :search="search"
     >
+    <v-progress-linear v-slot:progress color="#003366" :intermediate="isLoading" v-show="isLoading = false"></v-progress-linear>
       <template slot="headerCell" slot-scope="props">
 
       </template>
@@ -39,9 +40,7 @@
         <td>{{ props.item[4] }}</td>
         <td>{{ props.item[5] }}</td>
         <td>{{ props.item[6] }}</td>
-        <td>{{ props.item[7] }}</td>
         <td>{{ props.item[8] }}</td>
-        <td>{{ props.item[9] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
       </template>
       <template slot="footer">
@@ -95,6 +94,7 @@
     export default{
         data () {
           return {
+            isLoading: true,
             valid: true,
             systems: ['EDW', 'SIS'],
             search: '',
@@ -104,53 +104,35 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'System',
-                    value: 'SYSTEM'
+                    text: 'System'
                 },
                 {
                     sortable: true,
-                    text: 'Username',
-                    value: 'USERNAME'
+                    text: 'Username'
                 },
                 {
                   sortable: true,
-                  text: 'Name',
-                  value: 'NAME'
+                  text: 'Name'
                 },
                 {
                     sortable: true,
-                    text: 'Value',
-                    value: 'VALUE'
+                    text: 'Value'
                 },
                 {
                   sortable: true,
-                  text: 'Auth source',
-                  value: 'AUTHDIRNAME'
+                  text: 'Auth source'
                 },
                 {
                     sortable: true,
-                    text: 'User GUID',
-                    value: 'USERGUID',
+                    text: 'User GUID'
                 },
                 {
                   sortable: true,
-                  text: 'Created By',
-                  value: 'CREATE_BY'
+                  text: 'Created By'
                 },
                 {
                   sortable: true,
-                  text: 'Create date',
-                  value: 'CREATE_DATE'
-                },
-                {
-                  sortable: true,
-                  text: 'Updated By',
-                  value: 'UPDATE_BY'
-                },
-                {
-                  sortable: true,
-                  text: 'Update date',
-                  value: 'UPDATE_DATE'
+                  text: 'Updated By'
                 }
             ],
             items: []
@@ -165,6 +147,11 @@
                     this.snackbar=true
                 }
             }
+        },
+        watch: {
+          items() {
+            this.isLoading = false;
+          }
         }
     };
 </script>
