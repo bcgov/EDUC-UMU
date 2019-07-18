@@ -19,7 +19,7 @@ class Proxy {
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
         });
-        let result = db.execute(`select * from :table`, [process.env.PROXY_TABLE]);
+        let result = db.execute(`SELECT * FROM :table`, [process.env.PROXY_TABLE]);
         console.log(result.metadata);
         if(connection){
             try{
