@@ -13,7 +13,7 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', passport.authenticate('oidc', {
+router.use('/database', passport.authenticate('jwt', {
   failureRedirect: 'error'
 }),  dbRouter);
 
