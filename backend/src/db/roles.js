@@ -25,7 +25,8 @@ class Roles {
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
         });
-        let result = db.execute(`select * from :table`, [process.env.ROLES_TABLE]);
+        const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
+        let result = await connection.execute(query);
         console.log(result.metadata);
         if(connection){
             try{
