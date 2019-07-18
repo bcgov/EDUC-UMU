@@ -1,10 +1,5 @@
 var oracledb = require('oracledb');
 require('dotenv');
-let db = oracledb.getConnection({
-    user: process.env.ORACLE_USER,
-    password : process.env.ORACLE_PASSWORD,
-    connectString : process.env.ORACLE_CONNECT
-});
 
 class Roles {
     constructor() {

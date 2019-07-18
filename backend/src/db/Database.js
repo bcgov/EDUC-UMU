@@ -99,7 +99,7 @@ class Database {
         this.roles.delete(roleDetails.roleId, callback);
     }
     async selectRole(callback) {
-        let result = this.proxy.selectAll(callback);
+        let result = this.roles.selectAll(callback);
         return result;
     }
 }
