@@ -42,6 +42,9 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
+passport.serializeUser((user, next) => next(null, user));
+passport.deserializeUser((obj, next) => next(null, obj));
+
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({
@@ -69,10 +72,11 @@ utils.getOidcDiscovery().then(discovery => {
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('JWT'),
     secretOrKey: config.get('oidc:publicKey')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
+      console.log('JWT non-existent or invalid');
       return done('No JWT token', null);
     }
 
@@ -86,8 +90,6 @@ utils.getOidcDiscovery().then(discovery => {
     });
   }));
 });
-passport.serializeUser((user, next) => next(null, user));
-passport.deserializeUser((obj, next) => next(null, obj));
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
