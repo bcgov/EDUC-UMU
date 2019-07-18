@@ -36,7 +36,8 @@ class Database {
         this.authUsers.delete(authUser.userId, callback);
     }
     async selectUsers() {
-        this.authUsers.selectAll();
+        let result = this.authUsers.selectAll();
+        return result;
     }
 
 

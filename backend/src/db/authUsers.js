@@ -20,7 +20,7 @@ class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         let result = await connection.execute('SELECT * FROM SEC_AUTHORIZATION');
-        console.log('Oracle Response: '+ typeof(result));
+        console.log(result.rows);
         if(connection){
             try{
                 await connection.close();
