@@ -19,7 +19,7 @@ class Roles {
         db.execute(`delete from :1 where id=:2`, [process.env.ROLES_TABLE, id], callback);
     }
     */
-    selectAll() {
+     async selectAll() {
         let connection = await oracledb.getConnection({
             user: process.env.ORACLE_USER,
             password : process.env.ORACLE_PASSWORD,
