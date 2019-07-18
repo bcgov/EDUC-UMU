@@ -19,7 +19,12 @@
       :items="items"
       :search="search"
     >
-    <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>
+      <template v-slot:no-data>
+        <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+      <template>
+    <!--
+      <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>
+    -->
       <template slot="headerCell" slot-scope="props">
 
       </template>
