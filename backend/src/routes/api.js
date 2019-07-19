@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const isAuth = require('../../components/auth2');
+const isAuth = require('../components/auth2');
 
 // const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
