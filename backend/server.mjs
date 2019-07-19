@@ -3,12 +3,12 @@
 /**
  * Module dependencies.
  */
-const config = require('./config/index');
-const http = require('http');
-const log = require('npmlog');
+import config from './config/index';
+import http from 'http';
+import log from 'npmlog';
 require('dotenv');
 
-const app = require('./app');
+import app from './app';
 
 /**
  * Get port from environment and store in Express.
