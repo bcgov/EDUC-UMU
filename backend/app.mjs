@@ -7,7 +7,7 @@ import dotenv from'dotenv';
 import utils from './src/components/utils';
 import authRouter from './src/routes/auth';
 import mainRouter from './src/routes/api';
-import authmw from './src/components/authmware.mjs';
+import auth from './src/components/authmware.mjs';
 
 const apiRouter = express.Router();
 
@@ -80,7 +80,7 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 
-app.user(authmw(app));
+app.use(auth(app));
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
 /*
 var dbcon =  oracledb.getConnection({

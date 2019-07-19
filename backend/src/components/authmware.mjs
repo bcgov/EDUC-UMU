@@ -1,3 +1,5 @@
+'use strict';
+
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
@@ -44,7 +46,8 @@ const authmware = (app) => {
     passport.use(oAuth2Strategy);
 };
 
-const authmw = express();
-authmware(authmw);
-
-module.exports = authmw;
+module.exports = () => {
+    const app = express();
+    authmware(app);
+    return app;
+};
