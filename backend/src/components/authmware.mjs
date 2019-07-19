@@ -49,4 +49,4 @@ module.exports = () => {
     authmware(app);
 
     return app;
-}
+};
