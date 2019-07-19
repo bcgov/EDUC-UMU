@@ -133,7 +133,8 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 
-console.log(typeof(process.env.SSO_PUBLIC_KEY));
+console.log('Env: ' + typeof(process.env.SSO_PUBLIC_KEY));
+console.log('Config: ' + typeof(config.get('oidc:publicKey')));
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
 /*
 var dbcon =  oracledb.getConnection({
