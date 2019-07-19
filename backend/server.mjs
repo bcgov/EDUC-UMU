@@ -6,7 +6,7 @@
 import config from './config/index';
 import http from 'http';
 import log from 'npmlog';
-require('dotenv');
+import dotenv from 'dotenv';
 
 import app from './app';
 
