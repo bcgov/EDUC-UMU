@@ -22,6 +22,12 @@ app.use(express.urlencoded({
   extended: false
 }));
 
+const options = {
+  inflate: true,
+  limit: '3000kb',
+  type: 'image/*'
+}
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
   extended: true,
