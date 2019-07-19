@@ -72,7 +72,7 @@ utils.getOidcDiscovery().then(discovery => {
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('JWT'),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.get('oidc:publicKey')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
@@ -133,6 +133,7 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 
+console.log(typeof(process.env.SSO_PUBLIC_KEY));
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
 /*
 var dbcon =  oracledb.getConnection({
