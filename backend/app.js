@@ -1,18 +1,13 @@
 const config = require('./config/index');
 const express = require('express');
-const session = require('express-session');
 const log = require('npmlog');
 const morgan = require('morgan');
-const passport = require('passport');
 const dotenv = require('dotenv');
-
-const JWTStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
 const mainRouter = require('./src/routes/api');
+const authmw = require('./src/components/authmware');
 
 const apiRouter = express.Router();
 
@@ -24,16 +19,17 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(morgan(config.get('server:morganFormat')));
-
-
-app.use(session({
-  secret: config.get('oidc:clientSecret'),
-  resave: false,
-  saveUninitialized: true,
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+  extended: true,
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
+app.use(bodyParser.raw(options));
+
+app.use(morgan(config.get('server:morganFormat')));
 
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
@@ -41,55 +37,6 @@ log.addLevel('debug', 1500, {
 });
 
 log.debug('Config', utils.prettyStringify(config));
-
-passport.serializeUser((user, next) => next(null, user));
-passport.deserializeUser((obj, next) => next(null, obj));
-
-utils.getOidcDiscovery().then(discovery => {
-  // Add Passport OIDC Strategy
-  passport.use('oidc', new OidcStrategy({
-    issuer: discovery.issuer,
-    authorizationURL: discovery.authorization_endpoint,
-    tokenURL: discovery.token_endpoint,
-    userInfoURL: discovery.userinfo_endpoint,
-    clientID: config.get('oidc:clientID'),
-    clientSecret: config.get('oidc:clientSecret'),
-    callbackURL: '/api/auth/callback',
-    scope: discovery.scopes_supported
-  }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
-    if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
-      (typeof (refreshToken) === 'undefined') || (refreshToken === null)) {
-      return done('No access token', null);
-    }
-
-    profile.jwt = accessToken;
-    profile.refreshToken = refreshToken;
-    return done(null, profile);
-  }));
-
-  // Add Passport JWT Strategy
-  passport.use('jwt', new JWTStrategy({
-    algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
-    audience: config.get('oidc:clientID'),
-    issuer: discovery.issuer,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey')
-  }, (jwtPayload, done) => {
-    if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
-      console.log('JWT non-existent or invalid');
-      return done('No JWT token', null);
-    }
-
-    done(null, {
-      email: jwtPayload.email,
-      familyName: jwtPayload.family_name,
-      givenName: jwtPayload.given_name,
-      jwt: jwtPayload,
-      name: jwtPayload.name,
-      preferredUsername: jwtPayload.preferred_username
-    });
-  }));
-});
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
@@ -133,8 +80,7 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 
-console.log('Env: ' + typeof(process.env.SSO_PUBLIC_KEY));
-console.log('Config: ' + typeof(config.get('oidc:publicKey')));
+app.user(authmw(app));
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
 /*
 var dbcon =  oracledb.getConnection({

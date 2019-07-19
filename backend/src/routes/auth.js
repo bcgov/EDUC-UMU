@@ -1,4 +1,5 @@
 const config = require('../../config/index');
+import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 const passport = require('passport');
 const router = require('express').Router();
 const {
@@ -13,15 +14,13 @@ router.get('/', (_req, res) => {
     endpoints: [
       '/callback',
       '/login',
-      '/logout',
-      '/refresh',
-      '/token'
+      '/logout'
     ]
   });
 });
 
 router.use('/callback',
-  passport.authenticate('oidc', {
+  passport.authenticate('oauth2', {
     failureRedirect: 'error'
   }),
   (_req, res) => {
@@ -35,41 +34,13 @@ router.use('/error', (_req, res) => {
   });
 });
 
-router.get('/login', passport.authenticate('oidc', {
-  failureRedirect: '../error'
-}));
+router.get('/login', passport.authenticate('oauth2'));
 
 
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect(config.get('server:frontend'));
 });
-
-router.post('/refresh', [
-  body('refreshToken').exists()
-], async (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array()
-    });
-  }
-
-  const refresh = await auth.renew(req.body.refreshToken);
-  return res.status(200).json(refresh);
-});
-
-router.use('/token', auth.removeExpired, (req, res) => {
-  if (req.user && req.user.jwt && req.user.refreshToken) {
-    res.status(200).json(req.user);
-  } else {
-    res.status(401).json({
-      message: 'Not logged in'
-    });
-  }
-});
-
 
 
 module.exports = router;

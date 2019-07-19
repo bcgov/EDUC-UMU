@@ -29,12 +29,15 @@
       "morgan": "^1.9.1",
       "npmlog": "^4.1.2",
       "passport": "^0.4.0",
-      "passport-jwt": "^4.0.0",
-      "passport-openidconnect": "0.0.2",
       "oracledb": "^3.1.2",
       "nconf": "^0.10.0",
       "dotenv": "^8.0.0",
-      "path": "^0.12.7"
+      "path": "^0.12.7",
+      "@bcgov/common-nodejs-utils" : "git+https://git@github.com/bcgov/common-nodejs-utils.git#v0.0.1",
+      "jsonwebtoken": "^8.5.1",
+      "passport-oauth2": "^1.5.0",
+      "cookie-parser": "^1.4.4",
+      "body-parser": "^1.19.0"
     },
     "devDependencies": {
       "eslint": "^5.16.0",

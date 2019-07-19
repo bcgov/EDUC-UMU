@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: GetOK API
+  title: UMU API
   description: >-
     This API allows the UMU webapp to access Ministry of Education oracle database
   license:
@@ -10,7 +10,7 @@ info:
   contact:
     name: OBIEE UMU
 servers:
-  - url: /api/v1
+  - url: /api/main
     description: This Server
 security:
   - bearerAuth: []
