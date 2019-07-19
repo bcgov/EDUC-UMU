@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const utils = require('./src/components/utils');
 const authRouter = require('./src/routes/auth');
 const mainRouter = require('./src/routes/api');
-const authmw = require('./src/components/authmware');
+const authmw = require('./src/components/authmware.mjs');
 
 const apiRouter = express.Router();
 
