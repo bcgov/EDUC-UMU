@@ -7,7 +7,7 @@ import dotenv from'dotenv';
 import utils from './src/components/utils';
 import authRouter from './src/routes/auth';
 import mainRouter from './src/routes/api';
-import auth from './src/components/authmware.mjs';
+import auth from './src/components/authmware.js';
 
 const apiRouter = express.Router();
 
