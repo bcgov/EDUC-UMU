@@ -1,5 +1,5 @@
-const config = require('../../config/index');
-const passport = require('passport');
+import { get } from '../../config/index';
+import { authenticate } from 'passport';
 const router = require('express').Router();
 
 router.get('/', (_req, res) => {
@@ -13,11 +13,11 @@ router.get('/', (_req, res) => {
 });
 
 router.use('/callback',
-  passport.authenticate('oauth2', {
+  authenticate('oauth2', {
     failureRedirect: 'error'
   }),
   (_req, res) => {
-    res.redirect(config.get('server:frontend'));
+    res.redirect(get('server:frontend'));
   }
 );
 
@@ -27,13 +27,13 @@ router.use('/error', (_req, res) => {
   });
 });
 
-router.get('/login', passport.authenticate('oauth2'));
+router.get('/login', authenticate('oauth2'));
 
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect(config.get('server:frontend'));
+  res.redirect(get('server:frontend'));
 });
 
 
-module.exports = router;
+export default router;

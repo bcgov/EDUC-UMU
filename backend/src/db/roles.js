@@ -1,5 +1,5 @@
-var oracledb = require('oracledb');
-require('dotenv');
+import { getConnection } from 'oracledb';
+import 'dotenv';
 
 class Roles {
     constructor() {
@@ -15,7 +15,7 @@ class Roles {
     }
     */
      async selectAll() {
-        let connection = await oracledb.getConnection({
+        let connection = await getConnection({
             user: process.env.ORACLE_USER,
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
@@ -48,6 +48,4 @@ class Roles {
 
 
 
-module.exports = {
-    Roles:Roles
-};
+export const Roles = Roles;

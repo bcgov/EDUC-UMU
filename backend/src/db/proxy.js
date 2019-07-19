@@ -1,5 +1,5 @@
-var oracledb = require('oracledb');
-require('dotenv');
+import { getConnection } from 'oracledb';
+import 'dotenv';
 
 class Proxy {
     constructor() {
@@ -14,7 +14,7 @@ class Proxy {
         db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
     }*/
     async selectAll() {
-        let connection = await oracledb.getConnection({
+        let connection = await getConnection({
             user: process.env.ORACLE_USER,
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
@@ -47,6 +47,4 @@ class Proxy {
 
 
 
-module.exports = {
-    Proxy:Proxy
-};
+export const Proxy = Proxy;

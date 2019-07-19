@@ -1,8 +1,8 @@
-const axios = require('axios');
-const config = require('../../config/index');
-const log = require('npmlog');
-const cryptico = require('cryptico-js');
-const generator = require('generate-password');
+import { get } from 'axios';
+import { get as _get } from '../../config/index';
+import { verbose, error as _error } from 'npmlog';
+import { encrypt } from 'cryptico-js';
+import { generate } from 'generate-password';
 
 const discovery = null;
 
@@ -10,11 +10,11 @@ const utils = {
   // Returns the response body of a webade oauth token request
   async getWebAdeToken(username, password, scope, webadeEnv = 'INT') {
     const path = '/oauth/token';
-    const endpoint = config.get(`serviceClient.getok${utils.toPascalCase(webadeEnv)}.endpoint`);
+    const endpoint = _get(`serviceClient.getok${utils.toPascalCase(webadeEnv)}.endpoint`);
     const url = endpoint.replace('webade-api', 'oauth2') + path;
 
     try {
-      const response = await axios.get(url, {
+      const response = await get(url, {
         auth: {
           username: username,
           password: password
@@ -26,10 +26,10 @@ const utils = {
         }
       });
 
-      log.verbose('getWebAdeToken', utils.prettyStringify(response.data));
+      verbose('getWebAdeToken', utils.prettyStringify(response.data));
       return response.data;
     } catch (error) {
-      log.error('getWebAdeToken', error.message);
+      _error('getWebAdeToken', error.message);
       return error.response.data;
     }
   },
@@ -40,12 +40,12 @@ const utils = {
       return discovery;
     } else {
       try {
-        const response = await axios.get(config.get('oidc:discovery'));
+        const response = await get(_get('oidc:discovery'));
 
-        log.verbose('getOidcDiscovery', utils.prettyStringify(response.data));
+        verbose('getOidcDiscovery', utils.prettyStringify(response.data));
         return response.data;
       } catch (error) {
-        log.error('getOidcDiscovery', `OIDC Discovery failed - ${error.message}`);
+        _error('getOidcDiscovery', `OIDC Discovery failed - ${error.message}`);
         return error.response.data;
       }
     }
@@ -169,13 +169,13 @@ const utils = {
 
   // Creates a random password
   generatePassword: key => {
-    const pw = generator.generate({
+    const pw = generate({
       length: 12,
       numbers: true
     });
     const result = {
       password: pw,
-      encyptedPassword: cryptico.encrypt(pw, key).cipher
+      encyptedPassword: encrypt(pw, key).cipher
     };
     return result;
   },
@@ -187,4 +187,4 @@ const utils = {
   toPascalCase: str => str.toLowerCase().replace(/\b\w/g, t => t.toUpperCase())
 };
 
-module.exports = utils;
+export default utils;

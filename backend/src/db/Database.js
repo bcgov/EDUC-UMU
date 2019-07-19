@@ -1,6 +1,6 @@
-var { AuthUser } = require('./authUsers');
-var { Proxy } = require('./proxy');
-var { Roles } = require('./roles');
+import { AuthUser } from './authUsers';
+import { Proxy } from './proxy';
+import { Roles } from './roles';
 
 class Database {
     constructor() {
@@ -104,4 +104,4 @@ class Database {
     }
 }
 
-module.exports = Database;
+export default Database;

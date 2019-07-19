@@ -1,10 +1,10 @@
-const atob = require('atob');
-const axios = require('axios');
-const config = require('../../config/index');
-const log = require('npmlog');
-const qs = require('querystring');
+import atob from 'atob';
+import { post } from 'axios';
+import { get } from '../../config/index';
+import { verbose, error as _error } from 'npmlog';
+import { stringify } from 'querystring';
 
-const utils = require('./utils');
+import { getOidcDiscovery, prettyStringify } from './utils';
 
 const auth = {
   // Check if JWT Access Token has expired
@@ -32,11 +32,11 @@ const auth = {
     let result = {};
 
     try {
-      const discovery = await utils.getOidcDiscovery();
-      const response = await axios.post(discovery.token_endpoint,
-        qs.stringify({
-          client_id: config.get('oidc:clientID'),
-          client_secret: config.get('oidc:clientSecret'),
+      const discovery = await getOidcDiscovery();
+      const response = await post(discovery.token_endpoint,
+        stringify({
+          client_id: get('oidc:clientID'),
+          client_secret: get('oidc:clientSecret'),
           grant_type: 'refresh_token',
           refresh_token: refreshToken,
           scope: discovery.scopes_supported
@@ -49,11 +49,11 @@ const auth = {
         }
       );
 
-      log.verbose('renew', utils.prettyStringify(response.data));
+      verbose('renew', prettyStringify(response.data));
       result.jwt = response.data.access_token;
       result.refreshToken = response.data.refresh_token;
     } catch (error) {
-      log.error('renew', error.message);
+      _error('renew', error.message);
       result = error.response.data;
     }
 
@@ -64,13 +64,13 @@ const auth = {
   async removeExpired(req, _res, next) {
     try {
       if (!!req.user && !!req.user.jwt) {
-        log.verbose('removeExpired', 'User & JWT exists');
+        verbose('removeExpired', 'User & JWT exists');
 
         if (auth.isTokenExpired(req.user.jwt)) {
-          log.verbose('removeExpired', 'JWT has expired');
+          verbose('removeExpired', 'JWT has expired');
 
           if (!!req.user.refreshToken && auth.isRenewable(req.user.refreshToken)) {
-            log.verbose('removeExpired', 'Can refresh JWT token');
+            verbose('removeExpired', 'Can refresh JWT token');
 
             // Get new JWT and Refresh Tokens and update the request
             const {
@@ -80,16 +80,16 @@ const auth = {
             req.user.jwt = jwt;
             req.user.refreshToken = refreshToken;
           } else {
-            log.verbose('removeExpired', 'Cannot refresh JWT token');
+            verbose('removeExpired', 'Cannot refresh JWT token');
             delete req.user;
           }
         }
       } else {
-        log.verbose('removeExpired', 'No existing User or JWT');
+        verbose('removeExpired', 'No existing User or JWT');
         delete req.user;
       }
     } catch (error) {
-      log.error('removeExpired', error.message);
+      _error('removeExpired', error.message);
     }
 
     next();
@@ -97,4 +97,4 @@ const auth = {
   }
 };
 
-module.exports = auth;
+export default auth;

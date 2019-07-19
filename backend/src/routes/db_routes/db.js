@@ -1,5 +1,5 @@
 const dbRouter = require('express').Router();
-const Database = require('../../db/Database');
+import Database from '../../db/Database';
 
 var database = new Database();
 
@@ -88,4 +88,4 @@ dbRouter.post('/roles', async(_req, res) => {
     }
 });
 */
-module.exports = dbRouter;
+export default dbRouter;

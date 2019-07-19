@@ -9,6 +9,9 @@ import authRouter from './src/routes/auth';
 import mainRouter from './src/routes/api';
 import auth from './src/components/authmware.js';
 
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
 const apiRouter = express.Router();
 
 dotenv.config();

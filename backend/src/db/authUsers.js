@@ -1,5 +1,5 @@
-var oracledb = require('oracledb');
-require('dotenv');
+import { getConnection } from 'oracledb';
+import 'dotenv';
 
 class AuthUser {
     constructor() {
@@ -14,7 +14,7 @@ class AuthUser {
         db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
     }*/
     async selectAll() {
-        let connection = await oracledb.getConnection({
+        let connection = await getConnection({
             user: process.env.ORACLE_USER,
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
@@ -41,6 +41,4 @@ class AuthUser {
     */
 }
 
-module.exports = {
-    AuthUser:AuthUser
-};
+export const AuthUser = AuthUser;
