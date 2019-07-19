@@ -28,9 +28,9 @@ const authmware = (app) => {
         done(null, {});
     });
 
-    const oAuth2Stategy = new OAuth2Strategy(
+    const oAuth2Strategy = new OAuth2Strategy(
         {
-            authorizationURL: config.get('sso:authUrl'),
+            authorizationURL: config.get('oidc:authUrl'),
             tokenURL: config.get('oidc:tokenUrl'),
             clientID: config.get('oidc:clientId'),
             clientSecret: config.get('oidc:clientSecret'),
