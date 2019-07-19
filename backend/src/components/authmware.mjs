@@ -1,7 +1,7 @@
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import { Strategy as OAuth2Strategy } from 'passport-oauth2';
+import OAuth2Strategy from 'passport-oauth2';
 import config from '../../config/index';
 
 const authmware = (app) => {

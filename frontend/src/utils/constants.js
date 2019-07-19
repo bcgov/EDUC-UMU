@@ -8,9 +8,7 @@ export const ApiRoutes = Object.freeze({
 const authRoot = `${baseRoot}/auth`;
 export const AuthRoutes = Object.freeze({
   LOGIN: `${authRoot}/login`,
-  LOGOUT: `${authRoot}/logout`,
-  REFRESH: `${authRoot}/refresh`,
-  TOKEN: `${authRoot}/token`,
+  LOGOUT: `${authRoot}/logout`
 });
 
 export const FieldValidations = Object.freeze({
