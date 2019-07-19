@@ -1,5 +1,5 @@
 import { get } from '../../config/index';
-import { authenticate } from 'passport';
+import passport from 'passport';
 const router = require('express').Router();
 
 router.get('/', (_req, res) => {
@@ -13,7 +13,7 @@ router.get('/', (_req, res) => {
 });
 
 router.use('/callback',
-  authenticate('oauth2', {
+  passport.authenticate('oauth2', {
     failureRedirect: 'error'
   }),
   (_req, res) => {
@@ -27,7 +27,7 @@ router.use('/error', (_req, res) => {
   });
 });
 
-router.get('/login', authenticate('oauth2'));
+router.get('/login', passport.authenticate('oauth2'));
 
 
 router.get('/logout', (req, res) => {
