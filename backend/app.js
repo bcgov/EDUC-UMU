@@ -41,6 +41,8 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
+app.use(auth(app));
+
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
@@ -82,8 +84,6 @@ app.use((_req, res) => {
 process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
-
-app.use(auth(app));
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
 /*
 var dbcon =  oracledb.getConnection({
