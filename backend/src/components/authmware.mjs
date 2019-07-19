@@ -44,9 +44,7 @@ const authmware = (app) => {
     passport.use(oAuth2Strategy);
 };
 
-module.exports = () => {
-    const app = express();
-    authmware(app);
+const authmware = express();
+authmware(authmware);
 
-    return app;
-};
+module.exports = authmware;
