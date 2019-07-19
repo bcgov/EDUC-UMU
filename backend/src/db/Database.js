@@ -2,7 +2,7 @@ import { AuthUser } from './authUsers';
 import { Proxy } from './proxy';
 import { Roles } from './roles';
 
-class Database {
+export default class Database {
     constructor() {
         this.authUsers = new AuthUser();
         this.proxy = new Proxy();
@@ -102,6 +102,4 @@ class Database {
         let result = this.roles.selectAll(callback);
         return result;
     }
-}
-
-export default Database;
+};

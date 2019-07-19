@@ -1,7 +1,7 @@
 import { getConnection } from 'oracledb';
 import 'dotenv';
 
-class Roles {
+export class Roles {
     constructor() {
     }
     /*
@@ -41,11 +41,4 @@ class Roles {
         });
     }
     */
-}
-
-
-
-
-
-
-export const Roles = Roles;
+};

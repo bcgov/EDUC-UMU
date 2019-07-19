@@ -1,7 +1,7 @@
 import { getConnection } from 'oracledb';
 import 'dotenv';
 
-class AuthUser {
+export class AuthUser {
     constructor() {
     }
     /*
@@ -39,6 +39,4 @@ class AuthUser {
         });
     }
     */
-}
-
-export const AuthUser = AuthUser;
+};

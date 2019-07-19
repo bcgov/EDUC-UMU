@@ -1,7 +1,7 @@
 import { getConnection } from 'oracledb';
 import 'dotenv';
 
-class Proxy {
+export class Proxy {
     constructor() {
     }
     /*
@@ -40,11 +40,4 @@ class Proxy {
         });
     }
     */
-}
-
-
-
-
-
-
-export const Proxy = Proxy;
+};
