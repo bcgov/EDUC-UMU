@@ -32,7 +32,7 @@ const authmware = (app) => {
         {
             authorizationURL: config.get('oidc:authUrl'),
             tokenURL: config.get('oidc:tokenUrl'),
-            clientID: config.get('oidc:clientId'),
+            clientID: config.get('oidc:clientID'),
             clientSecret: config.get('oidc:clientSecret'),
             callbackURL: config.get('server:frontend') + '/api/auth/callback'
         },
