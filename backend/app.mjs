@@ -1,12 +1,12 @@
-const config = require('./config/index');
-const express = require('express');
-const log = require('npmlog');
-const morgan = require('morgan');
-const dotenv = require('dotenv');
+import config from './config/index';
+import express from 'express';
+import log from 'npmlog';
+import morgan from 'morgan';
+import dotenv from'dotenv';
 
-const utils = require('./src/components/utils');
-const authRouter = require('./src/routes/auth');
-const mainRouter = require('./src/routes/api');
+import utils from './src/components/utils';
+import authRouter from './src/routes/auth';
+import mainRouter from './src/routes/api';
 import authmw from './src/components/authmware.mjs';
 
 const apiRouter = express.Router();
