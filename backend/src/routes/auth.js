@@ -1,13 +1,6 @@
 const config = require('../../config/index');
-import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 const passport = require('passport');
 const router = require('express').Router();
-const {
-  body,
-  validationResult
-} = require('express-validator');
-
-const auth = require('../components/auth');
 
 router.get('/', (_req, res) => {
   res.status(200).json({
