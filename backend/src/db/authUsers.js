@@ -1,5 +1,6 @@
 import { getConnection } from 'oracledb';
-import '../config/node_modules/dotenv';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export class AuthUser {
     constructor() {

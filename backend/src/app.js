@@ -2,7 +2,8 @@ import config from './config/index';
 import express from 'express';
 import log from 'npmlog';
 import morgan from 'morgan';
-import dotenv from'./src/config/node_modules/dotenv';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import utils from './components/utils';
 import authRouter from './routes/auth';

@@ -1,6 +1,6 @@
-const nconf = require('nconf');
-const dotenv = require('dotenv');
-const path = require('path');
+import nconf from 'nconf';
+import dotenv from 'dotenv';
+dotenv.config();
 
 dotenv.config();
 
