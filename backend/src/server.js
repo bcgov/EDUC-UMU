@@ -6,7 +6,6 @@
 import config from './config/index';
 import http from 'http';
 import log from 'npmlog';
-import dotenv from './src/config/node_modules/dotenv';
 
 import app from './app';
 
