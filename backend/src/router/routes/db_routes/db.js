@@ -16,7 +16,7 @@ dbRouter.get('/database', (_req, res) => {
     });
 });
 
-dbRouter.get('/users', isAuthenticated, asyncMiddleware(async(_req, res) => {
+dbRouter.get('/users', asyncMiddleware(async(_req, res) => {
     let response = await database.selectUsers();
     res.status(200).json(response);
 }));
@@ -41,7 +41,7 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-dbRouter.get('/proxy', isAuthenticated, asyncMiddleware(async(_req, res) => {
+dbRouter.get('/proxy', asyncMiddleware(async(_req, res) => {
     let response = await database.selectProxies();
     res.status(200).json(response);
 }));
@@ -67,7 +67,7 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-dbRouter.get('/roles', isAuthenticated, asyncMiddleware(async(_req, res) => {
+dbRouter.get('/roles', asyncMiddleware(async(_req, res) => {
     let response = await database.selectRole();
     res.status(200).json(response);
 }));
