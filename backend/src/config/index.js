@@ -2,8 +2,6 @@ import nconf from 'nconf';
 import dotenv from 'dotenv';
 dotenv.config();
 
-dotenv.config();
-
 nconf.overrides({
     oidc: {
         clientID: process.env.SSO_CLIENT_ID,

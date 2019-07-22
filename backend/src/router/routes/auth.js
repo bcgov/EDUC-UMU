@@ -1,5 +1,5 @@
-import { asyncMiddleware, logger, errorWithCode } from '@bcgov/nodejs-common-utils';
-import { get } from '../config/index';
+import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
+import config from '../config/index';
 import passport from 'passport';
 const router = require('express').Router();
 
@@ -18,7 +18,7 @@ router.use('/callback',
     failureRedirect: 'error'
   }),
   asyncMiddleware(async (req, res) => {
-    res.status(200).end()
+    res.redirect(config.get('server:frontend'));
   })
 );
 
@@ -33,7 +33,7 @@ router.get('/login', passport.authenticate('oauth2'));
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect(get('server:frontend'));
+  res.redirect(config.get('server:frontend'));
 });
 
 
