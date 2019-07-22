@@ -2,6 +2,7 @@
 FROM oraclelinux:7-slim
 
 WORKDIR /opt/app-root/src
+RUN mkdir /opt/app-root/src/dist
 
 ARG release=18
 ARG update=3
