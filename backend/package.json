@@ -4,7 +4,7 @@
     "private": true,
     "description": "OBIEE User Management Tool",
     "scripts": {
-      "build": "babel server.js -d dist",
+      "build": "babel server.js app.js config src -d dist",
       "serve": "node server.js",
       "start": "node dist/server.js",
       "lint": "node_modules/.bin/eslint . --no-fix --ignore-pattern 'node_modules' --ext .js",
