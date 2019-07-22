@@ -2,6 +2,7 @@
 FROM oraclelinux:7-slim
 
 WORKDIR /opt/app-root/src
+RUN mkdir -p /opt/app-root/src/dist/node_modules
 
 ARG release=18
 ARG update=3
@@ -28,11 +29,13 @@ ENV TWO_TASK=edw2d.world
 COPY package*.json ./
 
 #RUN rm -rf node_modules
-RUN npm install -g
+RUN npm install
 # --no-optional --production
 
 COPY . /opt/app-root/src
+COPY ./node_modules /dist/node_modules
 
 EXPOSE 8080 1521 443
 # Tell application how to serve build
+RUN npm run build
 CMD ["npm", "start"]
