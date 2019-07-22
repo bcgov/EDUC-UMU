@@ -1,6 +1,6 @@
 const dbRouter = require('express').Router();
 import Database from '../../../db/Database';
-import { isAuthenticated } from '../../../component/auth2';
+import { isAuthenticated } from '../../../components/auth2';
 
 var database = new Database();
 

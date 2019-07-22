@@ -47,6 +47,7 @@ const isAuthenticated = async (req, res, next) => {
     logger.info('Verifying API user authentication');
   
     const authHeader = req.headers.authorization;
+    logger.info('Auth Header: ' + authHeader);
     if (authHeader == null) {
       return sendError(res, 400, 'Please send Authorization header');
     }
