@@ -29,7 +29,7 @@ const sendError = (res, statusCode, message) => {
 const isAuthenticated = async (req, res, next) => {
     // The download URL requires that the user authenticates via their
     // browser which will add an 'isAuthenticated' method for testing.
-    if (/^.*\/album\/[0-9A-Za-z-]*\/download\/.*$/.test(req.originalUrl)) {
+    /*if (/^.*\/main\/[0-9A-Za-z-]*\/download\/.*$/.test(req.originalUrl)) {
       logger.info('Verifying web user authentication');
       // This is not the same isAuthenticated() as above.
       if (req.isAuthenticated()) {
@@ -40,7 +40,7 @@ const isAuthenticated = async (req, res, next) => {
       req.session.redirect_to = req.originalUrl;
       res.redirect('/auth/login');
       return null;
-    }
+    }*/
   
     // Other API will use a Bearer JWT and should be verified
     // as follows.
