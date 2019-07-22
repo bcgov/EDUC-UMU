@@ -6,8 +6,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import utils from './components/utils';
-import authRouter from './routes/auth';
-import mainRouter from './routes/api';
+import authRouter from './router/routes/auth';
+import mainRouter from './router/routes/api';
 import auth from './components/authmware.js';
 
 import cookieParser from 'cookie-parser';
@@ -66,9 +66,7 @@ apiRouter.get('/', (_req, res) => {
 // Root level Router
 app.use(/(\/getok)?(\/api)?/, apiRouter);
 
-apiRouter.use('/auth', authRouter);
-
-apiRouter.use('/main', mainRouter);
+require('./router')(app);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
@@ -78,16 +76,6 @@ app.use((err, _req, res, next) => {
   });
   next();
 });
-
-// Handle 404
-/*
-app.use((_req, res) => {
-  res.status(404).json({
-    status: 404,
-    message: 'Page Not Found'
-  });
-});
-*/
 
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {

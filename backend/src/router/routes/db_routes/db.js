@@ -1,5 +1,5 @@
 const dbRouter = require('express').Router();
-import Database from '../../db/Database';
+import Database from '../../../db/Database';
 
 var database = new Database();
 

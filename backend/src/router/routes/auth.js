@@ -1,3 +1,4 @@
+import { asyncMiddleware, logger, errorWithCode } from '@bcgov/nodejs-common-utils';
 import { get } from '../config/index';
 import passport from 'passport';
 const router = require('express').Router();
@@ -16,9 +17,9 @@ router.use('/callback',
   passport.authenticate('oauth2', {
     failureRedirect: 'error'
   }),
-  (_req, res) => {
+  asyncMiddleware(async(_req, res) => {
     res.redirect(get('server:frontend'));
-  }
+  })
 );
 
 router.use('/error', (_req, res) => {
