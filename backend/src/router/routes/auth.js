@@ -1,7 +1,9 @@
 import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 import config from '../../config/index';
 import passport from 'passport';
-const router = require('express').Router();
+import { Router } from 'express';
+
+const router = new Router();
 
 router.get('/', (_req, res) => {
   res.status(200).json({

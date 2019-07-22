@@ -1,6 +1,7 @@
-const router = require('express').Router();
+import { Router } from 'express'
 import isAuthenticated from '../../components/auth2.js';
 
+const router = new Router();
 // const auth = require('./auth/auth');
 import dbRouter from './db_routes/db';
 
