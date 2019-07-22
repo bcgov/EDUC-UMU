@@ -1,7 +1,9 @@
-const dbRouter = require('express').Router();
+import { Router } from 'express';
 import Database from '../../../db/Database';
 import { isAuthenticated } from '../../../components/auth2';
+import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 
+const dbRouter = new Router();
 var database = new Database();
 
 dbRouter.get('/database', (_req, res) => {
@@ -12,12 +14,12 @@ dbRouter.get('/database', (_req, res) => {
         '/roles'
       ]
     });
-  });
+});
 
-dbRouter.get('/users', isAuthenticated, async(_req, res) => {
+dbRouter.get('/users', isAuthenticated, asyncMiddleware(async(_req, res) => {
     let response = await database.selectUsers();
     res.status(200).json(response);
-});
+}));
 /*
 dbRouter.put('/users', async(_req, res) => {
     let data = _req.body.data;
@@ -39,10 +41,10 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-dbRouter.get('/proxy', isAuthenticated, async(_req, res) => {
+dbRouter.get('/proxy', isAuthenticated, asyncMiddleware(async(_req, res) => {
     let response = await database.selectProxies();
     res.status(200).json(response);
-});
+}));
 /*
 dbRouter.put('/proxy', async(_req, res) => {
     let data = _req.body.data;
@@ -65,10 +67,10 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-dbRouter.get('/roles', isAuthenticated, async(_req, res) => {
+dbRouter.get('/roles', isAuthenticated, asyncMiddleware(async(_req, res) => {
     let response = await database.selectRole();
     res.status(200).json(response);
-});
+}));
 /*
 dbRouter.put('/roles', async(_req, res) => {
     let data = _req.body.data;
