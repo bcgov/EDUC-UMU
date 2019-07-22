@@ -1,5 +1,5 @@
 import { getConnection } from 'oracledb';
-import 'dotenv';
+import '../config/node_modules/dotenv';
 
 export class Roles {
     constructor() {

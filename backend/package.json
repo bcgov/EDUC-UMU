@@ -4,8 +4,8 @@
     "private": true,
     "description": "OBIEE User Management Tool",
     "scripts": {
-      "build": "babel server.js app.js config src -d dist",
-      "serve": "node server.js",
+      "build": "babel src -d dist",
+      "serve": "node dist/server.js",
       "start": "node dist/server.js",
       "lint": "node_modules/.bin/eslint . --no-fix --ignore-pattern 'node_modules' --ext .js",
       "lint:fix": "node_modules/.bin/eslint . --fix --ignore-pattern 'node_modules' --ext .js",

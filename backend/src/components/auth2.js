@@ -1,6 +1,6 @@
 import { getJwtCertificate, logger } from '@bcgov/common-nodejs-utils';
 import jwt from 'jsonwebtoken';
-import config from '../../config/index';
+import config from '../config/index';
 
 const sendError = (res, statusCode, message) => {
     logger.info(`Rejecting authenticaiton, message = ${message}`);

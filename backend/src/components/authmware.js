@@ -4,7 +4,7 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import OAuth2Strategy from 'passport-oauth2';
-import config from '../../config/index';
+import config from '../config/index';
 
 const authmware = (app) => {
     const ops = {

@@ -1,4 +1,4 @@
-import { get } from '../../config/index';
+import { get } from '../config/index';
 import passport from 'passport';
 const router = require('express').Router();
 

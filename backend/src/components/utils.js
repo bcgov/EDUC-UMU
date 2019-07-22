@@ -1,5 +1,5 @@
 import { get } from 'axios';
-import { get as _get } from '../../config/index';
+import { get as _get } from '../config/index';
 import { verbose, error as _error } from 'npmlog';
 import { encrypt } from 'cryptico-js';
 import { generate } from 'generate-password';

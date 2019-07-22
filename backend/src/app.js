@@ -2,12 +2,12 @@ import config from './config/index';
 import express from 'express';
 import log from 'npmlog';
 import morgan from 'morgan';
-import dotenv from'dotenv';
+import dotenv from'./src/config/node_modules/dotenv';
 
-import utils from './src/components/utils';
-import authRouter from './src/routes/auth';
-import mainRouter from './src/routes/api';
-import auth from './src/components/authmware.js';
+import utils from './components/utils';
+import authRouter from './routes/auth';
+import mainRouter from './routes/api';
+import auth from './components/authmware.js';
 
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
