@@ -17,8 +17,8 @@ router.use('/callback',
   passport.authenticate('oauth2', {
     failureRedirect: 'error'
   }),
-  asyncMiddleware(async(_req, res) => {
-    res.redirect(get('server:frontend'));
+  asyncMiddleware(async (req, res) => {
+    res.status(200).end()
   })
 );
 
