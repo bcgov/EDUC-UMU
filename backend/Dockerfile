@@ -29,11 +29,12 @@ ENV TWO_TASK=edw2d.world
 COPY package*.json ./
 
 #RUN rm -rf node_modules
-RUN npm install
+RUN npm install -g
 # --no-optional --production
 
 COPY . /opt/app-root/src
 
 EXPOSE 8080 1521 443
 # Tell application how to serve build
+RUN npm run build
 CMD ["npm", "start"]
