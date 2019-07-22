@@ -2,7 +2,6 @@
 FROM oraclelinux:7-slim
 
 WORKDIR /opt/app-root/src
-RUN mkdir /opt/app-root/src/dist
 
 ARG release=18
 ARG update=3
@@ -36,5 +35,4 @@ COPY . /opt/app-root/src
 
 EXPOSE 8080 1521 443
 # Tell application how to serve build
-RUN npm run build
 CMD ["npm", "start"]
