@@ -1,5 +1,5 @@
 import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
-import config from '../config/index';
+import config from '../../config/index';
 import passport from 'passport';
 const router = require('express').Router();
 
