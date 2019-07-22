@@ -1,7 +1,7 @@
 #pre-combined version of node with oracle libraries
 FROM oraclelinux:7-slim
 
-WORKDIR /opt/app-root/src
+WORKDIR /opt/app-root/
 
 ARG release=18
 ARG update=3
@@ -25,11 +25,11 @@ ENV ORACLE_SID=edw2d.world
 ENV TWO_TASK=edw2d.world
 
 # Install NPM Dependencies
-COPY package*.json ./
+COPY package*.json ./src/
 
 #RUN rm -rf node_modules
 RUN npm install
-COPY . /opt/app-root/src/dist
+COPY . /opt/app-root/dist
 
 RUN npm run build
 # --no-optional --production
