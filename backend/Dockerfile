@@ -25,7 +25,7 @@ ENV ORACLE_SID=edw2d.world
 ENV TWO_TASK=edw2d.world
 
 # Install NPM Dependencies
-COPY package*.json .
+COPY package*.json ./
 
 #RUN rm -rf node_modules
 RUN npm install
