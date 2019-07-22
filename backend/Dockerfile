@@ -29,10 +29,10 @@ COPY package*.json ./
 
 #RUN rm -rf node_modules
 RUN npm install
+COPY . /opt/app-root/src/dist
+
 RUN npm run build
 # --no-optional --production
-
-COPY . /opt/app-root/src/dist
 
 EXPOSE 8080 1521 443
 # Tell application how to serve build
