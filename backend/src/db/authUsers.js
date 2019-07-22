@@ -1,4 +1,4 @@
-import { getConnection } from 'oracledb';
+import oracledb from 'oracledb';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,7 +15,7 @@ export class AuthUser {
         db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
     }*/
     async selectAll() {
-        let connection = await getConnection({
+        let connection = await oracledb.getConnection({
             user: process.env.ORACLE_USER,
             password : process.env.ORACLE_PASSWORD,
             connectString : process.env.ORACLE_CONNECT
