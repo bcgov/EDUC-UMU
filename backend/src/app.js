@@ -80,12 +80,14 @@ app.use((err, _req, res, next) => {
 });
 
 // Handle 404
+/*
 app.use((_req, res) => {
   res.status(404).json({
     status: 404,
     message: 'Page Not Found'
   });
 });
+*/
 
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {
