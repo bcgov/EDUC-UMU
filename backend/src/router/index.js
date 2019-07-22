@@ -12,5 +12,5 @@ const corsOptions = {
 module.exports = (app) => {
     app.use(cors(corsOptions));
     app.use('/auth', auth);
-    app.use('./main', api);
+    app.use('/main', api);
 };
