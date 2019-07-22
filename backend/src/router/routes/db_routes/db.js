@@ -1,5 +1,6 @@
 const dbRouter = require('express').Router();
 import Database from '../../../db/Database';
+import { isAuthenticated } from '../../../component/auth2';
 
 var database = new Database();
 
@@ -13,7 +14,7 @@ dbRouter.get('/database', (_req, res) => {
     });
   });
 
-dbRouter.get('/users', async(_req, res) => {
+dbRouter.get('/users', isAuthenticated, async(_req, res) => {
     let response = await database.selectUsers();
     res.status(200).json(response);
 });
@@ -38,7 +39,7 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-dbRouter.get('/proxy', async(_req, res) => {
+dbRouter.get('/proxy', isAuthenticated, async(_req, res) => {
     let response = await database.selectProxies();
     res.status(200).json(response);
 });
@@ -64,7 +65,7 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-dbRouter.get('/roles', async(_req, res) => {
+dbRouter.get('/roles', isAuthenticated, async(_req, res) => {
     let response = await database.selectRole();
     res.status(200).json(response);
 });

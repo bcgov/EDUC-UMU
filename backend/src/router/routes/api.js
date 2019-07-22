@@ -15,7 +15,7 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', isAuthenticated,  dbRouter);
+router.use('/database', dbRouter);
 
 //TODO implement database check (connection, response, etc)
 //router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);
