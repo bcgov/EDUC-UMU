@@ -49,6 +49,7 @@ log.addLevel('debug', 1500, {
 log.debug('Config', utils.prettyStringify(config));
 
 app.use(auth(app));
+require('./router/index')(app);
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
@@ -65,8 +66,6 @@ apiRouter.get('/', (_req, res) => {
 
 // Root level Router
 app.use(/(\/getok)?(\/api)?/, apiRouter);
-
-require('./router')(app);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
