@@ -15,10 +15,10 @@ dbRouter.get('/database', (_req, res) => {
     });
 });
 
-dbRouter.get('/users', asyncMiddleware(async(_req, res) => {
+dbRouter.get('/users', (_req, res) => {
     let response = await database.selectUsers();
     res.status(200).json(response);
-}));
+});
 /*
 dbRouter.put('/users', async(_req, res) => {
     let data = _req.body.data;
@@ -40,10 +40,10 @@ dbRouter.post('/users', async(_req, res) => {
 });
 */
 
-dbRouter.get('/proxy', asyncMiddleware(async(_req, res) => {
+dbRouter.get('/proxy', (_req, res) => {
     let response = await database.selectProxies();
     res.status(200).json(response);
-}));
+});
 /*
 dbRouter.put('/proxy', async(_req, res) => {
     let data = _req.body.data;
@@ -66,10 +66,10 @@ dbRouter.post('/proxy', async(_req, res) => {
 */
 
 
-dbRouter.get('/roles', asyncMiddleware(async(_req, res) => {
+dbRouter.get('/roles', (_req, res) => {
     let response = await database.selectRole();
     res.status(200).json(response);
-}));
+});
 /*
 dbRouter.put('/roles', async(_req, res) => {
     let data = _req.body.data;
@@ -90,4 +90,4 @@ dbRouter.post('/roles', async(_req, res) => {
     }
 });
 */
-export default dbRouter;
+module.exports = dbRouter;
