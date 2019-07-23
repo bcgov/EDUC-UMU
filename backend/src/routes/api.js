@@ -1,7 +1,7 @@
-import { Router } from 'express'
+import express from 'express'
 import passport from 'passport';
 
-const router = new Router();
+const router = express.Router();
 // const auth = require('./auth/auth');
 import dbRouter from './db_routes/db';
 

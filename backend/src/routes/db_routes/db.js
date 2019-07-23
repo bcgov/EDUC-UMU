@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import express from 'express';
 import Database from '../../db/Database';
 import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 
-const dbRouter = new Router();
+const dbRouter = express.Router();
 var database = new Database();
 
 dbRouter.get('/database', (_req, res) => {

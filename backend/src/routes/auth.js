@@ -1,13 +1,13 @@
 import config from '../config/index';
 import passport from 'passport';
-import { Router } from 'express';
+import express from 'express';
 import auth from '../components/auth';
 const {
   body,
   validationResult
 } = require('express-validator');
 
-const router = new Router();
+const router = express.Router();
 
 router.get('/', (_req, res) => {
   res.status(200).json({

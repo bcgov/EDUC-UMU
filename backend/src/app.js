@@ -108,8 +108,6 @@ apiRouter.get('/', (_req, res) => {
 app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
-
-// v1 Router
 apiRouter.use('/main', mainRouter);
 
 app.use((err, _req, res, next) => {
