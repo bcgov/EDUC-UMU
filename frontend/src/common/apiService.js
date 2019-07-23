@@ -20,7 +20,7 @@ function processQueue(error, token = null) {
 
 // Create new non-global axios instance and intercept strategy
 const apiAxios = axios.create();
-apiAxios.interceptors.response.use(config => config, error => {
+const intercept = apiAxios.interceptors.response.use(config => config, error => {
   const originalRequest = error.config;
   if (error.response.status === 401 && !originalRequest._retry) {
     if (isRefreshing) {
