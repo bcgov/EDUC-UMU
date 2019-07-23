@@ -71,5 +71,4 @@ router.use('/token', auth.removeExpired, (req, res) => {
   }
 });
 
-
 module.exports = router;

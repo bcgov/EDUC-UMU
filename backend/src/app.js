@@ -7,19 +7,17 @@ import dotenv from 'dotenv';
 import passport from 'passport';
 dotenv.config();
 
-import passportJWT from 'passport-jwt';
-import passportOIDC from 'passport-openidconnect';
-const ExtractJwt = passportJWT.ExtractJwt;
-const JWTStrategy = passportJWT.Strategy;
-const OidcStrategy = passportOIDC.Strategy;
+const JWTStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const OidcStrategy = require('passport-openidconnect').Strategy;
 
 import utils from './components/utils';
 import authRouter from './routes/auth';
 import mainRouter from './routes/api';
 
-const apiRouter = express.Router();
+console.log(typeof(authRouter));
 
-dotenv.config();
+const apiRouter = express.Router();
 
 const app = express();
 app.use(express.json());
@@ -132,4 +130,4 @@ process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
-  module.exports = app;
+module.exports = app;
