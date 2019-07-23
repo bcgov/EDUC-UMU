@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { get as _get } from '../config/index';
+import config from '../config/index';
 import log from 'npmlog';
 import { encrypt } from 'cryptico-js';
 import { generate } from 'generate-password';
