@@ -43,8 +43,9 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
-const { certificate, algorithm } = async() => {
-  await getJwtCertificate(config.get('oidc:certUrl'));
+const cert = async() => {
+  const {certificate, algorithm} = await getJwtCertificate(config.get('oidc:certUrl'));
+  return certificate;
 };
 
 utils.getOidcDiscovery().then(discovery => {
@@ -75,7 +76,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: certificate,
+    secretOrKey: cert,
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
