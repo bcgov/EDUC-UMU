@@ -1,8 +1,9 @@
 import config from './config/index';
-import session from 'express-session';
-import log from 'npmlog';
-import morgan from 'morgan';
-import dotenv from 'dotenv';
+
+const dotenv = require('dotenv');
+const log = require('npmlog');
+const morgan = require('morgan');
+const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 dotenv.config();
