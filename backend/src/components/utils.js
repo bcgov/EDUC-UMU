@@ -1,8 +1,8 @@
 import axios from 'axios';
 import config from '../config/index';
 import log from 'npmlog';
-import { encrypt } from 'cryptico-js';
-import { generate } from 'generate-password';
+import cryptico from 'cryptico-js';
+import generateor from 'generate-password';
 
 const discovery = null;
 
@@ -26,13 +26,13 @@ const utils = {
 
   // Creates a random password
   generatePassword: key => {
-    const pw = generate({
+    const pw = generator.generate({
       length: 12,
       numbers: true
     });
     const result = {
       password: pw,
-      encyptedPassword: encrypt(pw, key).cipher
+      encyptedPassword: cryptico.encrypt(pw, key).cipher
     };
     return result;
   },
