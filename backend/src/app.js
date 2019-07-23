@@ -1,9 +1,17 @@
 import config from './config/index';
 import express from 'express';
+import session from 'express-session';
 import log from 'npmlog';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import passport from 'passport';
 dotenv.config();
+
+import passportJWT from 'passport-jwt';
+import passportOIDC from 'passport-openidconnect';
+const ExtractJwt = passportJWT.ExtractJwt;
+const JWTStrategy = passportJWT.Strategy;
+const OidcStrategy = passportOIDC.Strategy;
 
 import utils from './components/utils';
 import authRouter from './routes/auth';
