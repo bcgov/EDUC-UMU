@@ -1,8 +1,7 @@
-import config from '../config/index';
-import passport from 'passport';
-import express from 'express';
+const config =require('../config/index');
+const passport = require('passport');
 const express = require('express');
-import auth from '../components/auth';
+const auth = require('../components/auth');
 const {
   body,
   validationResult
