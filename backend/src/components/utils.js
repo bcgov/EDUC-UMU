@@ -44,4 +44,4 @@ const utils = {
   toPascalCase: str => str.toLowerCase().replace(/\b\w/g, t => t.toUpperCase())
 };
 
-export default utils;
+module.exports = utils;
