@@ -38,6 +38,5 @@ export class AuthUser {
         db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
             db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
         });
-    }
-    */
+    }*/
 };

@@ -2,9 +2,8 @@ import axios from 'axios';
 import config from '../config/index';
 import log from 'npmlog';
 import cryptico from 'cryptico-js';
-import generateor from 'generate-password';
 
-const discovery = null;
+let discovery = null;
 
 const utils = {
   // Returns OIDC Discovery values
@@ -21,6 +20,7 @@ const utils = {
         log.error('getOidcDiscovery', `OIDC Discovery failed - ${error.message}`);
       }
     }
+    console.log(discovery);
     return discovery;
   },
 
