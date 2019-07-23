@@ -1,7 +1,7 @@
 import config from '../config/index';
 import passport from 'passport';
 import { Router } from 'express';
-import auth from '../components/auth ';
+import auth from '../components/auth';
 const {
   body,
   validationResult
