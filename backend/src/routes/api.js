@@ -3,7 +3,7 @@ import passport from 'passport';
 
 const router = express.Router();
 // const auth = require('./auth/auth');
-import dbRouter from './db_routes/db';
+const dbRouter = require('./db_routes/db');
 
 // Base v1 Responder
 router.get('/', (_req, res) => {
