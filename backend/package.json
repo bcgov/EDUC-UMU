@@ -36,10 +36,12 @@
       "path": "^0.12.7",
       "@bcgov/common-nodejs-utils" : "0.1.18",
       "jsonwebtoken": "^8.5.1",
-      "passport-oauth2": "^1.5.0",
+      "passport-openidconnect": "^0.0.2",
+      "passport-jwt": "4.0.0",
       "cookie-parser": "^1.4.4",
       "body-parser": "^1.19.0",
-      "cors": "^2.8.5"
+      "cors": "^2.8.5",
+      "querystring": "^0.2.0"
     },
     "devDependencies": {
       "@babel/cli": "^7.1.5",

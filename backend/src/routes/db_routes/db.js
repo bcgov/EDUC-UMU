@@ -1,6 +1,5 @@
 import { Router } from 'express';
-import Database from '../../../db/Database';
-import { isAuthenticated } from '../../../components/auth2';
+import Database from '../../db/Database';
 import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
 
 const dbRouter = new Router();

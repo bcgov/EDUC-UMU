@@ -6,12 +6,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import utils from './components/utils';
-import authRouter from './router/routes/auth';
-import mainRouter from './router/routes/api';
-import auth from './components/authmware.js';
-
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
+import authRouter from './routes/auth';
+import mainRouter from './routes/api';
 
 const apiRouter = express.Router();
 
@@ -23,23 +19,16 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-const options = {
-  inflate: true,
-  limit: '3000kb',
-  type: 'image/*'
-}
-
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
-app.use(bodyParser.raw(options));
-
 app.use(morgan(config.get('server:morganFormat')));
+
+app.use(session({
+  secret: config.get('oidc:clientSecret'),
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
@@ -48,8 +37,50 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
-app.use(auth(app));
-require('./router/index')(app);
+utils.getOidcDiscovery().then(discovery => {
+  // Add Passport OIDC Strategy
+  passport.use('oidc', new OidcStrategy({
+    issuer: discovery.issuer,
+    authorizationURL: discovery.authorization_endpoint,
+    tokenURL: discovery.token_endpoint,
+    userInfoURL: discovery.userinfo_endpoint,
+    clientID: config.get('oidc:clientID'),
+    clientSecret: config.get('oidc:clientSecret'),
+    callbackURL: '/api/auth/callback',
+    scope: discovery.scopes_supported
+  }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
+    if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
+      (typeof (refreshToken) === 'undefined') || (refreshToken === null)) {
+      return done('No access token', null);
+    }
+
+    profile.jwt = accessToken;
+    profile.refreshToken = refreshToken;
+    return done(null, profile);
+  }));
+
+  // Add Passport JWT Strategy
+  passport.use('jwt', new JWTStrategy({
+    algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
+    audience: config.get('oidc:clientID'),
+    issuer: discovery.issuer,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: config.get('oidc:publicKey')
+  }, (jwtPayload, done) => {
+    if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
+      return done('No JWT token', null);
+    }
+
+    done(null, {
+      email: jwtPayload.email,
+      familyName: jwtPayload.family_name,
+      givenName: jwtPayload.given_name,
+      jwt: jwtPayload,
+      name: jwtPayload.name,
+      preferredUsername: jwtPayload.preferred_username,
+    });
+  }));
+});
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
@@ -64,6 +95,11 @@ apiRouter.get('/', (_req, res) => {
   });
 });
 
+apiRouter.use('/auth', authRouter);
+
+// v1 Router
+apiRouter.use('/main', mainRouter);
+
 // Root level Router
 app.use(/(\/getok)?(\/api)?/, apiRouter);
 
@@ -76,31 +112,17 @@ app.use((err, _req, res, next) => {
   next();
 });
 
+// Handle 404
+app.use((_req, res) => {
+  res.status(404).json({
+    status: 404,
+    message: 'Page Not Found'
+  });
+});
+
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
 //The following variable can be used to test connections to the database (probably shouldn't test queries though)
-/*
-var dbcon =  oracledb.getConnection({
-    user: process.env.ORACLE_USER,
-    password : process.env.ORACLE_PASSWORD,
-    connectString : process.env.ORACLE_CONNECT
-    },
-    async function(err, connection) {
-      if(err) {
-        console.error(err.message);
-        return;
-      }
-      console.log("Connection successful!");
-      connection.close(
-        function(err) {
-          if (err) {
-            console.error(err.message);
-            return;
-          }
-      });
-
-  });
-*/
   module.exports = app;
