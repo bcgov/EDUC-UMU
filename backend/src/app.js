@@ -89,6 +89,8 @@ utils.getOidcDiscovery().then(discovery => {
     });
   }));
 });
+passport.serializeUser((user, next) => next(null, user));
+passport.deserializeUser((obj, next) => next(null, obj));
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
@@ -103,13 +105,12 @@ apiRouter.get('/', (_req, res) => {
   });
 });
 
+app.use(/(\/getok)?(\/api)?/, apiRouter);
+
 apiRouter.use('/auth', authRouter);
 
 // v1 Router
 apiRouter.use('/main', mainRouter);
-
-// Root level Router
-app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 app.use((err, _req, res, next) => {
   log.error(err.stack);
