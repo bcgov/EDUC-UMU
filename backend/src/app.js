@@ -43,7 +43,9 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
-const { certificate, algorithm } = await getJwtCertificate(config.get('oidc:certUrl'));
+const { certificate, algorithm } = async() => {
+  await getJwtCertificate(config.get('oidc:certUrl'));
+};
 
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
