@@ -13,7 +13,7 @@ const utils = {
       return discovery;
     } else {
       try {
-        const response = await axios(config.get('oidc:discovery'));
+        const response = await axios.get(config.get('oidc:discovery'));
 
         log.verbose('getOidcDiscovery', utils.prettyStringify(response.data));
         discovery = response.data;
