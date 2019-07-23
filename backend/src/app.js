@@ -45,6 +45,7 @@ log.debug('Config', utils.prettyStringify(config));
 
 const cert = async() => {
   const {certificate, algorithm} = await getJwtCertificate(config.get('oidc:certUrl'));
+  console.log(certificate);
   return certificate;
 };
 

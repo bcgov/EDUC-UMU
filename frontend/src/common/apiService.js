@@ -68,6 +68,9 @@ apiAxios.interceptors.response.use(config => config, error => {
 });
 
 export default {
+  apiAxios: apiAxios,
+  intercept: intercept,
+
   setAuthHeader(token) {
     if (token) {
       apiAxios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
