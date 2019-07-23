@@ -1,6 +1,7 @@
 import config from '../config/index';
 import passport from 'passport';
 import express from 'express';
+const express = require('express');
 import auth from '../components/auth';
 const {
   body,

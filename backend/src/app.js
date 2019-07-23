@@ -1,5 +1,4 @@
-import config from './config/index';
-
+const config = require('./config/index');
 const dotenv = require('dotenv');
 const log = require('npmlog');
 const morgan = require('morgan');
