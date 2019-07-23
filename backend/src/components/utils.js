@@ -8,9 +8,7 @@ let discovery = null;
 const utils = {
   // Returns OIDC Discovery values
   async getOidcDiscovery() {
-    if (discovery) {
-      return discovery;
-    } else {
+    if (!discovery) {
       try {
         const response = await axios.get(config.get('oidc:discovery'));
 
