@@ -18,25 +18,23 @@ const utils = {
         log.error('getOidcDiscovery', `OIDC Discovery failed - ${error.message}`);
       }
     }
-    console.log(discovery);
     return discovery;
   },
 
   // Creates a random password
-  generatePassword: key => {
+  generatePassword: (key, len = 12) => {
     const pw = generator.generate({
-      length: 12,
+      length: len,
       numbers: true
     });
-    const result = {
+    return {
       password: pw,
       encyptedPassword: cryptico.encrypt(pw, key).cipher
     };
-    return result;
   },
 
   // Returns a pretty JSON representation of an object
-  prettyStringify: obj => JSON.stringify(obj, null, 2),
+  prettyStringify: (obj, indent = 2) => JSON.stringify(obj, null, indent),
 
   // Returns a string in Pascal Case
   toPascalCase: str => str.toLowerCase().replace(/\b\w/g, t => t.toUpperCase())
