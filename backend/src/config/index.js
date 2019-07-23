@@ -25,4 +25,4 @@ nconf.defaults({
 
 });
 
-module.exports = nconf
+module.exports = nconf;
