@@ -1,10 +1,10 @@
 import config from './config/index';
-import express from 'express';
 import session from 'express-session';
 import log from 'npmlog';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import passport from 'passport';
+const express = require('express');
+const passport = require('passport');
 dotenv.config();
 
 const JWTStrategy = require('passport-jwt').Strategy;
