@@ -6,6 +6,7 @@ const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
+import { getJwtCertificate } from '@bcgov/common-nodejs-utils';
 dotenv.config();
 
 const JWTStrategy = require('passport-jwt').Strategy;
@@ -42,6 +43,8 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
+const { certificate, algorithm } = await getJwtCertificate(config.get('oidc:certUrl'));
+
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({
@@ -70,7 +73,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey')
+    secretOrKey: certificate,
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
