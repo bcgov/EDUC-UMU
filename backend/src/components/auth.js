@@ -5,7 +5,7 @@ import log from 'npmlog';
 import qs from 'querystring';
 import utils from './utils';
 
-export const auth = {
+const auth = {
   // Check if JWT Access Token has expired
   isTokenExpired(token) {
     const now = Date.now().valueOf() / 1000;
@@ -95,3 +95,5 @@ export const auth = {
     return;
   }
 };
+
+module.exports = auth;
