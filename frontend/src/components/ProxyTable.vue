@@ -19,9 +19,14 @@
       :search="search"
       >
 
-      <template v-slot:no-data>
+      <template v-if="isLoading" v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+        </div>
+      </template>
+      <template v-else v-slot:no-data>
+        <div class='text-xs-center'>
+          <h2>Unable to retrieve data</h2>
         </div>
       </template>
 
@@ -65,6 +70,7 @@
 
     export default {
         data: () => ({
+            isLoading: true,
             valid: true,
             search: '',
             rules: [
@@ -87,7 +93,7 @@
             items: []
         }),
         mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data});
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data; this.isLoading=false});
         },
         methods: {
             validate () {

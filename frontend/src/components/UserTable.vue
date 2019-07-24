@@ -19,9 +19,14 @@
       :items="items"
       :search="search"
     >
-      <template v-slot:no-data>
+      <template v-if="isLoading" v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
+        </div>
+      </template>
+      <template v-else v-slot:no-data>
+        <div class='text-xs-center'>
+          <h2>Unable to retrieve data</h2>
         </div>
       </template>
       <!--
@@ -49,6 +54,9 @@
         <td>{{ props.item[6] }}</td>
         <td>{{ props.item[8] }}</td>
         <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
+      </template>
+      <template
+        slot="items">
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -121,7 +129,10 @@
           }
         },
         mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {this.items = response.data});
+          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
+                                                                                                                      this.items = response.data;
+                                                                                                                      this.isLoading = false;
+                                                                                                                    });
         },
         methods: {
             validate () {
