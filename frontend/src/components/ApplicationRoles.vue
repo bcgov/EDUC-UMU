@@ -34,6 +34,45 @@
       <template slot="headerCell" slot-scope="props">
 
       </template>
+
+      <template 
+        slot='footer'>
+          <td colspan="9">
+            <v-layout row justify-center>
+
+
+              <v-dialog v-model="dialog_c" persistent max-width="600px">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="#003366" dark v-on="on">Add System Role</v-btn>
+                </template>
+                <v-form>
+                <v-card>
+                  <v-card-title>
+                    <span><h2>Add System Role</h2></span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field label="System" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Application Role" required></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="#003366" dark flat @click="dialog_c = false">Close</v-btn>
+                    <v-btn color="#003366" dark flat @click="dialog_c = false">Add</v-btn>
+                  </v-card-actions>
+                </v-card>
+                </v-form>
+              </v-dialog>
+            </v-layout>
+          </td>
+      </template>
+
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -72,6 +111,7 @@
 
     export default{
         data: () => ({
+            dialog_c: false,
             isLoading: true,
             valid: true,
             systems: ['EDW', 'SIS'],

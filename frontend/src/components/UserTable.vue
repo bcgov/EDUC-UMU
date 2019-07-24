@@ -48,10 +48,10 @@
                 <v-form>
                 <v-card>
                   <v-card-title>
-                    <span><h1>Add Auth User</h1></span>
+                    <span><h2>Add Auth User</h2></span>
                   </v-card-title>
                   <v-card-text>
-                    <v-container>
+                    <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
                           <v-text-field label="System" required></v-text-field>
