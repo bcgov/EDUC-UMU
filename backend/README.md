@@ -31,6 +31,6 @@ The main functionality of the backend is to provide easy to consume API endpoint
 ## Authentication
 The authentication process for this application is done in two stages: authentication and authorization. The authentication step is triggered when a user attempts to login to the appliation. Authentication is done using OpenID Connect, which is a popular authentication protocol. When users login using IDIR they are issued a json-web-token (jwt) which is used later in the authorization step.
 
-For authorization, the UMU leverages the previously mentioned jwt. When a user tries to access a protected API endpoint, their jwt will be sent along with a SSO realm public key to an authorization endpoint which determines whether the user should be able to access the requested resource.
+For authorization, the UMU leverages the previously mentioned jwt. When a user tries to access a protected API endpoint, their jwt will be checked against the SSO realm to determine whether they have permission to view the requested resource.
 
 For more information on setting up your own instance of Red Hat SSO, [click here](https://developer.gov.bc.ca/Requesting-a-SSO-Realm-to-be-created)
