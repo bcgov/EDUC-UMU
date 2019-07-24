@@ -38,30 +38,37 @@
       <template 
         slot='footer'>
           <td colspan="9">
-            <v-layout justify-center>
+            <v-layout row justify-center>
 
 
               <v-dialog v-model="dialog_a" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add Auth User</v-btn>
                 </template>
+                <v-form>
                 <v-card>
                   <v-card-title>
-                    <span>Add Auth User</span>
+                    <span><h1>Add Auth User</h1></span>
                   </v-card-title>
                   <v-card-text>
                     <v-container>
                       <v-layout wrap>
-                        <v-flex xs12 sm6 md4>
+                        <v-flex xs12 sm6>
                           <v-text-field label="System" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm6>
                           <v-text-field label="Username" required></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md4>
                           <v-text-field label="Name" required></v-text-field>
-                          <v-text-field label="Value"></v-text-field>
-                          <v-text-field label="Auth Source" required></v-text-field>
                         </v-flex>
                         <v-flex xs12 sm6 md4>
+                          <v-text-field label="Value"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm6 md4>
+                          <v-text-field label="Auth Source" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
                           <v-text-field label="User GUID" required></v-text-field>
                         </v-flex>
                       </v-layout>
@@ -72,6 +79,7 @@
                     <v-btn color="#003366" dark flat @click="dialog_a = false">Add</v-btn>
                   </v-card-actions>
                 </v-card>
+                </v-form>
               </v-dialog>
 
 
