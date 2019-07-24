@@ -79,42 +79,42 @@
                 {
                     sortable: true,
                     text: 'System',
-                    value: items.props.item[0]
+                    value: 'system'
                 },
                 {
                     sortable: true,
                     text: 'Username',
-                    value: items.props.item[1]
+                    value: 'username'
                 },
                 {
                   sortable: true,
                   text: 'Name',
-                  value: items.props.item[2]
+                  value: 'name'
                 },
                 {
                     sortable: true,
                     text: 'Value',
-                    value: items.props.item[3]
+                    value: 'value'
                 },
                 {
                   sortable: true,
                   text: 'Auth source',
-                  value: items.props.item[4]
+                  value: 'authSource'
                 },
                 {
                     sortable: true,
                     text: 'User GUID',
-                    value: items.props.item[5]
+                    value: 'guid'
                 },
                 {
                   sortable: true,
                   text: 'Created By',
-                  value: items.props.item[6]
+                  value: 'create'
                 },
                 {
                   sortable: true,
                   text: 'Updated By',
-                  value: items.props.item[8]
+                  value: 'update'
                 }
             ],
             items: []
