@@ -5,6 +5,13 @@ const router = express.Router();
 // const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
 
+function isAuthenticated(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
+}
+
 // Base v1 Responder
 router.get('/', (_req, res) => {
   res.status(200).json({
@@ -15,9 +22,7 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', passport.authenticate('jwt', {
-  session: false
-}), dbRouter);
+router.use('/database', isAuthenticated, dbRouter);
 
 //TODO implement database check (connection, response, etc)
 //router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);

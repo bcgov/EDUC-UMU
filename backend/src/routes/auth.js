@@ -43,6 +43,7 @@ router.get('/login', passport.authenticate('oidc', {
 
 router.get('/logout', (req, res) => {
   req.logout();
+  req.session.destroy();
   res.redirect(config.get('server:frontend'));
 });
 

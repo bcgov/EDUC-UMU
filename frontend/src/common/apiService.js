@@ -27,7 +27,7 @@ const intercept = apiAxios.interceptors.response.use(config => config, error => 
       return new Promise((resolve, reject) => {
         try {
           const token = failedQueue.push({ resolve, reject });
-          originalRequest.headers['Authorization'] = `Bearer ${token}`;
+          originalRequest.headers['Authorization'] = `bearer ${token}`;
           return axios(originalRequest);
         } catch (e) {
           return e;
@@ -43,8 +43,8 @@ const intercept = apiAxios.interceptors.response.use(config => config, error => 
         .then(response => {
           if (response.jwt) {
             localStorage.setItem('jwtToken', response.jwt);
-            apiAxios.defaults.headers.common['Authorization'] = `Bearer ${response.jwt}`;
-            originalRequest.headers['Authorization'] = `Bearer ${response.jwt}`;
+            apiAxios.defaults.headers.common['Authorization'] = `bearer ${response.jwt}`;
+            originalRequest.headers['Authorization'] = `bearer ${response.jwt}`;
           }
           if (response.refreshToken) {
             localStorage.setItem('refreshToken', response.refreshToken);
@@ -72,7 +72,7 @@ export default {
 
   setAuthHeader(token) {
     if (token) {
-      apiAxios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      apiAxios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     } else {
       delete apiAxios.defaults.headers.common['Authorization'];
     }
