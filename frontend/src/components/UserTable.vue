@@ -35,6 +35,49 @@
       <template slot="headerCell" slot-scope="props">
 
       </template>
+      <template 
+        slot='footer'>
+          <td colspan="9">
+            <v-layout justify-center>
+
+
+              <v-dialog v-model="dialog_a" persistent max-width="600px">
+                <template>
+                  <v-btn color="#003366" dark v-on="on">Add Auth User</v-btn>
+                </template>
+                <v-card>
+                  <v-card-title>
+                    <span>Add Auth User</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
+                      <v-layout wrap>
+                        <v-flex xs12 sm6 md4>
+                          <v-text-field label="System" required></v-text-field>
+                          <v-text-field label="Username" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm6 md4>
+                          <v-text-field label="Name" required></v-text-field>
+                          <v-text-field label="Value"></v-text-field>
+                          <v-text-field label="Auth Source" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm6 md4>
+                          <v-text-field label="User GUID" required></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="#003366" dark flat @click="dialog_a = false">Close</v-btn>
+                    <v-btn color="#003366" dark flat @click="dialog_a = false">Add</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+
+            </v-layout>
+          </td>
+      </template>
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -76,6 +119,7 @@
     export default{
         data () {
           return {
+            dialog_a: false,
             isLoading: true,
             valid: true,
             systems: ['EDW', 'SIS'],
