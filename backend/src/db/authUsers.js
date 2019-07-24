@@ -21,7 +21,7 @@ export class AuthUser {
             connectString : process.env.ORACLE_CONNECT
         });
         const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-        console.log(result.metadata);
+        let result = await connection.execute(query);
         if(connection){
             try{
                 await connection.close();
