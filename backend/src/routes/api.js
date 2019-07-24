@@ -1,5 +1,4 @@
-import express from 'express'
-import passport from 'passport';
+const express = require('express');
 
 const router = express.Router();
 // const auth = require('./auth/auth');
@@ -22,7 +21,7 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', dbRouter);
+router.use('/database', isAuthenticated, dbRouter);
 
 //TODO implement database check (connection, response, etc)
 //router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);

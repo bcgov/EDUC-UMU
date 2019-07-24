@@ -96,8 +96,12 @@ utils.getOidcDiscovery().then(discovery => {
   }));
   */
 });
-passport.serializeUser((user, next) => next(null, user));
-passport.deserializeUser((obj, next) => next(null, obj));
+passport.serializeUser((user, next) => {
+  next(null, user);
+});
+passport.deserializeUser((obj, next) => {
+  next(null, obj);
+});
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
