@@ -9,8 +9,8 @@ function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/login');
-}
+  res.redirect('/auth/login');
+};
 
 // Base v1 Responder
 router.get('/', (_req, res) => {
@@ -22,7 +22,7 @@ router.get('/', (_req, res) => {
   });
 });
 // Database
-router.use('/database', isAuthenticated, dbRouter);
+router.use('/database', dbRouter);
 
 //TODO implement database check (connection, response, etc)
 //router.use('/db_status', passport.authenticate('jwt', {session: false}), dbStatus);

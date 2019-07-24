@@ -73,7 +73,7 @@ utils.getOidcDiscovery().then(discovery => {
     profile.refreshToken = refreshToken;
     return done(null, profile);
   }));
-
+/*
   // Add Passport JWT Strategy
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
@@ -94,6 +94,7 @@ utils.getOidcDiscovery().then(discovery => {
       preferredUsername: jwtPayload.preferred_username
     });
   }));
+  */
 });
 passport.serializeUser((user, next) => next(null, user));
 passport.deserializeUser((obj, next) => next(null, obj));
