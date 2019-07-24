@@ -74,7 +74,6 @@ utils.getOidcDiscovery().then(discovery => {
   // Add Passport JWT Strategy
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
-    audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.get('oidc:publicKey'),
