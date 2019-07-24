@@ -42,7 +42,7 @@
 
 
               <v-dialog v-model="dialog_a" persistent max-width="600px">
-                <template>
+                <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add Auth User</v-btn>
                 </template>
                 <v-card>
