@@ -78,35 +78,43 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'System'
+                    text: 'System',
+                    value: item[0]
                 },
                 {
                     sortable: true,
-                    text: 'Username'
+                    text: 'Username',
+                    value: item[1]
                 },
                 {
                   sortable: true,
-                  text: 'Name'
+                  text: 'Name',
+                  value: item[2]
                 },
                 {
                     sortable: true,
-                    text: 'Value'
+                    text: 'Value',
+                    value: item[3]
                 },
                 {
                   sortable: true,
-                  text: 'Auth source'
+                  text: 'Auth source',
+                  value: item[4]
                 },
                 {
                     sortable: true,
-                    text: 'User GUID'
+                    text: 'User GUID',
+                    value: item[5]
                 },
                 {
                   sortable: true,
-                  text: 'Created By'
+                  text: 'Created By',
+                  value: item[6]
                 },
                 {
                   sortable: true,
-                  text: 'Updated By'
+                  text: 'Updated By',
+                  value: item[8]
                 }
             ],
             items: []
