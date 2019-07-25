@@ -6,3 +6,4 @@ export function isValidJson(json) {
     }
     return true;
   }
+  
