@@ -112,7 +112,7 @@
   }
   .no-shadow{
     box-shadow: none !important;
-    min-width: 0;
+    min-width: 0 !important;
   }
   .button-container{
     min-width: 190px;
