@@ -88,8 +88,40 @@
           </td>
       </template>
 
-      <!-- Update form dialog -->
-      <v-dialog v-model="dialog_uForm" persistent max-width="600px">
+      <template
+        slot="headerCell"
+        slot-scope="{ header }">
+        <span
+          class="subheading font-weight-light text-success text--darken-3"
+          v-text="header.text"/>
+      </template>
+      <template
+        slot="items"
+        slot-scope="props">
+        <td>{{ props.item[0] }}</td>
+        <td>{{ props.item[1] }}</td>
+        <td>{{ props.item[2] }}</td>
+        <td>{{ props.item[3] }}</td>
+        <td>{{ props.item[4] }}</td>
+        <td>{{ props.item[5] }}</td>
+        <td>{{ props.item[6] }}</td>
+        <td>{{ props.item[8] }}</td>
+        <td align="center"><v-btn class="no-shadow" @click.stop="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+      </template>
+      <template
+        slot="items">
+      </template>
+      <template v-slot:no-results>
+        <v-alert :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </template>
+
+
+
+
+    </v-data-table>
+    <v-dialog v-model="dialog_uForm" persistent max-width="600px">
                 <v-form>
                   <v-card>
                     <v-card-title>
@@ -121,45 +153,11 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark flat @click="dialog_uForm = false">Close</v-btn>
-                      <v-btn color="#003366" dark flat @click="updateUser">Add</v-btn>
+                      <v-btn color="#003366" dark flat @click="dialog_uForm = false">Update</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
-              </v-dialog>
-
-      <template
-        slot="headerCell"
-        slot-scope="{ header }">
-        <span
-          class="subheading font-weight-light text-success text--darken-3"
-          v-text="header.text"/>
-      </template>
-      <template
-        slot="items"
-        slot-scope="props">
-        <td>{{ props.item[0] }}</td>
-        <td>{{ props.item[1] }}</td>
-        <td>{{ props.item[2] }}</td>
-        <td>{{ props.item[3] }}</td>
-        <td>{{ props.item[4] }}</td>
-        <td>{{ props.item[5] }}</td>
-        <td>{{ props.item[6] }}</td>
-        <td>{{ props.item[8] }}</td>
-        <td align="center"><v-btn class="no-shadow" @click="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
-      </template>
-      <template
-        slot="items">
-      </template>
-      <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-      </template>
-
-
-
-
-    </v-data-table>
+      </v-dialog>
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
     </div>-->
@@ -237,6 +235,7 @@
                 }
             },
             getItems () {
+              this.items = [];
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
@@ -246,8 +245,8 @@
               userForm.submit().then(dialog_a = false);
             },*/
             updateUserForm(system, username, name, value, auth, guid) {
-              this.dialog_uForm = true;
               this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
+              this.dialog_uForm = true;
             }
         },
         watch: {
