@@ -101,7 +101,10 @@
         <td>{{ props.item[5] }}</td>
         <td>{{ props.item[6] }}</td>
         <td>{{ props.item[8] }}</td>
-        <td align="center"><v-btn class="no-shadow" @click.stop="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        <td align="center">
+          <v-btn class="no-shadow" @click.stop="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+          <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#F44336"></i></v-btn>
+        </td>
       </template>
       <template
         slot="items">
@@ -112,7 +115,7 @@
         </v-alert>
       </template>
     </v-data-table>
-
+    
     <!-- User auth upadate dialog box -->
     <v-dialog v-model="dialog_uForm" persistent max-width="700px">
                 <v-form>

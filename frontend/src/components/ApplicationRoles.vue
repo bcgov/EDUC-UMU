@@ -20,14 +20,9 @@
       :search="search"
       >
 
-      <template v-if="isLoading" v-slot:no-data>
+      <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
-      <template v-else v-slot:no-data>
-        <div class='text-xs-center'>
-          <h2>Unable to retrieve data</h2>
         </div>
       </template>
 
@@ -88,7 +83,10 @@
         <td>{{ props.item[1] }}</td>
         <td>{{ props.item[2] }}</td>
         <td>{{ props.item[4] }}</td>
-        <td align="center"><v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        <td align="center">
+          <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+          <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#F44336"></i></v-btn>
+        </td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -178,6 +176,7 @@
                 }
             },
             getRoles () {
+              this.items = [];
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data; this.isLoading = false;});
             },
             updateRoleForm (system, role) {
