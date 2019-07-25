@@ -8,7 +8,7 @@
             <v-flex xs12>
               <v-tabs
                 v-model="active"
-                color="#003366"
+                background-color="#003366"
                 dark
                 slider-color="#fcba19"
                 class="top-round">
