@@ -88,7 +88,7 @@
         <td>{{ props.item[1] }}</td>
         <td>{{ props.item[2] }}</td>
         <td>{{ props.item[4] }}</td>
-        <td align="center"><v-btn class="no-shadow" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        <td align="center"><v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -101,6 +101,32 @@
         </v-alert>
       </template>
     </v-data-table>
+
+    <v-dialog v-model="dialog_rForm" persistent max-width="700px">
+              <v-form>
+                <v-card>
+                  <v-card-title>
+                    <span><h2>Update System Role</h2></span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field label="System" :value="roleInfo.system" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Application Role" :value="roleInfo.role" required></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="#003366" dark flat @click="dialog_rForm = false">Close</v-btn>
+                    <v-btn color="#003366" dark flat @click="dialog_rForm = false">Update</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-form>
+      </v-dialog>
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
     </div>-->
@@ -113,6 +139,7 @@
     export default{
         data: () => ({
             dialog_c: false,
+            dialog_rForm: false,
             isLoading: true,
             valid: true,
             systems: ['EDW', 'SIS'],
@@ -138,7 +165,8 @@
                     text: 'Updated By'
                 }
             ],
-            items: []
+            items: [],
+            roleInfo: {}
         }),
         mounted: function() {
           this.getRoles();
@@ -151,6 +179,10 @@
             },
             getRoles () {
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data; this.isLoading = false;});
+            },
+            updateRoleForm (system, role) {
+              this.roleInfo = {"system": system, "role": role};
+              this.dialog_rForm = true;
             }
         }
     };

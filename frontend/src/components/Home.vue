@@ -111,6 +111,6 @@
     max-width: 1500px;
   }
   .no-shadow{
-    box-shadow: none;
+    box-shadow: none !important;
   }
 </style>

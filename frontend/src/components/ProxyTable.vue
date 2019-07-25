@@ -41,7 +41,7 @@
 
               <v-btn @click="getProxy"  color="#003366" dark>Reload Table</v-btn>
 
-              <v-dialog v-model="dialog_b" persistent max-width="600px">
+              <v-dialog v-model="dialog_b" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add User Proxy</v-btn>
                 </template>
@@ -91,7 +91,7 @@
         <td>{{ props.item[0] }}</td>
         <td>{{ props.item[1] }}</td>
         <td>{{ props.item[2] }}</td>
-        <td align="center"><v-btn class="no-shadow" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        <td align="center"><v-btn class="no-shadow" @click.stop="updateProxyForm(props.item[0], props.item[1], props.item[2])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -107,6 +107,34 @@
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
     </div>-->
+    <v-dialog v-model="dialog_pForm" persistent max-width="700px">
+              <v-form>
+                <v-card>
+                  <v-card-title>
+                    <span><h2>Update User Proxy</h2></span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field label="Proxy ID" :value="proxyInfo.proxy" required></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Target ID" required :value="proxyInfo.target"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="#003366" dark flat @click="dialog_pForm = false">Close</v-btn>
+                    <v-btn color="#003366" dark flat @click="dialog_pForm = false">Update</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-form>
+      </v-dialog>
   </v-card>
 </template>
 
@@ -115,6 +143,7 @@
 
     export default {
         data: () => ({
+            dialog_pForm: false,
             dialog_b: false,
             isLoading: true,
             valid: true,
@@ -136,7 +165,8 @@
                   text: 'Proxy Level'
                 }
             ],
-            items: []
+            items: [],
+            proxyInfo: {}
         }),
         mounted: function() {
           this.getProxy();
@@ -148,7 +178,12 @@
                 }
             },
             getProxy () {
+              this.items = [];
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data; this.isLoading=false;});
+            },
+            updateProxyForm (proxy, target, level) {
+              this.proxyInfo = {"proxy": proxy, "target": target, "level": level};
+              this.dialog_pForm = true;
             }
         }
     };

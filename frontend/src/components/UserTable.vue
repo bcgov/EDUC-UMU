@@ -19,14 +19,9 @@
       :items="items"
       :search="search"
     >
-      <template v-if="isLoading" v-slot:no-data>
+      <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
-      <template v-else v-slot:no-data>
-        <div class='text-xs-center'>
-          <h2>Unable to retrieve data</h2>
         </div>
       </template>
       <!--
@@ -43,7 +38,7 @@
               <v-btn @click="getItems" color="#003366" dark>Reload Table</v-btn>
 
             <!-- Add user form -->
-              <v-dialog v-model="dialog_a" persistent max-width="600px">
+              <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" @click="clearUser" dark v-on="on">Add Auth User</v-btn>
                 </template>
@@ -78,7 +73,7 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark flat @click="dialog_a = false">Close</v-btn>
-                      <v-btn color="#003366" dark flat @click="submit">Add</v-btn>
+                      <v-btn color="#003366" dark flat @click="dialog_a = false">Add</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -116,12 +111,10 @@
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
-
-
-
-
     </v-data-table>
-    <v-dialog v-model="dialog_uForm" persistent max-width="600px">
+
+    <!-- User auth upadate dialog box -->
+    <v-dialog v-model="dialog_uForm" persistent max-width="700px">
                 <v-form>
                   <v-card>
                     <v-card-title>
