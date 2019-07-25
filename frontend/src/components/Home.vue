@@ -112,5 +112,9 @@
   }
   .no-shadow{
     box-shadow: none !important;
+    min-width: 0;
+  }
+  .button-container{
+    min-width: 190px;
   }
 </style>
