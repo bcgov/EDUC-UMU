@@ -223,7 +223,7 @@
                 }
             ],
             items: [],
-            userInfo: []
+            userInfo: {}
           }
         },
         mounted(){
@@ -246,7 +246,7 @@
             },*/
             updateUserForm(system, username, name, value, auth, guid) {
               dialog_uForm = true;
-              this.userInfo = ["system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid]
+              this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
             }
         },
         watch: {
