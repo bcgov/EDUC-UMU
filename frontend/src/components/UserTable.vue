@@ -173,6 +173,7 @@
         data () {
           return {
             dialog_a: false,
+            dialog_uForm: false,
             isLoading: true,
             valid: true,
             systems: ['EDW', 'SIS'],
