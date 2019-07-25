@@ -246,7 +246,7 @@
               userForm.submit().then(dialog_a = false);
             },*/
             updateUserForm(system, username, name, value, auth, guid) {
-              dialog_uForm = true;
+              this.dialog_uForm = true;
               this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
             }
         },
