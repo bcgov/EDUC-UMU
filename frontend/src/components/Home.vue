@@ -110,4 +110,7 @@
   .container{
     max-width: 1500px;
   }
+  .no-shadow{
+    box-shadow: none;
+  }
 </style>

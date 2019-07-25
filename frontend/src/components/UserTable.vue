@@ -40,53 +40,93 @@
           <td colspan="9">
             <v-layout row justify-center>
 
-              <v-btn @click="getItems" dark>Reload Table</v-btn>
+              <v-btn @click="getItems" color="#003366" dark>Reload Table</v-btn>
 
+            <!-- Add user form -->
               <v-dialog v-model="dialog_a" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
-                  <v-btn color="#003366" dark v-on="on">Add Auth User</v-btn>
+                  <v-btn color="#003366" @click="clearUser" dark v-on="on">Add Auth User</v-btn>
                 </template>
                 <v-form>
-                <v-card>
-                  <v-card-title>
-                    <span><h2>Add Auth User</h2></span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12 sm6>
-                          <v-text-field label="System" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12 sm6>
-                          <v-text-field label="Username" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12 sm6 md4>
-                          <v-text-field label="Name" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12 sm6 md4>
-                          <v-text-field label="Value"></v-text-field>
-                        </v-flex>
-                        <v-flex xs12 sm6 md4>
-                          <v-text-field label="Auth Source" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field label="User GUID" required></v-text-field>
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn color="#003366" dark flat @click="dialog_a = false">Close</v-btn>
-                    <v-btn color="#003366" dark flat @click="dialog_a = false">Add</v-btn>
-                  </v-card-actions>
-                </v-card>
+                  <v-card>
+                    <v-card-title>
+                      <span><h2>Add Auth User</h2></span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container grid-list-md>
+                        <v-layout wrap>
+                          <v-flex xs12 sm6>
+                            <v-text-field label="System" name="system" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6>
+                            <v-text-field label="Username" name="username" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Name" name="name" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Value" name="value"></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Auth Source" name="auth" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12>
+                            <v-text-field label="User GUID" name="guid" required></v-text-field>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-btn color="#003366" dark flat @click="dialog_a = false">Close</v-btn>
+                      <v-btn color="#003366" dark flat @click="submit">Add</v-btn>
+                    </v-card-actions>
+                  </v-card>
                 </v-form>
               </v-dialog>
-
 
             </v-layout>
           </td>
       </template>
+
+      <!-- Update form dialog -->
+      <v-dialog v-model="dialog_uForm" persistent max-width="600px">
+                <v-form>
+                  <v-card>
+                    <v-card-title>
+                      <span><h2>Update Auth User</h2></span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container grid-list-md>
+                        <v-layout wrap>
+                          <v-flex xs12 sm6>
+                            <v-text-field label="System" name="system" :value="userInfo.system" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6>
+                            <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Name" name="name" :value="userInfo.name" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Value" name="value" :value="userInfo.value"></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 md4>
+                            <v-text-field label="Auth Source" name="auth" :value="userInfo.auth" required></v-text-field>
+                          </v-flex>
+                          <v-flex xs12>
+                            <v-text-field label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-btn color="#003366" dark flat @click="dialog_uForm = false">Close</v-btn>
+                      <v-btn color="#003366" dark flat @click="updateUser">Add</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-form>
+              </v-dialog>
+
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -105,7 +145,7 @@
         <td>{{ props.item[5] }}</td>
         <td>{{ props.item[6] }}</td>
         <td>{{ props.item[8] }}</td>
-        <td align="center"><v-btn color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
+        <td align="center"><v-btn class="no-shadow" @click="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template
         slot="items">
@@ -115,6 +155,10 @@
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
+
+
+
+
     </v-data-table>
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
@@ -196,10 +240,14 @@
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
                                                                                                                     });
-            }/*,
-            getUser (id) {
-              axios.
-            }*/
+            },/*
+            submitUser () {
+              userForm.submit().then(dialog_a = false);
+            },*/
+            updateUserForm(system, username, name, value, auth, guid) {
+              dialog_uForm = true;
+              this.userInfo = ["system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid]
+            }
         },
         watch: {
           items() {

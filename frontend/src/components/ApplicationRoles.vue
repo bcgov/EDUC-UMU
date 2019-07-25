@@ -40,7 +40,7 @@
           <td colspan="9">
             <v-layout row justify-center>
 
-              <v-btn @click="getRoles" dark>Reload Table</v-btn>
+              <v-btn @click="getRoles" color="#003366" dark>Reload Table</v-btn>
 
               <v-dialog v-model="dialog_c" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
@@ -88,7 +88,7 @@
         <td>{{ props.item[1] }}</td>
         <td>{{ props.item[2] }}</td>
         <td>{{ props.item[4] }}</td>
-        <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
+        <td align="center"><v-btn class="no-shadow" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">

@@ -39,7 +39,7 @@
           <td colspan="9">
             <v-layout row justify-center>
 
-              <v-btn @click="getProxy" dark>Reload Table</v-btn>
+              <v-btn @click="getProxy"  color="#003366" dark>Reload Table</v-btn>
 
               <v-dialog v-model="dialog_b" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
@@ -91,7 +91,7 @@
         <td>{{ props.item[0] }}</td>
         <td>{{ props.item[1] }}</td>
         <td>{{ props.item[2] }}</td>
-        <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
+        <td align="center"><v-btn class="no-shadow" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
