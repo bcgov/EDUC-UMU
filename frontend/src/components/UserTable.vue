@@ -72,8 +72,8 @@
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn color="#003366" dark flat @click="dialog_a = false">Close</v-btn>
-                      <v-btn color="#003366" dark flat @click="dialog_a = false">Add</v-btn>
+                      <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
+                      <v-btn color="#003366" dark text @click="dialog_a = false">Add</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -148,8 +148,8 @@
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn color="#003366" dark flat @click="dialog_uForm = false">Close</v-btn>
-                      <v-btn color="#003366" dark flat @click="dialog_uForm = false">Update</v-btn>
+                      <v-btn color="#003366" dark text @click="dialog_uForm = false">Close</v-btn>
+                      <v-btn color="#003366" dark text @click="dialog_uForm = false">Update</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
