@@ -39,6 +39,7 @@
           <td colspan="9">
             <v-layout row justify-center>
 
+              <v-btn @click="getProxy" dark>Reload Table</v-btn>
 
               <v-dialog v-model="dialog_b" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
@@ -138,13 +139,16 @@
             items: []
         }),
         mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data; this.isLoading=false;});
+          this.getProxy();
         },
         methods: {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
+            },
+            getProxy () {
+              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data; this.isLoading=false;});
             }
         }
     };

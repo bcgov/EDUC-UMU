@@ -40,6 +40,7 @@
           <td colspan="9">
             <v-layout row justify-center>
 
+              <v-btn @click="getRoles" dark>Reload Table</v-btn>
 
               <v-dialog v-model="dialog_c" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
@@ -140,13 +141,16 @@
             items: []
         }),
         mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data; this.isLoading = false;});
+          this.getRoles();
         },
         methods: {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
+            },
+            getRoles () {
+              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data; this.isLoading = false;});
             }
         }
     };

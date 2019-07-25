@@ -40,6 +40,7 @@
           <td colspan="9">
             <v-layout row justify-center>
 
+              <v-btn @click="getItems" dark>Reload Table</v-btn>
 
               <v-dialog v-model="dialog_a" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
@@ -104,7 +105,7 @@
         <td>{{ props.item[5] }}</td>
         <td>{{ props.item[6] }}</td>
         <td>{{ props.item[8] }}</td>
-        <td align="center"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></td>
+        <td align="center"><v-btn color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn></td>
       </template>
       <template
         slot="items">
@@ -177,21 +178,28 @@
                   value: 'update'
                 }
             ],
-            items: []
+            items: [],
+            userInfo: []
           }
         },
-        mounted: function() {
-          axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
-                                                                                                                      this.items = response.data;
-                                                                                                                      this.isLoading = false;
-                                                                                                                    });
+        mounted(){
+          this.getItems();
         },
         methods: {
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
-            }
+            },
+            getItems () {
+              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
+                                                                                                                      this.items = response.data;
+                                                                                                                      this.isLoading = false;
+                                                                                                                    });
+            }/*,
+            getUser (id) {
+              axios.
+            }*/
         },
         watch: {
           items() {

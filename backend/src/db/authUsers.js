@@ -22,6 +22,7 @@ export class AuthUser {
         });
         const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
         let result = await connection.execute(query);
+        console.log(result);
         if(connection){
             try{
                 await connection.close();
@@ -31,8 +32,8 @@ export class AuthUser {
         }
         return result.rows;
     }/*
-    async select(id, callback) {
-        db.execute(`select * from :1 where id=:2`, [process.env.AUTH_TABLE, id], callback);
+    async select(system, username, name, value, userguid) {
+        db.execute(`select * from :1 where USERGUID=:2 AND `, [process.env.AUTH_TABLE, id]);
     }
     async update(options, callback) {
         db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
