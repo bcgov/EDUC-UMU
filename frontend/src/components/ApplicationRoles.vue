@@ -49,10 +49,10 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
-                        <v-flex xs12>
+                        <v-flex xs12 sm6>
                           <v-text-field label="System" required></v-text-field>
                         </v-flex>
-                        <v-flex xs12>
+                        <v-flex xs12 sm6>
                           <v-text-field label="Application Role" required></v-text-field>
                         </v-flex>
                       </v-layout>
@@ -109,10 +109,10 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
-                        <v-flex xs12>
+                        <v-flex xs12 sm6>
                           <v-text-field label="System" :value="roleInfo.system" required></v-text-field>
                         </v-flex>
-                        <v-flex xs12>
+                        <v-flex xs12 sm6>
                           <v-text-field label="Application Role" :value="roleInfo.role" required></v-text-field>
                         </v-flex>
                       </v-layout>
