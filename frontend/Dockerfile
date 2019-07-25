@@ -5,7 +5,7 @@ WORKDIR /opt/app-root/src
 
 # Install NPM Dependencies
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 # --no-optional --production
 
 # Build Application
