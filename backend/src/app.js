@@ -35,7 +35,9 @@ app.use(morgan(config.get('server:morganFormat')));
 app.use(session({
   secret: config.get('oidc:clientSecret'),
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  httpOnly: true,
+  secure: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
