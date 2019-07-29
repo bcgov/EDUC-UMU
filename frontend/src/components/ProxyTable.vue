@@ -178,7 +178,7 @@
             },
             updateProxyForm (proxy, target, level) {
               this.proxyInfo = {"proxy": proxy, "target": target, "level": level};
-              this.dialog_pForm = true;\
+              this.dialog_pForm = true;
             },
             addProxy () {
               this.dialog_pForm = false;
