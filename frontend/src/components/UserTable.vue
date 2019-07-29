@@ -35,9 +35,6 @@
         <tr>
           <td colspan="9">
             <v-layout row justify-center>
-
-              <v-btn @click="getItems" color="#003366" dark>Reload Table</v-btn>
-              <v-spacer></v-spacer>
             <!-- Add user form -->
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
@@ -74,7 +71,7 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
-                      <v-btn color="#003366" dark text @click="dialog_a = false">Add</v-btn>
+                      <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -150,7 +147,7 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_uForm = false">Close</v-btn>
-                      <v-btn color="#003366" dark text @click="dialog_uForm = false">Update</v-btn>
+                      <v-btn color="#003366" dark text @click="addUser()">Update</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -237,9 +234,12 @@
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
-                                                                                                                      (this.items).forEach(function(element, index){
-                  this.itemJson[index] = {"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]};
+                                                                                                                      var tempArray = this.items;
+                                                                                                                      var tempJson = [];
+                                                                                                                      tempArray.forEach(function(element, index){
+                  tempJson[index] = {"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]};
                 });
+                this.itemJson = tempJson;
               });
             },
             /*
@@ -249,6 +249,10 @@
             updateUserForm(system, username, name, value, auth, guid) {
               this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
               this.dialog_uForm = true;
+            },
+            addUser() {
+              this.dialog_uForm = false;
+              this.getItems();
             }
         },
         watch: {

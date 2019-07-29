@@ -35,10 +35,6 @@
           <td colspan="9">
             <v-layout row justify-center>
 
-              <v-btn @click="getProxy"  color="#003366" dark>Reload Table</v-btn>
-
-              <v-spacer></v-spacer>
-
               <v-dialog v-model="dialog_b" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add User Proxy</v-btn>
@@ -65,7 +61,7 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_b = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="dialog_b = false">Add</v-btn>
+                    <v-btn color="#003366" dark text @click="addProxy()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
                 </v-form>
@@ -129,7 +125,7 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_pForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="dialog_pForm = false">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="addProxy()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -182,7 +178,11 @@
             },
             updateProxyForm (proxy, target, level) {
               this.proxyInfo = {"proxy": proxy, "target": target, "level": level};
-              this.dialog_pForm = true;
+              this.dialog_pForm = true;\
+            },
+            addProxy () {
+              this.dialog_pForm = false;
+              this.getProxy();
             }
         }
     };

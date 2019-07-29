@@ -36,10 +36,6 @@
           <td colspan="9">
             <v-layout row justify-center>
 
-              <v-btn @click="getRoles" color="#003366" dark>Reload Table</v-btn>
-
-              <v-spacer></v-spacer>
-
               <v-dialog v-model="dialog_c" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add System Role</v-btn>
@@ -63,7 +59,7 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_c = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="dialog_c = false">Add</v-btn>
+                    <v-btn color="#003366" dark text @click="addRole()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
                 </v-form>
@@ -126,7 +122,7 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_rForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="dialog_rForm = false">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="addRole()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -188,6 +184,10 @@
             updateRoleForm (system, role) {
               this.roleInfo = {"system": system, "role": role};
               this.dialog_rForm = true;
+            },
+            addRole () {
+              this.dialog_rForm = false;
+              this.getRoles();
             }
         }
     };
