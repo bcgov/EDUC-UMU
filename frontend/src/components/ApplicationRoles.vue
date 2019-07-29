@@ -45,7 +45,7 @@
                 <v-form>
                 <v-card>
                   <v-card-title>
-                    <span><h2>Add System Role</h2></span>
+                    <span><h4>Add System Role</h4></span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
@@ -108,7 +108,7 @@
               <v-form>
                 <v-card>
                   <v-card-title>
-                    <span><h2>Update System Role</h2></span>
+                    <span><h4>Update System Role</h4></span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>

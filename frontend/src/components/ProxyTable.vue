@@ -44,7 +44,7 @@
                 <v-form>
                 <v-card>
                   <v-card-title>
-                    <span><h2>Add User Proxy</h2></span>
+                    <span><h4>Add User Proxy</h4></span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
@@ -108,7 +108,7 @@
               <v-form>
                 <v-card>
                   <v-card-title>
-                    <span><h2>Update User Proxy</h2></span>
+                    <span><h4>Update User Proxy</h4></span>
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>

@@ -46,7 +46,7 @@
                 <v-form>
                   <v-card>
                     <v-card-title>
-                      <span><h2>Add Auth User</h2></span>
+                      <span><h4>Add Auth User</h4></span>
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
@@ -122,7 +122,7 @@
                 <v-form>
                   <v-card>
                     <v-card-title>
-                      <span><h2>Update Auth User</h2></span>
+                      <span><h4>Update Auth User</h4></span>
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
