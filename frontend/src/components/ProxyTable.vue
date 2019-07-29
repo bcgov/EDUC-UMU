@@ -88,7 +88,7 @@
           <td>{{ props.item.target }}</td>
           <td>{{ props.item.level }}</td>
           <td class="button-container" align="center">
-            <v-btn class="no-shadow" @click.stop="updateProxyForm(props.item[0], props.item[1], props.item[2])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+            <v-btn class="no-shadow" @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>

@@ -85,7 +85,7 @@
           <td>{{ props.item.create }}</td>
           <td>{{ props.item.update }}</td>
           <td class="button-container" align="center">
-            <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+            <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
