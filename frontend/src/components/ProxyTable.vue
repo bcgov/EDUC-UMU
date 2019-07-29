@@ -156,8 +156,12 @@
                     text: 'Target ID'
                 },
                 {
-                  sotable: false,
+                  sortable: true,
                   text: 'Proxy Level'
+                },
+                {
+                  sortable: false,
+                  text: 'Edit'
                 }
             ],
             items: [],

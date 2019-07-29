@@ -163,6 +163,10 @@
                 {
                     sortable: true,
                     text: 'Updated By'
+                },
+                {
+                  sortable: false,
+                  text: 'Edit'
                 }
             ],
             items: [],

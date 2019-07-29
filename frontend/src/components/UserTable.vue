@@ -213,6 +213,10 @@
                   sortable: true,
                   text: 'Updated By',
                   value: 'update'
+                },
+                {
+                  sortable: false,
+                  text: 'Edit'
                 }
             ],
             items: [],

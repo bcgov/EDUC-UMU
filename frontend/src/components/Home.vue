@@ -116,6 +116,6 @@
     min-width: 0 !important;
   }
   .button-container{
-    min-width: 190px;
+    width: 140px;
   }
 </style>
