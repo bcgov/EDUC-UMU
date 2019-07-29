@@ -16,7 +16,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="items"
+      :items="itemJson"
       :search="search"
     >
       <template v-slot:no-data>
@@ -93,16 +93,16 @@
       <template
         slot="items"
         slot-scope="props">
-        <td>{{ props.item[0] }}</td>
-        <td>{{ props.item[1] }}</td>
-        <td>{{ props.item[2] }}</td>
-        <td>{{ props.item[3] }}</td>
-        <td>{{ props.item[4] }}</td>
-        <td>{{ props.item[5] }}</td>
-        <td>{{ props.item[6] }}</td>
-        <td>{{ props.item[8] }}</td>
+        <td>{{ props.item.system }}</td>
+        <td>{{ props.item.username }}</td>
+        <td>{{ props.item.name }}</td>
+        <td>{{ props.item.value }}</td>
+        <td>{{ props.item.auth }}</td>
+        <td>{{ props.item.guid }}</td>
+        <td>{{ props.item.create }}</td>
+        <td>{{ props.item.update }}</td>
         <td class="button-container"align="center">
-          <v-btn class="no-shadow" @click.stop="updateUserForm(props.item[0], props.item[1], props.item[2], props.item[3], props.item[4], props.item[5])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+          <v-btn class="no-shadow" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.auth, props.item.guid)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
           <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
         </td>
       </template>
