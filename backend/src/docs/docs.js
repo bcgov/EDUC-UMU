@@ -1,3 +1,5 @@
+'use strict'
+
 const docs = {
     getDocHTML: (version) => `<!DOCTYPE html>
     <html>

@@ -1,3 +1,5 @@
+'use strict'
+
 import atob from 'atob';
 import axios from 'axios';
 import config from '../config/index';

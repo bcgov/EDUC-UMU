@@ -1,3 +1,5 @@
+'use strict'
+
 import { AuthUser } from './authUsers';
 import { Proxy } from './proxy';
 import { Roles } from './roles';

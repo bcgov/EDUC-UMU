@@ -1,3 +1,5 @@
+'use strict'
+
 import { get } from 'axios';
 import { get as _get } from '../../config/index';
 import { error as _error } from 'npmlog';

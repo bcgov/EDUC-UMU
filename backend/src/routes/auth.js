@@ -1,3 +1,5 @@
+'use strict'
+
 const config =require('../config/index');
 const passport = require('passport');
 const express = require('express');

@@ -1,3 +1,5 @@
+'use strict'
+
 import nconf from 'nconf';
 import dotenv from 'dotenv';
 dotenv.config();

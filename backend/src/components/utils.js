@@ -1,3 +1,5 @@
+'use strict'
+
 import axios from 'axios';
 import config from '../config/index';
 import log from 'npmlog';

@@ -3,6 +3,8 @@
 /**
  * Module dependencies.
  */
+'use strict'
+
 import config from './config/index';
 import http from 'http';
 import log from 'npmlog';
