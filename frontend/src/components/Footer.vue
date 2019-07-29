@@ -1,5 +1,5 @@
 <template>
-  <v-footer background-color="#003366" dark height="auto" class="footer">
+  <footer background-color="#003366" dark height="auto" class="footer">
     <v-container class="pa-0">
       <v-layout row>
         <v-btn text id='footer-home' href="https://www.gov.bc.ca/">Home</v-btn>
@@ -11,7 +11,7 @@
         <v-btn text href="https://www2.gov.bc.ca/gov/content/home/contact-us">Contact Us</v-btn>
       </v-layout>
     </v-container>
-  </v-footer>
+  </footer>
 </template>
 
 <script>
