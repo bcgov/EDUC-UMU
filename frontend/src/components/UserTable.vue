@@ -218,6 +218,7 @@
                 }
             ],
             items: [],
+            itemJson: [],
             userInfo: {}
           }
         },
@@ -236,7 +237,11 @@
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
                                                                                                                     });
-            },/*
+              this.items.forEach(element, index=> {
+                this.itemJson[index] = {"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]};
+              });
+            },
+            /*
             submitUser () {
               userForm.submit().then(dialog_a = false);
             },*/

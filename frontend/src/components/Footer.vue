@@ -29,6 +29,10 @@ export default {};
     color: #fff;
     text-decoration: none;
   }
+  .footer {
+    position: absolute;
+    width: 100%;
+  }
   .v-btn--active.footer:before,
   .v-btn.footer:focus:before,
   .v-btn.footer:hover:before {
