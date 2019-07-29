@@ -31,7 +31,7 @@
       </template>
 
       <template 
-        slot='footer'>
+        v-slot:body.append>
         <tr>
           <td colspan="9">
             <v-layout row justify-center>

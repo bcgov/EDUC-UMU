@@ -31,7 +31,7 @@
 
       </template>
       <template 
-        slot="footer">
+        v-slot:body.append>
         <tr>
           <td colspan="9">
             <v-layout row justify-center>
@@ -93,8 +93,8 @@
           v-text="header.text"/>
       </template>
       <template
-        slot="item"
-        slot-scope="props">
+        v-slot:item="props"
+        >
         <tr>
           <td>{{ props.item.system }}</td>
           <td>{{ props.item.username }}</td>
