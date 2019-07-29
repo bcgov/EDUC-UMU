@@ -8,6 +8,7 @@ const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
+const helmet = require('helmet');
 import { getJwtCertificate } from '@bcgov/common-nodejs-utils';
 dotenv.config();
 
@@ -23,6 +24,7 @@ const apiRouter = express.Router();
 
 const app = express();
 
+app.use(helmet());
 app.use(cors());
 
 app.use(express.json());
@@ -32,12 +34,15 @@ app.use(express.urlencoded({
 
 app.use(morgan(config.get('server:morganFormat')));
 
+
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 app.use(session({
   secret: config.get('oidc:clientSecret'),
   resave: false,
   saveUninitialized: true,
   httpOnly: true,
-  secure: true
+  secure: true,
+  expires: expiryDate
 }));
 app.use(passport.initialize());
 app.use(passport.session());
