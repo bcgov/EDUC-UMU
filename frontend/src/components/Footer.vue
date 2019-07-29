@@ -32,6 +32,7 @@ export default {};
   .footer {
     position: absolute;
     width: 100%;
+    bottom: 0;
   }
   .v-btn--active.footer:before,
   .v-btn.footer:focus:before,
