@@ -37,6 +37,8 @@
 
               <v-btn @click="getProxy"  color="#003366" dark>Reload Table</v-btn>
 
+              <v-spacer></v-spacer>
+
               <v-dialog v-model="dialog_b" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add User Proxy</v-btn>

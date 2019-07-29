@@ -3,7 +3,7 @@
         <h1>Not Logged In</h1>
     </v-container>
 
-    <v-container v-else>
+    <v-container class="bottom-padding" v-else>
           <v-layout row wrap justify-center>
             <v-flex xs12>
               <v-tabs
@@ -61,6 +61,9 @@
 </script>
 
 <style>
+  .bottom-padding{
+    padding-bottom: 100px;
+  }
   .sectionCard {
     margin-bottom: 20px;
   }

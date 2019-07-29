@@ -38,6 +38,8 @@
 
               <v-btn @click="getRoles" color="#003366" dark>Reload Table</v-btn>
 
+              <v-spacer></v-spacer>
+
               <v-dialog v-model="dialog_c" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add System Role</v-btn>

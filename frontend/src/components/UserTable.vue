@@ -37,7 +37,7 @@
             <v-layout row justify-center>
 
               <v-btn @click="getItems" color="#003366" dark>Reload Table</v-btn>
-
+              <v-spacer></v-spacer>
             <!-- Add user form -->
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <template v-slot:activator="{ on }">
@@ -237,8 +237,7 @@
               axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/users").then(response => {
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
-                                                                                                                    });
-              this.items.forEach(function(element, index){
+                                                                                                                      (this.items).forEach(function(element, index){
                 this.itemJson[index] = {"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]};
               });
             },

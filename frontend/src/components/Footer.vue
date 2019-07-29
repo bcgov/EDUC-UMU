@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute color="#003366" dark height="auto" class="footer">
+  <v-footer absolute color="#003366" dark height="auto">
       <v-layout justify-center row>
         <v-btn text id='footer-home' href="https://www.gov.bc.ca/">Home</v-btn>
         <v-btn text id="footer-about" href="https://www2.gov.bc.ca/gov/content/about-gov-bc-ca">About gov.bc.ca</v-btn>
@@ -21,10 +21,6 @@ export default {};
     border-top: 2px solid rgb(252, 186, 25);
     min-height: 45px;
     min-width: 100%;
-  }
-  .footer .v-btn {
-    color: #fff;
-    text-decoration: none;
   }
   /*
   .footer {
