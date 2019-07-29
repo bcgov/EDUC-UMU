@@ -187,6 +187,7 @@
             },
             addRole () {
               this.dialog_rForm = false;
+              this.dialog_c = false;
               this.getRoles();
             }
         }

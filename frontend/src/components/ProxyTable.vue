@@ -181,6 +181,7 @@
               this.dialog_pForm = true;
             },
             addProxy () {
+              this.dialog_b = false;
               this.dialog_pForm = false;
               this.getProxy();
             }
