@@ -110,9 +110,6 @@
           </td>
         </tr>
       </template>
-      <template
-        slot="items">
-      </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.

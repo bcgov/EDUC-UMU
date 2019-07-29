@@ -61,8 +61,6 @@
 </script>
 
 <style>
-  @import "{{ site.theme }}";
-
   .sectionCard {
     margin-bottom: 20px;
   }

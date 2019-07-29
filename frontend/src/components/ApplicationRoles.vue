@@ -32,6 +32,7 @@
 
       <template 
         slot='footer'>
+        <tr>
           <td colspan="9">
             <v-layout row justify-center>
 
@@ -67,6 +68,7 @@
               </v-dialog>
             </v-layout>
           </td>
+        </tr>
       </template>
 
       <template
@@ -77,16 +79,18 @@
           v-text="header.text"/>
       </template>
       <template
-        slot="items"
+        slot="item"
         slot-scope="props">
-        <td>{{ props.item[0] }}</td>
-        <td>{{ props.item[1] }}</td>
-        <td>{{ props.item[2] }}</td>
-        <td>{{ props.item[4] }}</td>
-        <td class="button-container" align="center">
-          <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
-          <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
-        </td>
+        <tr>
+          <td>{{ props.item[0] }}</td>
+          <td>{{ props.item[1] }}</td>
+          <td>{{ props.item[2] }}</td>
+          <td>{{ props.item[4] }}</td>
+          <td class="button-container" align="center">
+            <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
+            <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
+          </td>
+        </tr>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
