@@ -31,7 +31,8 @@
 
       </template>
       <template 
-        slot='footer'>
+        slot="footer">
+        <tr>
           <td colspan="9">
             <v-layout row justify-center>
 
@@ -81,6 +82,7 @@
 
             </v-layout>
           </td>
+        </tr>
       </template>
 
       <template
@@ -239,7 +241,7 @@
                                                                                                                       this.items = response.data;
                                                                                                                       this.isLoading = false;
                                                                                                                     });
-              this.items.forEach(element, index=> {
+              this.items.forEach(function(element, index){
                 this.itemJson[index] = {"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]};
               });
             },
