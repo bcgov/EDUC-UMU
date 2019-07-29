@@ -26,8 +26,6 @@
                 <v-tab-item>
                   <ApplicationRoles></ApplicationRoles>
                 </v-tab-item>
-
-                <v-tab>
               </v-tabs>
             </v-flex>
           </v-layout>
