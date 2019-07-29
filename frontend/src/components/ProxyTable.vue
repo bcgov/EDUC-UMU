@@ -15,7 +15,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="items"
+      :items="itemJson"
       :search="search"
       >
 
@@ -149,15 +149,18 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'Proxy ID'
+                    text: 'Proxy ID',
+                    value: 'proxy'
                 },
                 {
                     sortable: true,
-                    text: 'Target ID'
+                    text: 'Target ID',
+                    value: "target"
                 },
                 {
                   sortable: true,
-                  text: 'Proxy Level'
+                  text: 'Proxy Level',
+                  value: "level"
                 },
                 {
                   sortable: false,
@@ -165,6 +168,7 @@
                 }
             ],
             items: [],
+            itemJson: [],
             proxyInfo: {}
         }),
         mounted: function() {
@@ -178,7 +182,17 @@
             },
             getProxy () {
               this.items = [];
-              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {this.items = response.data; this.isLoading=false;});
+              this.itemJson = [];
+              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {
+                this.items = response.data;
+                this.isLoading=false;
+                var tempArray = this.items;
+                var jsonArray = [];
+                tempArray.forEach(function(element, index){
+                  jsonArray.push({"proxy": element[0], "target": element[1], "level": element[2]});
+                });
+                this.itemJson = jsonArray;
+              });
             },
             updateProxyForm (proxy, target, level) {
               this.proxyInfo = {"proxy": proxy, "target": target, "level": level};

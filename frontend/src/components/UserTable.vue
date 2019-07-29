@@ -97,7 +97,7 @@
           <td>{{ props.item.username }}</td>
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.value }}</td>
-          <td>{{ props.item.auth }}</td>
+          <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
           <td>{{ props.item.create }}</td>
           <td>{{ props.item.update }}</td>
@@ -241,10 +241,9 @@
                                                                                                                       var tempArray = this.items;
                                                                                                                       var tempJson = [];
                                                                                                                       tempArray.forEach(function(element, index){
-                  tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[7]});
+                  tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[8]});
                 });
                 this.itemJson = tempJson;
-                console.log(this.itemJson);
               });
             },
             /*

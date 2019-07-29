@@ -16,7 +16,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="items"
+      :items="itemJson"
       :search="search"
       >
 
@@ -80,10 +80,10 @@
         slot="item"
         slot-scope="props">
         <tr>
-          <td>{{ props.item[0] }}</td>
-          <td>{{ props.item[1] }}</td>
-          <td>{{ props.item[2] }}</td>
-          <td>{{ props.item[4] }}</td>
+          <td>{{ props.item.system }}</td>
+          <td>{{ props.item.role }}</td>
+          <td>{{ props.item.create }}</td>
+          <td>{{ props.item.update }}</td>
           <td class="button-container" align="center">
             <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item[0], props.item[1])" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
@@ -150,19 +150,23 @@
             headers: [
                 {
                     sortable: true,
-                    text: 'System'
+                    text: 'System',
+                    value: 'system'
                 },
                 {
                     sortable: true,
-                    text: 'Application Role'
+                    text: 'Application Role',
+                    value: 'role'
                 },
                 {
                     sortable: true,
-                    text: 'Created By'
+                    text: 'Created By',
+                    value: 'create'
                 },
                 {
                     sortable: true,
-                    text: 'Updated By'
+                    text: 'Updated By',
+                    value: 'update'
                 },
                 {
                   sortable: false,
@@ -170,6 +174,7 @@
                 }
             ],
             items: [],
+            itemJson: [],
             roleInfo: {}
         }),
         mounted: function() {
@@ -183,7 +188,17 @@
             },
             getRoles () {
               this.items = [];
-              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {this.items = response.data; this.isLoading = false;});
+              this.itemJson = [];
+              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {
+                  this.items = response.data;
+                  this.isLoading = false;
+                  var tempArray = this.items;
+                  var jsonArray = [];
+                  tempArray.forEach(function(element, index){
+                    jsonArray.push({"system": element[0], "role": element[1], "create": element[2], "update": element[4]});
+                  });
+                  this.itemJson = jsonArray
+              });
             },
             updateRoleForm (system, role) {
               this.roleInfo = {"system": system, "role": role};
