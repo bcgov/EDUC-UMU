@@ -30,9 +30,6 @@
       <!--
     <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>
     -->
-      <template slot="headerCell" slot-scope="props">
-
-      </template>
       <template 
         v-slot:body.append>
         <tr>
@@ -102,19 +99,17 @@
           <td>{{ props.item.value }}</td>
           <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
-          <td class="button-container"align="center">
+          <td class="button-container" align="center">
             <v-btn class="no-shadow" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
       </template>
       <template v-slot:expanded-item="props">
-          <tr>
             <td>Created by: {{props.item.create}}</td>
             <td colspan="2">Create date: {{props.item.createDate}}</td>
             <td>Updated by: {{props.item.update}}</td>
             <td colspan="2">Update date: {{props.item.updateDate}}</td>
-          </tr>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -177,6 +172,7 @@
             dialog_uForm: false,
             isLoading: true,
             valid: true,
+            expanded: [],
             singleExpand: true,
             systems: ['EDW', 'SIS'],
             search: '',

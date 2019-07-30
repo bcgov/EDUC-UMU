@@ -25,10 +25,6 @@
         </div>
       </template>
 
-      <template slot="headerCell" slot-scope="props">
-
-      </template>
-
       <template 
         v-slot:body.append>
         <tr>
