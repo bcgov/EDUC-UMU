@@ -21,6 +21,7 @@
       show-expand
       single-expand
       :expanded.sync="expanded"
+      item-key="id"
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -109,10 +110,10 @@
       <template
         v-slot:expanded-item="props"
       >
-            <td colspan="2"><b>Created by:</b> {{props.item.create}}</td>
-            <td colspan="2"><b>Create date:</b> {{props.item.createDate}}</td>
-            <td colspan="2"><b>Updated by:</b> {{props.item.update}}</td>
-            <td colspan="2"><b>Update date:</b> {{props.item.updateDate}}</td>
+            <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
+            <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
+            <td><b>Updated by:</b> {{ props.item.update }}</td>
+            <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -215,7 +216,6 @@
                 {
                   sortable: false,
                   text: 'Edit',
-                  align: 'center'
                 }
             ],
             items: [],
@@ -241,7 +241,7 @@
                   var tempArray = this.items;
                   var tempJson = [];
                   tempArray.forEach(function(element, index){
-                    tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "createDate": element[7], "update": element[8], "updateDate": element[9]});
+                    tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "createDate": element[7], "update": element[8], "updateDate": element[9], "id": index});
                   });
                   this.itemJson = tempJson;
               });
