@@ -18,7 +18,8 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      expand
+      show-expand
+      single-expand
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -92,7 +93,6 @@
         slot-scope="props"
         >
         <tr>
-          <td><v-icon @click="props.expand = !props.expand">arrow_drop_down</v-icon></td>
           <td>{{ props.item.system }}</td>
           <td>{{ props.item.username }}</td>
           <td>{{ props.item.name }}</td>
@@ -105,14 +105,13 @@
           </td>
         </tr>
       </template>
-      <template 
-        slot="expand" 
-        slot-scope="props"
+      <template
+        v-slot:expanded-item="props"
       >
-            <td>Created by: {{props.item.create}}</td>
-            <td colspan="2">Create date: {{props.item.createDate}}</td>
-            <td>Updated by: {{props.item.update}}</td>
-            <td colspan="2">Update date: {{props.item.updateDate}}</td>
+            <td><b>Created by:</b> {{props.item.create}}</td>
+            <td colspan="2"><b>Create date:</b> {{props.item.createDate}}</td>
+            <td><b>Updated by:</b> {{props.item.update}}</td>
+            <td colspan="2"><b>Update date:</b> {{props.item.updateDate}}</td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -183,10 +182,6 @@
               v => !!v || 'Required'
             ],
             headers: [
-                {
-                  sortable: false,
-                  text: ''
-                },
                 {
                     sortable: true,
                     text: 'System',
