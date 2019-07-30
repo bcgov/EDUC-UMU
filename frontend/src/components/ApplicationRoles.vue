@@ -18,6 +18,10 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
+      show-expand
+      single-expand
+      :expanded.sync = "expanded"
+      item-key="id"
       >
 
       <template v-slot:no-data>
@@ -77,15 +81,23 @@
         slot-scope="props">
         <tr>
           <td>{{ props.item.system }}</td>
-          <td>{{ props.item.role }}</td>
-          <td>{{ props.item.create }}</td>
-          <td>{{ props.item.update }}</td>
+          <td colspan="2">{{ props.item.role }}</td>
           <td class="button-container" align="center">
             <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
       </template>
+
+      <template
+        v-slot:expanded-item="props"
+      >
+            <td ><b>Created by:</b> {{ props.item.create }}</td>
+            <td><b>Create date:</b> {{ props.item.createDate }}</td>
+            <td><b>Updated by:</b> {{ props.item.update }}</td>
+            <td><b>Update date:</b> {{ props.item.updateDate }}</td>
+      </template>
+
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -138,6 +150,7 @@
             dialog_rForm: false,
             isLoading: true,
             valid: true,
+            expanded: [],
             systems: ['EDW', 'SIS'],
             search: '',
             rules: [
@@ -191,7 +204,7 @@
                   var tempArray = this.items;
                   var jsonArray = [];
                   tempArray.forEach(function(element, index){
-                    jsonArray.push({"system": element[0], "role": element[1], "create": element[2], "update": element[4]});
+                    jsonArray.push({"system": element[0], "role": element[1], "create": element[2], "createDate": element[3], "update": element[4], "updateDate": element[5], "id": index});
                   });
                   this.itemJson = jsonArray
               });

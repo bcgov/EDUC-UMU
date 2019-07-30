@@ -114,6 +114,7 @@
             <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
             <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
+            <td></td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
