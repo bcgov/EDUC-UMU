@@ -18,9 +18,7 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      :single-expand="singleExpand"
-      show-expand
-      :expanded.sync="expanded"
+      expand
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -90,7 +88,8 @@
           v-text="header.text"/>
       </template>
       <template
-        v-slot:item="props"
+        slot="items"
+        slot-scope="props"
         >
         <tr>
           <td><v-icon @click="props.expand = !props.expand">arrow_drop_down</v-icon></td>
@@ -106,7 +105,10 @@
           </td>
         </tr>
       </template>
-      <template slot="expand" slot-scope="props">
+      <template 
+        slot="expand" 
+        slot-scope="props"
+      >
             <td>Created by: {{props.item.create}}</td>
             <td colspan="2">Create date: {{props.item.createDate}}</td>
             <td>Updated by: {{props.item.update}}</td>
@@ -184,7 +186,7 @@
                 {
                   sortable: false,
                   text: ''
-                }
+                },
                 {
                     sortable: true,
                     text: 'System',
