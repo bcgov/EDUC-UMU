@@ -91,7 +91,8 @@
           v-text="header.text"/>
       </template>
       <template
-        v-slot:item="props"
+        slot="items"
+        slot-scope="props"
         >
         <tr>
           <td>{{ props.item.system }}</td>

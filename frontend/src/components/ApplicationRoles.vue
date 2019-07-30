@@ -89,7 +89,8 @@
       </template>
 
       <template
-        v-slot:expanded-item="props"
+        slot="items"
+        slot-scope="props"
       >
             <td><b>Created by:</b> {{ props.item.create }}</td>
             <td><b>Create date:</b> {{ props.item.createDate }}</td>
