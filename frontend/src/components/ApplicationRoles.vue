@@ -18,11 +18,11 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      show-expand
-      single-expand
+      show-expand="true"
+      single-expand="true"
       :expanded.sync="expanded"
       item-key="id"
-      >
+    >
 
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -183,7 +183,7 @@
             getRoles () {
               this.items = [];
               this.itemJson = [];
-              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/roles").then(response => {
+              axios.get("/api/main/database/roles").then(response => {
                   this.items = response.data;
                   this.isLoading = false;
                   var tempArray = this.items;

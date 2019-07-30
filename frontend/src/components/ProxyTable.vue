@@ -179,7 +179,7 @@
             getProxy () {
               this.items = [];
               this.itemJson = [];
-              axios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/main/database/proxy").then(response => {
+              axios.get("/api/main/database/proxy").then(response => {
                 this.items = response.data;
                 this.isLoading=false;
                 var tempArray = this.items;
