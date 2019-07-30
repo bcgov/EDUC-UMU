@@ -77,8 +77,7 @@
           v-text="header.text"/>
       </template>
       <template
-        slot="item"
-        slot-scope="props">
+        v-slot:item="props">
         <tr>
           <td>{{ props.item.system }}</td>
           <td colspan="2">{{ props.item.role }}</td>
@@ -92,7 +91,7 @@
       <template
         v-slot:expanded-item="props"
       >
-            <td ><b>Created by:</b> {{ props.item.create }}</td>
+            <td><b>Created by:</b> {{ props.item.create }}</td>
             <td><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
             <td><b>Update date:</b> {{ props.item.updateDate }}</td>
