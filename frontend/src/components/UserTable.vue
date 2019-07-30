@@ -20,6 +20,7 @@
       :search="search"
       show-expand
       single-expand
+      :expanded.sync="expanded"
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -108,9 +109,9 @@
       <template
         v-slot:expanded-item="props"
       >
-            <td><b>Created by:</b> {{props.item.create}}</td>
+            <td colspan="2"><b>Created by:</b> {{props.item.create}}</td>
             <td colspan="2"><b>Create date:</b> {{props.item.createDate}}</td>
-            <td><b>Updated by:</b> {{props.item.update}}</td>
+            <td colspan="2"><b>Updated by:</b> {{props.item.update}}</td>
             <td colspan="2"><b>Update date:</b> {{props.item.updateDate}}</td>
       </template>
       <template v-slot:no-results>
@@ -175,7 +176,6 @@
             isLoading: true,
             valid: true,
             expanded: [],
-            singleExpand: true,
             systems: ['EDW', 'SIS'],
             search: '',
             rules: [
