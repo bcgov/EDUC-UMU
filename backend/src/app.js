@@ -25,7 +25,6 @@ const apiRouter = express.Router();
 const app = express();
 
 app.use(helmet());
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -35,7 +34,7 @@ app.use(express.urlencoded({
 app.use(morgan(config.get('server:morganFormat')));
 
 
-var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
   secret: config.get('oidc:clientSecret'),
   resave: false,

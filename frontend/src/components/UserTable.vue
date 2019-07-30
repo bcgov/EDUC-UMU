@@ -18,6 +18,9 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
+      :single-expand="singleExpand"
+      show-expand
+      :expanded.sync="expanded"
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -99,13 +102,19 @@
           <td>{{ props.item.value }}</td>
           <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
-          <td>{{ props.item.create }}</td>
-          <td>{{ props.item.update }}</td>
           <td class="button-container"align="center">
             <v-btn class="no-shadow" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
+        <template v-slot:expanded-item>
+          <tr>
+            <td>Created by: {{props.item.create}}</td>
+            <td colspan="2">Create date: {{props.item.createDate}}</td>
+            <td>Updated by: {{props.item.update}}</td>
+            <td colspan="2">Update date: {{props.item.updateDate}}</td>
+          </tr>
+        </template>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -205,16 +214,6 @@
                     value: 'guid'
                 },
                 {
-                  sortable: true,
-                  text: 'Created By',
-                  value: 'create'
-                },
-                {
-                  sortable: true,
-                  text: 'Updated By',
-                  value: 'update'
-                },
-                {
                   sortable: false,
                   text: 'Edit'
                 }
@@ -242,7 +241,7 @@
                   var tempArray = this.items;
                   var tempJson = [];
                   tempArray.forEach(function(element, index){
-                    tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "update": element[8]});
+                    tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "createDate": element[7], "update": element[8], "updateDate": element[9]});
                   });
                   this.itemJson = tempJson;
               });
