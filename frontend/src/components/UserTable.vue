@@ -93,6 +93,7 @@
         v-slot:item="props"
         >
         <tr>
+          <td><v-icon @click="props.expand = !props.expand">arrow_drop_down</v-icon></td>
           <td>{{ props.item.system }}</td>
           <td>{{ props.item.username }}</td>
           <td>{{ props.item.name }}</td>
@@ -105,7 +106,7 @@
           </td>
         </tr>
       </template>
-      <template v-slot:expanded-item="props">
+      <template slot="expand" slot-scope="props">
             <td>Created by: {{props.item.create}}</td>
             <td colspan="2">Create date: {{props.item.createDate}}</td>
             <td>Updated by: {{props.item.update}}</td>
@@ -180,6 +181,10 @@
               v => !!v || 'Required'
             ],
             headers: [
+                {
+                  sortable: false,
+                  text: ''
+                }
                 {
                     sortable: true,
                     text: 'System',
