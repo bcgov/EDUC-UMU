@@ -107,14 +107,14 @@
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
-        <template v-slot:expanded-item>
+      </template>
+      <template v-slot:expanded-item="props">
           <tr>
             <td>Created by: {{props.item.create}}</td>
             <td colspan="2">Create date: {{props.item.createDate}}</td>
             <td>Updated by: {{props.item.update}}</td>
             <td colspan="2">Update date: {{props.item.updateDate}}</td>
           </tr>
-        </template>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -177,6 +177,7 @@
             dialog_uForm: false,
             isLoading: true,
             valid: true,
+            singleExpand: true,
             systems: ['EDW', 'SIS'],
             search: '',
             rules: [
@@ -215,7 +216,8 @@
                 },
                 {
                   sortable: false,
-                  text: 'Edit'
+                  text: 'Edit',
+                  align: 'center'
                 }
             ],
             items: [],
