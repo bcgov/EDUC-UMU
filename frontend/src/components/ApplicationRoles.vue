@@ -33,7 +33,7 @@
       <template 
         v-slot:body.append>
         <tr>
-          <td colspan="9">
+          <td colspan="5">
             <v-layout row justify-center>
 
               <v-dialog v-model="dialog_c" persistent max-width="600px">
@@ -82,7 +82,7 @@
         <tr>
           <td>{{ props.item.system }}</td>
           <td colspan="2">{{ props.item.role }}</td>
-          <td class="button-container" align="center">
+          <td class="button-container">
             <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
@@ -191,7 +191,7 @@
                   tempArray.forEach(function(element, index){
                     jsonArray.push({"system": element[0], "role": element[1], "create": element[2], "createDate": element[3], "update": element[4], "updateDate": element[5], "id": index});
                   });
-                  this.itemJson = jsonArray
+                  this.itemJson = jsonArray;
               });
             },
             updateRoleForm (system, role) {
