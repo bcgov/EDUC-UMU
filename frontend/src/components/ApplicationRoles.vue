@@ -20,7 +20,7 @@
       :search="search"
       show-expand
       single-expand
-      :expanded.sync = "expanded"
+      :expanded.sync="expanded"
       item-key="id"
       >
 
@@ -103,11 +103,6 @@
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
-      <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-      </template>
     </v-data-table>
 
     <v-dialog v-model="dialog_rForm" persistent max-width="700px">
@@ -166,16 +161,6 @@
                     sortable: true,
                     text: 'Application Role',
                     value: 'role'
-                },
-                {
-                    sortable: true,
-                    text: 'Created By',
-                    value: 'create'
-                },
-                {
-                    sortable: true,
-                    text: 'Updated By',
-                    value: 'update'
                 },
                 {
                   sortable: false,
