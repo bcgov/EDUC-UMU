@@ -82,8 +82,8 @@
           <td>{{ props.item.createDate }}</td>
           <td class="button-container">
             <v-layout row align-center justify-center>
-              <v-icon @mouseover="hoverA = true" @mouseleave="hoverA = false" :class="{blue: hover}" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
-              <v-icon @mouseover="hoverB = true" @mouseleave="hoverB = false" :class="{red: hover}" color="#003366">delete</v-icon>
+              <v-icon @mouseover="hoverA = true" @mouseleave="hoverA = false" :class="{blue: hoverA}" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
+              <v-icon @mouseover="hoverB = true" @mouseleave="hoverB = false" :class="{red: hoverB}" color="#003366">delete</v-icon>
             </v-layout>
           </td>
         </tr>
