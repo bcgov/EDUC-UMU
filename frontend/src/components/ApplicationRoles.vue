@@ -82,7 +82,7 @@
           <td>{{ props.item.create }}</td>
           <td>{{ props.item.createDate }}</td>
           <td class="button-container">
-            <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">pencil</v-icon>
+            <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
             <v-icon color="#f44336">delete</v-icon>
           </td>
         </tr>

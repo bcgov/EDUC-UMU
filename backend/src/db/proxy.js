@@ -16,6 +16,7 @@ export class Proxy {
     async delete(id, callback) {
         db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
     }*/
+    //select all proxies from table
     async selectAll() {
         let connection = await oracledb.getConnection({
             user: process.env.ORACLE_USER,

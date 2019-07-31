@@ -67,11 +67,13 @@ utils.getOidcDiscovery().then(discovery => {
       return done('No access token', null);
     }
 
+    //set access and refresh tokens
     profile.jwt = accessToken;
     profile.refreshToken = refreshToken;
     return done(null, profile);
   }));
 });
+//functions for serializing/deserializing users
 passport.serializeUser((user, next) => {
   next(null, user);
 });
@@ -92,11 +94,13 @@ apiRouter.get('/', (_req, res) => {
   });
 });
 
+//set up routing to auth and main API
 app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/main', mainRouter);
 
+//Handle 500 error
 app.use((err, _req, res, next) => {
   log.error(err.stack);
   res.status(500).json({
@@ -106,7 +110,7 @@ app.use((err, _req, res, next) => {
   next();
 });
 
-// Handle 404
+// Handle 404 error
 app.use((_req, res) => {
   res.status(404).json({
     status: 404,

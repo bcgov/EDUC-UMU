@@ -16,6 +16,7 @@ export class AuthUser {
     async delete(id, callback) {
         db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
     }*/
+    //select all users from table
     async selectAll() {
         let connection = await oracledb.getConnection({
             user: process.env.ORACLE_USER,

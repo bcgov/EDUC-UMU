@@ -84,7 +84,7 @@
           <td>{{ props.item.target }}</td>
           <td>{{ props.item.level }}</td>
           <td class="button-container" align="center">
-            <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">pencil</v-icon>
+            <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
             <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
           </td>
         </tr>
