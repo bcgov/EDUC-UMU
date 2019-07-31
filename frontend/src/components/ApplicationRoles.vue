@@ -69,7 +69,7 @@
       <template
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
-              <v-icon color="#003366">delete</v-icon>
+              <v-icon @click="deleteRole()" color="#003366">delete</v-icon>
         </v-layout>
       </template>
 
@@ -137,6 +137,26 @@
                 </v-card>
               </v-form>
       </v-dialog>
+      <v-dialog v-model="dialog_rDelete" persistent max-width="300px">
+        <v-card>
+          <v-card-title>
+            <span><h4>Confirm Delete</h4></span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12>
+                  <span>Are you sure you want to delete this role?</span>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     <!--<div class="text-xs-center pt-2">
       <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
     </div>-->
@@ -150,6 +170,7 @@
         data: () => ({
             dialog_c: false,
             dialog_rForm: false,
+            dialog_rDelete: false,
             isLoading: true,
             valid: true,
             expanded: [],
@@ -233,6 +254,9 @@
               this.dialog_rForm = false;
               this.dialog_c = false;
               this.getRoles();
+            },
+            deleteRole() {
+              this.dialog_rDelete = true;
             }
         }
     };
