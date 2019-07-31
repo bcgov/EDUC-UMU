@@ -111,7 +111,7 @@
       </template>
       -->
       <template
-        v-slot:expanded-items="props">
+        v-slot:expanded-item="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
             <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
