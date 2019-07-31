@@ -20,7 +20,6 @@
       :search="search"
       show-expand
       single-expand
-      :expanded.sync="expanded"
       item-key="id"
     >
       <template v-slot:no-data>
@@ -91,7 +90,7 @@
           v-text="header.text"/>
       </template>
       <template
-        slot="item"
+        slot="items"
         slot-scope="props"
         >
         <tr>
@@ -110,8 +109,7 @@
         </tr>
       </template>
       <template
-        v-slot:expanded-item="props"
-      >
+        v-slot:expanded-item="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
             <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
@@ -179,7 +177,6 @@
             dialog_uForm: false,
             isLoading: true,
             valid: true,
-            expanded: [],
             systems: ['EDW', 'SIS'],
             search: '',
             rules: [
