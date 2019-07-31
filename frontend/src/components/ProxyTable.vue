@@ -83,7 +83,7 @@
           <td>{{ props.item.proxy }}</td>
           <td>{{ props.item.target }}</td>
           <td>{{ props.item.level }}</td>
-          <td class="button-container" align="center">
+          <td>
             <v-layout row align-center justify-center>
               <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
               <v-icon color="#003366">delete</v-icon>

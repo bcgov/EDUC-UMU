@@ -99,7 +99,7 @@
           <td>{{ props.item.value }}</td>
           <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
-          <td class="button-container" align="center">
+          <td>
             <v-layout row align-center justify-center>
               <v-icon @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
               <v-icon color="#003366">delete</v-icon>
