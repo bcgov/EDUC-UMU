@@ -84,8 +84,11 @@
     background-color: #003366;
     color: white;
   }
-  .hover-change:hover{
-    color: #81D4FA;
+  .blue-hover:hover{
+    color: #0091ea
+  }
+  .red-hover:hover{
+    color: #f44336
   }
   .top-round{
     border-top-left-radius: 10px;

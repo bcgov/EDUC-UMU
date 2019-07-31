@@ -82,8 +82,8 @@
           <td>{{ props.item.create }}</td>
           <td>{{ props.item.createDate }}</td>
           <td class="button-container">
-            <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
-            <v-icon color="#f44336">delete</v-icon>
+            <v-icon class="blue-hover" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
+            <v-icon class="red-hover" color="#003366">delete</v-icon>
           </td>
         </tr>
       </template>
@@ -168,12 +168,13 @@
                 },
                 {
                   sortable: true,
-                  text: 'Creat Date',
+                  text: 'Create Date',
                   value: 'createDate'
                 },
                 {
                   sortable: false,
-                  text: 'Edit'
+                  text: 'Edit',
+                  align: 'center'
                 }
             ],
             items: [],
