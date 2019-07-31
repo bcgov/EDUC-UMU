@@ -111,7 +111,7 @@
       </template>
       -->
       <template
-        v-slot:item-expand="props">
+        v-slot:expanded-items="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
             <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
@@ -225,8 +225,9 @@
                 },
                 {
                   sortable: false,
-                  text: 'Edit',
-                  value: 'action'
+                  text: 'Actions',
+                  value: 'action',
+                  align: 'center'
                 }
             ],
             items: [],
