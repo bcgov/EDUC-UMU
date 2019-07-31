@@ -101,8 +101,8 @@
           <td>{{ props.item.guid }}</td>
           <td class="button-container" align="center">
             <v-layout row align-center justify-center>
-              <v-icon @mouseover="hoverA = true" @mouseleave="hoverA = false" :class="{blue: hoverA}" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
-              <v-icon @mouseover="hoverB = true" @mouseleave="hoverB = false" :class="{red: hoverB}" color="#003366">delete</v-icon>
+              <v-icon @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
+              <v-icon color="#003366">delete</v-icon>
             </v-layout>
           </td>
         </tr>
