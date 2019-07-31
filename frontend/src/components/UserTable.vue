@@ -101,9 +101,9 @@
           <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
           <td class="button-container" align="center">
-            <v-layout row>
-              <v-icon class="blue-hover" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
-              <v-icon class="red-hover" color="#f44336">delete</v-icon>
+            <v-layout row align-center justify-center>
+              <v-icon @mouseover="hoverA = true" @mouseleave="hoverA = false" :class="{blue: hover}" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
+              <v-icon @mouseover="hoverB = true" @mouseleave="hoverB = false" :class="{red: hover}" color="#003366">delete</v-icon>
             </v-layout>
           </td>
         </tr>
@@ -177,6 +177,8 @@
             dialog_uForm: false,
             isLoading: true,
             valid: true,
+            hoverA: false,
+            hoverB: false,
             systems: ['EDW', 'SIS'],
             search: '',
             rules: [

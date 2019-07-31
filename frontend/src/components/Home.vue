@@ -84,10 +84,10 @@
     background-color: #003366;
     color: white;
   }
-  .blue-hover:hover{
+  .blue-hover {
     color: #0091ea
   }
-  .red-hover:hover{
+  .red-hover {
     color: #f44336
   }
   .top-round{

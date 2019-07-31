@@ -84,8 +84,10 @@
           <td>{{ props.item.target }}</td>
           <td>{{ props.item.level }}</td>
           <td class="button-container" align="center">
-            <v-icon class="blue-hover" @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
-            <v-icon class="red-hover" color="#f44336">delete</v-icon>
+            <v-layout row align-center justify-center>
+              <v-icon @mouseover="hoverA = true" @mouseleave="hoverA = false" :class="{blue: hover}" @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
+              <v-icon @mouseover="hoverB = true" @mouseleave="hoverB = false" :class="{red: hover}" color="#003366">delete</v-icon>
+            <v-layout>
           </td>
         </tr>
       </template>
@@ -139,6 +141,8 @@
             isLoading: true,
             valid: true,
             search: '',
+            hoverA: false,
+            hoverB: false,
             rules: [
               v => !!v || 'Value is required'
             ],
