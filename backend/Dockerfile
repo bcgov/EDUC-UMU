@@ -6,6 +6,7 @@ WORKDIR /opt/app-root/src
 ARG release=18
 ARG update=3
 
+# Install oracle instant client, node-oracle, and nodejs
 RUN  yum -y install oracle-release-el7 && yum-config-manager --enable ol7_oracle_instantclient && \
      yum -y install oracle-instantclient${release}.${update}-basic oracle-instantclient${release}.${update}-devel oracle-instantclient${release}.${update}-sqlplus && \
      rm -rf /var/cache/yum && \
@@ -19,8 +20,7 @@ RUN yum -y install --disablerepo=ol7_developer_EPEL nodejs node-oracledb-node10
 # Install telnet only to test connections to database (too bulky and unused otherwise)
 #RUN yum -y install telnet telnet-server
 
-# TODO: Find SID for database
-
+# set environment variables required to find our database
 ENV ORACLE_SID=edw2d.world
 ENV TWO_TASK=edw2d.world
 
@@ -31,9 +31,11 @@ COPY package*.json ./
 RUN npm install
 COPY . /opt/app-root/src
 
+
 RUN npm run build
 # --no-optional --production
 
+#expose the web and database ports
 EXPOSE 8080 1521 443
 # Tell application how to serve build
 CMD ["npm", "start"]

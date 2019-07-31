@@ -70,6 +70,7 @@ export default {
   apiAxios: apiAxios,
   intercept: intercept,
 
+  //Adds required headers to the Auth request
   setAuthHeader(token) {
     if (token) {
       apiAxios.defaults.headers.common['Authorization'] = `bearer ${token}`;
@@ -78,18 +79,7 @@ export default {
     }
   },
 
-  async getApiCheck(route) {
-    try {
-      const response = await apiAxios.get(route);
-      return `URL: ${response.request.responseURL}
-Status: ${response.status} - ${response.statusText}
-Body: ${JSON.stringify(response.data, null, 2)}`;
-    } catch (e) {
-      console.log(`Failed to fetch from API - ${e}`); // eslint-disable-line no-console
-      throw e;
-    }
-  },
-
+  //function to retireve users from API endpoint
   async getUsers(){
     try{
       const response = await apiAxios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users");

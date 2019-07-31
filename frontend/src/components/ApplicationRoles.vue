@@ -21,14 +21,14 @@
       item-key="id"
     >
 
-
+    <!-- Shows when there is no data in the table -->
       <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
       </template>
 
-
+    <!-- Displays as the final row of the table -->
       <template 
         v-slot:body.append>
         <tr>
@@ -68,7 +68,7 @@
       </template>
 
 
-
+    <!-- The actions you can take on any row of the table -->
       <template
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
@@ -77,7 +77,7 @@
       </template>
 
 
-
+    <!-- How the header is displayed -->
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -87,7 +87,7 @@
       </template>
 
 
-
+  <!-- Displays when search query returns no results -->
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -96,7 +96,7 @@
     </v-data-table>
 
 
-
+  <!-- Pop-up to add role -->
     <v-dialog v-model="dialog_rForm" persistent max-width="700px">
               <v-form>
                 <v-card>
@@ -124,7 +124,7 @@
       </v-dialog>
 
 
-
+    <!-- Dialog that deletes a role from the database -->
       <v-dialog v-model="dialog_rDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
@@ -212,11 +212,13 @@
           this.getRoles();
         },
         methods: {
+          //validates forms
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             },
+          //retrieve roles from the API endpoint
             getRoles () {
               this.items = [];
               this.itemJson = [];
@@ -231,15 +233,18 @@
                   this.itemJson = jsonArray;
               });
             },
+          //Passes information from a specific row to the Update form
             updateRoleForm (system, role) {
               this.roleInfo = {"system": system, "role": role};
               this.dialog_rForm = true;
             },
+          //Adds a role to the database then refreshes the table
             addRole () {
               this.dialog_rForm = false;
               this.dialog_c = false;
               this.getRoles();
             },
+          //Deletes a role from the database
             deleteRole() {
               this.dialog_rDelete = true;
             }

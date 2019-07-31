@@ -14,6 +14,8 @@ export default {
     refreshToken: () => localStorage.getItem('refreshToken'),
   },
   mutations: {
+
+    //sets Json web token and determines whether user is authenticated
     setJwtToken: (state, token = null) => {
       if (token) {
         const payload = JSON.parse(atob(token.split('.')[1]));
@@ -33,6 +35,8 @@ export default {
         localStorage.removeItem('jwtToken');
       }
     },
+
+    //sets the token required for refresing expired json web tokens
     setRefreshToken: (_state, token = null) => {
       if (token) {
         localStorage.setItem('refreshToken', token);
@@ -42,6 +46,8 @@ export default {
     }
   },
   actions: {
+
+    //retrieves the json web token from local storage. If not in local storage, retrieves it from API
     async getJwtToken(context) {
       try {
         if (context.getters.isAuthenticated && !!context.getters.refreshToken) {

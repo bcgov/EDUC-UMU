@@ -23,6 +23,7 @@ router.get('/', (_req, res) => {
   });
 });
 
+//provides a callback location for the auth service
 router.get('/callback',
   passport.authenticate('oidc', {
     failureRedirect: 'error'
@@ -32,23 +33,26 @@ router.get('/callback',
   }
 );
 
+//a prettier way to handle errors
 router.get('/error', (_req, res) => {
   res.status(401).json({
     message: 'Error: Unable to authenticate'
   });
 });
 
+//redirects to the SSO login screen
 router.get('/login', passport.authenticate('oidc', {
   failureRedirect: '../error'
 }));
 
-
+//removes tokens and destroys session
 router.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy();
   res.redirect(config.get('server:frontend'));
 });
 
+//refreshes jwt on refresh if refreshToken is valid
 router.post('/refresh', [
   body('refreshToken').exists()
 ], async (req, res) => {
@@ -64,6 +68,7 @@ router.post('/refresh', [
   return res.status(200).json(refresh);
 });
 
+//provides a jwt to authenticated users
 router.use('/token', auth.removeExpired, (req, res) => {
   if (req.user && req.user.jwt && req.user.refreshToken) {
     res.status(200).json(req.user);

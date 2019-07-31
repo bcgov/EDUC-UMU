@@ -1,10 +1,12 @@
 const baseRoot = '/api';
 
+//API endpoints
 const apiRoot = `${baseRoot}/v1`;
 export const ApiRoutes = Object.freeze({
   DATABASE: `${apiRoot}/database`
 });
 
+//Authentication endpoints
 const authRoot = `${baseRoot}/auth`;
 export const AuthRoutes = Object.freeze({
   LOGIN: `${authRoot}/login`,

@@ -24,7 +24,7 @@
     >
 
 
-
+    <!-- Displays when there is no data in the table -->
       <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
@@ -32,7 +32,7 @@
       </template>
 
 
-
+    <!-- Displays as the final row(s) of the table --> 
       <template 
         v-slot:body.append>
         <tr>
@@ -85,7 +85,7 @@
       </template>
 
 
-
+    <!-- Displays as the header of the table -->
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -95,7 +95,7 @@
       </template>
 
 
-
+    <!-- Displays as the row that expands from a row -->
       <template
         v-slot:expanded-item="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
@@ -106,7 +106,7 @@
       </template>
 
 
-
+    <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
@@ -115,7 +115,7 @@
       </template>
 
 
-
+    <!-- Displays when a search query returns no results --> 
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -164,7 +164,7 @@
       </v-dialog>
 
 
-
+    <!-- The dialog box that appears when you attempt to delete a user -->
       <v-dialog v-model="dialog_uDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
@@ -249,15 +249,19 @@
             userInfo: {}
           }
         },
+
+        //automatically populates the table on page load
         mounted(){
           this.getItems();
         },
         methods: {
+          //validates forms
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             },
+          //retrieves users from the API endpoint and puts them into a JSON array
             getItems () {
               this.items = [];
               this.itemJson = [];
@@ -276,15 +280,18 @@
             submitUser () {
               userForm.submit().then(dialog_a = false);
             },*/
+          //Passes information from a specific row in the table to the Update user form
             updateUserForm(system, username, name, value, auth, guid) {
               this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
               this.dialog_uForm = true;
             },
+          //initiates the add user dialog box and reloads the table once the user has been added
             addUser() {
               this.dialog_a = false;
               this.dialog_uForm = false;
               this.getItems();
             },
+          //initiates the delete user dialog box
             deleteUser() {
               this.dialog_uDelete = true;
             }

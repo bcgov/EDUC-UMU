@@ -4,6 +4,7 @@ import { AuthUser } from './authUsers';
 import { Proxy } from './proxy';
 import { Roles } from './roles';
 
+//provides a class that can perform database queries on different tables
 export default class Database {
     constructor() {
         this.authUsers = new AuthUser();

@@ -19,18 +19,23 @@
       :search="search"
       >
 
+    <!-- Displays when there are no entries in the table -->
       <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
       </template>
 
+
+    <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
         <v-icon @click.stop="updateProxyForm(item.proxy, item.target, item.level)" color="#003366">edit</v-icon>
         <v-icon @click.stop="deleteProxy()" color="#003366">delete</v-icon>
       </template>
 
+
+    <!-- This slot is appended to the bottom of the table (before the footer) -->
       <template 
         v-slot:body.append>
         <tr>
@@ -68,13 +73,13 @@
                 </v-card>
                 </v-form>
               </v-dialog>
-
-
             </v-layout>
           </td>
         </tr>
       </template>
 
+
+    <!-- Displays in the header row of the table -->
       <template
         slot="headerCell"
         slot-scope="{ header }">
@@ -84,7 +89,7 @@
       </template>
      
 
-
+    <!-- Displays when a search query returns no results -->
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -93,7 +98,7 @@
     </v-data-table>
 
 
-
+  <!-- The dialog box for adding a proxy to the database -->
     <v-dialog v-model="dialog_pForm" persistent max-width="700px">
               <v-form>
                 <v-card>
@@ -123,7 +128,8 @@
               </v-form>
       </v-dialog>
 
-      
+
+    <!-- The dialog box for deleting a proxy from the database -->
       <v-dialog v-model="dialog_pDelete" persistent max-width="330px">
         <v-card>
           <v-card-title>
@@ -190,15 +196,18 @@
             itemJson: [],
             proxyInfo: {}
         }),
+        //Automatically fetches the table contents from the database on page load
         mounted: function() {
           this.getProxy();
         },
         methods: {
+          //validates forms
             validate () {
                 if (this.$refs.form.validate()){
                     this.snackbar=true
                 }
             },
+          //retrieves table entries from the API endpoint and places them in a JSON array
             getProxy () {
               this.items = [];
               this.itemJson = [];
@@ -213,15 +222,18 @@
                 this.itemJson = jsonArray;
               });
             },
+          //Passes information from a specific row to the Update dialog box
             updateProxyForm (proxy, target, level) {
               this.proxyInfo = {"proxy": proxy, "target": target, "level": level};
               this.dialog_pForm = true;
             },
+          //Initiates the add proxy dialog box and reloads the table when proxy has been added
             addProxy () {
               this.dialog_b = false;
               this.dialog_pForm = false;
               this.getProxy();
             },
+          //initiates the proxy delete function
             deleteProxy() {
               this.dialog_pDelete = true;
             }

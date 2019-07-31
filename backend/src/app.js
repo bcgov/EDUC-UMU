@@ -19,19 +19,23 @@ const mainRouter = require('./routes/api');
 
 const apiRouter = express.Router();
 
+//initialize app
 const app = express();
 
+//sets security measures (headers, etc)
 app.use(helmet());
 app.use(cors());
 
+//tells the app to use json as means of transporting data
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
 
+//initialize logging middleware
 app.use(morgan(config.get('server:morganFormat')));
 
-
+//sets cookies for security purposes (prevent cookie access, allow secure connections only, etc)
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
   secret: config.get('oidc:clientSecret'),
@@ -41,17 +45,19 @@ app.use(session({
   secure: true,
   expires: expiryDate
 }));
+
+//initialize routing and session. Cookies are now only reachable via requests (not js)
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//configure logging
 log.level = config.get('server:logLevel');
 log.addLevel('debug', 1500, {
   fg: 'cyan'
 });
-
 log.debug('Config', utils.prettyStringify(config));
 
+//initialize our authentication strategy
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({

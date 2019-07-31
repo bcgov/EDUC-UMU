@@ -13,6 +13,8 @@ export default {
         }
     },
     actions: {
+
+        //gets users from API endpoint
         async getUsers(context) {
             context.commit('getUsers', null);
             try {
