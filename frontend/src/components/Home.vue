@@ -119,4 +119,7 @@
   .button-container{
     width: 140px;
   }
+  .v-icon:hover{
+    color: #0091ea
+  }
 </style>
