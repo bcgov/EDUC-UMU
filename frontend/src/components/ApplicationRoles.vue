@@ -67,12 +67,20 @@
       </template>
 
       <template
+        v-slot:item.action="{ item }">
+              <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
+              <v-icon color="#003366">delete</v-icon>
+        </v-layout>
+      </template>
+
+      <template
         slot="headerCell"
         slot-scope="{ header }">
         <span
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
+      <!--
       <template
         v-slot:item="props">
         <tr>
@@ -88,7 +96,6 @@
           </td>
         </tr>
       </template>
-      <!-- Disable this for now as only one expandable table allowed per page
       <template
         v-slot:expanded-item="props"
       >
@@ -175,9 +182,20 @@
                   value: 'createDate'
                 },
                 {
+                  sortable: true,
+                  text: 'Updated By',
+                  value: 'update'
+                },
+                {
+                  sortable: true,
+                  text: 'Update Date',
+                  value: 'updateDate'
+                },
+                {
                   sortable: false,
-                  text: 'Edit',
-                  align: 'center'
+                  text: 'Actions',
+                  align: 'center',
+                  value: 'action'
                 }
             ],
             items: [],

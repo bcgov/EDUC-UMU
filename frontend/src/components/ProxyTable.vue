@@ -25,6 +25,12 @@
         </div>
       </template>
 
+      <template
+        v-slot:item.action="{ item }">
+        <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
+        <v-icon color="#003366">delete</v-icon>
+      </template>
+
       <template 
         v-slot:body.append>
         <tr>
@@ -76,6 +82,7 @@
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
+      <!--
       <template
         slot="item"
         slot-scope="props">
@@ -91,6 +98,7 @@
           </td>
         </tr>
       </template>
+      -->
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -164,8 +172,9 @@
                 },
                 {
                   sortable: false,
-                  text: 'Edit',
-                  align: 'center'
+                  text: 'Actions',
+                  align: 'center',
+                  value: 'action'
                 }
             ],
             items: [],
