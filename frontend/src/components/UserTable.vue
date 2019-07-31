@@ -19,6 +19,8 @@
       :items="itemJson"
       :search="search"
       item-key="id"
+      show-expand
+      single-expand
     >
       <template v-slot:no-data>
         <div class='text-xs-center'>
@@ -87,12 +89,12 @@
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
+      <!--
       <template
         slot="items"
         slot-scope="props"
         >
         <tr>
-          <td><v-icon @click="props.expanded = !props.expanded">keyboard_arrow_down</v-icon></td>
           <td>{{ props.item.system }}</td>
           <td>{{ props.item.username }}</td>
           <td>{{ props.item.name }}</td>
@@ -107,14 +109,20 @@
           </td>
         </tr>
       </template>
+      -->
       <template
-        slot="expand"
-        slot-scope="props">
+        v-slot:item-expand="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
             <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
             <td><b>Updated by:</b> {{ props.item.update }}</td>
             <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
             <td></td>
+      </template>
+      <template
+        v-slot:item.action="{ item }">
+              <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
+              <v-icon color="#003366">delete</v-icon>
+        </v-layout>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -185,10 +193,6 @@
               v => !!v || 'Required'
             ],
             headers: [
-              {
-                sortable: false,
-                text: ''
-              },
                 {
                     sortable: true,
                     text: 'System',
@@ -222,6 +226,7 @@
                 {
                   sortable: false,
                   text: 'Edit',
+                  value: 'action'
                 }
             ],
             items: [],
