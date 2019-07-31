@@ -30,7 +30,7 @@
       <template 
         v-slot:body.append>
         <tr>
-          <td colspan="5">
+          <td colspan="7">
             <v-layout row justify-center>
 
               <v-dialog v-model="dialog_c" persistent max-width="600px">
@@ -137,7 +137,7 @@
                 </v-card>
               </v-form>
       </v-dialog>
-      <v-dialog v-model="dialog_rDelete" persistent max-width="300px">
+      <v-dialog v-model="dialog_rDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
             <span><h4>Confirm Delete</h4></span>

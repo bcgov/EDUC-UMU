@@ -136,7 +136,7 @@
                 </v-card>
               </v-form>
       </v-dialog>
-      <v-dialog v-model="dialog_pDelete" persistent max-width="300px">
+      <v-dialog v-model="dialog_pDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
             <span><h4>Confirm Delete</h4></span>
@@ -166,6 +166,7 @@
         data: () => ({
             dialog_pForm: false,
             dialog_b: false,
+            dialog_pDelete: false,
             isLoading: true,
             valid: true,
             search: '',
