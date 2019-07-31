@@ -18,9 +18,6 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      show-expand
-      single-expand
-      :expanded.sync="expanded"
       item-key="id"
     >
 
@@ -81,14 +78,16 @@
         slot-scope="props">
         <tr>
           <td>{{ props.item.system }}</td>
-          <td colspan="2">{{ props.item.role }}</td>
+          <td>{{ props.item.role }}</td>
+          <td>{{ props.item.create }}</td>
+          <td>{{ props.item.createDate }}</td>
           <td class="button-container">
-            <v-btn class="no-shadow" @click.stop="updateRoleForm(props.item.system, props.item.role)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
-            <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
+            <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">pencil</v-icon>
+            <v-icon color="#f44336">delete</v-icon>
           </td>
         </tr>
       </template>
-
+      <!-- Disable this for now as only one expandable table allowed per page
       <template
         v-slot:expanded-item="props"
       >
@@ -97,7 +96,7 @@
             <td><b>Updated by:</b> {{ props.item.update }}</td>
             <td><b>Update date:</b> {{ props.item.updateDate }}</td>
       </template>
-
+      -->
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
@@ -161,6 +160,16 @@
                     sortable: true,
                     text: 'Application Role',
                     value: 'role'
+                },
+                {
+                  sortable: true,
+                  text: 'Created By',
+                  value: 'create'
+                },
+                {
+                  sortable: true,
+                  text: 'Creat Date',
+                  value: 'createDate'
                 },
                 {
                   sortable: false,

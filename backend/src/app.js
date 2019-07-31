@@ -8,7 +8,6 @@ const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
-import { getJwtCertificate } from '@bcgov/common-nodejs-utils';
 dotenv.config();
 
 const OidcStrategy = require('passport-openidconnect').Strategy;

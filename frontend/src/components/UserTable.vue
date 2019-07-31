@@ -102,8 +102,8 @@
           <td>{{ props.item.authSource }}</td>
           <td>{{ props.item.guid }}</td>
           <td class="button-container" align="center">
-            <v-btn class="no-shadow" @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="transparent"><i class="fas fa-edit fa-lg hover-change" style="color:#003366"></i></v-btn>
-            <v-btn class="no-shadow" color="transparent"><i class="fas fa-trash-alt fa-lg" style="color:#d93e45"></i></v-btn>
+            <v-icon @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">pencil</v-icon>
+            <v-icon color="#f44336">delete</v-icon>
           </td>
         </tr>
       </template>
