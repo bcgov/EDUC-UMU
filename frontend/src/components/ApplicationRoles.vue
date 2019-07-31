@@ -21,18 +21,19 @@
       item-key="id"
     >
 
+
       <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
       </template>
 
+
       <template 
         v-slot:body.append>
         <tr>
           <td colspan="7">
             <v-layout row justify-center>
-
               <v-dialog v-model="dialog_c" persistent max-width="600px">
                 <template v-slot:activator="{ on }">
                   <v-btn color="#003366" dark v-on="on">Add System Role</v-btn>
@@ -66,12 +67,16 @@
         </tr>
       </template>
 
+
+
       <template
         v-slot:item.action="{ item }">
-              <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
+              <v-icon @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
               <v-icon @click="deleteRole()" color="#003366">delete</v-icon>
         </v-layout>
       </template>
+
+
 
       <template
         slot="headerCell"
@@ -80,37 +85,17 @@
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
-      <!--
-      <template
-        v-slot:item="props">
-        <tr>
-          <td>{{ props.item.system }}</td>
-          <td>{{ props.item.role }}</td>
-          <td>{{ props.item.create }}</td>
-          <td>{{ props.item.createDate }}</td>
-          <td>
-            <v-layout row align-center justify-center>
-              <v-icon @click.stop="updateRoleForm(props.item.system, props.item.role)" color="#003366">edit</v-icon>
-              <v-icon color="#003366">delete</v-icon>
-            </v-layout>
-          </td>
-        </tr>
-      </template>
-      <template
-        v-slot:expanded-item="props"
-      >
-            <td><b>Created by:</b> {{ props.item.create }}</td>
-            <td><b>Create date:</b> {{ props.item.createDate }}</td>
-            <td><b>Updated by:</b> {{ props.item.update }}</td>
-            <td><b>Update date:</b> {{ props.item.updateDate }}</td>
-      </template>
-      -->
+
+
+
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
     </v-data-table>
+
+
 
     <v-dialog v-model="dialog_rForm" persistent max-width="700px">
               <v-form>
@@ -137,6 +122,9 @@
                 </v-card>
               </v-form>
       </v-dialog>
+
+
+
       <v-dialog v-model="dialog_rDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
@@ -157,9 +145,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    <!--<div class="text-xs-center pt-2">
-      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
-    </div>-->
   </v-card>
 </template>
 

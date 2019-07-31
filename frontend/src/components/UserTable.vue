@@ -22,14 +22,17 @@
       show-expand
       single-expand
     >
+
+
+
       <template v-slot:no-data>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
       </template>
-      <!--
-    <v-progress-linear v-slot:progress color="#fcba19" indeterminate v-show="isLoading"></v-progress-linear>
-    -->
+
+
+
       <template 
         v-slot:body.append>
         <tr>
@@ -76,11 +79,12 @@
                   </v-card>
                 </v-form>
               </v-dialog>
-
             </v-layout>
           </td>
         </tr>
       </template>
+
+
 
       <template
         slot="headerCell"
@@ -89,27 +93,9 @@
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
-      <!--
-      <template
-        slot="items"
-        slot-scope="props"
-        >
-        <tr>
-          <td>{{ props.item.system }}</td>
-          <td>{{ props.item.username }}</td>
-          <td>{{ props.item.name }}</td>
-          <td>{{ props.item.value }}</td>
-          <td>{{ props.item.authSource }}</td>
-          <td>{{ props.item.guid }}</td>
-          <td>
-            <v-layout row align-center justify-center>
-              <v-icon @click.stop="updateUserForm(props.item.system, props.item.username, props.item.name, props.item.value, props.item.authSource, props.item.guid)" color="#003366">edit</v-icon>
-              <v-icon color="#003366">delete</v-icon>
-            </v-layout>
-          </td>
-        </tr>
-      </template>
-      -->
+
+
+
       <template
         v-slot:expanded-item="props">
             <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
@@ -118,18 +104,25 @@
             <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
             <td></td>
       </template>
+
+
+
       <template
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
               <v-icon @click.stop="deleteUser()" color="#003366">delete</v-icon>
         </v-layout>
       </template>
+
+
+
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
     </v-data-table>
+
 
     <!-- User auth upadate dialog box -->
     <v-dialog v-model="dialog_uForm" persistent max-width="700px">
@@ -169,6 +162,9 @@
                   </v-card>
                 </v-form>
       </v-dialog>
+
+
+
       <v-dialog v-model="dialog_uDelete" persistent max-width="320px">
         <v-card>
           <v-card-title>
@@ -189,9 +185,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    <!--<div class="text-xs-center pt-2">
-      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
-    </div>-->
   </v-card>
 </template>
 

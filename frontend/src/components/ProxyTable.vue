@@ -27,7 +27,7 @@
 
       <template
         v-slot:item.action="{ item }">
-        <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
+        <v-icon @click.stop="updateProxyForm(item.proxy, item.target, item.level)" color="#003366">edit</v-icon>
         <v-icon @click.stop="deleteProxy()" color="#003366">delete</v-icon>
       </template>
 
@@ -82,32 +82,18 @@
           class="subheading font-weight-light text-success text--darken-3"
           v-text="header.text"/>
       </template>
-      <!--
-      <template
-        slot="item"
-        slot-scope="props">
-        <tr>
-          <td>{{ props.item.proxy }}</td>
-          <td>{{ props.item.target }}</td>
-          <td>{{ props.item.level }}</td>
-          <td>
-            <v-layout row align-center justify-center>
-              <v-icon @click.stop="updateProxyForm(props.item.proxy, props.item.target, props.item.level)" color="#003366">edit</v-icon>
-              <v-icon color="#003366">delete</v-icon>
-            </v-layout>
-          </td>
-        </tr>
-      </template>
-      -->
+     
+
+
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
     </v-data-table>
-    <!--<div class="text-xs-center pt-2">
-      <v-btn color="#5475a7"><span class="white--text"><i class="fas fa-user-plus" style="color:white"></i>&nbsp;Add User</span></v-btn>
-    </div>-->
+
+
+
     <v-dialog v-model="dialog_pForm" persistent max-width="700px">
               <v-form>
                 <v-card>
@@ -136,7 +122,9 @@
                 </v-card>
               </v-form>
       </v-dialog>
-      <v-dialog v-model="dialog_pDelete" persistent max-width="320px">
+
+      
+      <v-dialog v-model="dialog_pDelete" persistent max-width="330px">
         <v-card>
           <v-card-title>
             <span><h4>Confirm Delete</h4></span>
