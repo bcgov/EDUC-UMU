@@ -18,8 +18,8 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      show-expand="true"
-      single-expand="true"
+      show-expand
+      single-expand
       :expanded.sync="expanded"
       item-key="id"
     >
@@ -89,7 +89,7 @@
       </template>
 
       <template
-        v-slot:item="props"
+        v-slot:expanded-item="props"
       >
             <td><b>Created by:</b> {{ props.item.create }}</td>
             <td><b>Create date:</b> {{ props.item.createDate }}</td>
