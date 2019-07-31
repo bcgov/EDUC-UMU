@@ -16,7 +16,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :item="itemJson"
+      :items="itemJson"
       :search="search"
       show-expand="true"
       single-expand="true"
@@ -89,8 +89,7 @@
       </template>
 
       <template
-        slot="item"
-        slot-scope="props"
+        v-slot:item="props"
       >
             <td><b>Created by:</b> {{ props.item.create }}</td>
             <td><b>Create date:</b> {{ props.item.createDate }}</td>
