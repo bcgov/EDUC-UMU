@@ -7,13 +7,10 @@ const morgan = require('morgan');
 const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
-const cors = require('cors');
 const helmet = require('helmet');
 import { getJwtCertificate } from '@bcgov/common-nodejs-utils';
 dotenv.config();
 
-const JWTStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./components/utils');
@@ -54,12 +51,6 @@ log.addLevel('debug', 1500, {
 
 log.debug('Config', utils.prettyStringify(config));
 
-const cert = async() => {
-  const {certificate, algorithm} = await getJwtCertificate(config.get('oidc:certUrl'));
-  console.log(certificate);
-  return certificate;
-};
-
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({
@@ -81,28 +72,6 @@ utils.getOidcDiscovery().then(discovery => {
     profile.refreshToken = refreshToken;
     return done(null, profile);
   }));
-/*
-  // Add Passport JWT Strategy
-  passport.use('jwt', new JWTStrategy({
-    algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
-    issuer: discovery.issuer,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey'),
-  }, (jwtPayload, done) => {
-    if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
-      return done('No JWT token', null);
-    }
-
-    done(null, {
-      email: jwtPayload.email,
-      familyName: jwtPayload.family_name,
-      givenName: jwtPayload.given_name,
-      jwt: jwtPayload,
-      name: jwtPayload.name,
-      preferredUsername: jwtPayload.preferred_username
-    });
-  }));
-  */
 });
 passport.serializeUser((user, next) => {
   next(null, user);
@@ -139,14 +108,13 @@ app.use((err, _req, res, next) => {
 });
 
 // Handle 404
-/*
 app.use((_req, res) => {
   res.status(404).json({
     status: 404,
     message: 'Page Not Found'
   });
 });
-*/
+
 
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {
