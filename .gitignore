@@ -1,8 +1,6 @@
 .DS_Store
-.gradle
 .nyc_output
 .scannerwork
-build
 coverage
 dist
 node_modules
