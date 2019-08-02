@@ -117,8 +117,7 @@ podTemplate(
             -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
             -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
             -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
-            -Dsonar.sources=${SONAR_SOURCES} \
-            -Dsonar.login=6faebfd4ae18c4dc0ccfab4f0209b1747c9b0fce" 
+            -Dsonar.sources=${SONAR_SOURCES}" 
         )
       }
     }
