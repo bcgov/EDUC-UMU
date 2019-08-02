@@ -195,7 +195,7 @@ podTemplate(
 
           sh (
             returnStdout: true,
-            script: "./gradlew -q :tasks --all"
+            script: "./gradlew tasks --all"
             )
         // ======================================================================================================
         // Set your SonarQube scanner properties at this level, not at the Gradle Build level.
