@@ -10,7 +10,7 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
 
 // The name of your SonarQube project
-def SONAR_PROJECT_NAME = 'EDUC UMU'
+def SONAR_PROJECT_NAME = 'UMU'
 
 // The project key of your SonarQube project
 def SONAR_PROJECT_KEY = 'UMU'

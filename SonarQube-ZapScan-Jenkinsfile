@@ -18,7 +18,7 @@ def SONAR_PROJECT_BASE_DIR = '../'
 
 // The source code directory you want to scan.
 // This is relative to the project base directory.
-def SONAR_SOURCES = './zap/wrk'
+def SONAR_SOURCES = './'
 // ================================================================================================
 
 // ================================================================================================
