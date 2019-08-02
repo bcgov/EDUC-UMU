@@ -156,6 +156,7 @@ pipeline{
                 }
             }
         }
+        /*
         stage('Deploy - Dev'){
             agent any
             steps{
@@ -176,7 +177,6 @@ pipeline{
                 }
             }
         }
-        /*
         stage('Deploy - Test'){
             agent any
             steps{

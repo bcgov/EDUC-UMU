@@ -10,7 +10,7 @@ def SONAR_ROUTE_NAME = 'sonarqube'
 def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
 
 // The name of your SonarQube project
-def SONAR_PROJECT_NAME = 'UMU'
+def SONAR_PROJECT_NAME = 'EDUC UMU'
 
 // The project key of your SonarQube project
 def SONAR_PROJECT_KEY = 'UMU'
@@ -57,7 +57,7 @@ String getSonarQubePwd() {
     returnStdout: true
   ).trim()
 
-  return sonarQubePwd
+  return ${env.SONAR_ADMINPW}
 }
 
 // The jenkins-python3nodejs template has been purpose built for supporting SonarQube scanning.
