@@ -56,7 +56,7 @@ pipeline{
             script{
                 openshift.withCluster() {
                     openshift.withProject() {
-                        echo "Triggering ZAP pipeline"
+                        echo "Triggering SonarQube scan"
                         def zapScan = openshift.selector("bc", "sonarqube-scanner")
                     }
                 }
