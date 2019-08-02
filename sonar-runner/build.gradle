@@ -2,7 +2,7 @@
 plugins {
   id "java"
   id "jacoco"
-  id "org.sonarqube" version "2.6.2"
+  id "org.sonarqube" version "2.7"
 }
 
 // ==============================================================================================
@@ -17,9 +17,9 @@ plugins {
 // ----------------------------------------------------------------------------------------------
 sonarqube {
     properties {
-        property "sonar.host.url", "<Set This In Your Build/Pipeline Script>"
+       /* property "sonar.host.url", "<Set This In Your Build/Pipeline Script>"
         property "sonar.projectName", "<Set This In Your Build/Pipeline Script>"
-        property "sonar.projectKey", "<Set This In Your Build/Pipeline Script>"
+        property "sonar.projectKey", "<Set This In Your Build/Pipeline Script>"*/
 
         // ================================================================
         // Assumptions are being made by these defaults
@@ -29,11 +29,11 @@ sonarqube {
         // from your root project directory and you what to scan
         // your entire project.
         // ----------------------------------------------------------------
-        property "sonar.projectBaseDir", "../"
-        property "sonar.sources", "./"
+        //property "sonar.projectBaseDir", "../"
+       // property "sonar.sources", "./"
         // ================================================================
 
-        property "sonar.verbose", "true"
+       // property "sonar.verbose", "true"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.python.coveragePlugin","cobertura"
         property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
