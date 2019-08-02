@@ -19,7 +19,7 @@ sonarqube {
     properties {
         property "sonar.host.url", "<Set This In Your Build/Pipeline Script>"
         property "sonar.projectName", "<Set This In Your Build/Pipeline Script>"
-        property "sonar.projectKey", "<Set This In Your Build/Pipeline Script>"*/
+        property "sonar.projectKey", "<Set This In Your Build/Pipeline Script>"
 
         // ================================================================
         // Assumptions are being made by these defaults
