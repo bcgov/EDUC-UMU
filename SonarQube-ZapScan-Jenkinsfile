@@ -18,7 +18,7 @@ def SONAR_PROJECT_BASE_DIR = '../'
 
 // The source code directory you want to scan.
 // This is relative to the project base directory.
-def SONAR_SOURCES = './'
+def SONAR_SOURCES = './zap/wrk'
 // ================================================================================================
 
 // ================================================================================================
@@ -171,9 +171,8 @@ podTemplate(
       checkout([
           $class: 'GitSCM',
           branches: scm.branches,
-          extensions: scm.extensions + [
-            [$class: 'SparseCheckoutPaths',  sparseCheckoutPaths:[[path:'sonar-runner/']]]
-          ],
+          doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+          extensions: scm.extensions,
           userRemoteConfigs: scm.userRemoteConfigs
       ])
 
