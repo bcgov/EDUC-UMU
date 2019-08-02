@@ -10,7 +10,8 @@
     }
 
     gzip {
-        level 5
+        level 
+        not /assets
     }
 
     rewrite /getok {
