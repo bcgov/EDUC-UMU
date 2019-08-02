@@ -17,8 +17,8 @@ ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
 
 RUN yum -y install oracle-nodejs-release-el7 oracle-release-el7
 RUN yum -y install --disablerepo=ol7_developer_EPEL nodejs node-oracledb-node10
-# Install telnet only to test connections to database (too bulky and unused otherwise)
-#RUN yum -y install telnet telnet-server
+# Install telnet only to test connections to database and firewall accessibility(too bulky and unused otherwise)
+# RUN yum -y install telnet telnet-server
 
 # set environment variables required to find our database
 ENV ORACLE_SID=edw2d.world
@@ -27,7 +27,7 @@ ENV TWO_TASK=edw2d.world
 # Install NPM Dependencies
 COPY package*.json ./
 
-#RUN rm -rf node_modules
+# RUN rm -rf node_modules
 RUN npm install
 COPY . /opt/app-root/src
 
@@ -35,7 +35,7 @@ COPY . /opt/app-root/src
 RUN npm run build
 # --no-optional --production
 
-#expose the web and database ports
+# expose the web and database ports
 EXPOSE 8080 1521 443
 # Tell application how to serve build
 CMD ["npm", "start"]

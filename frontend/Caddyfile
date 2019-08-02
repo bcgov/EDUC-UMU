@@ -9,6 +9,10 @@
         /getok/api /api
     }
 
+    gzip {
+        level 5
+    }
+
     rewrite /getok {
         r (.*)
         to {1}
