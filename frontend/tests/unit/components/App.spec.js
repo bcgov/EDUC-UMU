@@ -31,6 +31,7 @@ describe('App.vue', () => {
     });
   });
 
+  //ensure we are able to create something from our App.vue file
   it('exists', () => {
     expect(wrapper).toBeTruthy();
   });

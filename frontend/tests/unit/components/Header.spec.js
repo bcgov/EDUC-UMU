@@ -32,6 +32,8 @@ describe('Header.vue', () => {
       expect(wrapper.html()).toContain('')
   })
 */
+
+  //ensure the page title exists
   it('has app title', () => {
     expect(wrapper.html()).toContain('User Management Utility');
   });

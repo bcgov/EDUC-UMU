@@ -29,4 +29,8 @@ describe('Home.vue', () => {
       });
     });
 
+    it('not automatically logged in', () => {
+        expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
+    });
+
 });
