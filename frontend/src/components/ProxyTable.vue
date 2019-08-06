@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   data: () => ({
@@ -178,7 +178,7 @@ export default {
       {
         sortable: true,
         text: 'Target ID',
-        value: "target"
+        value: 'target'
       },
       {
         sortable: true,
@@ -204,7 +204,7 @@ export default {
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
-        this.snackbar=true
+        this.snackbar=true;
       }
     },
     //retrieves table entries from the API endpoint and places them in a JSON array
@@ -216,7 +216,7 @@ export default {
         this.isLoading=false;
         var tempArray = this.items;
         var jsonArray = [];
-        tempArray.forEach(function(element, index){
+        tempArray.forEach(function(element){
           jsonArray.push({'proxy': element[0], 'target': element[1], 'level': element[2]});
         });
         this.itemJson = jsonArray;

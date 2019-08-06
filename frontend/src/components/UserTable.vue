@@ -111,7 +111,6 @@
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
               <v-icon @click.stop="deleteUser()" color="#003366">delete</v-icon>
-        </v-layout>
       </template>
 
 
@@ -189,7 +188,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default{
   data () {
@@ -247,10 +246,10 @@ export default{
       items: [],
       itemJson: [],
       userInfo: {}
-    }
+    };
   },
 
-    //automatically populates the table on page load
+  //automatically populates the table on page load
   mounted(){
     this.getItems();
   },
@@ -258,7 +257,7 @@ export default{
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
-        this.snackbar=true
+        this.snackbar=true;
       }
     },
     //retrieves users from the API endpoint and puts them into a JSON array
@@ -266,14 +265,14 @@ export default{
       this.items = [];
       this.itemJson = [];
       axios.get('/api/main/database/users').then(response => {
-          this.items = response.data;
-          this.isLoading = false;
-          var tempArray = this.items;
-          var tempJson = [];
-          tempArray.forEach(function(element, index){
-            tempJson.push({'system': element[0], 'username': element[1], 'name': element[2], 'value': element[3], 'authSource': element[4], 'guid': element[5], 'create': element[6], 'createDate': element[7], 'update': element[8], 'updateDate': element[9], 'id': index});
-          });
-          this.itemJson = tempJson;
+        this.items = response.data;
+        this.isLoading = false;
+        var tempArray = this.items;
+        var tempJson = [];
+        tempArray.forEach(function(element, index){
+          tempJson.push({'system': element[0], 'username': element[1], 'name': element[2], 'value': element[3], 'authSource': element[4], 'guid': element[5], 'create': element[6], 'createDate': element[7], 'update': element[8], 'updateDate': element[9], 'id': index});
+        });
+        this.itemJson = tempJson;
       });
     },
     /*

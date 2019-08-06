@@ -4,33 +4,33 @@ import Vuex from 'vuex';
 import Home from '@/components/Home.vue';
 
 describe('Home.vue', () => {
-    let getters;
-    let actions;
-    let store;
-    let wrapper;
+  let getters;
+  let actions;
+  let store;
+  let wrapper;
   
-    beforeEach(() => {
-      const localVue = createLocalVue();
-  
-      localVue.use(Vuetify);
-      localVue.use(Vuex);
-  
-      getters = {
-        isAuthenticated: () => 'false'
-      };
+  beforeEach(() => {
+		const localVue = createLocalVue();
 
-      store = new Vuex.Store({
-        getters, actions
-      });
+		localVue.use(Vuetify);
+		localVue.use(Vuex);
 
-      wrapper = mount(Home, {
-        localVue,
-        store
-      });
-    });
+		getters = {
+			isAuthenticated: () => 'false'
+		};
 
-    it('not automatically logged in', () => {
-        expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
-    });
+		store = new Vuex.Store({
+			getters, actions
+		});
+
+		wrapper = mount(Home, {
+			localVue,
+			store
+		});
+	});
+
+	it('not automatically logged in', () => {
+		expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
+	});
 
 });
