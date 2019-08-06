@@ -14,7 +14,6 @@
         X-XSS-Protection "1;mode=block"
         Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
         X-Content-Type-Options "nosniff"
-        Content-Type "text/plain;charset=utf-8"
     }
 
     gzip {
