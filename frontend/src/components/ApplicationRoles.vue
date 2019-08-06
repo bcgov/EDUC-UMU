@@ -166,42 +166,43 @@ export default{
       v => !!v || 'Required'
     ],
     headers: [
-    {
-      sortable: true,
-      text: 'System',
-      value: 'system'
-    },
-    {
-      sortable: true,
-      text: 'Application Role',
-      value: 'role'
-    },
-    {
-      sortable: true,
-      text: 'Created By',
-      value: 'create'
-    },
-    {
-      sortable: true,
-      text: 'Create Date',
-      value: 'createDate'
-    },
-    {
-      sortable: true,
-      text: 'Updated By',
-      value: 'update'
-    },
-    {
-      sortable: true,
-      text: 'Update Date',
-      value: 'updateDate'
-    },
-    {
-      sortable: false,
-      text: 'Actions',
-      align: 'center',
-      value: 'action'
-    }],
+      {
+        sortable: true,
+        text: 'System',
+        value: 'system'
+      },
+      {
+        sortable: true,
+        text: 'Application Role',
+        value: 'role'
+      },
+      {
+        sortable: true,
+        text: 'Created By',
+        value: 'create'
+      },
+      {
+        sortable: true,
+        text: 'Create Date',
+        value: 'createDate'
+      },
+      {
+        sortable: true,
+        text: 'Updated By',
+        value: 'update'
+      },
+      {
+        sortable: true,
+        text: 'Update Date',
+        value: 'updateDate'
+      },
+      {
+        sortable: false,
+        text: 'Actions',
+        align: 'center',
+        value: 'action'
+      }
+    ],
     items: [],
     itemJson: [],
     roleInfo: {}
@@ -213,27 +214,27 @@ export default{
   //validates forms
     validate () {
       if (this.$refs.form.validate()){
-        this.snackbar=true
+        this.snackbar=true;
       }
     },
     //retrieve roles from the API endpoint
     getRoles () {
       this.items = [];
       this.itemJson = [];
-      axios.get("/api/main/database/roles").then(response => {
+      axios.get('/api/main/database/roles').then(response => {
         this.items = response.data;
         this.isLoading = false;
         var tempArray = this.items;
         var jsonArray = [];
         tempArray.forEach(function(element, index){
-          jsonArray.push({"system": element[0], "role": element[1], "create": element[2], "createDate": element[3], "update": element[4], "updateDate": element[5], "id": index});
+          jsonArray.push({'system': element[0], 'role': element[1], 'create': element[2], 'createDate': element[3], 'update': element[4], 'updateDate': element[5], 'id': index});
         });
         this.itemJson = jsonArray;
       });
     },
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
-      this.roleInfo = {"system": system, "role": role};
+      this.roleInfo = {'system': system, 'role': role};
       this.dialog_rForm = true;
     },
     //Adds a role to the database then refreshes the table

@@ -189,117 +189,117 @@
 </template>
 
 <script>
-    import axios from 'axios'
+import axios from 'axios'
 
-    export default{
-        data () {
-          return {
-            dialog_a: false,
-            dialog_uForm: false,
-            dialog_uDelete: false,
-            isLoading: true,
-            valid: true,
-            hoverA: false,
-            hoverB: false,
-            systems: ['EDW', 'SIS'],
-            search: '',
-            rules: [
-              v => !!v || 'Required'
-            ],
-            headers: [
-                {
-                    sortable: true,
-                    text: 'System',
-                    value: 'system'
-                },
-                {
-                    sortable: true,
-                    text: 'Username',
-                    value: 'username'
-                },
-                {
-                  sortable: true,
-                  text: 'Name',
-                  value: 'name'
-                },
-                {
-                    sortable: true,
-                    text: 'Value',
-                    value: 'value'
-                },
-                {
-                  sortable: true,
-                  text: 'Auth source',
-                  value: 'authSource'
-                },
-                {
-                    sortable: true,
-                    text: 'User GUID',
-                    value: 'guid'
-                },
-                {
-                  sortable: false,
-                  text: 'Actions',
-                  value: 'action',
-                  align: 'center'
-                }
-            ],
-            items: [],
-            itemJson: [],
-            userInfo: {}
-          }
+export default{
+  data () {
+    return {
+      dialog_a: false,
+      dialog_uForm: false,
+      dialog_uDelete: false,
+      isLoading: true,
+      valid: true,
+      hoverA: false,
+      hoverB: false,
+      systems: ['EDW', 'SIS'],
+      search: '',
+      rules: [
+        v => !!v || 'Required'
+      ],
+      headers: [
+        {
+          sortable: true,
+          text: 'System',
+          value: 'system'
         },
-
-        //automatically populates the table on page load
-        mounted(){
-          this.getItems();
+        {
+          sortable: true,
+          text: 'Username',
+          value: 'username'
         },
-        methods: {
-          //validates forms
-            validate () {
-                if (this.$refs.form.validate()){
-                    this.snackbar=true
-                }
-            },
-          //retrieves users from the API endpoint and puts them into a JSON array
-            getItems () {
-              this.items = [];
-              this.itemJson = [];
-              axios.get("/api/main/database/users").then(response => {
-                  this.items = response.data;
-                  this.isLoading = false;
-                  var tempArray = this.items;
-                  var tempJson = [];
-                  tempArray.forEach(function(element, index){
-                    tempJson.push({"system": element[0], "username": element[1], "name": element[2], "value": element[3], "authSource": element[4], "guid": element[5], "create": element[6], "createDate": element[7], "update": element[8], "updateDate": element[9], "id": index});
-                  });
-                  this.itemJson = tempJson;
-              });
-            },
-            /*
-            submitUser () {
-              userForm.submit().then(dialog_a = false);
-            },*/
-          //Passes information from a specific row in the table to the Update user form
-            updateUserForm(system, username, name, value, auth, guid) {
-              this.userInfo = {"system": system, "username": username, "name": name, "value": value, "auth": auth, "guid": guid};
-              this.dialog_uForm = true;
-            },
-          //initiates the add user dialog box and reloads the table once the user has been added
-            addUser() {
-              this.dialog_a = false;
-              this.dialog_uForm = false;
-              this.getItems();
-            },
-          //initiates the delete user dialog box
-            deleteUser() {
-              this.dialog_uDelete = true;
-            }
+        {
+          sortable: true,
+          text: 'Name',
+          value: 'name'
         },
-        watch: {
-          items() {
-            this.isLoading = false;
-          }
+        {
+          sortable: true,
+          text: 'Value',
+          value: 'value'
+        },
+        {
+          sortable: true,
+          text: 'Auth source',
+          value: 'authSource'
+        },
+        {
+          sortable: true,
+          text: 'User GUID',
+          value: 'guid'
+        },
+        {
+          sortable: false,
+          text: 'Actions',
+          value: 'action',
+          align: 'center'
         }
-    };
+      ],
+      items: [],
+      itemJson: [],
+      userInfo: {}
+    }
+  },
+
+    //automatically populates the table on page load
+  mounted(){
+    this.getItems();
+  },
+  methods: {
+    //validates forms
+    validate () {
+      if (this.$refs.form.validate()){
+        this.snackbar=true
+      }
+    },
+    //retrieves users from the API endpoint and puts them into a JSON array
+    getItems () {
+      this.items = [];
+      this.itemJson = [];
+      axios.get('/api/main/database/users').then(response => {
+          this.items = response.data;
+          this.isLoading = false;
+          var tempArray = this.items;
+          var tempJson = [];
+          tempArray.forEach(function(element, index){
+            tempJson.push({'system': element[0], 'username': element[1], 'name': element[2], 'value': element[3], 'authSource': element[4], 'guid': element[5], 'create': element[6], 'createDate': element[7], 'update': element[8], 'updateDate': element[9], 'id': index});
+          });
+          this.itemJson = tempJson;
+      });
+    },
+    /*
+    submitUser () {
+      userForm.submit().then(dialog_a = false);
+    },*/
+    //Passes information from a specific row in the table to the Update user form
+    updateUserForm(system, username, name, value, auth, guid) {
+      this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
+      this.dialog_uForm = true;
+    },
+    //initiates the add user dialog box and reloads the table once the user has been added
+    addUser() {
+      this.dialog_a = false;
+      this.dialog_uForm = false;
+      this.getItems();
+    },
+    //initiates the delete user dialog box
+    deleteUser() {
+      this.dialog_uDelete = true;
+    }
+  },
+  watch: {
+    items() {
+      this.isLoading = false;
+    }
+  }
+};
 </script>

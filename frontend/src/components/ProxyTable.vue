@@ -154,89 +154,89 @@
 </template>
 
 <script>
-    import axios from 'axios'
+import axios from 'axios'
 
-    export default {
-        data: () => ({
-            dialog_pForm: false,
-            dialog_b: false,
-            dialog_pDelete: false,
-            isLoading: true,
-            valid: true,
-            search: '',
-            hoverA: false,
-            hoverB: false,
-            rules: [
-              v => !!v || 'Value is required'
-            ],
-            headers: [
-                {
-                    sortable: true,
-                    text: 'Proxy ID',
-                    value: 'proxy'
-                },
-                {
-                    sortable: true,
-                    text: 'Target ID',
-                    value: "target"
-                },
-                {
-                  sortable: true,
-                  text: 'Proxy Level',
-                  value: "level"
-                },
-                {
-                  sortable: false,
-                  text: 'Actions',
-                  align: 'center',
-                  value: 'action'
-                }
-            ],
-            items: [],
-            itemJson: [],
-            proxyInfo: {}
-        }),
-        //Automatically fetches the table contents from the database on page load
-        mounted: function() {
-          this.getProxy();
-        },
-        methods: {
-          //validates forms
-            validate () {
-                if (this.$refs.form.validate()){
-                    this.snackbar=true
-                }
-            },
-          //retrieves table entries from the API endpoint and places them in a JSON array
-            getProxy () {
-              this.items = [];
-              this.itemJson = [];
-              axios.get("/api/main/database/proxy").then(response => {
-                this.items = response.data;
-                this.isLoading=false;
-                var tempArray = this.items;
-                var jsonArray = [];
-                tempArray.forEach(function(element, index){
-                  jsonArray.push({"proxy": element[0], "target": element[1], "level": element[2]});
-                });
-                this.itemJson = jsonArray;
-              });
-            },
-          //Passes information from a specific row to the Update dialog box
-            updateProxyForm (proxy, target, level) {
-              this.proxyInfo = {"proxy": proxy, "target": target, "level": level};
-              this.dialog_pForm = true;
-            },
-          //Initiates the add proxy dialog box and reloads the table when proxy has been added
-            addProxy () {
-              this.dialog_b = false;
-              this.dialog_pForm = false;
-              this.getProxy();
-            },
-          //initiates the proxy delete function
-            deleteProxy() {
-              this.dialog_pDelete = true;
-            }
-        }
-    };
+export default {
+  data: () => ({
+    dialog_pForm: false,
+    dialog_b: false,
+    dialog_pDelete: false,
+    isLoading: true,
+    valid: true,
+    search: '',
+    hoverA: false,
+    hoverB: false,
+    rules: [
+      v => !!v || 'Value is required'
+    ],
+    headers: [
+      {
+        sortable: true,
+        text: 'Proxy ID',
+        value: 'proxy'
+      },
+      {
+        sortable: true,
+        text: 'Target ID',
+        value: "target"
+      },
+      {
+        sortable: true,
+        text: 'Proxy Level',
+        value: 'level'
+      },
+      {
+        sortable: false,
+        text: 'Actions',
+        align: 'center',
+        value: 'action'
+      }
+    ],
+    items: [],
+    itemJson: [],
+    proxyInfo: {}
+  }),
+  //Automatically fetches the table contents from the database on page load
+  mounted: function() {
+    this.getProxy();
+  },
+  methods: {
+    //validates forms
+    validate () {
+      if (this.$refs.form.validate()){
+        this.snackbar=true
+      }
+    },
+    //retrieves table entries from the API endpoint and places them in a JSON array
+    getProxy () {
+      this.items = [];
+      this.itemJson = [];
+      axios.get('/api/main/database/proxy').then(response => {
+        this.items = response.data;
+        this.isLoading=false;
+        var tempArray = this.items;
+        var jsonArray = [];
+        tempArray.forEach(function(element, index){
+          jsonArray.push({'proxy': element[0], 'target': element[1], 'level': element[2]});
+        });
+        this.itemJson = jsonArray;
+      });
+    },
+    //Passes information from a specific row to the Update dialog box
+    updateProxyForm (proxy, target, level) {
+      this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};
+      this.dialog_pForm = true;
+    },
+    //Initiates the add proxy dialog box and reloads the table when proxy has been added
+    addProxy () {
+      this.dialog_b = false;
+      this.dialog_pForm = false;
+      this.getProxy();
+    },
+    //initiates the proxy delete function
+    deleteProxy() {
+      this.dialog_pDelete = true;
+    }
+  }
+};
 </script>

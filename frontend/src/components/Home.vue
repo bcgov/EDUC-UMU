@@ -33,29 +33,29 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import UserTable from './UserTable.vue';
-  import ProxyTable from './ProxyTable.vue';
-  import ApplicationRoles from './ApplicationRoles.vue';
+import { mapGetters } from 'vuex';
+import UserTable from './UserTable.vue';
+import ProxyTable from './ProxyTable.vue';
+import ApplicationRoles from './ApplicationRoles.vue';
 
-  export default {
-    name: 'home',
-    components: {
-      UserTable,
-      ProxyTable,
-      ApplicationRoles
-    },
-    data() {
-      return {
-        dialog: false,
-        testBody: '',
-        bodyError: ''
-      };
-    },
-    computed: {
-      ...mapGetters('auth', ['isAuthenticated'])
-    }
-  };
+export default {
+  name: 'home',
+  components: {
+    UserTable,
+    ProxyTable,
+    ApplicationRoles
+  },
+  data() {
+    return {
+      dialog: false,
+      testBody: '',
+      bodyError: ''
+    };
+  },
+  computed: {
+    ...mapGetters('auth', ['isAuthenticated'])
+  }
+};
 </script>
 
 <style>
