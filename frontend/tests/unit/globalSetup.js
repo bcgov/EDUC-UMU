@@ -6,6 +6,6 @@ console.error = (...args) => { // eslint-disable-line no-console
     args[0].includes('[Vuetify]') &&
     args[0].includes('https://github.com/vuetifyjs/vuetify/issues/4068')
   )
-  return;
+    return;
   logError(...args);
 };

@@ -10,18 +10,18 @@ describe('Home.vue', () => {
   let wrapper;
   
   beforeEach(() => {
-		const localVue = createLocalVue();
+    const localVue = createLocalVue();
 
-		localVue.use(Vuetify);
-		localVue.use(Vuex);
+    localVue.use(Vuetify);
+    localVue.use(Vuex);
 
-		getters = {
-			isAuthenticated: () => 'false'
-		};
+    getters = {
+      isAuthenticated: () => 'false'
+    };
 
-		store = new Vuex.Store({
-			getters, actions
-		});
+    store = new Vuex.Store({
+      getters, actions
+    });
 
     wrapper = mount(Home, {
       localVue,
@@ -30,7 +30,7 @@ describe('Home.vue', () => {
   });
 
   it('not automatically logged in', () => {
-	  expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
+    expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
   });
 
 });
