@@ -13,7 +13,6 @@
         X-Frame-Options "SAMEORIGIN"
         X-XSS-Protection "1;mode=block"
         Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
-        X-DNS-Prefetch-Control "off"
         Content-Type "text/html;charset=utf-8"
     }
 
