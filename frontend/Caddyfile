@@ -17,7 +17,7 @@
         X-DNS-Prefetch-Control "off"
         Strict-Transport-Security "max-age=15552000;includeSubDomains"
         Pragma "no-cache"
-        Content-Type "application/javascript;charset=utf-8"
+        Content-Type "application/octet-stream;charset=utf-8"
     }
 
     gzip {
