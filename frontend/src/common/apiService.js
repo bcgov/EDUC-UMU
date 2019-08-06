@@ -1,6 +1,5 @@
 import axios from 'axios';
 import AuthService from '@/common/authService';
-import { ApiRoutes } from '@/utils/constants';
 
 // Buffer concurrent requests while refresh token is being acquired
 let isRefreshing = false;
@@ -82,10 +81,9 @@ export default {
   //function to retireve users from API endpoint
   async getUsers(){
     try{
-      const response = await apiAxios.get("https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users");
+      const response = await apiAxios.get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users');
       return response.rows;
     } catch (e) {
-      console.log("Could not retrieve users from database");
       throw e;
     }
   }
