@@ -10,13 +10,10 @@
     }
 
     header / {
-        X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
         X-XSS-Protection "1;mode=block"
         Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
         X-DNS-Prefetch-Control "off"
-        Strict-Transport-Security "max-age=15552000;includeSubDomains"
-        Pragma "no-cache"
         Content-Type "text/html;charset=utf-8"
     }
 
