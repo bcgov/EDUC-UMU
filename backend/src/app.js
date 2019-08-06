@@ -25,6 +25,8 @@ const app = express();
 //sets security measures (headers, etc)
 app.use(helmet());
 app.use(helmet.frameguard());
+app.use(helmet.xssFilter());
+app.use(helmet.noCache());
 app.use(cors());
 
 //tells the app to use json as means of transporting data
