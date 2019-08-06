@@ -27,11 +27,11 @@ describe('Header.vue', () => {
       store
     });
   });
-	/*
+  /*
   if('has login button', () => {
-      expect(wrapper.html()).toContain('')
+    expect(wrapper.html()).toContain('')
   })
-	*/
+  */
 
   //ensure the page title exists
   it('has app title', () => {

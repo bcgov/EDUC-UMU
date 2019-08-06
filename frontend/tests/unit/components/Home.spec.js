@@ -23,14 +23,14 @@ describe('Home.vue', () => {
 			getters, actions
 		});
 
-		wrapper = mount(Home, {
-			localVue,
-			store
-		});
-	});
+    wrapper = mount(Home, {
+      localVue,
+      store
+    });
+  });
 
-	it('not automatically logged in', () => {
-		expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
-	});
+  it('not automatically logged in', () => {
+	  expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
+  });
 
 });
