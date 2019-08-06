@@ -30,7 +30,7 @@ describe('Home.vue', () => {
   });
 
   it('not automatically logged in', () => {
-    expect(wrapper.html()).toBe('<h1>Not Logged In</h1>');
+    expect(wrapper.html()).toBe('<div class=\"container\"><h1>Not Logged In</h1></div>');
   });
 
 });
