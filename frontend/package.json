@@ -112,7 +112,9 @@
 
   "jest": {
     "clearMocks": true,
-    "setupFiles": [],
+    "setupFiles": [
+      "<rootDir>/tests/unit/globalSetup.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
