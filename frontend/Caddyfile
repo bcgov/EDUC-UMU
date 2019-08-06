@@ -13,11 +13,12 @@
         X-Frame-Options "SAMEORIGIN"
         X-XSS-Protection "1;mode=block"
         Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
-        Content-Type "text/html;charset=utf-8"
+        X-Content-Type-Options "nosniff"
+        Content-Type "text/plain;charset=utf-8"
     }
 
     gzip {
-        level 5
+        level 7
     }
 
     rewrite /getok {
