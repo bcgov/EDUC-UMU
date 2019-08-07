@@ -119,7 +119,7 @@
     "clearMocks": true,
     "setupFiles": [
       "<rootDir>/tests/unit/setup",
-      "<rootDir>/mode_modules/regenerator-runtime/runtime"
+      "<rootDir>/node_modules/regenerator-runtime/runtime"
     ],
     "moduleFileExtensions": [
       "js",
