@@ -5,8 +5,5 @@ import db from '@/store/modules/db.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: { 
-    auth , 
-    db 
-  }
+  modules: { auth , db }
 });
