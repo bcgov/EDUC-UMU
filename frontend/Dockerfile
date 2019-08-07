@@ -11,6 +11,5 @@ RUN npm install
 # Build Application
 COPY . /opt/app-root/src
 
-RUN npm run test:e2e
 RUN npm run test:unit
 RUN npm run build
