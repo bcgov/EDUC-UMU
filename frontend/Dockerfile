@@ -1,6 +1,4 @@
-FROM openjdk:latest
-
-RUN apt-get install -y nodejs
+FROM node:lts-alpine
 
 # Move to App Folder
 WORKDIR /opt/app-root/src
