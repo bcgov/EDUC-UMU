@@ -3,8 +3,7 @@ module.exports = {
     browser
       .url(process.env.HOST_ROUTE)
       .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('')
-      .assert.containsText('','')
+      .assert.elementPresent('.container')
       .end();
   },
 };
