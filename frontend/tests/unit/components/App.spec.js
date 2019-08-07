@@ -1,4 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
+import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from '@/App.vue';
@@ -10,11 +11,9 @@ describe('App.vue', () => {
   let store;
 
   beforeEach(() => {
-    const localVue = createLocalVue();
-
-    localVue.use(Vuetify);
-    localVue.use(Vuex);
-    localVue.use(VueRouter);
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
+    Vue.use(VueRouter);
     getters = {
       isAuthenticated: () => 'false'
     };
@@ -25,7 +24,7 @@ describe('App.vue', () => {
 
     const router = new VueRouter();
     wrapper = mount(App, {
-      localVue,
+      Vue,
       store,
       router
     });

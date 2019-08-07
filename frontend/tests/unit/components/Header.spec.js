@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import Vuex from 'vuex';
+import Vue from 'vue';
 import Header from '@/components/Header.vue';
 
 describe('Header.vue', () => {
@@ -9,10 +10,8 @@ describe('Header.vue', () => {
   let wrapper;
 
   beforeEach(() => {
-    const localVue = createLocalVue();
-
-    localVue.use(Vuetify);
-    localVue.use(Vuex);
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
     getters = {
       isAuthenticated: () => 'false'
@@ -23,7 +22,7 @@ describe('Header.vue', () => {
     });
 
     wrapper = mount(Header, {
-      localVue,
+      Vue,
       store
     });
   });

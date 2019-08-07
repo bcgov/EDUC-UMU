@@ -1,5 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import Vuetify from 'vuetify';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import Home from '@/components/Home.vue';
 
@@ -10,10 +11,9 @@ describe('Home.vue', () => {
   let wrapper;
   
   beforeEach(() => {
-    const localVue = createLocalVue();
 
-    localVue.use(Vuetify);
-    localVue.use(Vuex);
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
     getters = {
       isAuthenticated: () => 'false'
@@ -24,7 +24,7 @@ describe('Home.vue', () => {
     });
 
     wrapper = mount(Home, {
-      localVue,
+      Vue,
       store
     });
   });

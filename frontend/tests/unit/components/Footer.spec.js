@@ -1,17 +1,17 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import Vuetify from 'vuetify';
+import Vue from 'vue';
 import Footer from '@/components/Footer.vue';
 
 describe('Footer.vue', () => {
   let wrapper;
   
   beforeEach(() => {
-    const localVue = createLocalVue();
   
-    localVue.use(Vuetify);
+    Vue.use(Vuetify);
   
     wrapper = mount(Footer, {
-      localVue: localVue
+      Vue: Vue
     });
   });
   
