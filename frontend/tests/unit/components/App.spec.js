@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
-import App from '@/App.vue';
+import App from '../../../src/App.vue';
 import Vuex from 'vuex';
 
 describe('App.vue', () => {

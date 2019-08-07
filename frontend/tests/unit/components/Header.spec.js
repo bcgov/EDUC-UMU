@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Vue from 'vue';
-import Header from '@/components/Header.vue';
+import Header from '../../../src/components/Header.vue';
 
 describe('Header.vue', () => {
   let getters;

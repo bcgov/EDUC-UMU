@@ -1,4 +1,4 @@
-import { isValidJson } from '@/utils/utils.js';
+import { isValidJson } from '../../../src/utils/utils.js';
 
 describe('utils.js', () => {
   const validJson = `{

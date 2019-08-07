@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Home from '@/components/Home.vue';
+import Home from '../../../src/components/Home.vue';
 
 describe('Home.vue', () => {
   let getters;
