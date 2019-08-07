@@ -3,10 +3,9 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Vue from 'vue';
 import Header from '../../../src/components/Header.vue';
+import indexStore from '../../../src/store/index';
 
 describe('Header.vue', () => {
-  let getters;
-  let store;
   let wrapper;
 
   beforeEach(() => {
@@ -17,13 +16,9 @@ describe('Header.vue', () => {
       isAuthenticated: () => 'false'
     };
 
-    store = new Vuex.Store({
-      getters
-    });
-
     wrapper = mount(Header, {
       Vue,
-      store
+      indexStore
     });
   });
   /*

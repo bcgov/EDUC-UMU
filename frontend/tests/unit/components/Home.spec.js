@@ -3,11 +3,9 @@ import Vuetify from 'vuetify';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Home from '../../../src/components/Home.vue';
+import indexStore from '../../../src/store/index';
 
 describe('Home.vue', () => {
-  let getters;
-  let actions;
-  let store;
   let wrapper;
   
   beforeEach(() => {
@@ -19,13 +17,9 @@ describe('Home.vue', () => {
       isAuthenticated: () => 'false'
     };
 
-    store = new Vuex.Store({
-      getters, actions
-    });
-
     wrapper = mount(Home, {
       Vue,
-      store
+      indexStore
     });
   });
 
