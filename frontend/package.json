@@ -33,7 +33,8 @@
     "sass-loader": "^7.1.0",
     "sass": "^1.22.7",
     "nightwatch": "^1.1.13",
-    "geckodriver": "^1.16.2"
+    "geckodriver": "^1.16.2",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@vue/cli": "^3.7.0",
