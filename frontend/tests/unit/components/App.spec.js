@@ -18,8 +18,7 @@ describe('App.vue', () => {
     wrapper = mount(App, {
       Vue,
       store,
-      router,
-      render: h => h(app)
+      router
     });
   });
 
