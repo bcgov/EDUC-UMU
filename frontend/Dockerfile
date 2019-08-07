@@ -1,10 +1,9 @@
-FROM node:lts-alpine
+FROM openjdk:latest
+
+RUN apt-get install -y nodejs
 
 # Move to App Folder
 WORKDIR /opt/app-root/src
-
-RUN sudo apt-get update
-RUN sudo apt-get install -y openjdk-8-jdk
 
 # Install NPM Dependencies
 COPY package*.json ./
