@@ -3,7 +3,7 @@ import Vuetify from 'vuetify';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Home from '../../../src/components/Home.vue';
-import indexStore from '../../../src/store/index';
+import store from '../../../src/store/index';
 
 describe('Home.vue', () => {
   let wrapper;
@@ -13,13 +13,9 @@ describe('Home.vue', () => {
     Vue.use(Vuetify);
     Vue.use(Vuex);
 
-    getters = {
-      isAuthenticated: () => 'false'
-    };
-
     wrapper = mount(Home, {
       Vue,
-      indexStore
+      store
     });
   });
 

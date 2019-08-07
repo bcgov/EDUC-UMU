@@ -3,7 +3,7 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Vue from 'vue';
 import Header from '../../../src/components/Header.vue';
-import indexStore from '../../../src/store/index';
+import store from '../../../src/store/index';
 
 describe('Header.vue', () => {
   let wrapper;
@@ -12,13 +12,9 @@ describe('Header.vue', () => {
     Vue.use(Vuetify);
     Vue.use(Vuex);
 
-    getters = {
-      isAuthenticated: () => 'false'
-    };
-
     wrapper = mount(Header, {
       Vue,
-      indexStore
+      store
     });
   });
   /*

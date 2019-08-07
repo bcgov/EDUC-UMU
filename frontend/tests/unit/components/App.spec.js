@@ -4,23 +4,15 @@ import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from '../../../src/App.vue';
 import Vuex from 'vuex';
+import store from '../../../src/store/index';
 
 describe('App.vue', () => {
   let wrapper;
-  let getters;
-  let store;
 
   beforeEach(() => {
     Vue.use(Vuetify);
     Vue.use(Vuex);
     Vue.use(VueRouter);
-    getters = {
-      isAuthenticated: () => 'false'
-    };
-
-    store = new Vuex.Store({
-      getters
-    });
 
     const router = new VueRouter();
     wrapper = mount(App, {
