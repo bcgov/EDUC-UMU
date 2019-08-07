@@ -11,9 +11,7 @@
         >
       </a>
 
-      <v-toolbar-title>
-        <v-btn color="text" text>{{ appTitle }}</v-btn>
-      </v-toolbar-title>
+      <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
       
       <!--
       <div>
@@ -39,7 +37,7 @@ export default {
   data() {
     return {
       authRoutes: AuthRoutes,
-      appTitle: process.env.VUE_APP_TITLE
+      appTitle: 'User Management Utility'
     };
   },
   computed: {
