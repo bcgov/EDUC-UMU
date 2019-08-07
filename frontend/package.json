@@ -118,7 +118,8 @@
   "jest": {
     "clearMocks": true,
     "setupFiles": [
-      "<rootDir>/tests/unit/globalSetup.js"
+      "<rootDir>/tests/unit/setup",
+      "<rootDir>/mode_modules/regenerator-runtime/runtime"
     ],
     "moduleFileExtensions": [
       "js",
