@@ -5,10 +5,10 @@ import router from './router';
 import store from './store';
 
 const vuetifyOptions = {};
-Vue.use(Vuetify)
+Vue.use(vuetify);
 
 new Vue({
-  vuetify: new Vuetify(vuetifyOptions),
+  vuetify: new vuetify(vuetifyOptions),
   router,
   store,
   render: h => h(App)
