@@ -1,4 +1,3 @@
-import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Vue from 'vue';
 import indexStore from '@/store/index';
