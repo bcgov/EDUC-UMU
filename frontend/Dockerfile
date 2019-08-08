@@ -1,7 +1,12 @@
-FROM node:lts-alpine
+#pre-combined version of node with oracle libraries
+FROM openjdk:14-alpine
 
-# Move to App Folder
 WORKDIR /opt/app-root/src
+
+RUN apt-get install -y curl \
+  && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
+  && apt-get install -y nodejs \
+  && curl -L https://www.npmjs.com/install.sh | sh
 
 # Install NPM Dependencies
 COPY package*.json ./
