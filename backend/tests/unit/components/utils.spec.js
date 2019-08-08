@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../../../src/config/index');
+const mockAxios = require('axios-mock-adapter');
 
 const utils = require('../../../src/components/utils');
 
@@ -68,4 +69,3 @@ describe('toPascalCase', () => {
     expect(result).toMatch(/[A-Z][a-z]+(?:[A-Z][a-z]+)*/);
   });
 });
-  

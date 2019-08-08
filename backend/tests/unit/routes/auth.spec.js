@@ -6,22 +6,22 @@ const endlessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJlYjIzYj
 const validToken = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1VllTUUlUX1B4N05FUnZaMk45bXcwMW9UMVhJbnIyUjZFcEJFRGtpRUdrIn0.eyJqdGkiOiJkOTJkYTFkYS00ZGMzLTRjMjMtODllOC04YzQ1OTU3MDJmMzkiLCJleHAiOjE1NjUyODM1MzAsIm5iZiI6MCwiaWF0IjoxNTY1MjgzMjMwLCJpc3MiOiJodHRwczovL3Nzby1kZXYucGF0aGZpbmRlci5nb3YuYmMuY2EvYXV0aC9yZWFsbXMvanNnYnFsaXAiLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImFjY291bnQiXSwic3ViIjoiYmM0YjFhZGYtZTY0MS00NzkyLTliYzAtMWM3YzhiODMzYWZmIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidW11LWF1dGgiLCJub25jZSI6ImNjNzUzNDJiLTU0OTYtNDdkNy1hYjg0LWRjMDgyMTE1YjkwMSIsImF1dGhfdGltZSI6MTU2NTI4MzIyOSwic2Vzc2lvbl9zdGF0ZSI6IjdjMTk0NTY3LWYxMTctNGU5OC1iNDI3LWIxMGI0MjVhYjliNSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InJlYWxtLW1hbmFnZW1lbnQiOnsicm9sZXMiOlsidmlldy1yZWFsbSIsInZpZXctaWRlbnRpdHktcHJvdmlkZXJzIiwibWFuYWdlLWlkZW50aXR5LXByb3ZpZGVycyIsImltcGVyc29uYXRpb24iLCJyZWFsbS1hZG1pbiIsImNyZWF0ZS1jbGllbnQiLCJtYW5hZ2UtdXNlcnMiLCJxdWVyeS1yZWFsbXMiLCJ2aWV3LWF1dGhvcml6YXRpb24iLCJxdWVyeS1jbGllbnRzIiwicXVlcnktdXNlcnMiLCJtYW5hZ2UtZXZlbnRzIiwibWFuYWdlLXJlYWxtIiwidmlldy1ldmVudHMiLCJ2aWV3LXVzZXJzIiwidmlldy1jbGllbnRzIiwibWFuYWdlLWF1dGhvcml6YXRpb24iLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgb2ZmbGluZV9hY2Nlc3MiLCJuYW1lIjoiTmF0aGFuIERlbm55IiwicHJlZmVycmVkX3VzZXJuYW1lIjoibmRlbm55QGlkaXIiLCJnaXZlbl9uYW1lIjoiTmF0aGFuIiwiZmFtaWx5X25hbWUiOiJEZW5ueSIsImVtYWlsIjoibmF0aGFuLmRlbm55QGdvdi5iYy5jYSJ9.RuqnASGtVUK0p8QAzqecArEA6cWpCBRIBmTeNBkEuxawbwwXheK3mBYDDFgtlrNF8YHm6AgNkuhFiYlLKmbCfaErDbjzIkeXoFfYeyIALbFn0ucogi8WudUCmmnCsSs9nV1GvkbPIGdZ0QgJWvj2tp2qSoBX7Dy1fukOs4CK5C9NkPKoVvl5p2Hl59lwaS-xOIbmeHJX17WQzokzKTgdZe2wsm5p4YDie_1QLz8o8fRdSFI2_AVv9YMDjgLXWN4fc7KQNWx3Ovk1NkXxNQ6fA0DwjeyQvZnMop56ZkzWpgamvuK6tnwSVVbVFOt0Gz4nznjogDgToPThe9BJmpV2HA';
 
 describe('/api/auth', () => {
-    it('should return all available endpoints', async () => {
-      const response = await request(app).get('/api/auth');
+  it('should return all available endpoints', async () => {
+    const response = await request(app).get('/api/auth');
   
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toBeTruthy();
-      expect(response.body).toEqual({
-        endpoints: [
-          '/callback',
-          '/login',
-          '/logout',
-          '/refresh',
-          '/token'
-        ]
-      });
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toBeTruthy();
+    expect(response.body).toEqual({
+      endpoints: [
+        '/callback',
+        '/login',
+        '/logout',
+        '/refresh',
+        '/token'
+      ]
     });
   });
+});
   
 describe('/api/auth/callback', () => {
   it('should have a response', async () => {

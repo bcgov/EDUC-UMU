@@ -5,13 +5,13 @@
  */
 'use strict'
 
-import config from './config/index';
-import http from 'http';
-import log from 'npmlog';
-import dotenv from 'dotenv';
+import config from './config/index'; // eslint-disable-line no-console
+import http from 'http'; // eslint-disable-line no-console
+import log from 'npmlog'; // eslint-disable-line no-console
+import dotenv from 'dotenv'; // eslint-disable-line no-console
 dotenv.config();
 
-import app from './app';
+import app from './app'; // eslint-disable-line no-console
 
 /**
  * Get port from environment and store in Express.

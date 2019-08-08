@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const docs = {
     getDocHTML: (version) => `<!DOCTYPE html>
@@ -24,6 +24,6 @@ const docs = {
         <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
       </body>
     </html>`
-  };
+};
   
-  module.exports = docs;
+module.exports = docs;

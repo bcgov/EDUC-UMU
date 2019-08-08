@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-import express from 'express';
-import Database from '../../db/Database';
+import express from 'express'; // eslint-disable-line no-console
+import Database from '../../db/Database'; // eslint-disable-line no-console
 
 const dbRouter = express.Router();
 var database = new Database();
