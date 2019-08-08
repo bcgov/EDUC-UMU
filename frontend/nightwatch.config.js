@@ -2,9 +2,9 @@ const deepmerge = require('deepmerge');
 const userOptions = JSON.parse(process.env.VUE_NIGHTWATCH_USER_OPTIONS || '{}');
 
 module.exports = deepmerge({
-  src_folders: ['tests/e2e/specs'],
+  src_folders: 'tests/e2e/specs',
   output_folder: 'tests/e2e/reports',
-  custom_assertions_path: ['tests/e2e/custom-assertions'],
+  custom_assertions_path: 'tests/e2e/custom-assertions',
 
   selenium: {
     start_process: true,
