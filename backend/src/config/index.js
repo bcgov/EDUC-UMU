@@ -1,8 +1,8 @@
-/*eslint-disable*/
+/* eslint-disable */
 'use strict';
 
-import nconf from 'nconf'; // eslint-disable-line no-console
-import dotenv from 'dotenv'; // eslint-disable-line no-console
+import nconf from 'nconf';
+import dotenv from 'dotenv';
 dotenv.config();
 
 const env = process.env.NODE_ENV;

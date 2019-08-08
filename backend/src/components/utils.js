@@ -1,10 +1,10 @@
-/*eslint-disable*/
+/* eslint-disable */
 'use strict';
 
-import axios from 'axios'; // eslint-disable-line no-console
-import config from '../config/index'; // eslint-disable-line no-console
-import log from 'npmlog'; // eslint-disable-line no-console
-import cryptico from 'cryptico-js'; // eslint-disable-line no-console
+import axios from 'axios';
+import config from '../config/index';
+import log from 'npmlog';
+import cryptico from 'cryptico-js';
 
 let discovery = null;
 

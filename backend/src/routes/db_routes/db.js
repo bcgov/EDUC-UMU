@@ -1,8 +1,8 @@
-/*eslint-disable*/
+/* eslint-disable */
 'use strict';
 
-import express from 'express'; // eslint-disable-line no-console
-import Database from '../../db/Database'; // eslint-disable-line no-console
+import express from 'express';
+import Database from '../../db/Database';
 
 const dbRouter = express.Router();
 var database = new Database();

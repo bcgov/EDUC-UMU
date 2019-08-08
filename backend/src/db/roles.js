@@ -1,4 +1,4 @@
-/*eslint-disable*/
+/* eslint-disable */
 'use strict'
 
 import oracledb from 'oracledb';
