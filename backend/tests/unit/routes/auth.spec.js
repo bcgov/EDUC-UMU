@@ -23,68 +23,68 @@ describe('/api/auth', () => {
     });
   });
   
-  describe('/api/auth/callback', () => {
-    it('should have a response', async () => {
-      const response = await request(app).get('/api/auth/callback');
-      expect(response).toBeTruthy();
+describe('/api/auth/callback', () => {
+  it('should have a response', async () => {
+    const response = await request(app).get('/api/auth/callback');
+    expect(response).toBeTruthy();
+  });
+});
+  
+describe('/api/auth/error', () => {
+  it('should return the OpenAPI yaml spec', async () => {
+    const response = await request(app).get('/api/auth/error');
+
+    expect(response.statusCode).toBe(401);
+    expect(response.body).toBeTruthy();
+    expect(response.body).toEqual({
+      message: 'Error: Unable to authenticate'
     });
   });
+});
   
-  describe('/api/auth/error', () => {
-    it('should return the OpenAPI yaml spec', async () => {
-      const response = await request(app).get('/api/auth/error');
+describe('/api/auth/login', () => {
+  it('should have a response', async () => {
+    const response = await request(app).get('/api/auth/login');
+    expect(response).toBeTruthy();
+  });
+});
   
-      expect(response.statusCode).toBe(401);
-      expect(response.body).toBeTruthy();
-      expect(response.body).toEqual({
-        message: 'Error: Unable to authenticate'
+describe('/api/auth/logout', () => {
+  it('should have a response', async () => {
+    const response = await request(app).get('/api/auth/logout');
+    expect(response).toBeTruthy();
+    expect(response.statusCode).toBe(302);
+  });
+});
+  
+describe('/api/auth/refresh', () => {
+  it('should have a 200 response', async () => {
+    auth.renew = jest.fn().mockResolvedValue({
+      access_token: validToken,
+      refresh_token: endlessToken
+    });
+
+    const response = await request(app)
+      .post('/api/auth/refresh')
+      .send({
+        refreshToken: endlessToken
       });
-    });
+
+    expect(response).toBeTruthy();
+    expect(response.statusCode).toBe(200);
   });
-  
-  describe('/api/auth/login', () => {
-    it('should have a response', async () => {
-      const response = await request(app).get('/api/auth/login');
-      expect(response).toBeTruthy();
-    });
+
+  it('should have a 400 response', async () => {
+    const response = await request(app).post('/api/auth/refresh');
+    expect(response).toBeTruthy();
+    expect(response.statusCode).toBe(400);
   });
-  
-  describe('/api/auth/logout', () => {
-    it('should have a response', async () => {
-      const response = await request(app).get('/api/auth/logout');
-      expect(response).toBeTruthy();
-      expect(response.statusCode).toBe(302);
-    });
+});
+
+describe('/api/auth/token', () => {
+  it('should have a response', async () => {
+    const response = await request(app).get('/api/auth/token');
+    expect(response).toBeTruthy();
+    expect(response.statusCode).toBe(401);
   });
-  
-  describe('/api/auth/refresh', () => {
-    it('should have a 200 response', async () => {
-      auth.renew = jest.fn().mockResolvedValue({
-        access_token: validToken,
-        refresh_token: endlessToken
-      });
-  
-      const response = await request(app)
-        .post('/api/auth/refresh')
-        .send({
-          refreshToken: endlessToken
-        });
-  
-      expect(response).toBeTruthy();
-      expect(response.statusCode).toBe(200);
-    });
-  
-    it('should have a 400 response', async () => {
-      const response = await request(app).post('/api/auth/refresh');
-      expect(response).toBeTruthy();
-      expect(response.statusCode).toBe(400);
-    });
-  });
-  
-  describe('/api/auth/token', () => {
-    it('should have a response', async () => {
-      const response = await request(app).get('/api/auth/token');
-      expect(response).toBeTruthy();
-      expect(response.statusCode).toBe(401);
-    });
-  });
+});

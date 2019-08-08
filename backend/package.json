@@ -125,7 +125,9 @@
       "testResultsProcessor": "jest-sonar-reporter"
     },
     "jestSonar": {
-      "reportPath": "coverage"
+      "reportPath": "coverage",
+      "reportFile": "test-report.xml",
+      "indent": 2
     },
     "license": "Apache-2.0",
     "repository": {
