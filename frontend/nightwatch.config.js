@@ -1,5 +1,5 @@
-const deepmerge = require('deepmerge')
-const userOptions = JSON.parse(process.env.VUE_NIGHTWATCH_USER_OPTIONS || '{}')
+const deepmerge = require('deepmerge');
+const userOptions = JSON.parse(process.env.VUE_NIGHTWATCH_USER_OPTIONS || '{}');
 
 module.exports = deepmerge({
   src_folders: ['tests/e2e/specs'],
@@ -31,4 +31,4 @@ module.exports = deepmerge({
       }
     }
   }
-}, userOptions)
+}, userOptions);
