@@ -11,7 +11,7 @@
         >
       </a>
 
-      <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
+      <v-toolbar-title><h2 style="color:white">{{ appTitle }}</h2></v-toolbar-title>
       
       <!--
       <div>
