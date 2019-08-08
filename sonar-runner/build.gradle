@@ -41,7 +41,7 @@ sonarqube {
         property "sonar.tests", "frontend/tests, backend/tests"
         property "sonar.test.inclusions", "**/tests/**/*.spec.**"
         //property "sonar.javascript.lcov.reportPaths", "backend/coverage/lcov.info, frontend/coverage/lcov.info"
-        property "sonar.testExecutionReportPaths", "backend/coverage/test-report.xml, frontend/coverage/test-report.xml"
+        //property "sonar.testExecutionReportPaths", "backend/coverage/test-report.xml, frontend/coverage/test-report.xml"
     }
 }
 // ==============================================================================================
