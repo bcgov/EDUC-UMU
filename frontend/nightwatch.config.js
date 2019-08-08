@@ -1,4 +1,4 @@
-require('babel-core/register');
+require('@babel/register');
 const fs = require('fs');
 
 module.exports = ((settings) => {
