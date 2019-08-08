@@ -8,7 +8,7 @@ RUN apk add --update nodejs npm
 
 # Install NPM Dependencies
 COPY package*.json ./
-RUN npm reinstall
+RUN npm run reinstall
 # --no-optional --production
 
 # Build Application
