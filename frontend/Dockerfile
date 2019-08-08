@@ -3,6 +3,8 @@ FROM openjdk:14-alpine
 
 WORKDIR /opt/app-root/src
 
+RUN apk update \
+    && apk add
 RUN apt-get install -y curl \
   && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
   && apt-get install -y nodejs \

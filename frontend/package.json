@@ -14,7 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e": "node_modules/.bin/vue-cli-service --url='https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/' --config='./nightwatch.config.js' test:e2e",
+    "test:e2e": "node_modules/.bin/vue-cli-service --url='https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/' test:e2e",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
