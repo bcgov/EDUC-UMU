@@ -1,8 +1,11 @@
 const axios = require('axios');
 const config = require('../../../src/config/index');
-const mockAxios = require('axios-mock-adapter');
+const MockAdapter = require('axios-mock-adapter');
 
 const utils = require('../../../src/components/utils');
+
+log.level = config.get('server:logLevel');
+const mockAxios = new MockAdapter(axios);
 
 describe('getOidcDiscovery', () => {
   const url = config.get('oidc:discovery');
