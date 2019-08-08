@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const config =require('../config/index');
 const passport = require('passport');

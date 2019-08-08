@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-import atob from 'atob';
-import axios from 'axios';
-import config from '../config/index';
-import log from 'npmlog';
-import qs from 'querystring';
-import utils from './utils';
+import atob from 'atob'; // eslint-disable-line no-console
+import axios from 'axios'; // eslint-disable-line no-console
+import config from '../config/index'; // eslint-disable-line no-console
+import log from 'npmlog'; // eslint-disable-line no-console
+import qs from 'querystring'; // eslint-disable-line no-console
+import utils from './utils'; // eslint-disable-line no-console
 
 const auth = {
   // Check if JWT Access Token has expired

@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-import nconf from 'nconf';
-import dotenv from 'dotenv';
+import nconf from 'nconf'; // eslint-disable-line no-console
+import dotenv from 'dotenv'; // eslint-disable-line no-console
 dotenv.config();
 
 const env = process.env.NODE_ENV;

@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-'use strict'
+'use strict';
 
 import config from './config/index'; // eslint-disable-line no-console
 import http from 'http'; // eslint-disable-line no-console
