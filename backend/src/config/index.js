@@ -1,8 +1,8 @@
 /* eslint-disable */
 'use strict';
 
-import nconf from 'nconf';
-import dotenv from 'dotenv';
+const nconf = require('nconf');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const env = process.env.NODE_ENV;

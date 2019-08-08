@@ -5,13 +5,13 @@
  */
 'use strict';
 
-import config from './config/index';
-import http from 'http';
-import log from 'npmlog';
-import dotenv from 'dotenv'; 
+const config = require('./config/index');
+const http = require('http');
+const log = require('npmlog');
+const dotenv = require('dotenv');
 dotenv.config();
 
-import app from './app';
+const app = require('./app');
 
 /**
  * Get port from environment and store in Express.

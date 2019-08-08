@@ -1,25 +1,25 @@
 /* eslint-disable */
 'use strict';
 
-import express from 'express';
-import Database from '../../db/Database';
+const express = require('express');
+const Database = require('../../db/Database');
 
 const dbRouter = express.Router();
 var database = new Database();
 
 dbRouter.get('/database', (_req, res) => {
-    res.status(200).json({
-      endpoints: [
-        '/users',
-        '/proxy',
-        '/roles'
-      ]
-    });
+  res.status(200).json({
+    endpoints: [
+      '/users',
+      '/proxy',
+      '/roles'
+    ]
+  });
 });
 
 dbRouter.get('/users', async(_req, res) => {
-    let response = await database.selectUsers();
-    res.status(200).json(response);
+  let response = await database.selectUsers();
+  res.status(200).json(response);
 });
 /*
 dbRouter.put('/users', async(_req, res) => {
@@ -43,8 +43,8 @@ dbRouter.post('/users', async(_req, res) => {
 */
 
 dbRouter.get('/proxy', async(_req, res) => {
-    let response = await database.selectProxies();
-    res.status(200).json(response);
+  let response = await database.selectProxies();
+  res.status(200).json(response);
 });
 /*
 dbRouter.put('/proxy', async(_req, res) => {
@@ -69,8 +69,8 @@ dbRouter.post('/proxy', async(_req, res) => {
 
 
 dbRouter.get('/roles', async(_req, res) => {
-    let response = await database.selectRole();
-    res.status(200).json(response);
+  let response = await database.selectRole();
+  res.status(200).json(response);
 });
 /*
 dbRouter.put('/roles', async(_req, res) => {

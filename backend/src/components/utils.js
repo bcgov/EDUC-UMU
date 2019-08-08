@@ -1,10 +1,10 @@
 /* eslint-disable */
 'use strict';
 
-import axios from 'axios';
-import config from '../config/index';
-import log from 'npmlog';
-import cryptico from 'cryptico-js';
+const axios = require('axios');
+const config = require('../config/index');
+const log = require('npmlog');
+const cryptico = require('cryptico-js');
 
 let discovery = null;
 

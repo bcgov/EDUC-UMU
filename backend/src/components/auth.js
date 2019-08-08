@@ -1,12 +1,12 @@
-/*eslint-disable*/
+/* eslint-disable */
 'use strict';
 
-import atob from 'atob';
-import axios from 'axios';
-import config from '../config/index';
-import log from 'npmlog';
-import qs from 'querystring';
-import utils from './utils';
+const atob = require('atob');
+const axios = require('axios');
+const config = require('../config/index');
+const log = require('npmlog');
+const qs = require('querystring');
+const utils = require('./utils');
 
 const auth = {
   // Check if JWT Access Token has expired
