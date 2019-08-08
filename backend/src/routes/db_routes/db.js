@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 import express from 'express'; // eslint-disable-line no-console

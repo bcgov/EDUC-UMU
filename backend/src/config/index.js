@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 import nconf from 'nconf'; // eslint-disable-line no-console

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 const express = require('express');
@@ -12,7 +13,7 @@ function isAuthenticated(req, res, next) {
     return next();
   }
   res.redirect('/api/auth/login');
-};
+}
 
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {

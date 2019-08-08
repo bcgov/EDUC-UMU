@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 import atob from 'atob'; // eslint-disable-line no-console

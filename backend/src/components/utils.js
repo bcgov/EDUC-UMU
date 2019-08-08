@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 import axios from 'axios'; // eslint-disable-line no-console

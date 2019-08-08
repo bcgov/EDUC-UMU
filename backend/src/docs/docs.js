@@ -1,7 +1,7 @@
 'use strict';
 
 const docs = {
-    getDocHTML: (version) => `<!DOCTYPE html>
+  getDocHTML: (version) => `<!DOCTYPE html>
     <html>
       <head>
         <title>GetOK API - Documentation ${version}</title>
