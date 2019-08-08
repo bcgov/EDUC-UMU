@@ -4,11 +4,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-const vuetifyOptions = {};
-Vue.use(vuetify);
-
 new Vue({
-  vuetify: new vuetify(vuetifyOptions),
+  vuetify,
   router,
   store,
   render: h => h(App)
