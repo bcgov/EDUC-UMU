@@ -40,7 +40,7 @@ app.use(morgan(config.get('server:morganFormat')));
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
   secret: config.get('oidc:clientSecret'),
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   httpOnly: true,
   secure: true,
