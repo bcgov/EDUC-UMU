@@ -15,4 +15,5 @@ RUN npm install
 COPY . /opt/app-root/src
 
 #prepare application for deployment
+RUN npm run test:unit
 RUN npm run build
