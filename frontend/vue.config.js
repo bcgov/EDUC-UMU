@@ -17,6 +17,15 @@ module.exports = {
         }),
         {}
       ),
+      ...['/'].reduce(
+        (acc, ctx) => ({
+          ...acc,
+          [ctx]: {
+            target: 'http://localhost:8080'
+          }
+        }),
+        {}
+      )
     }
   },
   publicPath: process.env.NODE_ENV === 'production'

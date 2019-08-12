@@ -8,13 +8,14 @@ RUN apk add --update nodejs npm
 
 # Install NPM Dependencies
 COPY package*.json ./
+RUN npm install
 # --no-optional --production
 
 # Build Application
 COPY . /opt/app-root/src
 
 #Run e2e tests on localhost
-#RUN npm run test:e2e
+RUN npm run test:e2e
 
 #Run unit tests on static code
 RUN npm run test:unit
