@@ -15,7 +15,7 @@ RUN npm install
 COPY . /opt/app-root/src
 
 #Run e2e tests on localhost
-RUN npm run test:e2e
+#RUN npm run test:e2e
 
 #Run unit tests on static code
 RUN npm run test:unit
