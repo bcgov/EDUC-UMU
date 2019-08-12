@@ -14,6 +14,8 @@ RUN npm run reinstall
 # Build Application
 COPY . /opt/app-root/src
 
+EXPOSE 4444
+
 RUN npm run test:e2e
 RUN npm run test:unit
 RUN npm run build
