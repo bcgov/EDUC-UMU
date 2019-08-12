@@ -1,7 +1,7 @@
 module.exports = {
   'default e2e tests' : (browser) => {
     browser
-      .url("http://localhost:8080/")
+      .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.container')
       .end();

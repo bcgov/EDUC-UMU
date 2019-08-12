@@ -1,9 +1,0 @@
-{
-    "test_settings": {
-        "default": {
-            "selenium_port": 8080,
-            "selenium_host": "localhost",
-            "silent": true
-        }
-    }
-}
