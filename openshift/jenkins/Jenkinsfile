@@ -2,6 +2,17 @@
 @Library('devops-library')
 import bcgov.GitHubHelper
 
+def BE_COV_STASH = 'backend-coverage'
+def FE_COV_STASH = 'frontend-coverage'
+
+def SONAR_ROUTE_NAME = 'sonarqube'
+def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
+def SONAR_PROJECT_NAME = 'UMU'
+def SONAR_PROJECT_KEY = 'UMU'
+def SONAR_PROJECT_BASE_DIR = '../'
+def SONAR_SOURCES = './'
+def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca'
+
 pipeline{
     agent any
 
@@ -52,6 +63,54 @@ pipeline{
                 }
             }
         }
+        stage('Test') {
+            agent any
+            steps {
+                script {
+                    parallel(
+                        Backend: {
+                            dir('backend') {
+                                try {
+                                    timeout(10) {
+                                        sh 'npm install'
+                                        sh 'npm run test'
+                                        echo 'Backend Lint Checks and Tests passed'
+                                    }
+                                } catch(e) {
+                                    echo 'Backend Lint Checks and Tests failed'
+                                    throw e
+                                }
+                            }
+                        },
+                        Frontend : {
+                            dir('frontend'){
+                                try {
+                                    timeout(10){ 
+                                        sh 'npm install'
+                                        sh 'npm run test:unit'
+                                        echo 'Frontend Lint Checks and Tests passed'
+                                    }
+                                } catch(e) {
+                                    echo 'Frontend Lint Checks and Tests failed'
+                                    throw e
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+            post {
+                success {
+                    stash name: BE_COV_STASH, includes: 'backend/coverage/**'
+                    stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
+
+                    echo 'All Lint Checks and Tests passed'
+                }
+                failure {
+                    echo 'Some Lint Checks or Tests failed'
+                }
+            }
+        }
         stage('Build') {
             agent any
             steps{
@@ -97,6 +156,21 @@ pipeline{
                                         //notifyStageStatus('Frontend', 'FAILURE')
                                         throw e
                                     }
+                            },
+                            SonarQube: {
+                                unstash BE_COV_STASH
+                                unstash FE_COV_STASH
+
+                                echo "Performing SonarQube scan..."
+                                sh """
+                                    ./gradlew sonarqube --stacktrace --info \
+                                    -Dsonar.verbose=true \
+                                    -Dsonar.host.url=${SONARQUBE_URL} \
+                                    -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
+                                    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                                    -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
+                                    -Dsonar.sources=${SONAR_SOURCES}
+                                """
                             }
                         )
                         }
