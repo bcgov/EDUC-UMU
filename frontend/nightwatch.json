@@ -1,0 +1,11 @@
+{
+    "chrome": {
+        "desiredCapabilities": {
+            "browserName": "chrome",
+            "javascriptEnabled": true,
+            "chromeOptions": {
+                "args": ["--headless"]
+            }
+        }
+    }
+}
