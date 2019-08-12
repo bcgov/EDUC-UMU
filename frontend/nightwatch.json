@@ -1,10 +1,18 @@
 {
-    "chrome": {
-        "desiredCapabilities": {
-            "browserName": "chrome",
-            "javascriptEnabled": true,
-            "chromeOptions": {
-                "args": ["--headless"]
+    "selenium": {
+        "cli_args": {
+            "webdriver.chrome.driver": "./node_modules/chromedriver/lib/chromedriver/chromedriver"
+        }
+    },
+    "test_settings": {
+        "chrome": {
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "javascriptEnabled": true,
+                "acceptSslCerts": true,
+                "chromeOptions": {
+                    "args": ["--headless", "--disable-gpu"]
+                }
             }
         }
     }
