@@ -288,19 +288,6 @@ pipeline{
             }
         }
         */
-        stage('SonarQube Scan'){
-            steps{
-                script{
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                            echo "Triggering SonarQube scan"
-                            def sonarqubeScan = openshift.selector("bc", "sonarqube-scanner")
-                            sonarqubeScan.startBuild()
-                        }
-                    }
-                }
-            }
-        }
         stage('Zap Scan'){
             steps{
                 script{
