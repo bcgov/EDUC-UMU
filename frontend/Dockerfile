@@ -13,9 +13,8 @@ COPY package*.json ./
 # Build Application
 COPY . /opt/app-root/src
 
-EXPOSE 8080
 #Run e2e tests on localhost
-RUN npm run test:e2e
+#RUN npm run test:e2e
 
 #Run unit tests on static code
 RUN npm run test:unit
