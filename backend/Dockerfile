@@ -35,7 +35,6 @@ EXPOSE 8080 1521 443
 
 RUN npm run build
 RUN npm run lint:fix
-RUN npm run start
 RUN npm run test
 # --no-optional --production
 
