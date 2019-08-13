@@ -8,7 +8,7 @@ const validToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk
 
 describe('/api/auth', () => {
   it('should return all available endpoints', async () => {
-    const response = await request(app).get('/api/auth');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toBeTruthy();
@@ -26,14 +26,14 @@ describe('/api/auth', () => {
   
 describe('/api/auth/callback', () => {
   it('should have a response', async () => {
-    const response = await request(app).get('/api/auth/callback');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/callback');
     expect(response).toBeTruthy();
   });
 });
 
 describe('/api/auth/error', () => {
   it('should return error message', async () => {
-    const response = await request(app).get('/api/auth/error');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/error');
 
     expect(response.statusCode).toBe(401);
     expect(response.body).toBeTruthy();
@@ -45,14 +45,14 @@ describe('/api/auth/error', () => {
 
 describe('/api/auth/login', () => {
   it('should have a response', async () => {
-    const response = await request(app).get('/api/auth/login');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/login');
     expect(response).toBeTruthy();
   });
 });
 
 describe('/api/auth/logout', () => {
   it('should have a response', async () => {
-    const response = await request(app).get('/api/auth/logout');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/logout');
     expect(response).toBeTruthy();
     expect(response.statusCode).toBe(302);
   });
@@ -66,7 +66,7 @@ describe('/api/auth/refresh', () => {
     });
 
     const response = await request(app)
-      .post('/api/auth/refresh')
+      .post('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/refresh')
       .send({
         refreshToken: endlessToken
       });
@@ -76,7 +76,7 @@ describe('/api/auth/refresh', () => {
   });
 
   it('should have a 400 response', async () => {
-    const response = await request(app).post('/api/auth/refresh');
+    const response = await request(app).post('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/refresh');
     expect(response).toBeTruthy();
     expect(response.statusCode).toBe(400);
   });
@@ -84,7 +84,7 @@ describe('/api/auth/refresh', () => {
 
 describe('/api/auth/token', () => {
   it('should have a response', async () => {
-    const response = await request(app).get('/api/auth/token');
+    const response = await request(app).get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/auth/token');
     expect(response).toBeTruthy();
     expect(response.statusCode).toBe(401);
   });

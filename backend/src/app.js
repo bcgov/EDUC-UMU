@@ -127,10 +127,9 @@ app.use((_req, res) => {
   });
 });
 
-
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
-//The following variable can be used to test connections to the database (probably shouldn't test queries though)
+
 module.exports = app;
