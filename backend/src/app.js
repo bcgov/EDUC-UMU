@@ -7,7 +7,6 @@ const morgan = require('morgan');
 const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
-const cors = require('cors');
 const helmet = require('helmet');
 dotenv.config();
 
