@@ -25,6 +25,7 @@ const app = express();
 app.use(helmet());
 app.use(helmet.noCache());
 
+console.log(config.get('oidc:clientSecret'));
 //tells the app to use json as means of transporting data
 app.use(express.json());
 app.use(express.urlencoded({
