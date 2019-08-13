@@ -9,7 +9,7 @@
       "start": "node ./dist/src/server.js",
       "lint": "node_modules/.bin/eslint . --no-fix --ignore-pattern 'node_modules' --ext .js",
       "lint:fix": "node_modules/.bin/eslint . --fix --ignore-pattern 'node_modules' --ext .js",
-      "test": "npm run start && set NODE_ENV=test && node_modules/.bin/jest --verbose",
+      "test": "set NODE_ENV=test && node_modules/.bin/jest --verbose",
       "clean": "rm -rf coverage dist",
       "pretest": "npm run lint",
       "purge": "rm -rf node_modules",
