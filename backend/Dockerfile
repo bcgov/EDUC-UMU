@@ -31,11 +31,13 @@ COPY package*.json ./
 RUN npm install
 COPY . /opt/app-root/src
 
-RUN npm run test
+EXPOSE 8080 1521 443
+
 RUN npm run build
+RUN npm run lint:fix
+RUN npm run test
 # --no-optional --production
 
-# expose the web and database ports
-EXPOSE 8080 1521 443
+
 # Tell application how to serve build
 CMD ["npm", "start"]

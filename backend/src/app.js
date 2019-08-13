@@ -7,7 +7,6 @@ const morgan = require('morgan');
 const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
-const cors = require('cors');
 const helmet = require('helmet');
 dotenv.config();
 
@@ -25,7 +24,6 @@ const app = express();
 //sets security measures (headers, etc)
 app.use(helmet());
 app.use(helmet.noCache());
-app.use(cors());
 
 //tells the app to use json as means of transporting data
 app.use(express.json());
@@ -34,7 +32,9 @@ app.use(express.urlencoded({
 }));
 
 //initialize logging middleware
-app.use(morgan(config.get('server:morganFormat')));
+if(process.env.NODE_ENV !== 'test'){
+  app.use(morgan(config.get('server:morganFormat')));
+}
 
 //sets cookies for security purposes (prevent cookie access, allow secure connections only, etc)
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
@@ -127,10 +127,9 @@ app.use((_req, res) => {
   });
 });
 
-
 // Prevent unhandled errors from crashing application
 process.on('unhandledRejection', err => {
   log.error(err.stack);
 });
-//The following variable can be used to test connections to the database (probably shouldn't test queries though)
+
 module.exports = app;

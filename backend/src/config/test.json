@@ -1,6 +1,6 @@
 {
     "server": {
-        "frontend": "process.env.SERVER_FRONTEND",
+        "frontend": "http://localhost:8080",
         "logLevel": "silent",
         "morganFormat": "dev",
         "port": 8080

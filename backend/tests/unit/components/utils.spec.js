@@ -64,6 +64,13 @@ describe('prettyStringify', () => {
   });
 });
   
+describe('generatePassword', () => {
+  test('should generate a valid password', () => {
+    const password = utils.generatePassword(32);
+    expect(password).toHaveLength(2);
+  });
+});
+
 describe('toPascalCase', () => {
   it('should return a string', () => {
     const string = 'test foo bar';

@@ -9,7 +9,7 @@
       "start": "node ./dist/src/server.js",
       "lint": "node_modules/.bin/eslint . --no-fix --ignore-pattern 'node_modules' --ext .js",
       "lint:fix": "node_modules/.bin/eslint . --fix --ignore-pattern 'node_modules' --ext .js",
-      "test": "node_modules/.bin/jest",
+      "test": "set NODE_ENV=test && node_modules/.bin/jest",
       "clean": "rm -rf coverage dist",
       "pretest": "npm run lint",
       "purge": "rm -rf node_modules",
@@ -116,11 +116,15 @@
       "testMatch": [
         "**/tests/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
       ],
-      "testURL": "https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca",
+      "testURL": "http://localhost",
       "collectCoverage": true,
       "collectCoverageFrom": [
         "src/**/*.js",
-        "!src/docs/*.*"
+        "!src/docs/*.*",
+        "!src/routes/**/*",
+        "!src/app.js",
+        "!src/server.js",
+        "!src/db/*"
       ],
       "testResultsProcessor": "jest-sonar-reporter"
     },
