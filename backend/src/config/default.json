@@ -1,10 +1,8 @@
 {
-    "oidc": {
-        "discovery": "https://sso-pbuo5q-tools.pathfinder.gov.bc.ca/auth/realms/obiee-umu/.well-known/openid-configuration"
-    },
     "server": {
-        "logLevel": "debug",
+        "frontend": "process.env.SERVER_FRONTEND",
+        "logLevel": "silent",
         "morganFormat": "dev",
-        "port": "8080"
+        "port": 8080
     }
 }
