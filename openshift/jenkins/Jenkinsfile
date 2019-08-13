@@ -5,6 +5,14 @@ import bcgov.GitHubHelper
 def BE_COV_STASH = 'backend-coverage'
 def FE_COV_STASH = 'frontend-coverage'
 
+def SONAR_ROUTE_NAME = 'sonarqube'
+def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
+def SONAR_PROJECT_NAME = 'UMU'
+def SONAR_PROJECT_KEY = 'UMU'
+def SONAR_PROJECT_BASE_DIR = '../'
+def SONAR_SOURCES = './'
+def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca/projects'
+
 pipeline{
     agent any
 
@@ -110,6 +118,8 @@ pipeline{
             }
             post{
                 success {
+                    stash name: BE_COV_STASH , includes: 'backend/coverage/**'
+                    stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
                     echo 'Cleanup BuildConfigs...'
                     script {
                         openshift.withCluster() {
@@ -137,6 +147,9 @@ pipeline{
                             }
                         }
                     }
+                }
+                failure {
+                    echo 'Build stage failed'
                 }
             }
         }
@@ -221,15 +234,18 @@ pipeline{
         */
         stage('SonarQube scan') {
             steps{
-                script{
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                            echo "Triggering SonarQube pipeline"
-                            def sonar = openshift.selector("bc", "sonarqube-scanner")
-                            sonar.startBuild()
-                        }
-                    }
-                }
+                unstash BE_COV_STASH
+                unstash FE_COV_STASH
+                echo 'Performing SonarQube analysis...'
+                sh """
+                    ./gradlew sonarqube --stacktrace --info \
+                    -Dsonar.verbose=true \
+                    -Dsonar.host.url=${SONARQUBE_URL} \
+                    -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
+                    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                    -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
+                    -Dsonar.sources=${SONAR_SOURCES}" 
+                """
             }
         }
         stage('Zap Scan'){
@@ -237,7 +253,7 @@ pipeline{
                 script{
                     openshift.withCluster() {
                         openshift.withProject() {
-                            echo "Triggering ZAP pipeline"
+                            echo "Triggering ZAP pipeline..."
                             def zapScan = openshift.selector("bc", "owasp-zap-scanner")
                             zapScan.startBuild()
                         }
