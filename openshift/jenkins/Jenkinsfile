@@ -234,18 +234,20 @@ pipeline{
         */
         stage('SonarQube scan') {
             steps{
-                unstash BE_COV_STASH
-                unstash FE_COV_STASH
-                echo 'Performing SonarQube analysis...'
-                sh """
-                    ./gradlew sonarqube --stacktrace --info \
-                    -Dsonar.verbose=true \
-                    -Dsonar.host.url=${SONARQUBE_URL} \
-                    -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
-                    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
-                    -Dsonar.sources=${SONAR_SOURCES}
-                """
+                dir('../../sonar-runner'){
+                    unstash BE_COV_STASH
+                    unstash FE_COV_STASH
+                    echo 'Performing SonarQube analysis...'
+                    sh """
+                        ./gradlew sonarqube --stacktrace --info \
+                        -Dsonar.verbose=true \
+                        -Dsonar.host.url=${SONARQUBE_URL} \
+                        -Dsonar.projectName='${SONAR_PROJECT_NAME}' \
+                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                        -Dsonar.projectBaseDir=${SONAR_PROJECT_BASE_DIR} \
+                        -Dsonar.sources=${SONAR_SOURCES}
+                    """
+                }
             }
         }
         stage('Zap Scan'){
