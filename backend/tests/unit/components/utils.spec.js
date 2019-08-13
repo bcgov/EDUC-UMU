@@ -65,7 +65,7 @@ describe('prettyStringify', () => {
 });
   
 describe('generatePassword', () => {
-  test('should generate a valid password', () => {
+  test('should generate a password and encrypted password', () => {
     const password = utils.generatePassword(32);
     expect(password).toHaveLength(2);
   });
