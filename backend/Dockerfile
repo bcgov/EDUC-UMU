@@ -31,9 +31,8 @@ COPY package*.json ./
 RUN npm install
 COPY . /opt/app-root/src
 
-RUN npm run serve
-RUN npm run test
 RUN npm run build
+RUN npm run test
 # --no-optional --production
 
 # expose the web and database ports
