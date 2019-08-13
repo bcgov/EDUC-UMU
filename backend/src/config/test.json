@@ -1,7 +1,7 @@
 {
     "server": {
         "frontend": "http://localhost:8080",
-        "logLevel": "debug",
+        "logLevel": "silent",
         "morganFormat": "dev",
         "port": 8080
     }
