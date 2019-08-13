@@ -4,7 +4,7 @@ const app = require('../../../src/app');
 
 describe('/api/main/database', () => {
   it('should return all available endpoints', async () => {
-      const response = await request(app).get('/api/main/database');
+    const response = await request(app).get('/api/main/database');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toBeTruthy();
