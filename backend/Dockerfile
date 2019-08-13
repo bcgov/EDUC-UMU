@@ -32,6 +32,7 @@ RUN npm install
 COPY . /opt/app-root/src
 
 RUN npm run build
+RUN npm run lint:fix
 RUN npm run test
 # --no-optional --production
 
