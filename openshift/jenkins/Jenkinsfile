@@ -237,6 +237,8 @@ pipeline{
                 script{
                     openshift.withCluster() {
                         openshift.withProject() {
+                            unstash BE_COV_STASH
+                            unstash FE_COV_STASH
                             echo "Triggering SonarQube analysis..."
                             def sonar = openshift.selector("bc", "sonarqube-scanner")
                             sonar.startBuild()
