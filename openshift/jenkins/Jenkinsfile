@@ -5,14 +5,6 @@ import bcgov.GitHubHelper
 def BE_COV_STASH = 'backend-coverage'
 def FE_COV_STASH = 'frontend-coverage'
 
-def SONAR_ROUTE_NAME = 'sonarqube'
-def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
-def SONAR_PROJECT_NAME = 'UMU'
-def SONAR_PROJECT_KEY = 'UMU'
-def SONAR_PROJECT_BASE_DIR = '../'
-def SONAR_SOURCES = './'
-def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca'
-
 pipeline{
     agent any
 
