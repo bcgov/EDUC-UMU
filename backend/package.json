@@ -123,7 +123,8 @@
         "!src/docs/*.*",
         "!src/routes/**/*",
         "!src/app.js",
-        "!src/server.js"
+        "!src/server.js",
+        "!src/db/*"
       ],
       "testResultsProcessor": "jest-sonar-reporter"
     },
