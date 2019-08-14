@@ -1,8 +1,5 @@
 import axios from 'axios';
 import apiService from '@/common/apiService';
-import MockAdapter from 'axios-mock-adapter';
-
-const mockAxios = new MockAdapter(apiService.apiAxios);
 
 describe('getUsers()', () => {
 
