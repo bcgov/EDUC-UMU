@@ -6,7 +6,7 @@ import Proxy from '@/components/ProxyTable.vue';
 import auth from '@/store/modules/auth.js';
 import db from '@/store/modules/db.js';
 
-describe('Proxy.vue', () => {
+describe('ProxyTable.vue', () => {
     let wrapper;
     let store;
     let getters;
