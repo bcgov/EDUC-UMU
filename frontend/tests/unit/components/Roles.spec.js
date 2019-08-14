@@ -32,7 +32,7 @@ describe('Proxy.vue', () => {
     test('should contain table', () => {
         expect(wrapper.html()).toContain('<v-data-table-stub');
     });
-    test('should execute functions', async () => {
+    test('should execute functions', () => {
         wrapper.vm.validate();
         //wrapper.vm.getRoles();
         wrapper.vm.updateRoleForm('test', 'test');

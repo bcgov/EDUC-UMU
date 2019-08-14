@@ -34,7 +34,7 @@ describe('Proxy.vue', () => {
         expect(wrapper.html()).toContain('<v-data-table-stub');
     });
 
-    test('should execute functions', async () => {
+    test('should execute functions', () => {
         wrapper.vm.validate();
         //wrapper.vm.getItems();
         wrapper.vm.addUser();
