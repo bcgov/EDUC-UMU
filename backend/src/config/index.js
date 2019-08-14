@@ -18,8 +18,8 @@ nconf.overrides({
     },
     server: {
         frontend: process.env.SERVER_FRONTEND,
-        logLevel: silent,
-        morganFormat: dev,
+        logLevel: 'silent',
+        morganFormat: 'dev',
         port: 8080
     }
 });
