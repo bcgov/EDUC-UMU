@@ -76,15 +76,5 @@ export default {
     } else {
       delete apiAxios.defaults.headers.common['Authorization'];
     }
-  },
-
-  //function to retireve users from API endpoint
-  async getUsers(){
-    try{
-      const response = await apiAxios.get('https://obiee-umu-pbuo5q-tools.pathfinder.gov.bc.ca/api/database/users');
-      return response.rows;
-    } catch (e) {
-      throw e;
-    }
   }
 };

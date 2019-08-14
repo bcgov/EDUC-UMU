@@ -155,7 +155,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,vue}",
       "!src/main.js",
-      "!src/plugins/*.*"
+      "!src/plugins/*.*",
+      "!src/router.js"
     ],
     "testResultsProcessor": "jest-sonar-reporter"
   },
