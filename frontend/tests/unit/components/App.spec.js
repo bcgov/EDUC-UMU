@@ -9,7 +9,7 @@ import db from '@/store/modules/db.js';
 
 describe('App.vue', () => {
     let wrapper;
-    let getters;
+    //let getters;
     let store;
     let vuet;
 
@@ -18,9 +18,6 @@ describe('App.vue', () => {
         Vue.use(Vuex);
         Vue.use(VueRouter);
 
-        getters = {
-            isAuthenticated: () => 'false'
-        };
         store = new Vuex.Store({
             modules: { auth, db }
         });
