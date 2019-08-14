@@ -34,7 +34,7 @@ describe('Proxy.vue', () => {
     });
     test('should execute functions', async () => {
         wrapper.vm.validate();
-        wrapper.vm.getRoles();
+        //wrapper.vm.getRoles();
         wrapper.vm.updateRoleForm('test', 'test');
         wrapper.vm.addRole();
         wrapper.vm.deleteRole();

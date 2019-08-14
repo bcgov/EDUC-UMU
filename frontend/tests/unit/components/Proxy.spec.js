@@ -8,6 +8,8 @@ import db from '@/store/modules/db.js';
 
 describe('Proxy.vue', () => {
     let wrapper;
+    let store;
+    let getters;
     
     beforeEach(() => {
         Vue.use(Vuetify);
@@ -32,7 +34,7 @@ describe('Proxy.vue', () => {
     });
     test('should exectue functions', async () => {
         wrapper.vm.validate();
-        wrapper.vm.getProxy();
+        //wrapper.vm.getProxy();
         wrapper.vm.updateProxyForm('test', 'test', 'test');
         wrapper.vm.addProxy();
         wrapper.vm.deleteProxy();

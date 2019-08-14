@@ -36,7 +36,7 @@ describe('Proxy.vue', () => {
 
     test('should execute functions', async () => {
         wrapper.vm.validate();
-        wrapper.vm.getItems();
+        //wrapper.vm.getItems();
         wrapper.vm.addUser();
         wrapper.vm.updateUserForm('test', 'test', 'test', 'test', 'test', 'test');
         wrapper.vm.deleteUser();
