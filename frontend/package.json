@@ -156,7 +156,9 @@
       "src/**/*.{js,vue}",
       "!src/main.js",
       "!src/plugins/*.*",
-      "!src/router.js"
+      "!src/router.js",
+      "!src/common/*",
+      "!src/store/modules/*"
     ],
     "testResultsProcessor": "jest-sonar-reporter"
   },
