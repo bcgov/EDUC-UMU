@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Vuetify from 'vuetify';
+import Vuetify from '@/plugins/vuetify';
 import VueRouter from 'vue-router';
 import App from '@/App.vue';
 import Vuex from 'vuex';
