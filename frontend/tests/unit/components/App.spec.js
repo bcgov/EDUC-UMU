@@ -1,5 +1,5 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-//import Vuetify from 'vuetify';
+import { mount } from '@vue/test-utils';
+import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from '@/App.vue';
 import Vuex from 'vuex';
@@ -11,6 +11,10 @@ describe('App.vue', () => {
     let store;
 
     beforeEach(() => {
+        Vue.use(Vuetify);
+        Vue.use(Vuex);
+        Vue.use(VueRouter);
+
         getters = {
             isAuthenticated: () => 'false'
         };
