@@ -25,7 +25,7 @@ describe('App.vue', () => {
             icons: {
                 iconfont: 'md',
             }
-        })
+        });
 
         const router = new VueRouter();
         wrapper = shallowMount(App, {
