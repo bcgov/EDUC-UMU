@@ -1,31 +1,39 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from '@/App.vue';
 import Vuex from 'vuex';
-//import Vue from 'vue';
+import Vue from 'vue';
+import auth from '@/store/modules/auth.js';
+import db from '@/store/modules/db.js';
 
 describe('App.vue', () => {
     let wrapper;
     let getters;
     let store;
+    let vuet;
 
     beforeEach(() => {
-        const localVue = createLocalVue();
-        localVue.use(Vuetify);
-        localVue.use(Vuex);
-        localVue.use(VueRouter);
+        Vue.use(Vuetify);
+        Vue.use(Vuex);
+        Vue.use(VueRouter);
 
         getters = {
             isAuthenticated: () => 'false'
         };
         store = new Vuex.Store({
-            getters
+            modules: { auth, db }
         });
-    
+        vuet = new Vuetify({
+            icons: {
+                iconfont: 'md',
+            }
+        })
+
         const router = new VueRouter();
         wrapper = mount(App, {
-            localVue,
+            Vue,
+            vuet,
             store,
             router
         });
