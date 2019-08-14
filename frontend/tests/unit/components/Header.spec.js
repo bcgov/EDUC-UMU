@@ -30,7 +30,7 @@ describe('Header.vue', () => {
         expect(wrapper.html()).toContain('User Management Utility');
     });
     test('expect empty localStorage', () => {
-        wrapper.clearStorage();
+        wrapper.vm.clearStorage();
         expect(wrapper).toBeTruthy();
     });
 });
