@@ -5,6 +5,7 @@ const axios = require('axios');
 const config = require('../config/index');
 const log = require('npmlog');
 const cryptico = require('cryptico-js');
+const generator = require('generate-password');
 
 let discovery = null;
 

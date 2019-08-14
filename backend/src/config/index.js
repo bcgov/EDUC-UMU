@@ -1,11 +1,10 @@
 /* eslint-disable */
 'use strict';
-const path = require('path');
 const nconf = require('nconf');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'default';
+const env = 'default';
 
 //injects environment variables into the json file
 nconf.overrides({
@@ -16,10 +15,14 @@ nconf.overrides({
         publicKey: process.env.SSO_PUBLIC_KEY,
         discovery: "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/jsgbqlip/.well-known/openid-configuration",
         certUrl: "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/jsgbqlip/protocol/openid-connect/certs"
+    },
+    server: {
+        frontend: process.env.SERVER_FRONTEND,
+        logLevel: 'silent',
+        morganFormat: 'dev',
+        port: 8080
     }
 });
-
-nconf.argv().env().file({ file: path.join(__dirname, `${env}.json`)});
 
 nconf.defaults({
 

@@ -52,7 +52,7 @@ objects:
       build: "${REPO_NAME}-backend"
     name: "${REPO_NAME}-backend-${JOB_NAME}"
   spec:
-    completionDeadlineSeconds: 600
+    completionDeadlineSeconds: 800
     successfulBuildsHistoryLimit: 3
     failedBuildsHistoryLimit: 3
     nodeSelector:
