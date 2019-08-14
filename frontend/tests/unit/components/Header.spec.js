@@ -11,6 +11,7 @@ describe('Header.vue', () => {
 
     beforeEach(() => {
         Vue.use(Vuetify);
+        Vue.use(Vuex);
 
         getters = {
             isAuthenticated: () => 'false'
@@ -27,5 +28,9 @@ describe('Header.vue', () => {
 
     test('expect site title', () => {
         expect(wrapper.html()).toContain('User Management Utility');
+    });
+    test('expect empty localStorage', () => {
+        wrapper.clearStorage();
+        expect(wrapper).toBeTruthy();
     });
 });
