@@ -14,9 +14,6 @@ describe('Header.vue', () => {
         Vue.use(Vuetify);
         Vue.use(Vuex);
 
-        getters = {
-            isAuthenticated: () => 'false'
-        };
         store = new Vuex.Store({
             modules: { auth, db }
         });
