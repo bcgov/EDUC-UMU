@@ -1,16 +1,29 @@
 import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
+import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Proxy from '@/components/ProxyTable.vue';
+import auth from '@/store/modules/auth.js';
+import db from '@/store/modules/db.js';
 
 describe('Proxy.vue', () => {
     let wrapper;
     
     beforeEach(() => {
         Vue.use(Vuetify);
+        Vue.use(Vuex);
 
+        getters = {
+            isAuthenticated: () => 'true'
+        }
+
+        store = new Vuex.Store({
+            getters,
+            modules: { auth, db }
+        });
         wrapper = shallowMount(Proxy, {
-            Vue
+            Vue,
+            store
         });
     });
 
