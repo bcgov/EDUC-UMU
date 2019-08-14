@@ -3,11 +3,12 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Vue from 'vue';
 import Header from '@/components/Header.vue';
+import auth from '@/store/modules/auth.js';
+import db from '@/store/modules/db.js';
 
 describe('Header.vue', () => {
     let wrapper;
     let store;
-    let getters;
 
     beforeEach(() => {
         Vue.use(Vuetify);
@@ -17,7 +18,7 @@ describe('Header.vue', () => {
             isAuthenticated: () => 'false'
         };
         store = new Vuex.Store({
-            getters
+            modules: { auth, db }
         });
 
         wrapper = shallowMount(Header, {
