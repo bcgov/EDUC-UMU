@@ -4,24 +4,17 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Users from '@/components/UserTable.vue';
 import auth from '@/store/modules/auth.js';
-import db from '@/store/modules/db.js';
 
 describe('UserTable.vue', () => {
     let wrapper;
     let store;
-    let getters;
     
     beforeEach(() => {
         Vue.use(Vuetify);
         Vue.use(Vuex);
 
-        getters = {
-            isAuthenticated: () => 'true'
-        }
-
         store = new Vuex.Store({
-            getters,
-            modules: { auth, db }
+            modules: { auth }
         });
         
         wrapper = shallowMount(Users, {

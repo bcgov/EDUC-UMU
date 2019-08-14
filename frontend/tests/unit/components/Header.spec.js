@@ -4,7 +4,6 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 import Header from '@/components/Header.vue';
 import auth from '@/store/modules/auth.js';
-import db from '@/store/modules/db.js';
 
 describe('Header.vue', () => {
     let wrapper;
@@ -15,7 +14,7 @@ describe('Header.vue', () => {
         Vue.use(Vuex);
 
         store = new Vuex.Store({
-            modules: { auth, db }
+            modules: { auth }
         });
 
         wrapper = shallowMount(Header, {

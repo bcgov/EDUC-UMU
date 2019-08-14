@@ -4,24 +4,18 @@ import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Roles from '@/components/ApplicationRoles.vue';
 import auth from '@/store/modules/auth.js';
-import db from '@/store/modules/db.js';
+
 
 describe('ApplicationRoles.vue', () => {
     let wrapper;
     let store;
-    let getters;
     
     beforeEach(() => {
         Vue.use(Vuetify);
         Vue.use(Vuex);
 
-        getters = {
-            isAuthenticated: () => 'true'
-        }
-
         store = new Vuex.Store({
-            getters,
-            modules: { auth, db }
+            modules: { auth }
         });
         wrapper = shallowMount(Roles, {
             Vue,

@@ -5,7 +5,6 @@ import App from '@/App.vue';
 import Vuex from 'vuex';
 import Vue from 'vue';
 import auth from '@/store/modules/auth.js';
-import db from '@/store/modules/db.js';
 
 describe('App.vue', () => {
     let wrapper;
@@ -19,7 +18,7 @@ describe('App.vue', () => {
         Vue.use(VueRouter);
 
         store = new Vuex.Store({
-            modules: { auth, db }
+            modules: { auth }
         });
         vuet = new Vuetify({
             icons: {
