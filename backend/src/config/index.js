@@ -1,6 +1,5 @@
 /* eslint-disable */
 'use strict';
-const path = require('path');
 const nconf = require('nconf');
 const dotenv = require('dotenv');
 dotenv.config();
