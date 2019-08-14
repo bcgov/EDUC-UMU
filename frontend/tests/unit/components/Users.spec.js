@@ -35,7 +35,7 @@ describe('UserTable.vue', () => {
     });
 
     test('should execute functions', () => {
-        wrapper.vm.validate();
+        //wrapper.vm.validate();
         //wrapper.vm.getItems();
         wrapper.vm.addUser();
         wrapper.vm.updateUserForm('test', 'test', 'test', 'test', 'test', 'test');

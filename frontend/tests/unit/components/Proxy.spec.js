@@ -33,7 +33,7 @@ describe('ProxyTable.vue', () => {
         expect(wrapper.html()).toContain('<v-data-table-stub');
     });
     test('should exectue functions', () => {
-        wrapper.vm.validate();
+        //wrapper.vm.validate();
         //wrapper.vm.getProxy();
         wrapper.vm.updateProxyForm('test', 'test', 'test');
         wrapper.vm.addProxy();
