@@ -30,7 +30,7 @@ describe('Proxy.vue', () => {
     });
 
     test('should contain table', () => {
-        expect(wrapper.html()).toContain('<div class="v-data-table theme--light">');
+        expect(wrapper.html()).toContain('<v-data-table-stub');
     });
     test('should execute functions', async () => {
         wrapper.vm.validate();
