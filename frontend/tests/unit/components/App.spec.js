@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from '@/App.vue';
@@ -28,7 +28,7 @@ describe('App.vue', () => {
         })
 
         const router = new VueRouter();
-        wrapper = mount(App, {
+        wrapper = shallowMount(App, {
             Vue,
             vuet,
             store,
