@@ -26,7 +26,7 @@ router.get('/', (_req, res) => {
 });
 
 router.get('/standalone', (_req, res) => {
-  res.status(200).json({'path': jar});
+  res.status(200).json({'path': jar.path});
 })
 
 //ensures only authenticated users can access the database endpoints
