@@ -14,9 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
@@ -29,7 +27,7 @@
     "vuetify": "^2.0.5",
     "vuex": "^3.1.1",
     "@babel/preset-env": "7.3.4",
-    "snyk": "^1.193.2",
+    "babel-polyfill": "^6.26.0",
     "sass-loader": "^7.1.0",
     "sass": "^1.22.7",
     "path": "^0.12.7"
@@ -174,6 +172,5 @@
   },
   "bugs": {
     "url": "https://github.com/bcgov/EDUC-UMU/issues"
-  },
-  "snyk": true
+  }
 }

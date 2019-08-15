@@ -14,9 +14,5 @@ RUN npm install
 # Build Application
 COPY . /opt/app-root/src
 
-#ensure unit tests pass
-RUN npm run lint:fix
-RUN npm run test:unit
-
 #prepare application for deployment
 RUN npm run build
