@@ -118,7 +118,7 @@ pipeline{
                     echo 'Some lint checks and tests failed :('
                 }
             }
-        }/*
+        }
         stage('e2e Tests'){
             agent any
             steps {
@@ -139,7 +139,7 @@ pipeline{
                     )
                 }
             }
-        }*/
+        }
         stage('Build') {
             agent any
             steps{
