@@ -16,6 +16,8 @@ def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca/project
 pipeline{
     agent any
 
+    tools {nodejs "nodejs"}
+
     environment{
         DEBUG_OUTPUT = 'false'
 
