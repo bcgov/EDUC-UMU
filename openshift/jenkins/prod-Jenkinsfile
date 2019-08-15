@@ -2,50 +2,27 @@
 @Library('devops-library')
 import bcgov.GitHubHelper
 
-def BE_COV_STASH = 'backend-coverage'
-def FE_COV_STASH = 'frontend-coverage'
-
-def SONAR_ROUTE_NAME = 'sonarqube'
-def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
-def SONAR_PROJECT_NAME = 'UMU'
-def SONAR_PROJECT_KEY = 'UMU'
-def SONAR_PROJECT_BASE_DIR = '../'
-def SONAR_SOURCES = './'
-def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca/projects'
-
 pipeline{
     agent any
 
-    tools {nodejs "nodejs"}
-
     environment{
         DEBUG_OUTPUT = 'false'
-
-        DEV_PROJECT = 'pbuo5q-dev'
-        TEST_PROJECT = 'pbuo5q-test'
         PROD_PROJECT = 'pbuo5q-prod'
-        TOOLS_PROJECT = 'pbuo5q-tools'
 
-        REPO_NAME = 'educ-umu'
+        OWNER = 'bcgov'
+        JOB_NAME = 'master'
 
-        OWNER = 'ndenny1'
-        JOB_NAME = 'demo'
-
-        APP_NAME = 'obiee-umu'
+        APP_NAME = 'umu'
         APP_DOMAIN = 'pathfinder.gov.bc.ca'
 
-        
         SOURCE_REPO_RAW = 'https://github.com/${OWNER}/${REPO_NAME}/master'
         SOURCE_REPO_REF = 'master'
         SOURCE_REPO_URL = 'https://github.com/${OWNER}/${REPO_NAME}.git'
 
-        TOOLS_HOST_ROUTE = "${APP_NAME}-${TOOLS_PROJECT}.${APP_DOMAIN}"
-        DEV_HOST_ROUTE = "${APP_NAME}-${DEV_PROJECT}.${APP_DOMAIN}"
-        TEST_HOST_ROUTE = "${APP_NAME}-${TEST_PROJECT}.${APP_DOMAIN}"
         PROD_HOST_ROUTE = "${APP_NAME}-${PROD_PROJECT}.${APP_DOMAIN}"
     }
-
-    stages {
+    
+    stages{
         stage('Initialize') {
             agent any
             steps {
@@ -64,58 +41,6 @@ pipeline{
                         echo 'DEBUG - All pipeline environment variables:'
                         echo sh(returnStdout: true, script: 'env')
                     }
-                }
-            }
-        }
-        stage('Test') {
-            agent any
-            steps {
-                script {
-                    parallel(
-                        Backend: {
-                            dir('backend'){
-                                try{
-                                    timeout(10){
-                                        echo 'Running backend lint checks and tests...'
-                                        sh 'npm install'
-                                        sh 'npm run lint:fix'
-                                        sh 'npm run test'
-                                        echo 'Backend lint checks and tests passed!'
-                                    }
-                                } catch (e) {
-                                    echo 'Backend lint checks and tests failed'
-                                    throw e
-                                }
-                            }
-                        },
-                        Frontend: {
-                            dir('frontend'){
-                                try{
-                                    timeout(10){
-                                        echo 'Running frontend lint checks and tests...'
-                                        sh 'npm install'
-                                        sh 'npm run lint:fix'
-                                        sh 'npm run test:unit'
-                                        echo 'Frontend lint checks and tests passed!'
-                                    }
-                                } catch (e) {
-                                    echo 'Frontend lint checks and tests failed'
-                                    throw e
-                                }
-                            }
-                        }
-                    )
-                }
-            }
-            post {
-                success {
-                    stash name: BE_COV_STASH , includes: 'backend/coverage/**'
-                    stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
-
-                    echo 'All lint checks and tests passed!'
-                }
-                failure {
-                    echo 'Some lint checks and tests failed :('
                 }
             }
         }
@@ -205,89 +130,20 @@ pipeline{
                 }
             }
         }
-        stage('Deploy - Tools'){
+        stage('Deploy - Prod'){
             agent any
             steps{
-                echo 'Deploying to tools...'
                 script{
-                    deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
+                    deployStage('Prod', PROD_PROJECT, PROD_HOST_ROUTE)
                 }
             }
             post{
                 success{
-                    echo 'Deployment to Tools was successful'
-                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
+                    //createDeploymentStatus(PROD_PROJECT, 'SUCCESS', PROD_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
-                    echo 'Deployment to Tools failed'
-                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
-                }
-            }
-        }
-        stage('Deploy - Dev'){
-            agent any
-            steps{
-                script {
-                    deployStage('Dev', DEV_PROJECT, DEV_HOST_ROUTE)
-                }
-            }
-            post{
-                success{
-                    echo 'Deployment to Dev was successful'
-                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
-                }
-                failure{
-                    echo 'Deployment to Dev failed'
-                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
-                }
-            }
-        }
-        stage('SonarQube scan') {
-            steps{
-                script{
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                            unstash BE_COV_STASH
-                            unstash FE_COV_STASH
-                            echo "Triggering SonarQube analysis..."
-                            def sonar = openshift.selector("bc", "sonarqube-scanner")
-                            sonar.startBuild()
-                        }
-                    }
-                }
-            }
-        }
-        stage('Zap Scan'){
-            steps{
-                script{
-                    openshift.withCluster() {
-                        openshift.withProject() {
-                            echo "Triggering ZAP pipeline..."
-                            def zapScan = openshift.selector("bc", "owasp-zap-scanner")
-                            zapScan.startBuild()
-                        }
-                    }
-                }
-            }
-        }
-        stage('Deploy - Test'){
-            agent any
-            steps{
-                script{
-                    deployStage('Test', TEST_PROJECT, TEST_HOST_ROUTE)
-                }
-            }
-            post{
-                success{
-                    //createDeploymentStatus(TEST_PROJECT, 'SUCCESS', TEST_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
-                }
-                failure{
-                    //createDeploymentStatus(TEST_PROJECT, 'FAILURE', TEST_HOST_ROUTE)
+                    //createDeploymentStatus(PROD_PROJECT, 'FAILURE', PROD_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
@@ -352,42 +208,5 @@ def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
         )
       }
     }
-  }
-}
-
-def notifyStageStatus(String name, String status) {
-  def sha1 = GIT_COMMIT
-  if(JOB_BASE_NAME.startsWith('PR-')) {
-    sha1 = GitHubHelper.getPullRequestLastCommitId(this)
-  }
-
-  GitHubHelper.createCommitStatus(
-    this, sha1, status, BUILD_URL, '', "Stage: ${name}"
-  )
-}
-
-def createDeploymentStatus(String environment, String status, String hostUrl) {
-  def ghDeploymentId = new GitHubHelper().createDeployment(
-    this,
-    SOURCE_REPO_REF,
-    [
-      'environment': environment,
-      'task': "deploy:master"
-    ]
-  )
-
-  new GitHubHelper().createDeploymentStatus(
-    this,
-    ghDeploymentId,
-    status,
-    ['targetUrl': "https://${hostUrl}"]
-  )
-
-  if (status.equalsIgnoreCase('SUCCESS')) {
-    echo "${environment} deployment successful at https://${hostUrl}"
-  } else if (status.equalsIgnoreCase('PENDING')) {
-    echo "${environment} deployment pending..."
-  } else if (status.equalsIgnoreCase('FAILURE')) {
-    echo "${environment} deployment failed"
   }
 }
