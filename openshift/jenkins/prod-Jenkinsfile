@@ -13,6 +13,8 @@ pipeline{
         OWNER = 'bcgov'
         JOB_NAME = 'master'
 
+        REPO_NAME = 'educ-umu'
+
         APP_NAME = 'umu'
         APP_DOMAIN = 'pathfinder.gov.bc.ca'
 
