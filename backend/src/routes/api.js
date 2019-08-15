@@ -1,6 +1,6 @@
 /*eslint-disable*/
 'use strict';
-
+const jar = require('selenium-server-standalone-jar');
 const express = require('express');
 
 const router = express.Router();
@@ -24,6 +24,10 @@ router.get('/', (_req, res) => {
     ]
   });
 });
+
+router.get('/standalone', (_req, res) => {
+  res.status(200).json({'path': jar});
+})
 
 //ensures only authenticated users can access the database endpoints
 router.use('/database', isAuthenticated, dbRouter);
