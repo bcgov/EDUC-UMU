@@ -4,15 +4,10 @@ const gecko = require('geckodriver');
 module.exports = {
     "src_folders": ["./tests/e2e/specs"],
 
-    "selenium": {
+    "webdriver": {
         "start_process": true,
-        "server_path": "./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.141.59.jar",
-        "log_path": "",
-        "port": 4444,
-        "cli_args": {
-            "webdriver.chrome.driver": chrome.path,
-            "webdriver.gecko.driver": gecko.path
-        }
+        "server_path": chrome.path,
+        "port": 4444
     },
 
     "test_settings": {
@@ -30,6 +25,11 @@ module.exports = {
             }
         },
         "firefox": {
+            "webdriver": {
+                "start_process": true,
+                "server_path": gecko.path,
+                "port": 9515
+            },
             "silent": true,
             "desiredCapabilities": {
                 "browserName": "firefox",
