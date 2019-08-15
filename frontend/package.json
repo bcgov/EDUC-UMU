@@ -14,7 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e"
+    "test:e2e":"node_modules/nightwatch/bin/nightwatch -e chrome,firefox -t ./tests/e2e/specs/test"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
@@ -34,7 +34,7 @@
     "chromedriver": "^2.46.0",
     "geckodriver": "1.16.2",
     "nightwatch": "^1.1.11",
-    "selenium-standalone": "6.16.0"
+    "selenium-standalone": "^6.16.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",
