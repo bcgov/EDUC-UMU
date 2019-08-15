@@ -108,6 +108,9 @@ pipeline{
                 }
             }
             post {
+                always {
+                    junit 'backend/coverage/**'
+                }
                 success {
                     stash name: BE_COV_STASH , includes: 'backend/coverage/**'
                     stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
