@@ -5,7 +5,7 @@
         "default": {
             "webdriver": {
                 "start_process": true,
-                "server_path": "/opt/app-root/src/node_modules/chromedriver/lib/chromedriver/chromedriver",
+                "server_path": "node_modules/chromedriver/lib/chromedriver/chromedriver",
                 "port": 9515,
                 "cli_args": []
             }
@@ -25,7 +25,7 @@
         "firefox": {
             "webdriver": {
                 "start_process": true,
-                "server_path": "/opt/app-root/src/node_modules/geckodriver/geckodriver",
+                "server_path": "node_modules/geckodriver/geckodriver",
                 "port": 4444
             },
             "silent": true,
