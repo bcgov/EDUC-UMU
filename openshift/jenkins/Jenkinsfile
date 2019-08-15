@@ -216,13 +216,9 @@ pipeline{
             post{
                 success{
                     echo 'Deployment to Tools was successful'
-                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
                     echo 'Deployment to Tools failed'
-                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
         }
@@ -236,13 +232,9 @@ pipeline{
             post{
                 success{
                     echo 'Deployment to Dev was successful'
-                    //createDeploymentStatus(DEV_PROJECT, 'SUCCESS', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
                     echo 'Deployment to Dev failed'
-                    //createDeploymentStatus(DEV_PROJECT, 'FAILURE', DEV_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
             }
         }
@@ -283,12 +275,11 @@ pipeline{
             }
             post{
                 success{
-                    //createDeploymentStatus(TEST_PROJECT, 'SUCCESS', TEST_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'SUCCESS')
+                    echo 'Succesfully deployed to Test environment'
                 }
                 failure{
-                    //createDeploymentStatus(TEST_PROJECT, 'FAILURE', TEST_HOST_ROUTE)
-                    //notifyStageStatus('Deploy - Dev', 'FAILURE')
+                    echo 'Unable to deploy to Test environment'
+
                 }
             }
         }

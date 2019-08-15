@@ -139,10 +139,13 @@ pipeline{
             }
             post{
                 success{
+                    echo 'Succesfully deployed to production'
                     //createDeploymentStatus(PROD_PROJECT, 'SUCCESS', PROD_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'SUCCESS')
                 }
                 failure{
+                    echo 'Failed to deploy to production'
+
                     //createDeploymentStatus(PROD_PROJECT, 'FAILURE', PROD_HOST_ROUTE)
                     //notifyStageStatus('Deploy - Dev', 'FAILURE')
                 }
