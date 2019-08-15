@@ -205,23 +205,6 @@ pipeline{
                 }
             }
         }
-        stage('Deploy - Tools'){
-            agent any
-            steps{
-                echo 'Deploying to tools...'
-                script{
-                    deployStage('Tools', TOOLS_PROJECT, TOOLS_HOST_ROUTE)
-                }
-            }
-            post{
-                success{
-                    echo 'Deployment to Tools was successful'
-                }
-                failure{
-                    echo 'Deployment to Tools failed'
-                }
-            }
-        }
         stage('Deploy - Dev'){
             agent any
             steps{
