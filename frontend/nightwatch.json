@@ -11,6 +11,7 @@
             }
         },
         "chrome": {
+            "silent": true,
             "desiredCapabilities": {
                 "browserName": "chrome",
                 "javascriptEnabled": true,
