@@ -8,6 +8,7 @@ pipeline{
     environment{
         DEBUG_OUTPUT = 'false'
         PROD_PROJECT = 'pbuo5q-prod'
+        TOOLS_PROJECT = 'pbuo5q-tools'
 
         OWNER = 'bcgov'
         JOB_NAME = 'master'
@@ -155,9 +156,9 @@ pipeline{
 }
 
 def deployStage(String stageEnv, String projectEnv, String hostRouteEnv) {
-  if (!stageEnv.equalsIgnoreCase('Dev')) {
+  /*if (!stageEnv.equalsIgnoreCase('Dev')) {
     input("Deploy to ${projectEnv}?")
-  }
+  }*/
 
   //notifyStageStatus("Deploy - ${stageEnv}", 'PENDING')
 
