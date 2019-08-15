@@ -1,4 +1,7 @@
-{
+const chrome = require('chromedriver');
+const gecko = require('geckodriver');
+
+module.exports = {
     "src_folders": ["./tests/e2e/specs"],
 
     "selenium": {
@@ -7,8 +10,8 @@
         "log_path": "",
         "port": 4444,
         "cli_args": {
-            "webdriver.chrome.driver": "node_modules/chromedriver/lib/chromedriver/chromedriver",
-            "webdriver.gecko.driver": "node_modules/geckodriver/geckodriver"
+            "webdriver.chrome.driver": chrome.path,
+            "webdriver.gecko.driver": gecko.path
         }
     },
 
