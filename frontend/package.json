@@ -30,7 +30,8 @@
     "babel-polyfill": "^6.26.0",
     "sass-loader": "^7.1.0",
     "sass": "^1.22.7",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "chromedriver": "^76.0.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",
