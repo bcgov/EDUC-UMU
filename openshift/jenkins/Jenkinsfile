@@ -107,6 +107,9 @@ pipeline{
             }
             post {
                 success {
+                    stash name: BE_COV_STASH , includes: 'backend/coverage/**'
+                    stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
+
                     echo 'All lint checks and tests passed!'
                 }
                 failure {
@@ -167,8 +170,6 @@ pipeline{
             }
             post{
                 success {
-                    stash name: BE_COV_STASH , includes: 'backend/coverage/**'
-                    stash name: FE_COV_STASH, includes: 'frontend/coverage/**'
                     echo 'Cleanup BuildConfigs...'
                     script {
                         openshift.withCluster() {
