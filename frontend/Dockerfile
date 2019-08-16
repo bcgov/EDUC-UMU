@@ -5,7 +5,8 @@ WORKDIR /opt/app-root/src
 
 #add node and npm
 RUN apk add --update nodejs npm
-RUN apk add --update google-chrome-stable
+RUN apk add --no-cache chromium
+RUN apk add --no-cache firefox
 # Install NPM Dependencies
 COPY package*.json ./
 RUN npm install
