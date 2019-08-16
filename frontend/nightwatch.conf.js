@@ -3,9 +3,9 @@ const gecko = require('geckodriver');
 const selenium = require('selenium-server');
 
 module.exports = {
-    source_folders: ['./tests/e2e/specs'],
-    output_folder: './tests/e2e/reports',
-    custom_assertions_path: ['./tests/e2e/custom-assertions'],
+    source_folders: ['tests/e2e/specs'],
+    output_folder: 'tests/e2e/reports',
+    custom_assertions_path: ['tests/e2e/custom-assertions'],
 
     selenium: {
         start_process: true,
