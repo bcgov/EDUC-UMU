@@ -14,7 +14,7 @@ module.exports = {
         host: 'localhost',
         port: 4444,
         cli_args: {
-            'webdriver.chrome.driver': chromedriver.path,
+            'webdriver.chrome.driver': chromedriver.path + '.exe',
             'webdriver.gecko.driver': gecko.path
         }
     },
