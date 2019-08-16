@@ -191,7 +191,7 @@
 import axios from 'axios';
 
 export default{
-  data () {
+  data: () {
     return {
       dialog_a: false,
       dialog_uForm: false,

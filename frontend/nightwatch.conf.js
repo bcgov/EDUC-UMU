@@ -33,7 +33,7 @@ module.exports = {
                 acceptInsecureCerts: true,
                 webStorageEnabled: true,
                 chromeOptions: {
-                    args: ['headless', 'disable-gpu', 'no-sandbox'],
+                    args: ['--headless', '--disable-gpu', '--no-sandbox'],
                     binary: chromium.path
                 }
             }

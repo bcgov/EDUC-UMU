@@ -34,7 +34,7 @@
 import { mapGetters } from 'vuex';
 import { AuthRoutes } from '@/utils/constants.js';
 export default {
-  data() {
+  data: () {
     return {
       authRoutes: AuthRoutes,
       appTitle: 'User Management Utility'
