@@ -1,7 +1,7 @@
 const chromedriver = require('chromedriver');
 const gecko = require('geckodriver');
 const selenium = require('selenium-server');
-//const chromium = require('chromium-binary');
+const chromium = require('chromium-binary');
 
 module.exports = {
     src_folders: ['tests/e2e/specs'],
@@ -31,8 +31,8 @@ module.exports = {
                 javascripeEnabled: true,
                 acceptSslCerts: true,
                 chromeOptions: {
-                    args: ['--headless', 'disable-gpu', 'no-sandbox']/*,
-                    binary: chromium.path*/
+                    args: ['headless', 'disable-gpu', 'no-sandbox'],
+                    binary: chromium.path
                 }
             }
         },
