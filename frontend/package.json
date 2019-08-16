@@ -14,7 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e --config='./nightwatch.conf.js"
+    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e --config './nightwatch.conf.js'"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
