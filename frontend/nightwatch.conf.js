@@ -37,12 +37,7 @@ module.exports = {
         firefox: {
             desiredCapabilities: {
                 browserName: 'firefox',
-                acceptInsecureCerts: true,
-                alwaysMatch: {
-                    "moz:firefoxOptions": {
-                        args: ['-headless']
-                    }
-                }
+                javascripeEnabled: true
             }
         }
 
