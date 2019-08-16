@@ -14,5 +14,7 @@ RUN npm install
 # Build Application
 COPY . /opt/app-root/src
 
+RUN npm run lint:fix
+RUN npm run test:e2e
 #prepare application for deployment
 RUN npm run build
