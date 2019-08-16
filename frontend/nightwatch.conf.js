@@ -21,7 +21,7 @@ module.exports = {
     test_settings: {
         default: {
             selenium_port: 4444,
-            selenium_host: 'localhost',
+            selenium_host: '172.51.84.23',
             silent: true
         },
         chrome: {
