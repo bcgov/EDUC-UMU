@@ -5,8 +5,12 @@ WORKDIR /opt/app-root/src
 
 #add node and npm
 RUN apk add --update nodejs npm
-RUN apk add --no-cache chromium
+RUN apk add chromium
+#Can install firefox for e2e testing if needed
+#RUN apk add --no-cache firefox-esr
 # Install NPM Dependencies
+RUN apk search -v
+
 COPY package*.json ./
 RUN npm install
 # --no-optional --production
