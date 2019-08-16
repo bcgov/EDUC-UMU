@@ -10,7 +10,7 @@ module.exports = {
     selenium: {
         start_process: true,
         server_path: selenium.path,
-        host: 'localhost',
+        host: '172.51.84.23',
         port: 4444,
         cli_args: {
             'webdriver.chrome.driver': chromedriver.path,
