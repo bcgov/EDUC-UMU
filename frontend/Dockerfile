@@ -9,7 +9,6 @@ RUN apk add chromium
 #Can install firefox for e2e testing if needed
 #RUN apk add --no-cache firefox-esr
 # Install NPM Dependencies
-RUN apk search -v
 
 COPY package*.json ./
 RUN npm install
