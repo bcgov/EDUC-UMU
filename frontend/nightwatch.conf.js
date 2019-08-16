@@ -14,7 +14,7 @@ module.exports = {
         host: 'localhost',
         port: 4444,
         cli_args: {
-            'webdriver.chrome.driver': chromedriver.path + '.exe',
+            'webdriver.chrome.driver': chromedriver.path,
             'webdriver.gecko.driver': gecko.path
         }
     },
@@ -30,6 +30,8 @@ module.exports = {
                 browserName: 'chrome',
                 javascripeEnabled: true,
                 acceptSslCerts: true,
+                acceptInsecureCerts: true,
+                webStorageEnabled: true,
                 chromeOptions: {
                     args: ['headless', 'disable-gpu', 'no-sandbox'],
                     binary: chromium.path
