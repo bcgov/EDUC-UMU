@@ -1,18 +1,18 @@
 const baseRoot = '/api';
 
 //API endpoints
-const apiRoot = `${baseRoot}/v1`;
+const apiRoot = baseRoot + '/v1';
 export const ApiRoutes = Object.freeze({
-  DATABASE: `${apiRoot}/database`
+  DATABASE: apiRoot + '/database'
 });
 
 //Authentication endpoints
-const authRoot = `${baseRoot}/auth`;
+const authRoot = baseRoot + '/auth';
 export const AuthRoutes = Object.freeze({
-  LOGIN: `${authRoot}/login`,
-  LOGOUT: `${authRoot}/logout`,
-  REFRESH: `${authRoot}/refresh`,
-  TOKEN: `${authRoot}/token`
+  LOGIN: authRoot + '/login',
+  LOGOUT: authRoot + '/logout',
+  REFRESH: authRoot + '/refresh',
+  TOKEN: authRoot + '/token'
 });
 
 export const FieldValidations = Object.freeze({
