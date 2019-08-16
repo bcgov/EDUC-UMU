@@ -5,7 +5,7 @@ WORKDIR /opt/app-root/src
 
 #add node and npm
 RUN apk add --update nodejs npm
-
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apk add -fy install
 # Install NPM Dependencies
 COPY package*.json ./
 RUN npm install
