@@ -26,6 +26,6 @@ module.exports = {
                         .waitForElementVisible('.v-tabs top-round theme--dark', 5000)
                         .end();
                 }
-            })
+            });
     }
 };
