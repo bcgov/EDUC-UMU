@@ -5,7 +5,7 @@ module.exports = {
         .waitForElementVisible('#app', 5000)
         .assert.elementPresent('.container')
         .end();
-    }/*,
+    },
     'Attempt Login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
@@ -19,5 +19,5 @@ module.exports = {
             .click('.btn btn-primary')
             .waitForElementVisible('.v-tabs top-round theme--dark')
             .end();
-    }*/
+    }
 };
