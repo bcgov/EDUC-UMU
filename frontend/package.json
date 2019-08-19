@@ -13,7 +13,7 @@
     "purge": "rm -rf node_modules",
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
-    "test:unit": "node_modules/.bin/vue-cli-service test:unit --runInBand",
+    "test:unit": "node_modules/.bin/vue-cli-service test:unit",
     "test:e2e":"node_modules/.bin/vue-cli-service test:e2e"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
@@ -41,8 +41,6 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "@babel/core": "^7.5.5",
     "babel-eslint": "^10.0.1",
-    "jest-puppeteer": "4.3.0",
-    "puppeteer": "1.19.0",
     "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
@@ -114,7 +112,6 @@
   ],
 
   "jest": {
-    "preset": "jest-puppeteer",
     "clearMocks": true,
     "setupFiles": [
       "<rootDir>/tests/unit/setup.js",
