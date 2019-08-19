@@ -1,3 +1,5 @@
+def IDIR_USER = ${env.IDIR_USER};
+def IDIR_PASS = ${env.IDIR_PASS};
 //node/pod needs environment setup for testing
 def e2e_label = "e2e-image${UUID.randomUUID().toString()}"
 podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud: 'openshift', containers: [
@@ -11,12 +13,14 @@ podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud:
         workingDir: '',
         command: '',
         args: '${computer.jnlpmac} ${computer.name}',
-        envVars: []
+        envVars: [
+            envVar(key: 'IDIR_USER', value: IDIR_USER),
+            envVar(key: 'IDIR_PASS', value: IDIR_PASS)
+        ]
     )
 ])
 {    
     node (e2e_label) {
-    
         stage('Checkout') {
             
                 echo "checking out source"
