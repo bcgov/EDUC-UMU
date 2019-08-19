@@ -67,7 +67,7 @@ pipeline{
                 }
             }
         }
-        stage('Unit Tests') {
+        stage('Test') {
             agent any
             steps {
                 script {
