@@ -54,6 +54,10 @@ module.exports = {
             .source((result) => {
                 console.log(result.value);
             })
+            .click('#zocial-idir')
+            .source((result) => {
+                console.log(result.value);
+            })
             .end();
     }
 };
