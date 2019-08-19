@@ -13,6 +13,8 @@ module.exports = {
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
             .click('#zocial-idir')
+            .pause(5000)
+            .assert.elementPresent('#SiteMinderEnvironment')
             .waitForElementVisible('input[name=user]', 5000)
             .setValue('input[name=user]', process.env.IDIR_USER)
             .setValue('input[name=password]', process.env.IDIR_PASS)
