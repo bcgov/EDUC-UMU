@@ -11,13 +11,13 @@ module.exports = {
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#nav-login', 5000)
             .click('#nav-login')
-            .waitForElementVisible('#zocial-idir')
+            .waitForElementVisible('#zocial-idir', 5000)
             .click('#zocial-idir')
-            .waitForElementVisible('#user')
+            .waitForElementVisible('#user', 5000)
             .setValue('#user', process.env.IDIR_USER)
             .setValue('#password', process.env.IDIR_PASS)
             .click('.btn btn-primary')
-            .waitForElementVisible('.v-tabs top-round theme--dark')
+            .waitForElementVisible('.v-tabs top-round theme--dark', 5000)
             .end();
     }
 };
