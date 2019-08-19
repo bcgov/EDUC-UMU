@@ -19,7 +19,7 @@ module.exports = {
             .click('#footer-about')
             .pause(2000)
             .assert.elementPresent('.environment-prod')
-            .back
+            .back()
             .waitForElementVisible('#app', 5000)
             .click('#footer-disclaimer')
             .pause(2000)
