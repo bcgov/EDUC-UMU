@@ -14,7 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e":"node_modules/.bin/vue-cli-service test:e2e"
+    "test:e2e":"./node_modules/nightwatch/bin/nightwatch-e chrome,firefox -t ./tests/e2e/specs/test"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
@@ -30,7 +30,11 @@
     "sass-loader": "^7.1.0",
     "sass": "^1.22.7",
     "path": "^0.12.7",
-    "@babel/polyfill": "^7.4.4"
+    "@babel/polyfill": "^7.4.4",
+    "nightwatch": "^1.2.1",
+    "geckodriver": "^1.16.2",
+    "chromedriver": "^76.0.0",
+    "dotenv": "^8.0.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",

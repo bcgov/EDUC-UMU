@@ -67,7 +67,7 @@ pipeline{
                 }
             }
         }
-        stage('Test') {
+        stage('Unit Tests') {
             agent any
             steps {
                 script {
@@ -239,6 +239,19 @@ pipeline{
                 }
                 failure{
                     echo 'Deployment to Dev failed'
+                }
+            }
+        }
+        stage('e2e Tests'){
+            steps{
+                script{
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            echo "Triggering e2e tests..."
+                            def e2e = openshift.selector("bc", "e2e-tests")
+                            e2e.startBuild()
+                        }
+                    }
                 }
             }
         }
