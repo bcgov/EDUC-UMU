@@ -12,12 +12,15 @@ module.exports = {
             .waitForElementVisible('#nav-login', 5000)
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
-            .click('#zocial-idir')
-            .waitForElementVisible('#user', 5000)
-            .setValue('#user', process.env.IDIR_USER)
-            .setValue('#password', process.env.IDIR_PASS)
-            .click('.btn btn-primary')
-            .waitForElementVisible('.v-tabs top-round theme--dark', 5000)
-            .end();
+            .click('#zocial-idir');
+            if(browser.assert.elementPresent('#user')){
+                browser
+                .setValue('input[name=user]', process.env.IDIR_USER)
+                .setValue('input[name=password]', process.env.IDIR_PASS)
+                .click('.btn btn-primary');
+            }
+            browser
+                .waitForElementVisible('.v-tabs top-round theme--dark', 5000)
+                .end();
     }
 };
