@@ -6,7 +6,7 @@ module.exports = {
         .assert.elementPresent('.container')
         .end();
     },
-    /*'Test External Links' : (browser) => {
+    'Test External Links' : (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#app', 5000)
@@ -24,25 +24,25 @@ module.exports = {
             .click('#footer-disclaimer')
             .pause(2000)
             .assert.elementPresent('.environment-prod')
-            .back
+            .back()
             .waitForElementVisible('#app', 5000)
             .click('#footer-privacy')
             .pause(2000)
             .assert.elementPresent('.environment-prod')
-            .back
+            .back()
             .waitForElementVisible('#app', 5000)
             .click('#footer-accessibility')
             .pause(2000)
             .assert.elementPresent('.environment-prod')
-            .back
+            .back()
             .waitForElementVisible('#app', 5000)
             .click('#footer-copyright')
             .pause(2000)
             .assert.elementPresent('.environment-prod')
-            .back
+            .back()
             .waitForElementVisible('#app', 5000)
             .end();
-    },*/
+    },
     'Attempt Login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
@@ -50,14 +50,6 @@ module.exports = {
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
             .click('#zocial-idir')
-            .pause(5000)
-            .source((result) => {
-                console.log(result.value);
-            })
-            .click('#zocial-idir')
-            .source((result) => {
-                console.log(result.value);
-            })
             .end();
     }
 };
