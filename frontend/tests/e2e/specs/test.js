@@ -6,7 +6,7 @@ module.exports = {
         .assert.elementPresent('.container')
         .end();
     },
-    'Test External Links' : (browser) => {
+    /*'Test External Links' : (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#app', 5000)
@@ -42,7 +42,7 @@ module.exports = {
             .back
             .waitForElementVisible('#app', 5000)
             .end();
-    },
+    },*/
     'Attempt Login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
@@ -51,12 +51,9 @@ module.exports = {
             .waitForElementVisible('#zocial-idir', 5000)
             .click('#zocial-idir')
             .pause(5000)
-            .assert.elementPresent('#SiteMinderEnvironment')
-            .waitForElementVisible('input[name=user]', 5000)
-            .setValue('input[name=user]', process.env.IDIR_USER)
-            .setValue('input[name=password]', process.env.IDIR_PASS)
-            .click('.btn btn-primary')
-            .waitForElementVisible('.v-tabs top-round theme--dark', 5000)
+            .source((result) => {
+                console.log(result.value);
+            })
             .end();
     }
 };
