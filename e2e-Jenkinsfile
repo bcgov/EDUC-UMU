@@ -24,25 +24,13 @@ podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud:
         }
 
         stage ('Running e2e Tests') {
-            steps{
-                script{
-                    echo "Running tests "
-                    
-                        sh '''
-                                cd frontend
-                                npm install
-                                npm run test:e2e
-                        '''
-                }
-            }
-            post{
-                success{
-                    echo 'e2e tests successful!'
-                }
-                failure{
-                    echo 'e2e tests failed :('
-                }
-            }
+            echo "Running tests "
+            
+            sh '''
+                    cd frontend
+                    npm install
+                    npm run test:e2e
+            '''
         }
     }
 }
