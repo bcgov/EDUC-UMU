@@ -14,6 +14,7 @@ module.exports = {
             .click('#footer-home')
             .pause(2000)
             .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home')
+            .end();/*
             .back()
             .waitForElementVisible('#app', 5000)
             .click('#footer-about')
@@ -41,7 +42,7 @@ module.exports = {
             .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home/copyright')
             .back()
             .waitForElementVisible('#app', 5000)
-            .end();
+            .end();*/
     },
     'Navigate to login': (browser) => {
         browser
