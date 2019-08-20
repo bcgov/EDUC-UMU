@@ -52,7 +52,7 @@ module.exports = {
             .waitForElementVisible('#zocial-idir', 5000)
             .click('#zocial-idir')
             .source((result) => {
-                console.log(result);
+                console.log(result.value);
             })
             .end();
     },
