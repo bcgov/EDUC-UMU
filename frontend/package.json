@@ -35,7 +35,8 @@
     "geckodriver": "^1.16.2",
     "chromedriver": "^76.0.0",
     "dotenv": "^8.0.0",
-    "regenerator-runtime": "^0.13.3"
+    "regenerator-runtime": "^0.13.3",
+    "jest-junit": "^7.0.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",
@@ -117,6 +118,12 @@
   ],
 
   "jest": {
+    "reporters": ["default", "jest-junit"],
+    "jest-junit": {
+      "outputDirectory": "./tests/unit/reports/",
+      "outputName": "./junit.xml",
+      "usePathForSuitName": true
+    },
     "clearMocks": true,
     "setupFiles": [
       "<rootDir>/tests/unit/setup.js",

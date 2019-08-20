@@ -35,7 +35,8 @@
       "jsonwebtoken": "^8.5.1",
       "passport-openidconnect": "^0.0.2",
       "cors": "^2.8.5",
-      "helmet": "^3.20.0"
+      "helmet": "^3.20.0",
+      "jest-junit": "^7.0.0"
     },
     "devDependencies": {
       "@babel/cli": "^7.1.5",
@@ -107,6 +108,12 @@
       "not ie <= 8"
     ],
     "jest": {
+      "reporters": ["default", "jest-junit"],
+      "jest-junit": {
+        "outputDirectory": "./tests/unit/reports/",
+        "outputName": "./junit.xml",
+        "usePathForSuitName": true
+      },
       "moduleFileExtensions": [
         "js",
         "json"

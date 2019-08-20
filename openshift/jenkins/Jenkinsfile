@@ -81,6 +81,8 @@ pipeline{
                                         sh 'npm run lint:fix'
                                         sh 'npm run test'
                                         echo 'Backend lint checks and tests passed!'
+                                        echo 'Reporting results...'
+                                        junit 'tests/unit/reports/*.xml'
                                     }
                                 } catch (e) {
                                     echo 'Backend lint checks and tests failed'
@@ -97,6 +99,8 @@ pipeline{
                                         sh 'npm run lint:fix'
                                         sh 'npm run test:unit'
                                         echo 'Frontend lint checks and tests passed!'
+                                        echo 'Reporting results...'
+                                        junit 'tests/unit/reports/*.xml'
                                     }
                                 } catch (e) {
                                     echo 'Frontend lint checks and tests failed'
