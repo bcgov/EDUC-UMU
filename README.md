@@ -1,6 +1,5 @@
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
 
-# EDUC-UMU
 Administrative tool that allows for the addition, editing, and removal of entries in Education's Oracle databases
 
 ## SonarQube Results
