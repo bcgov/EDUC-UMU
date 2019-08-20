@@ -119,11 +119,6 @@
 
   "jest": {
     "reporters": ["default", "jest-junit"],
-    "jest-junit": {
-      "outputDirectory": "./tests/unit/reports/",
-      "outputName": "./junit.xml",
-      "usePathForSuitName": true
-    },
     "clearMocks": true,
     "setupFiles": [
       "<rootDir>/tests/unit/setup.js",
@@ -168,6 +163,11 @@
       "!src/store/modules/*"
     ],
     "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jest-junit": {
+    "outputDirectory": "./tests/unit/reports/",
+    "outputName": "./junit.xml",
+    "usePathForSuitName": true
   },
   "jestSonar": {
     "reportPath": "coverage",

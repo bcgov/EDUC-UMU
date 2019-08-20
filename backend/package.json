@@ -109,11 +109,6 @@
     ],
     "jest": {
       "reporters": ["default", "jest-junit"],
-      "jest-junit": {
-        "outputDirectory": "./tests/unit/reports/",
-        "outputName": "./junit.xml",
-        "usePathForSuitName": true
-      },
       "moduleFileExtensions": [
         "js",
         "json"
@@ -135,6 +130,11 @@
         "!src/db/*"
       ],
       "testResultsProcessor": "jest-sonar-reporter"
+    },
+    "jest-junit": {
+      "outputDirectory": "./tests/unit/reports/",
+      "outputName": "./junit.xml",
+      "usePathForSuitName": true
     },
     "jestSonar": {
       "reportPath": "coverage",
