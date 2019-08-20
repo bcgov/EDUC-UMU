@@ -43,7 +43,7 @@ module.exports = {
             .waitForElementVisible('#app', 5000)
             .end();
     },
-    'Attempt Login': (browser) => {
+    'Navigate to login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#nav-login', 5000)
