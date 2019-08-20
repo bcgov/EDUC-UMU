@@ -1,0 +1,41 @@
+//node/pod needs environment setup for testing
+def e2e_label = "e2e-image${UUID.randomUUID().toString()}"
+podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+    containerTemplate(
+        name: 'jnlp',
+        image: 'docker-registry.default.svc:5000/pbuo5q-tools/e2e-build:latest',
+        resourceRequestCpu: '500m',
+        resourceLimitCpu: '1000m',
+        resourceRequestMemory: '1Gi',
+        resourceLimitMemory: '4Gi',
+        workingDir: '',
+        command: '',
+        args: '${computer.jnlpmac} ${computer.name}',
+        envVars: [
+            envVar(key: 'IDIR_USER', value: '${env.IDIR_USER}'),
+            envVar(key: 'IDIR_PASS', value: '${env.IDIR_PASS}')
+        ]
+    )
+])
+{    
+    node (e2e_label) {
+        stage('Checkout') {
+            
+                echo "checking out source"
+                checkout scm              
+        }
+
+        stage ('Running e2e Tests') {
+            echo "Running tests "
+            
+            sh '''
+                    cd frontend
+                    npm install
+                    npm run test:e2e
+            '''
+        }
+        stage('Save Test Output') {
+            junit 'frontend/tests/e2e/reports/*.xml'
+        }
+    }
+}

@@ -81,6 +81,8 @@ pipeline{
                                         sh 'npm run lint:fix'
                                         sh 'npm run test'
                                         echo 'Backend lint checks and tests passed!'
+                                        echo 'Reporting results...'
+                                        junit 'tests/unit/reports/*.xml'
                                     }
                                 } catch (e) {
                                     echo 'Backend lint checks and tests failed'
@@ -97,6 +99,8 @@ pipeline{
                                         sh 'npm run lint:fix'
                                         sh 'npm run test:unit'
                                         echo 'Frontend lint checks and tests passed!'
+                                        echo 'Reporting results...'
+                                        junit 'tests/unit/reports/*.xml'
                                     }
                                 } catch (e) {
                                     echo 'Frontend lint checks and tests failed'
@@ -239,6 +243,19 @@ pipeline{
                 }
                 failure{
                     echo 'Deployment to Dev failed'
+                }
+            }
+        }
+        stage('e2e Tests'){
+            steps{
+                script{
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            echo "Triggering e2e tests..."
+                            def e2e = openshift.selector("bc", "e2e-tests")
+                            e2e.startBuild()
+                        }
+                    }
                 }
             }
         }
