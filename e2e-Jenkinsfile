@@ -35,7 +35,7 @@ podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud:
             '''
         }
         stage('Save Test Output') {
-            junit 'e2e/reports/*.xml'
+            junit 'frontend/tests/e2e/reports/*.xml'
         }
     }
 }
