@@ -18,7 +18,7 @@
                 "server_path": "./node_modules/geckodriver/geckodriver",
                 "port": 4444
             },
-            "silent": false,
+            "silent": true,
             "desiredCapabilities": {
                 "browserName": "firefox",
                 "alwaysMatch": {
