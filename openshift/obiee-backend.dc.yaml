@@ -65,7 +65,7 @@ objects:
           resources: {}
           env:
           - name: SERVER_FRONTEND
-            value: "http://${HOST_ROUTE}"
+            value: "https://${HOST_ROUTE}"
           - name: SSO_CLIENT_ID
             valueFrom:
               secretKeyRef:
