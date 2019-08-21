@@ -52,11 +52,12 @@ module.exports = {
             .waitForElementVisible('#nav-login', 5000)
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
-            .click('#zocial-idir')
+            //Following test doesn't work because login form has "no-robots" header
+            /*.click('#zocial-idir')
             .pause(5000)
             .source((result) => {
                 console.log(result.value);
-            })
+            })*/
             .end();
     },
 
