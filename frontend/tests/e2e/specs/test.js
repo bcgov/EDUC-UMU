@@ -52,6 +52,11 @@ module.exports = {
             .waitForElementVisible('#nav-login', 5000)
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
+            .click('#zocial-idir')
+            .pause(5000)
+            .source((result) => {
+                console.log(result.value);
+            })
             .end();
     },
 
