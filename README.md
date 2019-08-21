@@ -8,6 +8,11 @@ Administrative tool that allows for the addition, editing, and removal of entrie
 ## About
 The EDUC UMU repository contains the front and backend code for the UMU appication. The frontend of the UMU uses the [Vuetify](https://vuetifyjs.com/en/) framework, which is a custom flavour of the [Vue](https://vuejs.org/) framework. The backend of the application uses the [NodeJS](https://nodejs.org/en/) framework to facilitate authentication and database communication.
 
+## Pipeline
+This project supports end-to-end automation using Jenkins. There are five Jenkinsfiles in this project: a pipeline for tools to test, a pipeline for deployment to prod, a pipeline for e2e testing, a pipeline for ZAP scanning, and a pipeline for SonarQube analysis. The main pipeline (initiates other pipelines) is the dev pipeline. A template that allows you to import your Jenkinsfile into Openshift is located in the "openshift" folder.
+
+![alt text](https://github.com/bcgov/EDUC-UMU/docs/Jenkins_Pipeline.png "dev pipeline")
+
 ## License
     Copyright 2018 Province of British Columbia
 
