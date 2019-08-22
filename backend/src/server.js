@@ -20,7 +20,7 @@ const port = normalizePort(config.get('server:port'));
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTP2 server.
  */
 const server = http.createServer(app);
 
