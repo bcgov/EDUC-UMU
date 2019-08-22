@@ -10,6 +10,11 @@ module.exports = {
       }
     }
   },
+  pwa: {
+    name: 'EDUC UMU',
+    themeColor: '#003366',
+    msTileColor: '#fafafa'
+  },
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
   // To override, see .env.development file
