@@ -7,7 +7,7 @@
         <v-layout row wrap justify-center>
                 <v-card
                     class="form-card"
-                    max-width="60%"
+                    width="40%"
                 >
                     <PasswordForm></PasswordForm>
                 </v-card>
