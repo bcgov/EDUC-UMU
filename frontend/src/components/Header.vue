@@ -18,13 +18,14 @@
       <div v-if="isAuthenticated">
         <v-btn text id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
         <v-btn text id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
-        <v-btn text id="nav-logout" @click="clearStorage" :href="authRoutes.LOGOUT">Logout</v-btn>
+        <v-btn text id="nav-logout" @click="clearStorage" color="#96c0e6" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
       <div v-else>
         <v-btn disabled text id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
         <v-btn disabled text id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
-        <v-btn text id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
+        <v-btn text id="nav-login" @click="clearStorage" color="#96c0e6" :href="authRoutes.LOGIN">Login</v-btn>
       </div>
+    </v-toolbar>
   </header>
 </template>
 
