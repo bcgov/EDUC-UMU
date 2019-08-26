@@ -7,6 +7,7 @@
         <v-layout row wrap justify-center>
             <v-flex xs12>
                 <v-card
+                    class="form-card"
                     max-width="60%"
                 >
                     <PasswordForm></PasswordForm>
@@ -37,9 +38,9 @@ export default {
 
 
 <style>
-  .v-card{
-      padding: 15px;
-      margin-top:15px;
+  .form-card{
+    padding: 15px;
+    margin-top:15px;
   }
   .bottom-padding{
     padding-bottom: 100px;
