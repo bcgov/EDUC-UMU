@@ -29,7 +29,6 @@ export default {
     computed: {
         ...mapGetters('auth', ['isAuthenticated'])
     }
-
 };
 </script>
 
