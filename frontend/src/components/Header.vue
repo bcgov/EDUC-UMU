@@ -16,14 +16,14 @@
       <v-spacer></v-spacer>
 
       <div v-if="isAuthenticated">
-        <v-btn depressed tile id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
-        <v-btn depressed tile id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
+        <v-btn dark depressed tile id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
+        <v-btn dark depressed tile id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
         <v-btn depressed tile id="nav-logout" @click="clearStorage" color="#96c0e6" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
       <div v-else>
-        <v-btn disabled tile depressed id="nav-home" :to="{ path: '/'}">View Users</v-btn>
-        <v-btn disabled tile depressed id="nav-user-form" :to="{ path: '/password'}">Password Reset</v-btn>
-        <v-btn depressed tile id="nav-login" @click="clearStorage" color="#96c0e6" :href="authRoutes.LOGIN">Login</v-btn>
+        <v-btn dark disabled tile depressed id="nav-home" :to="{ path: '/'}">View Users</v-btn>
+        <v-btn dark disabled tile depressed id="nav-user-form" :to="{ path: '/password'}">Password Reset</v-btn>
+        <v-btn dark depressed tile id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
       </div>
     </v-toolbar>
   </header>
