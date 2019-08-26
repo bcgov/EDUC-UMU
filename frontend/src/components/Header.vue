@@ -12,19 +12,16 @@
       </a>
 
       <v-toolbar-title><h3 style="color:white">{{ appTitle }}</h3></v-toolbar-title>
-      
-      <!--
-      <div>
-        <v-btn text id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
-        <v-btn text id="nav-user-form" color="text" :to="{ path: '/add_user'}">Add User</v-btn>
-      </div>
-      -->
 
       <v-spacer></v-spacer>
 
       <div v-if="isAuthenticated">
+        <v-btn text id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
+        <v-btn text id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
         <v-btn text id="nav-logout" @click="clearStorage" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
+      <v-btn v-else disabled text id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
+      <v-btn v-else disabled text id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
       <v-btn v-else text id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
     </v-toolbar>
   </header>
