@@ -6,20 +6,22 @@
     <v-container v-else>
         <v-layout row wrap justify-center>
             <v-flex xs12>
-                <h1>Password Change Page</h1>
+                <PasswordForm></PasswordForm>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 
+
 <script>
 import { mapGetters } from 'vuex';
+import PasswordForm from '@/components/PasswordForm.vue';
 
 export default {
     name: 'password',
     components: {
-
+        PasswordForm
     },
     computed: {
         ...mapGetters('auth', ['isAuthenticated'])
@@ -28,8 +30,10 @@ export default {
 };
 </script>
 
+
+
 <style>
-     .bottom-padding{
+  .bottom-padding{
     padding-bottom: 100px;
   }
   .sectionCard {
