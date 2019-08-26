@@ -11,9 +11,10 @@ module.exports = {
     },
   },
   pwa: {
-    name: 'EDUC UMU',
-    themeColor: '#003366',
-    msTileColor: '#fafafa'
+    workBoxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: 'public/service-worker.js'
+    }
   },
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
