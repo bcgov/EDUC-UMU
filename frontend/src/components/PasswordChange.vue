@@ -6,7 +6,11 @@
     <v-container v-else>
         <v-layout row wrap justify-center>
             <v-flex xs12>
-                <PasswordForm></PasswordForm>
+                <v-card
+                    max-width="60%"
+                >
+                    <PasswordForm></PasswordForm>
+                </v-card>
             </v-flex>
         </v-layout>
     </v-container>
