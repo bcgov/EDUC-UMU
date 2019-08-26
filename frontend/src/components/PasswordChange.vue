@@ -37,6 +37,10 @@ export default {
 
 
 <style>
+  .v-card{
+      padding: 15px;
+      margin-top:15px;
+  }
   .bottom-padding{
     padding-bottom: 100px;
   }
