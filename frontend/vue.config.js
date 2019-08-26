@@ -11,10 +11,8 @@ module.exports = {
     },
   },
   pwa: {
-    workBoxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      swSrc: 'public/service-worker.js'
-    }
+    workBoxPluginMode: 'generateSW',
+    manifestPath: './public/manifest.json'
   },
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
