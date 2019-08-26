@@ -27,3 +27,4 @@ realm.json
 *.njsproj
 *.sln
 *.sw*
+*.pem
