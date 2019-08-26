@@ -11,7 +11,7 @@ module.exports = {
     },
   },
   pwa: {
-    workBoxPluginMode: 'generateSW',
+    workboxPluginMode: 'GenerateSW',
     manifestPath: './public/manifest.json'
   },
   transpileDependencies:['vuetify'],

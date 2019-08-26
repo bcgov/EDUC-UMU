@@ -1,6 +1,6 @@
 {
-    "name": "EDUC UMU",
-    "short_name": "UMU",
+    "name": "educ-umu",
+    "short_name": "umu",
     "icons": [
         {
             "src": "bcid-192x192.png",
