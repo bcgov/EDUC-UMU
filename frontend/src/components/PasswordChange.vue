@@ -5,14 +5,12 @@
 
     <v-container v-else>
         <v-layout row wrap justify-center>
-            <v-flex xs12>
                 <v-card
                     class="form-card"
                     max-width="60%"
                 >
                     <PasswordForm></PasswordForm>
                 </v-card>
-            </v-flex>
         </v-layout>
     </v-container>
 </template>
