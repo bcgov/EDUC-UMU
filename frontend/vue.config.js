@@ -5,9 +5,6 @@ module.exports = {
     performance: {
       hints: false
     },
-    plugins: [
-      new VuetifyLoaderPlugin()
-    ],
     optimization: {
       splitChunks: {
         minSize: 10000,
