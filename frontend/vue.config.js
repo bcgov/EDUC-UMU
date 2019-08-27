@@ -12,10 +12,9 @@ module.exports = {
       }
     },
   },
-  build: {
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()]
-  },
+  plugins: [
+    new VuetifyLoaderPlugin()
+  ],
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
   // To override, see .env.development file
