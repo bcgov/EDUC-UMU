@@ -22,7 +22,7 @@ pipeline{
         SOURCE_REPO_REF = 'master'
         SOURCE_REPO_URL = 'https://github.com/${OWNER}/${REPO_NAME}.git'
 
-        PROD_HOST_ROUTE = "umu"
+        PROD_HOST_ROUTE = "umu.${APP_DOMAIN}"
     }
     
     stages{
