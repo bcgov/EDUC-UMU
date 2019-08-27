@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '@/components/Home.vue';
+import Password from '@/components/PasswordChange.vue';
 import { AuthRoutes } from '@/utils/constants';
 import store from './store';
 
@@ -15,6 +16,11 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: Password
     },
     {
       path: '*',

@@ -1,6 +1,6 @@
 {
-    "name": "EDUC UMU",
-    "short_name": "UMU",
+    "name": "educ-umu",
+    "short_name": "umu",
     "icons": [
         {
             "src": "bcid-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/index.html",
+    "start_url": "/",
     "theme_color": "#003366",
     "background_color": "#fafafa",
     "display": "standalone"
