@@ -1,5 +1,3 @@
-import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
-
 module.exports = {
   configureWebpack: {
     performance: {
@@ -11,10 +9,6 @@ module.exports = {
         maxSize: 250000
       }
     },
-  },
-  build: {
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
   },
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
