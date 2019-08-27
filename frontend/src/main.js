@@ -4,6 +4,10 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../public/service-worker.js');
+};
+
 new Vue({
   vuetify,
   router,
