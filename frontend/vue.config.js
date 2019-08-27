@@ -13,8 +13,8 @@ module.exports = {
         paths: glob.sync([
           path.join(__dirname, './public/index.html'),
           path.join(__dirname, './**/*.vue'),
-          path.join(__dirname, './node_modules/vuetify/src/**/*.js'),
-        ])
+          path.join(__dirname, './node_modules/vuetify/src/**/*.js')
+        ]).filter(function(f) { return !/\/$/.test(f); })
       })
     ],
     optimization: {
