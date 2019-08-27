@@ -10,19 +10,6 @@ module.exports = {
       }
     },
   },
-  pwa: {
-    name: 'educ-umu',
-    themeColor: '#003366',
-    msTileColor: '#003366',
-    iconPaths: {
-      favicon32: 'src/assets/images/bcid-favicon-32x32.png',
-      favicon16: 'src/assets/images/bcid-favicon-16x16.png',
-      appleTouchIcon: 'public/bcid-apple-touch-icon.png',
-      msTileImage: 'src/assets/images/bcid-mstile-144x144.png'
-    },
-    workboxPluginMode: 'GenerateSW',
-    manifestPath: './public/manifest.json'
-  },
   transpileDependencies:['vuetify'],
   // When running in VueCLI development mode (npm run serve) proxy calls through the intended backend API route
   // To override, see .env.development file
