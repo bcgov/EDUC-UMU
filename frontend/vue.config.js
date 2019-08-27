@@ -1,22 +1,10 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
-const glob = require('glob');
-const path = require('path');
 
 module.exports = {
   configureWebpack: {
     performance: {
       hints: false
     },
-    plugins: [
-      new PurgecssPlugin({
-        paths: glob.sync([
-          path.join(__dirname, './public/index.html'),
-          path.join(__dirname, './**/*.vue'),
-          path.join(__dirname, './node_modules/vuetify/src/**/*.js')
-        ]).filter(function(f) { return !/\/$/.test(f); })
-      })
-    ],
     optimization: {
       splitChunks: {
         minSize: 10000,
