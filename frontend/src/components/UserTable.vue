@@ -185,7 +185,6 @@ import axios from 'axios';
 
 export default{
   data: () =>  ({
-    return {
       dialog_a: false,
       dialog_uForm: false,
       dialog_uDelete: false,
@@ -239,7 +238,6 @@ export default{
       items: [],
       itemJson: [],
       userInfo: {}
-    };
   }),
 
   //automatically populates the table on page load
