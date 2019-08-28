@@ -25,7 +25,7 @@ export default {
     this.$store.dispatch('auth/getJwtToken');
   },
   mounted() {
-    if(!(window.localSotrage.getItem('jwtToken')){
+    if(!(window.localStorage.getItem('jwtToken')){
       location.href = AuthRoutes.LOGOUT;
     }
   }
