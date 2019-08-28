@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     this.inactiveTime()
-  }
+  },
   methods: {
     inactiveTime() {
       document.onload = this.resetTimer;
