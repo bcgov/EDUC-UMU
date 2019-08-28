@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card class='form-card'>
         <v-form>
             <v-text-field
                 v-model="old"
@@ -25,6 +25,7 @@
         <v-dialog
             v-model="dialog"
             max-width="400px"
+            persistent
         >
             <v-card>
                 <v-card-title>

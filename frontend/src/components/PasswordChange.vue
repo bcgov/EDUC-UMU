@@ -31,6 +31,7 @@ export default {
 
 <style>
   .form-card{
+    width: 500px;
     padding: 15px;
     margin-top:15px;
   }
