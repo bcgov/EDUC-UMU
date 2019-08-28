@@ -19,7 +19,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-      loading
+      :loading="isLoading"
       show-expand
       single-expand
     >
@@ -284,11 +284,6 @@ export default{
     //initiates the delete user dialog box
     deleteUser() {
       this.dialog_uDelete = true;
-    }
-  },
-  watch: {
-    items() {
-      this.isLoading = false;
     }
   }
 };
