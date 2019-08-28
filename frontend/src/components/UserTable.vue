@@ -19,8 +19,8 @@
       :items="itemJson"
       :search="search"
       item-key="id"
+      loading
       show-expand
-      :loading="isLoading"
       single-expand
     >
 
@@ -192,7 +192,6 @@ export default{
       valid: true,
       hoverA: false,
       hoverB: false,
-      systems: ['EDW', 'SIS'],
       search: '',
       rules: [
         v => !!v || 'Required'

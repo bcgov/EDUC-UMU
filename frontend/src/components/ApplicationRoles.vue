@@ -151,10 +151,8 @@ export default{
     dialog_rDelete: false,
     isLoading: true,
     valid: true,
-    expanded: [],
     hoverA: false,
     hoverB: false,
-    systems: ['EDW', 'SIS'],
     search: '',
     rules: [
       v => !!v || 'Required'
