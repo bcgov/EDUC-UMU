@@ -19,10 +19,11 @@
       :items="itemJson"
       :search="search"
       item-key="id"
+      :loading="isLoading"
     >
 
     <!-- Shows when there is no data in the table -->
-      <template v-slot:no-data>
+      <template v-slot:loading>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
@@ -219,6 +220,7 @@ export default{
     },
     //retrieve roles from the API endpoint
     getRoles () {
+      this.isLoading = true;
       this.items = [];
       this.itemJson = [];
       axios.get('/api/main/database/roles').then(response => {

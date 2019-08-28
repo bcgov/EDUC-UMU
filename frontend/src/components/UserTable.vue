@@ -20,12 +20,13 @@
       :search="search"
       item-key="id"
       show-expand
+      :loading=isLoading
       single-expand
     >
 
 
     <!-- Displays when there is no data in the table -->
-      <template v-slot:no-data>
+      <template v-slot:loading>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
@@ -264,6 +265,7 @@ export default{
     getItems () {
       this.items = [];
       this.itemJson = [];
+      this.isLoading = true;
       axios.get('/api/main/database/users').then(response => {
         this.items = response.data;
         this.isLoading = false;

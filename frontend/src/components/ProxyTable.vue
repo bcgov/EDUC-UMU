@@ -17,10 +17,11 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
+      :loading="isLoading"
       >
 
     <!-- Displays when there are no entries in the table -->
-      <template v-slot:no-data>
+      <template v-slot:loading>
         <div class='text-xs-center'>
           <v-progress-circular color="#003366" indeterminate></v-progress-circular>
         </div>
@@ -211,6 +212,7 @@ export default {
     getProxy () {
       this.items = [];
       this.itemJson = [];
+      this.isLoading = true;
       axios.get('/api/main/database/proxy').then(response => {
         this.items = response.data;
         this.isLoading=false;
