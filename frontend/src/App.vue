@@ -8,7 +8,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { AuthRoutes } from '@/utils/constants.js';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
