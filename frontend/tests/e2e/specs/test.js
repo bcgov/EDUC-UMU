@@ -14,9 +14,9 @@ module.exports = {
             .click('#footer-home')
             .pause(2000)
             .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home')
-            .end;/*
+            /*.end;
             These tests do not work for firefox, as GeckoDriver provides marionette error
-            Can re-enable this tests when GeckoDriver fixes this issue
+            Can re-enable this tests when GeckoDriver fixes this issue*/
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#app', 5000)
             .click('#footer-about')
@@ -44,7 +44,7 @@ module.exports = {
             .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home/copyright')
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#app', 5000)
-            .end();*/
+            .end();
     },
     'Navigate to login': (browser) => {
         browser
