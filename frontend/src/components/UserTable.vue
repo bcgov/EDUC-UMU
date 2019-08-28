@@ -19,17 +19,10 @@
       :items="itemJson"
       :search="search"
       item-key="id"
+      :loading="isLoading"
       show-expand
       single-expand
     >
-
-
-    <!-- Displays when there is no data in the table -->
-      <template v-slot:no-data>
-        <div class='text-xs-center'>
-          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
 
 
     <!-- Displays as the final row(s) of the table --> 
@@ -191,8 +184,7 @@
 import axios from 'axios';
 
 export default{
-  data() {
-    return {
+  data: () =>  ({
       dialog_a: false,
       dialog_uForm: false,
       dialog_uDelete: false,
@@ -200,7 +192,6 @@ export default{
       valid: true,
       hoverA: false,
       hoverB: false,
-      systems: ['EDW', 'SIS'],
       search: '',
       rules: [
         v => !!v || 'Required'
@@ -246,8 +237,7 @@ export default{
       items: [],
       itemJson: [],
       userInfo: {}
-    };
-  },
+  }),
 
   //automatically populates the table on page load
   mounted(){
@@ -264,6 +254,7 @@ export default{
     getItems () {
       this.items = [];
       this.itemJson = [];
+      this.isLoading = true;
       axios.get('/api/main/database/users').then(response => {
         this.items = response.data;
         this.isLoading = false;
@@ -293,11 +284,6 @@ export default{
     //initiates the delete user dialog box
     deleteUser() {
       this.dialog_uDelete = true;
-    }
-  },
-  watch: {
-    items() {
-      this.isLoading = false;
     }
   }
 };

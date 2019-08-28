@@ -19,14 +19,8 @@
       :items="itemJson"
       :search="search"
       item-key="id"
+      :loading="isLoading"
     >
-
-    <!-- Shows when there is no data in the table -->
-      <template v-slot:no-data>
-        <div class='text-xs-center'>
-          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
 
     <!-- Displays as the final row of the table -->
       <template 
@@ -157,10 +151,8 @@ export default{
     dialog_rDelete: false,
     isLoading: true,
     valid: true,
-    expanded: [],
     hoverA: false,
     hoverB: false,
-    systems: ['EDW', 'SIS'],
     search: '',
     rules: [
       v => !!v || 'Required'
@@ -219,6 +211,7 @@ export default{
     },
     //retrieve roles from the API endpoint
     getRoles () {
+      this.isLoading = true;
       this.items = [];
       this.itemJson = [];
       axios.get('/api/main/database/roles').then(response => {
