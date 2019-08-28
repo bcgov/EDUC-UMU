@@ -20,14 +20,6 @@
       :loading="isLoading"
       >
 
-    <!-- Displays when there are no entries in the table -->
-      <template v-slot:loading>
-        <div class='text-xs-center'>
-          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
-
-
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">

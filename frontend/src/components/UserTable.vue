@@ -20,17 +20,9 @@
       :search="search"
       item-key="id"
       show-expand
-      :loading=isLoading
+      :loading="isLoading"
       single-expand
     >
-
-
-    <!-- Displays when there is no data in the table -->
-      <template v-slot:loading>
-        <div class='text-xs-center'>
-          <v-progress-circular color="#003366" indeterminate></v-progress-circular>
-        </div>
-      </template>
 
 
     <!-- Displays as the final row(s) of the table --> 
