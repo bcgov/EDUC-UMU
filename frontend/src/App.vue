@@ -23,11 +23,6 @@ export default {
   },
   created() {
     this.$store.dispatch('auth/getJwtToken');
-  },
-  mounted() {
-    if(!(window.localStorage.getItem('jwtToken'))){
-      location.href = AuthRoutes.LOGOUT;
-    }
   }
 };
 </script>
