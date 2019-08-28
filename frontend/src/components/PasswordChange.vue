@@ -5,12 +5,7 @@
 
     <v-container v-else>
         <v-layout row wrap justify-center>
-                <v-card
-                    class="form-card"
-                    width="40%"
-                >
-                    <PasswordForm></PasswordForm>
-                </v-card>
+          <PasswordForm></PasswordForm>
         </v-layout>
     </v-container>
 </template>
