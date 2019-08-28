@@ -18,13 +18,12 @@
         <v-btn
             color="#003366"
             dark
-            v-on="on"
+            @click="dialog = true"
         >Reset Password</v-btn>
     </v-form>
     <v-dialog
         v-model="dialog"
         max-width="400px"
-        @click="dialog - true"
     >
         <v-card>
             <v-card-title>
