@@ -18,12 +18,40 @@
         <v-btn
             color="#003366"
             dark
+            v-on="on"
         >Reset Password</v-btn>
     </v-form>
+    <v-dialog
+        v-model="dialog"
+        max-width="400px"
+        @click="dialog - true"
+    >
+        <v-card>
+            <v-card-title>
+                <span><h4>Confirm Password Reset</h4></span>
+            </v-card-title>
+            <v-card-text>
+                <v-container grid-list-md>
+                <v-layout wrap>
+                    <v-flex xs12>
+                    <span>Are you sure you want to reset your password?</span>
+                    </v-flex>
+                </v-layout>
+                </v-container>
+            </v-card-text>
+            <v-card-actions>
+                <v-btn color="#003366" dark text @click="dialog = false">Cancel</v-btn>
+                <v-btn color="#003366" dark text @click="dialog = false">Reset Password</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
 export default{
+    data: () => ({
+        dialog: false
+    }),
 
 };
 </script>
