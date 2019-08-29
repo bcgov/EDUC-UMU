@@ -3,15 +3,15 @@
     <div class="gov-blue">
       <v-card-title>
         <v-row class="small_letters">
-          <v-col>
+          <v-col cols="auto">
             <h4>Username Group: </h4>
           </v-col>
           <v-col>
-            <div v-if="usernameGroup != ''">
               <v-chip
                 pill 
                 close
                 color="#6c757d"
+                v-model="groupOpen"
                 @click:close="resetUsername()"
               >
                 <v-avatar
@@ -22,8 +22,7 @@
                 </v-avatar>
                 {{ usernameGroup }}
               </v-chip>
-            </div>
-            <p v-else>
+            <p v-if="!groupOpen">
               None selected
             </p>
           </v-col>
@@ -215,6 +214,7 @@ export default{
       usernameGroup: '',
       usernameArr: [],
       tempArray: [],
+      groupOpen: false,
       dialog_a: false,
       dialog_uForm: false,
       dialog_uDelete: false,
@@ -303,11 +303,12 @@ export default{
     },
     resetUsername(){
       this.usernameArr = [];
-      this.userNamegroup = '';
+      this.usernamegroup = '';
       this.itemJson = this.tempArray;
     },
     selectUsername(usrname){
-      this.userNamegroup = usrname;
+      this.groupOpen = true;
+      this.usernamegroup = usrname;
       this.usernameArr = (this.items).filter(function(item){
                                                 return item.username == usrname;
                                               });
