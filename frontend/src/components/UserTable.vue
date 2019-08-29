@@ -2,9 +2,9 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <v-row class="small_letters">
+        <v-row>
           <v-col cols="auto">
-            <h4>Username Group: </h4>
+            <h4 class="small_letters">Username Group: </h4>
           </v-col>
           <v-col v-if="groupOpen">
               <v-chip
@@ -24,7 +24,7 @@
               </v-chip>
           </v-col>
           <v-col v-else>
-            <p>
+            <p class="small_letters">
               None selected
             </p>
           </v-col>
@@ -312,7 +312,7 @@ export default{
     selectUsername(usrname){
       this.groupOpen = true;
       this.usernameGroup = usrname;
-      this.usernameArr = (this.items).filter(function(item){
+      this.usernameArr = (this.itemJson).filter(function(item){
                                                 return item.username == usrname;
                                               });
       this.tempArray = this.itemJson;
