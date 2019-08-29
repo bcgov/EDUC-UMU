@@ -304,6 +304,7 @@ export default{
       }
     },
     resetUsername(){
+      this.groupOpen = false;
       this.usernameArr = [];
       this.usernameGroup = '';
       this.itemJson = this.tempArray;
