@@ -47,7 +47,7 @@
           </v-col>
           <v-col v-else>
             <p class="small-letters">
-              None selected
+              No user selected
             </p>
           </v-col>
           <v-col>

@@ -29,19 +29,6 @@
               </v-tabs>
             </v-flex>
           </v-layout>
-          <v-card>
-            <v-row>
-              <v-col cols="auto">
-                <v-icon>group</v-icon><p>= select username group</p>
-              </v-col>
-              <v-col cols="auto">
-                <v-icon>edit</v-icon><p>= edit user</p>
-              </v-col>
-              <v-col cols="auto">
-                <v-icon>delete</v-icon><p>= delete user</p>
-              </v-col>
-            </v-row>
-          </v-card>
     </v-container>
 </template>
 
