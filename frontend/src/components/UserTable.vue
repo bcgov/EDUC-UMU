@@ -22,6 +22,22 @@
                 </v-avatar>
                 {{ usernameGroup }}
               </v-chip>
+              <v-chip
+                dark
+                color="#d93e45"
+                @click="deleteGroup()"
+              >
+                <v-icon left>delete</v-icon>
+                Delete user
+              </v-chip>
+              <v-chip
+                dark
+                color="#43893e"
+                @click="addToGroup()"
+              >
+                <v-icon left>add_circle</v-icon>
+                Add to User
+              </v-chip>
           </v-col>
           <v-col v-else>
             <p class="small_letters">
@@ -129,9 +145,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
-              <v-icon @click.stop="deleteUser()" color="#003366">delete</v-icon>
-              <v-icon @click.stop="selectUsername(item.username)" color="#003366">person_add</v-icon>
+              <v-icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
+              <v-icon class="list_action" @click.stop="deleteUser()" color="#003366">delete</v-icon>
+              <v-icon class="list_action" @click.stop="selectUsername(item.username)" color="#003366">group</v-icon>
       </template>
 
 
@@ -310,13 +326,18 @@ export default{
       this.itemJson = this.tempArray;
     },
     selectUsername(usrname){
-      this.groupOpen = true;
-      this.usernameGroup = usrname;
-      this.usernameArr = (this.itemJson).filter(function(item){
-                                                return item.username == usrname;
-                                              });
-      this.tempArray = this.itemJson;
-      this.itemJson = this.usernameArr;
+      if(this.groupOpen){
+        return;
+      }
+      else{
+        this.groupOpen = true;
+        this.usernameGroup = usrname;
+        this.usernameArr = (this.itemJson).filter(function(item){
+                                                  return item.username == usrname;
+                                                });
+        this.tempArray = this.itemJson;
+        this.itemJson = this.usernameArr;
+      }
     },
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
@@ -352,12 +373,15 @@ export default{
     //initiates the delete user dialog box
     deleteUser() {
       this.dialog_uDelete = true;
-    }/*
+    }
     deleteGroup(){
       (this.usernameArr).forEach(element => {
-        deleteUser(element);
+        var nothing = 0;
       });
-    },*/
+    },
+    addToGroup(){
+      var group = this.usernameGroup;
+    }
   }
 };
 </script>

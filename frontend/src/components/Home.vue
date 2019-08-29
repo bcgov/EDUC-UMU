@@ -59,11 +59,12 @@ export default {
 </script>
 
 <style>
-  .small-letters p{
+  .small-letters{
     font-size: 1.0rem;
   }
-  .small-letters h4{
-    font-size: 1.0rem;
+  .list_action{
+    padding-right: 2.5px;
+    padding-left: 2.5px;
   }
   .bottom-padding{
     padding-bottom: 100px;
