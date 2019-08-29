@@ -373,7 +373,7 @@ export default{
     //initiates the delete user dialog box
     deleteUser() {
       this.dialog_uDelete = true;
-    }
+    },
     deleteGroup(){
       (this.usernameArr).forEach(element => {
         var nothing = 0;
