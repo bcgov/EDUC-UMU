@@ -59,7 +59,10 @@ export default {
 </script>
 
 <style>
-  .small-letters h4,p{
+  .small-letters p{
+    font-size: 1.0rem;
+  }
+  .small-letters h4{
     font-size: 1.0rem;
   }
   .bottom-padding{

@@ -8,9 +8,11 @@
           </v-col>
           <v-col>
               <v-chip
+                v-if="groupOpen"
                 pill 
                 close
-                color="#6c757d"
+                dark
+                color="#5475a7"
                 v-model="groupOpen"
                 @click:close="resetUsername()"
               >
@@ -22,7 +24,7 @@
                 </v-avatar>
                 {{ usernameGroup }}
               </v-chip>
-            <p v-if="!groupOpen">
+            <p else>
               None selected
             </p>
           </v-col>
@@ -303,12 +305,12 @@ export default{
     },
     resetUsername(){
       this.usernameArr = [];
-      this.usernamegroup = '';
+      this.usernameGroup = '';
       this.itemJson = this.tempArray;
     },
     selectUsername(usrname){
       this.groupOpen = true;
-      this.usernamegroup = usrname;
+      this.usernameGroup = usrname;
       this.usernameArr = (this.items).filter(function(item){
                                                 return item.username == usrname;
                                               });
