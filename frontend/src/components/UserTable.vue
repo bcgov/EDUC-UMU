@@ -6,7 +6,7 @@
         <v-chip 
           close
           v-if="usernameGroup != ''"
-          @click:close="usernameGroup=''"
+          @click:close="resetUsername()"
         >
           {{ usernameGroup }}
         </v-chip>
@@ -198,6 +198,7 @@ export default{
   data: () =>  ({
       usernameGroup: '',
       usernameArr: [],
+      tempArray: [],
       dialog_a: false,
       dialog_uForm: false,
       dialog_uDelete: false,
@@ -263,15 +264,18 @@ export default{
         this.snackbar=true;
       }
     },
-    filterUsername
+    resetUsername(){
+      this.usernameArr = [];
+      this.userNamegroup = '';
+      this.itemJson = this.tempArray;
+    },
     selectUsername(usrname){
       this.userNamegroup = usrname;
-      this.usernameArr = (this.items).filter( (item, usrname) => {
-                                                              if(item.usename == usrname){
-                                                                return true;
-                                                              }
-                                                              return false;
-                                                            };
+      this.usernameArr = (this.items).filter(function(item, usrname){
+                                                return item.username == usrname;
+                                              });
+      this.tempArray = this.itemJson;
+      this.itemJson = this.usernameArr;
     },
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
