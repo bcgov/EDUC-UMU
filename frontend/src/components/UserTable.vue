@@ -30,7 +30,7 @@
                 class="mr-2"
                 dark
                 color="#d93e45"
-                @click="deleteUser("Are you sure you want to delete all entries with username " + {{ usernameGroup }})"
+                @click="deleteUser('Are you sure you want to delete all entries with username ' + {{ usernameGroup }})"
               >
                 <v-icon left>delete</v-icon>
                 Delete user
@@ -82,10 +82,8 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
+            <v-btn color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
-                <template v-slot:activator="{ on }">
-                  <v-btn color="#003366" @click="clearUser" dark v-on="on">Add Auth User</v-btn>
-                </template>
                 <v-form>
                   <v-card>
                     <v-card-title>
@@ -95,10 +93,10 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" required></v-text-field>
+                            <v-text-field label="System" name="system" :value="usernameArr[0].system" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" required></v-text-field>
@@ -107,10 +105,10 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :value="usernameArr[0].authSource" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -153,7 +151,7 @@
       <template
         v-slot:item.action="{ item }">
               <v-btn fab small dark class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-              <v-btn fab small dark class="list_action" @click.stop="deleteUser("Are you sure you want to delete this user?")" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+              <v-btn fab small dark class="list_action" @click.stop="deleteUser('Are you sure you want to delete this user?')" color="#d93e45"><v-icon>delete</v-icon></v-btn>
               <v-btn fab small dark class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
       </template>
 
@@ -237,7 +235,9 @@ import axios from 'axios';
 export default{
   data: () =>  ({
       usernameGroup: '',
-      usernameArr: [],
+      usernameArr: [
+        {"system": '', "username": '', "guid": '', "authSource": ''}
+      ],
       tempArray: [],
       groupOpen: false,
       dialog_a: false,
@@ -329,7 +329,7 @@ export default{
     },
     resetUsername(){
       this.groupOpen = false;
-      this.usernameArr = [];
+      this.usernameArr = [{"system": '', "username": '', "guid": '', "authSource": ''}];
       this.usernameGroup = '';
       this.itemJson = this.tempArray;
     },
