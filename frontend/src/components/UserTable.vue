@@ -4,10 +4,11 @@
       <v-card-title>
         <v-row>
           <v-col cols="auto">
-            <h4 class="small_letters">Username Group: </h4>
+            <h4 class="small-letters">Username Group: </h4>
           </v-col>
           <v-col v-if="groupOpen">
               <v-chip
+                class="mr-2"
                 pill 
                 close
                 dark
@@ -23,6 +24,7 @@
                 {{ usernameGroup }}
               </v-chip>
               <v-chip
+                class="mr-2"
                 dark
                 color="#d93e45"
                 @click="deleteUser()"
@@ -31,30 +33,32 @@
                 Delete user
               </v-chip>
               <v-chip
+                class="mr-2"
                 dark
                 color="#43893e"
                 @click="addUser()"
               >
                 <v-icon left>add_circle</v-icon>
-                Add to User
+                Add Item
               </v-chip>
           </v-col>
           <v-col v-else>
-            <p class="small_letters">
+            <p class="small-letters">
               None selected
             </p>
           </v-col>
+          <v-col>
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Search"
+              single-line
+              hide-details
+              dark
+              color="white"
+            ></v-text-field>
+          </v-col>
         </v-row>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          append-icon="search"
-          label="Search"
-          single-line
-          hide-details
-          dark
-          color="white"
-        ></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
