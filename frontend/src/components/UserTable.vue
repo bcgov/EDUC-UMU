@@ -2,28 +2,33 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <div>
-          <p>Username Group: </p>
-          <div v-if="usernameGroup != ''">
-            <v-chip
-              pill 
-              close
-              color="#6c757d"
-              @click:close="resetUsername()"
-            >
-              <v-avatar
-                left
-                color="#96c0e6"
+        <v-row class="small_letters">
+          <v-col>
+            <h4>Username Group: </h4>
+          </v-col>
+          <v-col>
+            <div v-if="usernameGroup != ''">
+              <v-chip
+                pill 
+                close
+                color="#6c757d"
+                @click:close="resetUsername()"
               >
-                {{ usernameGroup[0] }}
-              </v-avatar>
-              {{ usernameGroup }}
-            </v-chip>
-          </div>
-          <p v-else>
-            None selected
-          </p>
-        </div>
+                <v-avatar
+                  left
+                  color="#96c0e6"
+                >
+                  {{ usernameGroup[0] }}
+                </v-avatar>
+                {{ usernameGroup }}
+              </v-chip>
+            </div>
+            <p v-else>
+              None selected
+            </p>
+          </v-col>
+        </v-row>
+        <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
           append-icon="search"
@@ -303,7 +308,7 @@ export default{
     },
     selectUsername(usrname){
       this.userNamegroup = usrname;
-      this.usernameArr = (this.items).filter(function(item, usrname){
+      this.usernameArr = (this.items).filter(function(item){
                                                 return item.username == usrname;
                                               });
       this.tempArray = this.itemJson;

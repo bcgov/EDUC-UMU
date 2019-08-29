@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style>
+  .small-letters{
+    font-size: 1.0rem;
+  }
   .bottom-padding{
     padding-bottom: 100px;
   }
