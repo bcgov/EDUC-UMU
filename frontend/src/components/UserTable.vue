@@ -7,7 +7,7 @@
             cols="auto"
             class="left-col"
           >
-            <h4 class="small-letters">Username Group: </h4>
+            <h4 class="small-letters">Group By Username: </h4>
           </v-col>
           <v-col v-if="groupOpen">
               <v-chip
@@ -33,7 +33,7 @@
                 @click="deleteUser('Are you sure you want to delete all entries with this username?')"
               >
                 <v-icon left>delete</v-icon>
-                Delete user
+                Delete group
               </v-chip>
               <v-chip
                 class="mr-2"
