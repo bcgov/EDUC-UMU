@@ -18,6 +18,7 @@ RUN npm install
 # Build Application
 COPY . /opt/app-root/src
 
+EXPOSE 8080 443
 #selenium can't find binaries for chrome or chromedriver, so e2e is disabled for now
 #RUN npm run lint:fix
 #RUN npm run test:e2e

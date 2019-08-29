@@ -40,20 +40,20 @@ objects:
             failureThreshold: 3
             httpGet:
               path: "/"
-              port: 443
+              port: 2015
               scheme: HTTP
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
           name: "${APP_NAME}-frontend-${JOB_NAME}"
           ports:
-          - containerPort: 443
+          - containerPort: 2015
             protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: "/"
-              port: 443
+              port: 2015
               scheme: HTTP
             periodSeconds: 10
             successThreshold: 1
@@ -85,10 +85,10 @@ objects:
     name: "${APP_NAME}-frontend-${JOB_NAME}"
   spec:
     ports:
-    - name: 443-tcp
-      port: 443
+    - name: 2015-tcp
+      port: 2015
       protocol: TCP
-      targetPort: 443
+      targetPort: 2015
     selector:
       app: "${APP_NAME}-${JOB_NAME}"
       deploymentconfig: "${APP_NAME}-frontend-${JOB_NAME}"
@@ -103,7 +103,7 @@ objects:
   spec:
     host: "${HOST_ROUTE}"
     port:
-      targetPort: 443-tcp
+      targetPort: 2015-tcp
     tls:
       insecureEdgeTerminationPolicy: Redirect
       termination: edge
