@@ -2,7 +2,6 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
           append-icon="search"
@@ -65,8 +64,8 @@
     <!-- The actions you can take on any row of the table -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
-              <v-icon @click="deleteRole()" color="#003366">delete</v-icon>
+              <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
+              <v-icon class="list_action" @click="deleteRole()" color="#003366">delete</v-icon>
       </template>
 
 
@@ -199,9 +198,9 @@ export default{
     itemJson: [],
     roleInfo: {}
   }),
-  mounted: function() {
+  /*mounted: function() {
     this.getRoles();
-  },
+  },*/
   methods: {
   //validates forms
     validate () {

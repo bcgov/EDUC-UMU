@@ -59,6 +59,16 @@ export default {
 </script>
 
 <style>
+  .left-col{
+    padding-left: 50px;
+  }
+  .small-letters{
+    font-size: 1.0rem;
+  }
+  .list_action{
+    padding-right: 2.5px;
+    padding-left: 2.5px;
+  }
   .bottom-padding{
     padding-bottom: 100px;
   }

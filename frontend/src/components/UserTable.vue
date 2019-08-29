@@ -2,16 +2,66 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          append-icon="search"
-          label="Search"
-          single-line
-          hide-details
-          dark
-          color="white"
-          ></v-text-field>
+        <v-row>
+          <v-col 
+            cols="auto"
+            class="left-col"
+          >
+            <h4 class="small-letters">Group By Username: </h4>
+          </v-col>
+          <v-col v-if="groupOpen">
+              <v-chip
+                class="mr-2"
+                pill 
+                close
+                dark
+                color="#5475a7"
+                @click:close="resetUsername()"
+              >
+                <v-avatar
+                  left
+                  color="#96c0e6"
+                >
+                  {{ usernameGroup[0] }}
+                </v-avatar>
+                {{ usernameGroup }}
+              </v-chip>
+              <v-chip
+                class="mr-2"
+                dark
+                color="#d93e45"
+                @click="deleteUser('Are you sure you want to delete all entries with this username?')"
+              >
+                <v-icon left>delete</v-icon>
+                Delete group
+              </v-chip>
+              <v-chip
+                class="mr-2"
+                dark
+                color="#43893e"
+                @click="dialog_a = true"
+              >
+                <v-icon left>add_circle</v-icon>
+                Add Item
+              </v-chip>
+          </v-col>
+          <v-col v-else>
+            <p class="small-letters">
+              No user selected
+            </p>
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Search"
+              single-line
+              hide-details
+              dark
+              color="white"
+            ></v-text-field>
+          </v-col>
+        </v-row>
       </v-card-title>
     </div>
     <v-data-table
@@ -19,7 +69,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-      :loading="isLoading"
+
       show-expand
       single-expand
     >
@@ -32,10 +82,8 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
+            <v-btn color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
-                <template v-slot:activator="{ on }">
-                  <v-btn color="#003366" @click="clearUser" dark v-on="on">Add Auth User</v-btn>
-                </template>
                 <v-form>
                   <v-card>
                     <v-card-title>
@@ -45,10 +93,10 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" required></v-text-field>
+                            <v-text-field label="System" name="system" :value="usernameArr[0].system" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" required></v-text-field>
@@ -57,10 +105,10 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :value="usernameArr[0].authSource" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -102,8 +150,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
-              <v-icon @click.stop="deleteUser()" color="#003366">delete</v-icon>
+          <v-btn icon class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="deleteUser('Are you sure you want to delete this user?')" color="#d93e45"><v-icon>delete</v-icon></v-btn>
       </template>
 
 
@@ -166,7 +215,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>Are you sure you want to delete this user?</span>
+                  <span>{{ deleteMessage }}</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -185,7 +234,15 @@ import axios from 'axios';
 
 export default{
   data: () =>  ({
+      usernameGroup: '',
+      usernameArr: [
+        {"system": '', "username": '', "guid": '', "authSource": ''}
+      ],
+      tempArray: [],
+      fab: false,
+      groupOpen: false,
       dialog_a: false,
+      deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
       isLoading: true,
@@ -234,20 +291,61 @@ export default{
           align: 'center'
         }
       ],
+      itemJson: [
+        {"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
+        {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
+        {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
+        {"system": "EDW","username": "NDenny","name": "sdfsdfas", "value": "wefaweff", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 4 },
+        {"system": "EDW","username": "NDenny","name": "gfdagdfe", "value": "hgj5effa", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 5 },
+        {"system": "EDW","username": "PHolland","name": "54fq34yu", "value": "23589yht9", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 6 },
+        {"system": "EDW","username": "PHolland","name": "refgwe54tui90", "value": "afwer2nn54", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 7 },
+        {"system": "EDW","username": "PHolland","name": "qv3jhun34", "value": "q4tv", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 8 },
+        {"system": "EDW","username": "PHolland","name": "nwh456", "value": "25yn4nwertwb", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 9 },
+        {"system": "EDW","username": "PHolland","name": "qwbtqtret", "value": "wetbrtbwertt34", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 10 },
+        {"system": "EDW","username": "TRankin","name": "4tbbq4t", "value": "qetbrbbt", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 11 },
+        {"system": "EDW","username": "TRankin","name": "436bbqwrtbrbe", "value": "yjumsea", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 12 },
+        {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
+        {"system": "EDW","username": "TRankin","name": "34tbw34bg", "value": "weby6um3", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 14 },
+        {"system": "EDW","username": "TRankin","name": "b3wtwtbwer", "value": "btrnurnrew", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 15 },
+        {"system": "EDW","username": "SShaw","name": "n625nwerv", "value": "wbtrt324n62", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 16 },
+        {"system": "EDW","username": "SShaw","name": "rewtn34n63", "value": "wernt3562", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 17 },
+        {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
+        {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
+        {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }
+      ],
       items: [],
-      itemJson: [],
       userInfo: {}
   }),
 
   //automatically populates the table on page load
-  mounted(){
+  /*mounted(){
     this.getItems();
-  },
+  },*/
   methods: {
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
+      }
+    },
+    resetUsername(){
+      this.groupOpen = false;
+      this.usernameArr = [{"system": '', "username": '', "guid": '', "authSource": ''}];
+      this.usernameGroup = '';
+      this.itemJson = this.tempArray;
+    },
+    selectUsername(usrname){
+      if(this.groupOpen){
+        return;
+      }
+      else{
+        this.groupOpen = true;
+        this.usernameGroup = usrname;
+        this.usernameArr = (this.itemJson).filter(function(item){
+                                                  return item.username == usrname;
+                                                });
+        this.tempArray = this.itemJson;
+        this.itemJson = this.usernameArr;
       }
     },
     //retrieves users from the API endpoint and puts them into a JSON array
@@ -282,9 +380,13 @@ export default{
       this.getItems();
     },
     //initiates the delete user dialog box
-    deleteUser() {
+    deleteUser(message) {
+      this.deleteMessage = message;
       this.dialog_uDelete = true;
-    }
+    },/*
+    deleteGroup(){
+      
+    }*/
   }
 };
 </script>
