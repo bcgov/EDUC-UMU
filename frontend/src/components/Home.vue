@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style>
+  .left-col{
+    padding-left: 50px;
+  }
   .small-letters{
     font-size: 1.0rem;
   }

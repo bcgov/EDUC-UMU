@@ -3,7 +3,10 @@
     <div class="gov-blue">
       <v-card-title>
         <v-row>
-          <v-col cols="auto">
+          <v-col 
+            cols="auto"
+            class="left-col"
+          >
             <h4 class="small-letters">Username Group: </h4>
           </v-col>
           <v-col v-if="groupOpen">
@@ -27,7 +30,7 @@
                 class="mr-2"
                 dark
                 color="#d93e45"
-                @click="deleteUser()"
+                @click="deleteUser("Are you sure you want to delete all entries with username " + {{ usernameGroup }})"
               >
                 <v-icon left>delete</v-icon>
                 Delete user
@@ -149,9 +152,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
-              <v-icon class="list_action" @click.stop="deleteUser()" color="#003366">delete</v-icon>
-              <v-icon class="list_action" @click.stop="selectUsername(item.username)" color="#003366">group</v-icon>
+              <v-btn fab small dark class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
+              <v-btn fab small dark class="list_action" @click.stop="deleteUser("Are you sure you want to delete this user?")" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+              <v-btn fab small dark class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
       </template>
 
 
@@ -214,7 +217,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>Are you sure you want to delete this user?</span>
+                  <span>{{ deleteMessage }}</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -238,6 +241,7 @@ export default{
       tempArray: [],
       groupOpen: false,
       dialog_a: false,
+      deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
       isLoading: true,
@@ -375,7 +379,8 @@ export default{
       this.getItems();
     },
     //initiates the delete user dialog box
-    deleteUser() {
+    deleteUser(message) {
+      this.deleteMessage = message;
       this.dialog_uDelete = true;
     },/*
     deleteGroup(){
