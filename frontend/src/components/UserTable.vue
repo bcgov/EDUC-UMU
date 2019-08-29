@@ -30,7 +30,7 @@
                 class="mr-2"
                 dark
                 color="#d93e45"
-                @click="deleteUser('Are you sure you want to delete all entries with username ' + {{ usernameGroup }})"
+                @click="deleteUser('Are you sure you want to delete all entries with this username?')"
               >
                 <v-icon left>delete</v-icon>
                 Delete user
