@@ -6,14 +6,12 @@
           <v-col cols="auto">
             <h4>Username Group: </h4>
           </v-col>
-          <v-col>
+          <v-col v-if="groupOpen">
               <v-chip
-                v-if="groupOpen"
                 pill 
                 close
                 dark
                 color="#5475a7"
-                v-model="groupOpen"
                 @click:close="resetUsername()"
               >
                 <v-avatar
@@ -24,7 +22,9 @@
                 </v-avatar>
                 {{ usernameGroup }}
               </v-chip>
-            <p else>
+          </v-col>
+          <v-col v-else>
+            <p>
               None selected
             </p>
           </v-col>
