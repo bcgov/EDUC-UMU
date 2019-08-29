@@ -190,9 +190,9 @@ export default {
     proxyInfo: {}
   }),
   //Automatically fetches the table contents from the database on page load
-  mounted: function() {
+  /*mounted: function() {
     this.getProxy();
-  },
+  },*/
   methods: {
     //validates forms
     validate () {

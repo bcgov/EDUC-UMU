@@ -2,7 +2,17 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <v-spacer></v-spacer>
+        <p>Username Group: </p>
+        <v-chip 
+          close
+          v-if="usernameGroup != ''"
+          @click:close="usernameGroup=''"
+        >
+          {{ usernameGroup }}
+        </v-chip>
+        <p v-else>
+          None selected
+        </p>
         <v-text-field
           v-model="search"
           append-icon="search"
@@ -104,6 +114,7 @@
         v-slot:item.action="{ item }">
               <v-icon @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#003366">edit</v-icon>
               <v-icon @click.stop="deleteUser()" color="#003366">delete</v-icon>
+              <v-icon @click.stop="selectUsername(item.username)" color="#003366">person_add</v-icon>
       </template>
 
 
@@ -185,6 +196,8 @@ import axios from 'axios';
 
 export default{
   data: () =>  ({
+      usernameGroup: '',
+      usernameArr: [],
       dialog_a: false,
       dialog_uForm: false,
       dialog_uDelete: false,
@@ -240,15 +253,19 @@ export default{
   }),
 
   //automatically populates the table on page load
-  mounted(){
+  /*mounted(){
     this.getItems();
-  },
+  },*/
   methods: {
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
       }
+    },
+    selectUsername(usrname){
+      this.userNamegroup = usrname;
+      this.usernameArr = this.items.filter( this.items => this.items.username = usrname);
     },
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
