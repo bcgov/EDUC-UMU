@@ -33,7 +33,7 @@
           hide-details
           dark
           color="white"
-          ></v-text-field>
+        ></v-text-field>
       </v-card-title>
     </div>
     <v-data-table
@@ -341,15 +341,15 @@ export default{
       this.dialog_uForm = false;
       this.getItems();
     },
+    //initiates the delete user dialog box
+    deleteUser() {
+      this.dialog_uDelete = true;
+    }/*
     deleteGroup(){
       (this.usernameArr).forEach(element => {
         deleteUser(element);
       });
-    },
-    //initiates the delete user dialog box
-    deleteUser() {
-      this.dialog_uDelete = true;
-    }
+    },*/
   }
 };
 </script>
