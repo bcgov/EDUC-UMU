@@ -263,9 +263,15 @@ export default{
         this.snackbar=true;
       }
     },
+    filterUsername
     selectUsername(usrname){
       this.userNamegroup = usrname;
-      this.usernameArr = this.items.filter( this.items => this.items.username = usrname);
+      this.usernameArr = (this.items).filter( (item, usrname) => {
+                                                              if(item.usename == usrname){
+                                                                return true;
+                                                              }
+                                                              return false;
+                                                            };
     },
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
