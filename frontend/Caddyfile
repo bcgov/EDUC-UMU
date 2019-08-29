@@ -1,4 +1,4 @@
-*:2015 {
+*:443 {
     # Change root to /dist folder if running locally
     root /var/www/html
 
