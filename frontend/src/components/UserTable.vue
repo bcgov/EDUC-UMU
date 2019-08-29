@@ -150,21 +150,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-          <v-speed-dial
-            v-model="fab"
-            direction="left"
-            transition="slide-x-reverse-transition"
-          >
-            <template v-slot:activator>
-              <v-btn v-model="fab" color="003366" dark fab small>
-                <v-icon v-if="fab">close</v-icon>
-                <v-icon v-else>add</v-icon>
-              </v-btn>
-            </template>
-                <v-btn fab small dark class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-                <v-btn fab small dark class="list_action" @click.stop="deleteUser('Are you sure you want to delete this user?')" color="#d93e45"><v-icon>delete</v-icon></v-btn>
-                <v-btn fab small dark class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
-          </v-speed-dial>
+          <v-btn fab depressed small dark class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
+          <v-btn fab depressed small dark class="list_action" @click.stop="deleteUser('Are you sure you want to delete this user?')" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+          <v-btn fab depressed small dark class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
       </template>
 
 
