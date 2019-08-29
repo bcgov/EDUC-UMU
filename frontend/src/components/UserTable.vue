@@ -2,26 +2,29 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <p>Username Group: </p>
-        <v-spacer></v-spacer>
-        <v-chip
-          pill 
-          close
-          color="#6c757d"
-          v-if="usernameGroup != ''"
-          @click:close="resetUsername()"
-        >
-          <v-avatar
-            left
-            color="#96c0e6"
-          >
-            {{ usernameGroup[0] }}
-          </v-avatar>
-          {{ usernameGroup }}
-        </v-chip>
-        <p v-else>
-          None selected
-        </p>
+        <div>
+          <p>Username Group: </p>
+          <div v-if="usernameGroup != ''">
+            <v-chip
+              pill 
+              close
+              color="#6c757d"
+              v-if="usernameGroup != ''"
+              @click:close="resetUsername()"
+            >
+              <v-avatar
+                left
+                color="#96c0e6"
+              >
+                {{ usernameGroup[0] }}
+              </v-avatar>
+              {{ usernameGroup }}
+            </v-chip>
+          </div>
+          <p v-else>
+            None selected
+          </p>
+        </div>
         <v-text-field
           v-model="search"
           append-icon="search"
@@ -337,6 +340,11 @@ export default{
       this.dialog_a = false;
       this.dialog_uForm = false;
       this.getItems();
+    },
+    deleteGroup(){
+      (this.usernameArr).forEach(element => {
+        deleteUser(element);
+      });
     },
     //initiates the delete user dialog box
     deleteUser() {
