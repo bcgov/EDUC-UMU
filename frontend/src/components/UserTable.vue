@@ -260,7 +260,7 @@ export default{
           align: 'center'
         }
       ],
-      items: [
+      itemJson: [
         {"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
         {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
         {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
@@ -282,7 +282,7 @@ export default{
         {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
         {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }
       ],
-      itemJson: [],
+      items: [],
       userInfo: {}
   }),
 
