@@ -9,7 +9,6 @@
               pill 
               close
               color="#6c757d"
-              v-if="usernameGroup != ''"
               @click:close="resetUsername()"
             >
               <v-avatar
