@@ -25,7 +25,7 @@
               <v-chip
                 dark
                 color="#d93e45"
-                @click="deleteGroup()"
+                @click="deleteUser()"
               >
                 <v-icon left>delete</v-icon>
                 Delete user
@@ -33,7 +33,7 @@
               <v-chip
                 dark
                 color="#43893e"
-                @click="addToGroup()"
+                @click="addUser()"
               >
                 <v-icon left>add_circle</v-icon>
                 Add to User
@@ -373,15 +373,10 @@ export default{
     //initiates the delete user dialog box
     deleteUser() {
       this.dialog_uDelete = true;
-    },
+    },/*
     deleteGroup(){
-      (this.usernameArr).forEach(element => {
-        var nothing = 0;
-      });
-    },
-    addToGroup(){
-      var group = this.usernameGroup;
-    }
+      
+    }*/
   }
 };
 </script>
