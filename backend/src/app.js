@@ -33,11 +33,6 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(function(req, res, next) {
-  res.setHeader("Content-type", "application/json");
-  next();
-});
-
 //initialize logging middleware
 if(process.env.NODE_ENV !== 'test'){
   app.use(morgan(config.get('server:morganFormat')));
