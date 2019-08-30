@@ -164,7 +164,6 @@
       </template>
     </v-data-table>
 
-
     <!-- User auth upadate dialog box -->
     <v-dialog v-model="dialog_uForm" persistent max-width="700px">
                 <v-form>

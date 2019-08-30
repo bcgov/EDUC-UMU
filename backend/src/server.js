@@ -6,7 +6,7 @@
 'use strict';
 
 const config = require('./config/index');
-const http = require('http');
+const http2 = require('spdy');
 const log = require('npmlog');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -22,7 +22,12 @@ app.set('port', port);
 /**
  * Create HTTP2 server.
  */
-const server = http.createServer(app);
+const options = {
+  key: process.env.KEY,
+  cert: process.env.CERT
+}
+
+const server = http2.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
