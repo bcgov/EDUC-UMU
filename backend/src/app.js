@@ -8,6 +8,7 @@ const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
+const cors = require('cors');
 dotenv.config();
 
 const OidcStrategy = require('passport-openidconnect').Strategy;
@@ -22,6 +23,7 @@ const apiRouter = express.Router();
 const app = express();
 
 //sets security measures (headers, etc)
+app.use(cors());
 app.use(helmet());
 app.use(helmet.noCache());
 
