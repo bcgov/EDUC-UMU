@@ -27,7 +27,7 @@ const options = {
   cert: process.env.CERT
 };
 
-const server = http.createServer(options, app);
+const server = http2.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
