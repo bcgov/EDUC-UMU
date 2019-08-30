@@ -93,10 +93,10 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :value="usernameArr[0].system" required></v-text-field>
+                            <v-text-field label="System" name="system" :readonly="groupOpen" :value="usernameArr[0].system" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :value="usernameArr[0].username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" required></v-text-field>
@@ -105,10 +105,10 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :value="usernameArr[0].authSource" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :readonly="groupOpen" :value="usernameArr[0].authSource" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -176,10 +176,10 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :readonly="groupOpen" :value="userInfo.system" required></v-text-field>
+                            <v-text-field label="System" name="system" :value="userInfo.system" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :readonly="groupOpen" :value="userInfo.username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" :value="userInfo.name" required></v-text-field>
@@ -188,10 +188,10 @@
                             <v-text-field label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :readonly="groupOpen" :value="userInfo.auth" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :value="userInfo.auth" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
