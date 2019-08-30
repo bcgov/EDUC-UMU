@@ -17,7 +17,7 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      :loading="isLoading"
+      
       >
 
     <!-- Delete and Update actions you can perform on each row of the table -->

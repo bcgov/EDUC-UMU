@@ -18,7 +18,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-      :loading="isLoading"
+      
     >
 
     <!-- Displays as the final row of the table -->
