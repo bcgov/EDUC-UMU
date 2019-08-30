@@ -176,10 +176,10 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :value="userInfo.system" required></v-text-field>
+                            <v-text-field label="System" name="system" :disabled="groupOpen" :value="userInfo.system" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :disabled="groupOpen" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" :value="userInfo.name" required></v-text-field>
@@ -188,10 +188,10 @@
                             <v-text-field label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :value="userInfo.auth" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :disabled="groupOpen" :value="userInfo.auth" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :disabled="groupOpen" :value="userInfo.guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
