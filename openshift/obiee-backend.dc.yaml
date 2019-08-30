@@ -111,16 +111,6 @@ objects:
               secretKeyRef:
                 key: ROLES_TABLE
                 name: oracle-tables
-          - name: CERT
-            valueFrom:
-              secretKeyRef:
-                key: CERT
-                name: openssl-certs
-          - name: KEY
-            valueFrom:
-              secretKeyRef:
-                key: KEY
-                name: openssl-certs
     test: false
     triggers:
     - type: ConfigChange
