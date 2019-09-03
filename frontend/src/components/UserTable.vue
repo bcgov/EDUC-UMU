@@ -116,7 +116,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input chips multiple label="Add CSV File"></v-file-input>
+                      <v-file-input class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -390,7 +390,7 @@ export default{
     getSystems() {
       const sysArr = this.systemArray;
       (this.itemJson).forEach(function(element){
-        if(sysArr.includes(element.system)){
+        if(!(sysArr.includes(element.system))){
           sysArr.push(element.system);
         }
       });

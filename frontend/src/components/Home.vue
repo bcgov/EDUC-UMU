@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style>
+  .file_in{
+    max-width: 60%;
+  }
   .v-data-table__empty-wrapper td{
     padding: 0px;
   }
