@@ -16,13 +16,17 @@
       <v-spacer></v-spacer>
 
       <div v-if="isAuthenticated">
+        <!--
         <v-btn dark text tile id="nav-home" color="text" :to="{ path: '/'}">View Users</v-btn>
         <v-btn dark text tile id="nav-user-form" color="text" :to="{ path: '/password'}">Password Reset</v-btn>
+        -->
         <v-btn dark text tile id="nav-logout" @click="clearStorage" :href="authRoutes.LOGOUT">Logout</v-btn>
       </div>
       <div v-else>
+        <!--
         <v-btn dark disabled tile text id="nav-home" :to="{ path: '/'}">View Users</v-btn>
         <v-btn dark disabled tile text id="nav-user-form" :to="{ path: '/password'}">Password Reset</v-btn>
+        -->
         <v-btn dark text tile id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
       </div>
     </v-toolbar>
