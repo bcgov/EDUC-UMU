@@ -25,6 +25,6 @@ router.get('/', (_req, res) => {
 });
 
 //ensures only authenticated users can access the database endpoints
-router.use('/database', isAuthenticated(), dbRouter);
+router.use('/database', isAuthenticated, dbRouter);
 
 module.exports = router;
