@@ -332,7 +332,7 @@ export default{
           (this.systemArray).push(element.system);
         }
       })
-    }
+    },
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
