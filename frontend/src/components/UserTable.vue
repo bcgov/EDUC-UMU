@@ -69,7 +69,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-      :loading="isLoading"
+
       show-expand
       single-expand
     >
@@ -93,10 +93,12 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
+
                             <v-select label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
+
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" required></v-text-field>
@@ -320,10 +322,12 @@ export default{
   }),
 
   //automatically populates the table on page load
+
   mounted(){
     this.getSystems();
     //this.getItems();
   },
+
   methods: {
     //validates forms
     validate () {
