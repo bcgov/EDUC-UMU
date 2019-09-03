@@ -8,6 +8,7 @@
         <v-btn text id="footer-accessibility" href="http://gov.bc.ca/webaccessibility">Accessibility</v-btn>
         <v-btn text id="footer-copyright" href="http://gov.bc.ca/copyright">Copyright</v-btn>
         <v-btn text href="https://www2.gov.bc.ca/gov/content/home/contact-us">Contact Us</v-btn>
+        <v-btn text href="https://github.com/bcgov/EDUC-UMU/issues">Report Issues</v-btn>
       </v-layout>
   </v-footer>
 </template>
