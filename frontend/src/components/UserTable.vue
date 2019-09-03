@@ -116,7 +116,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input chips multiple label="Add CSV File"></v-file-input>
+                      <!--<v-file-input chips multiple label="Add CSV File"></v-file-input>-->
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -326,13 +326,6 @@ export default{
   },
   methods: {
     //validates forms
-    getSystems() {
-      (this.itemJson).forEach(function(element){
-        if((this.systemArray).includes(element.system)){
-          (this.systemArray).push(element.system);
-        }
-      });
-    },
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
@@ -393,7 +386,14 @@ export default{
     deleteUser(message) {
       this.deleteMessage = message;
       this.dialog_uDelete = true;
-    },/*
+    }.
+    getSystems() {
+      (this.itemJson).forEach(function(element){
+        if((this.systemArray).includes(element.system)){
+          (this.systemArray).push(element.system);
+        }
+      });
+    }/*
     deleteGroup(){
       
     }*/
