@@ -69,6 +69,7 @@ export default {
     margin-bottom: 0px;
     border-radius: 0px;
   }
+
   .left-col{
     padding-left: 50px;
   }
