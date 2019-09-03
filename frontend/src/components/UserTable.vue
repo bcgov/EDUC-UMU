@@ -386,7 +386,7 @@ export default{
     deleteUser(message) {
       this.deleteMessage = message;
       this.dialog_uDelete = true;
-    }.
+    },
     getSystems() {
       (this.itemJson).forEach(function(element){
         if((this.systemArray).includes(element.system)){
