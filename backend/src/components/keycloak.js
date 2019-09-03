@@ -9,7 +9,7 @@ module.exports = new Keycloak({}, {
     realm: 'Jsgbqlip',
     secret: config.get('oidc.clientSecret'),
     serverUrl: 'https://sso.pathfinder.gov.bc.ca/auth',
-    'ssl-required': external,
+    'ssl-required': 'external',
     'use-resouce-role-mappings': true,
     'verify-token-audience': true
 });
