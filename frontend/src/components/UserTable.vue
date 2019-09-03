@@ -322,7 +322,6 @@ export default{
   //automatically populates the table on page load
   mounted(){
     this.getSystems();
-    this.
     //this.getItems();
   },
   methods: {
