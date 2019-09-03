@@ -93,7 +93,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :readonly="groupOpen" :value="usernameArr[0].system" required></v-text-field>
+                            <v-select label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system"  required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
@@ -176,7 +176,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :value="userInfo.system" required></v-text-field>
+                            <v-select :items="systemArray" :value="userInfo.system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
@@ -239,6 +239,8 @@ export default{
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
       tempArray: [],
+      roleArray: [],
+      systemArray: [],
       fab: false,
       groupOpen: false,
       dialog_a: false,
@@ -318,11 +320,19 @@ export default{
   }),
 
   //automatically populates the table on page load
-  /*mounted(){
-    this.getItems();
-  },*/
+  mounted(){
+    this.getSystems();
+    //this.getItems();
+  },
   methods: {
     //validates forms
+    getSystems() {
+      (this.itemJson).forEach(function(element){
+        if((this.systemArray).includes(element.system)){
+          (this.systemArray).push(element.system);
+        }
+      })
+    }
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
