@@ -6,15 +6,16 @@ const log = require('npmlog');
 const morgan = require('morgan');
 const session = require('express-session');
 const express = require('express');
-const passport = require('passport');
+//const passport = require('passport');
 const helmet = require('helmet');
 const cors = require('cors');
+const keycloak = require('./components/keycloak');
 dotenv.config();
 
-const OidcStrategy = require('passport-openidconnect').Strategy;
+//const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./components/utils');
-const authRouter = require('./routes/auth');
+//const authRouter = require('./routes/auth');
 const mainRouter = require('./routes/api');
 
 const apiRouter = express.Router();
@@ -38,6 +39,7 @@ if(process.env.NODE_ENV !== 'test'){
   app.use(morgan(config.get('server:morganFormat')));
 }
 
+app.use(keycloak.middleware());
 //sets cookies for security purposes (prevent cookie access, allow secure connections only, etc)
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
@@ -50,8 +52,8 @@ app.use(session({
 }));
 
 //initialize routing and session. Cookies are now only reachable via requests (not js)
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 //configure logging
 log.level = config.get('server:logLevel');
@@ -61,6 +63,7 @@ log.addLevel('debug', 1500, {
 log.debug('Config', utils.prettyStringify(config));
 
 //initialize our authentication strategy
+/*
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({
@@ -91,7 +94,7 @@ passport.serializeUser((user, next) => {
 passport.deserializeUser((obj, next) => {
   next(null, obj);
 });
-
+*/
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {
   res.status(200).json({
@@ -106,9 +109,9 @@ apiRouter.get('/', (_req, res) => {
 });
 
 //set up routing to auth and main API
-app.use(/(\/getok)?(\/api)?/, apiRouter);
+app.use(/(\/getok)?(\/api)?/, keycloak.protect(), apiRouter);
 
-apiRouter.use('/auth', authRouter);
+//apiRouter.use('/auth', authRouter);
 apiRouter.use('/main', mainRouter);
 
 //Handle 500 error

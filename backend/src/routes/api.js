@@ -1,7 +1,7 @@
 /*eslint-disable*/
 'use strict';
 const express = require('express');
-
+const keycloak = require('../components/keycloak');
 const router = express.Router();
 // const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
@@ -25,6 +25,6 @@ router.get('/', (_req, res) => {
 });
 
 //ensures only authenticated users can access the database endpoints
-router.use('/database', isAuthenticated, dbRouter);
+router.use('/database', keycloak.protect(), dbRouter);
 
 module.exports = router;
