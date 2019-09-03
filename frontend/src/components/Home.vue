@@ -59,6 +59,17 @@ export default {
 </script>
 
 <style>
+  .file_in{
+    max-width: 40%;
+  }
+  .v-data-table__empty-wrapper td{
+    padding: 0px;
+  }
+  td .v-alert{
+    margin-bottom: 0px;
+    border-radius: 0px;
+  }
+
   .left-col{
     padding-left: 50px;
   }

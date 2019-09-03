@@ -148,7 +148,7 @@ export default{
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
-    isLoading: true,
+    isLoading: false,
     valid: true,
     hoverA: false,
     hoverB: false,

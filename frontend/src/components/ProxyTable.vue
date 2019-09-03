@@ -18,7 +18,7 @@
       :items="itemJson"
       :search="search"
       :loading="isLoading"
-      >
+    >
 
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
@@ -154,7 +154,7 @@ export default {
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
-    isLoading: true,
+    isLoading: false,
     valid: true,
     search: '',
     hoverA: false,

@@ -93,10 +93,12 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :value="usernameArr[0].system" required></v-text-field>
+
+                            <v-select label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :value="usernameArr[0].username" required></v-text-field>
+                            <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
+
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Name" name="name" required></v-text-field>
@@ -105,10 +107,10 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :value="usernameArr[0].authSource" required></v-text-field>
+                            <v-text-field label="Auth Source" name="auth" :readonly="groupOpen" :value="usernameArr[0].authSource" required></v-text-field>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -116,6 +118,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
+                      <v-file-input class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -164,7 +167,6 @@
       </template>
     </v-data-table>
 
-
     <!-- User auth upadate dialog box -->
     <v-dialog v-model="dialog_uForm" persistent max-width="700px">
                 <v-form>
@@ -176,7 +178,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-text-field label="System" name="system" :value="userInfo.system" required></v-text-field>
+                            <v-select :items="systemArray" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
@@ -239,13 +241,15 @@ export default{
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
       tempArray: [],
+      roleArray: [],
+      systemArray: [],
       fab: false,
       groupOpen: false,
       dialog_a: false,
       deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
-      isLoading: true,
+      isLoading: false,
       valid: true,
       hoverA: false,
       hoverB: false,
@@ -293,23 +297,23 @@ export default{
       ],
       itemJson: [
         {"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
-        {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
         {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
-        {"system": "EDW","username": "NDenny","name": "sdfsdfas", "value": "wefaweff", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 4 },
+        {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
         {"system": "EDW","username": "NDenny","name": "gfdagdfe", "value": "hgj5effa", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 5 },
         {"system": "EDW","username": "PHolland","name": "54fq34yu", "value": "23589yht9", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 6 },
         {"system": "EDW","username": "PHolland","name": "refgwe54tui90", "value": "afwer2nn54", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 7 },
         {"system": "EDW","username": "PHolland","name": "qv3jhun34", "value": "q4tv", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 8 },
+        {"system": "EDW","username": "NDenny","name": "sdfsdfas", "value": "wefaweff", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 4 },
         {"system": "EDW","username": "PHolland","name": "nwh456", "value": "25yn4nwertwb", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 9 },
         {"system": "EDW","username": "PHolland","name": "qwbtqtret", "value": "wetbrtbwertt34", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 10 },
         {"system": "EDW","username": "TRankin","name": "4tbbq4t", "value": "qetbrbbt", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 11 },
+        {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
         {"system": "EDW","username": "TRankin","name": "436bbqwrtbrbe", "value": "yjumsea", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 12 },
-        {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
         {"system": "EDW","username": "TRankin","name": "34tbw34bg", "value": "weby6um3", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 14 },
         {"system": "EDW","username": "TRankin","name": "b3wtwtbwer", "value": "btrnurnrew", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 15 },
         {"system": "EDW","username": "SShaw","name": "n625nwerv", "value": "wbtrt324n62", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 16 },
         {"system": "EDW","username": "SShaw","name": "rewtn34n63", "value": "wernt3562", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 17 },
-        {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
+        {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
         {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
         {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }
       ],
@@ -318,9 +322,12 @@ export default{
   }),
 
   //automatically populates the table on page load
-  /*mounted(){
-    this.getItems();
-  },*/
+
+  mounted(){
+    this.getSystems();
+    //this.getItems();
+  },
+
   methods: {
     //validates forms
     validate () {
@@ -383,7 +390,16 @@ export default{
     deleteUser(message) {
       this.deleteMessage = message;
       this.dialog_uDelete = true;
-    },/*
+    },
+    getSystems() {
+      const sysArr = this.systemArray;
+      (this.itemJson).forEach(function(element){
+        if(!(sysArr.includes(element.system))){
+          sysArr.push(element.system);
+        }
+      });
+      this.systemArray = sysArr;
+    }/*
     deleteGroup(){
       
     }*/
