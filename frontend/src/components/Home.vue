@@ -60,7 +60,7 @@ export default {
 
 <style>
   .file_in{
-    max-width: 60%;
+    max-width: 40%;
   }
   .v-data-table__empty-wrapper td{
     padding: 0px;

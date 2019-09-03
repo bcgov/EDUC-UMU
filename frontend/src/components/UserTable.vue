@@ -93,7 +93,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select label="System" :items="systemArray" :readonly="groupOpen" required></v-select>
+                            <v-select label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
