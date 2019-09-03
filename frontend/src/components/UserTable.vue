@@ -176,7 +176,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" :value="userInfo.system" label="System"></v-select>
+                            <v-select :items="systemArray" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
@@ -240,7 +240,7 @@ export default{
       ],
       tempArray: [],
       roleArray: [],
-      systemArray: [],
+      systemArray: ['Select One'],
       fab: false,
       groupOpen: false,
       dialog_a: false,
@@ -322,6 +322,7 @@ export default{
   //automatically populates the table on page load
   mounted(){
     this.getSystems();
+    this.
     //this.getItems();
   },
   methods: {
@@ -331,7 +332,7 @@ export default{
         if((this.systemArray).includes(element.system)){
           (this.systemArray).push(element.system);
         }
-      })
+      });
     },
     validate () {
       if (this.$refs.form.validate()){
