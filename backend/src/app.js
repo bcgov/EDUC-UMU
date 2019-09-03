@@ -52,8 +52,8 @@ app.use(session({
 }));
 
 //initialize routing and session. Cookies are now only reachable via requests (not js)
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //configure logging
 log.level = config.get('server:logLevel');
@@ -109,9 +109,9 @@ apiRouter.get('/', (_req, res) => {
 });
 
 //set up routing to auth and main API
-app.use(/(\/getok)?(\/api)?/, keycloak.protect(), apiRouter);
+app.use(/(\/getok)?(\/api)?/, apiRouter);
 
-//apiRouter.use('/auth', authRouter);
+apiRouter.use('/auth', authRouter);
 apiRouter.use('/main', mainRouter);
 
 //Handle 500 error
