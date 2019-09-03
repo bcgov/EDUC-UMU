@@ -69,7 +69,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-
+      :loading="isLoading"
       show-expand
       single-expand
     >
@@ -244,7 +244,7 @@ export default{
       deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
-      isLoading: true,
+      isLoading: false,
       valid: true,
       hoverA: false,
       hoverB: false,
