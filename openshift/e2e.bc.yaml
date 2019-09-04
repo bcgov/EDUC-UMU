@@ -86,6 +86,16 @@ objects:
         env:
         - name: OPENSHIFT_JENKINS_JVM_ARCH
           value: x86_64
+        - name: IDIR_USER
+          valueFrom:
+            secretKeyRef:
+              key: IDIR_USER
+              name: idir-credentials
+        - name: IDIR_PASS
+          valueFrom:
+            secretKeyRef:
+              key: IDIR_PASS
+              name: idir-credentials
       type: Docker
     triggers:
     - type: ConfigChange

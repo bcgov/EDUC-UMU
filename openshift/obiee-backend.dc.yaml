@@ -111,6 +111,12 @@ objects:
               secretKeyRef:
                 key: ROLES_TABLE
                 name: oracle-tables
+          - name: PROD_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: PROD_SECRET
+                name: sso-credentials-prod
+
     test: false
     triggers:
     - type: ConfigChange

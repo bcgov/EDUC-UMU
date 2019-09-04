@@ -9,6 +9,8 @@ const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
 const cors = require('cors');
+//const keycloak = require('./components/keycloak');
+
 dotenv.config();
 
 const OidcStrategy = require('passport-openidconnect').Strategy;
@@ -38,6 +40,7 @@ if(process.env.NODE_ENV !== 'test'){
   app.use(morgan(config.get('server:morganFormat')));
 }
 
+//app.use(keycloak.middleware());
 //sets cookies for security purposes (prevent cookie access, allow secure connections only, etc)
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
@@ -61,6 +64,7 @@ log.addLevel('debug', 1500, {
 log.debug('Config', utils.prettyStringify(config));
 
 //initialize our authentication strategy
+
 utils.getOidcDiscovery().then(discovery => {
   // Add Passport OIDC Strategy
   passport.use('oidc', new OidcStrategy({

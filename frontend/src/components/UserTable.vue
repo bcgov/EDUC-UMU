@@ -118,7 +118,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <v-file-input color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -178,7 +178,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" label="System"></v-select>
+                            <v-select :items="systemArray" :value="userInfo.username" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>

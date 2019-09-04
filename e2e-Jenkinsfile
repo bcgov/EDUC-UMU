@@ -10,17 +10,12 @@ podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud:
         resourceLimitMemory: '4Gi',
         workingDir: '',
         command: '',
-        args: '${computer.jnlpmac} ${computer.name}',
-        envVars: [
-            envVar(key: 'IDIR_USER', value: '${env.IDIR_USER}'),
-            envVar(key: 'IDIR_PASS', value: '${env.IDIR_PASS}')
-        ]
+        args: '${computer.jnlpmac} ${computer.name}'
     )
 ])
 {    
     node (e2e_label) {
         stage('Checkout') {
-            
                 echo "checking out source"
                 checkout scm              
         }

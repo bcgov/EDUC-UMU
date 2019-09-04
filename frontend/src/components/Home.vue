@@ -7,6 +7,7 @@
           <v-layout row wrap justify-center>
             <v-flex xs12>
               <v-tabs
+                id="tab-container"
                 v-model="active"
                 background-color="#003366"
                 dark
