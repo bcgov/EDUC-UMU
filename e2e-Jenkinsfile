@@ -16,7 +16,6 @@ podTemplate(label: e2e_label, name: e2e_label, serviceAccount: 'jenkins', cloud:
 {    
     node (e2e_label) {
         stage('Checkout') {
-                sh('printenv | sort')
                 echo "checking out source"
                 checkout scm              
         }

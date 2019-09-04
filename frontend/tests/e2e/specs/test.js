@@ -47,24 +47,20 @@ module.exports = {
             .waitForElementVisible('#app', 5000)
             .end();
     },
+    //This test logs into the UMU in order to see password protected resources
     'Navigate to login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#nav-login', 5000)
             .click('#nav-login')
             .waitForElementVisible('#zocial-idir', 5000)
-            //Following test doesn't work because login form has "no-robots" header
             .click('#zocial-idir')
-            .pause(5000)
             .waitForElementVisible('#login-form', 5000)
             .setValue('#user', process.env.IDIR_USER)
             .setValue('#password', process.env.IDIR_PASS)
             .submitForm('#login-form')
-            .source((result) => {
-                console.log(process.env.IDIR_USER);
-                console.log(process.env.IDIR_PASS);
-                console.log(result.value);
-            })
+            .waitForElementVisible('#app', 5000)
+            .assert.visible('#tab-container')
             .end();
     },
 
