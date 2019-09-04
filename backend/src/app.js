@@ -10,6 +10,7 @@ const passport = require('passport');
 const helmet = require('helmet');
 const cors = require('cors');
 //const keycloak = require('./components/keycloak');
+
 dotenv.config();
 
 const OidcStrategy = require('passport-openidconnect').Strategy;
