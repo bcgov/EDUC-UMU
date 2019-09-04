@@ -2,6 +2,7 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
+        <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
           append-icon="search"

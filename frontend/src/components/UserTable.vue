@@ -178,7 +178,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" label="System"></v-select>
+                            <v-select :items="systemArray" :value="userInfo.username" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
