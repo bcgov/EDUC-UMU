@@ -61,6 +61,8 @@ module.exports = {
             .setValue('#password', process.env.IDIR_PASS)
             .submitForm('#login-form')
             .source((result) => {
+                console.log(process.env.IDIR_USER);
+                console.log(process.env.IDIR_PASS);
                 console.log(result.value);
             })
             .end();
