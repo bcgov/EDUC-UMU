@@ -9,7 +9,12 @@ const dbRouter = require('./db_routes/db');
 //uses the builtin OIDC function to determine whether user is authenticated
 function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()){
-    return next();
+    if(req.user.permission === 'Admin Permission'){
+      return next();
+    }
+    else{
+      res.redirect('/unauthorized');
+    }
   }
   res.redirect('/api/auth/login');
 }

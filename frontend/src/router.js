@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import Unauthorized from '@/components/Unauthorized.vue';
 import Home from '@/components/Home.vue';
 import { AuthRoutes } from '@/utils/constants';
 import store from './store';
@@ -20,6 +21,11 @@ const router = new VueRouter({
       path: '*',
       name: 'notfound',
       redirect: '/'
+    },
+    {
+      path: '/unauthorized',
+      name: 'unauthorized',
+      component: Unauthorized
     }
   ]
 });
