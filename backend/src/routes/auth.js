@@ -2,6 +2,7 @@
 
 const config =require('../config/index');
 const passport = require('passport');
+const axio = require('axios');
 const express = require('express');
 const auth = require('../components/auth');
 const {
@@ -33,6 +34,12 @@ router.get('/callback',
   }
 );
 
+router.get('/user_info', (req, res) => {
+  const response = axios.get("https://sso.pathfinder.gov.bc.ca/auth/realms/jsgbqlip/protocol/openid-connect/userinfo");
+  res.status(200).json({
+    response
+  });
+});
 //a prettier way to handle errors
 router.get('/error', (_req, res) => {
   res.status(401).json({
