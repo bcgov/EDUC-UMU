@@ -1,3 +1,4 @@
+require('dotenv');
 module.exports = {
     'Application Running' : (browser) => {
       browser
@@ -55,6 +56,10 @@ module.exports = {
             //Following test doesn't work because login form has "no-robots" header
             .click('#zocial-idir')
             .pause(5000)
+            .waitForElementVisible('#login-form', 5000)
+            .setValue('#user', process.env.IDIR_USER)
+            .setValue('#password', process.env.IDIR_PASS)
+            .submitForm('#login-form')
             .source((result) => {
                 console.log(result.value);
             })
