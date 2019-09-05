@@ -17,7 +17,7 @@ function isAuthenticated(req, res, next) {
       return next();
     }
     else{
-      res.status(200).json(res);
+      res.status(200).json(req);
     }
   }
   res.redirect('/api/auth/login');
