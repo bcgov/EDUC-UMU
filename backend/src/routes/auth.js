@@ -13,12 +13,7 @@ const router = express.Router();
 
 function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()){
-    if(req.user.permission === 'Admin Permission'){
-      return next();
-    }
-    else{
-      res.status(200).json(req);
-    }
+    return next();
   }
   res.redirect('/api/auth/login');
 }
