@@ -101,13 +101,13 @@
 
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Name" name="name" required></v-text-field>
+                            <v-select :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :readonly="groupOpen" :value="usernameArr[0].authSource" required></v-text-field>
+                            <v-select :items="authSources" label="Auth Source" name="auth" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
                             <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
@@ -184,13 +184,13 @@
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Name" name="name" :value="userInfo.name" required></v-text-field>
+                            <v-select label="Name" name="name" :items="nameOptions" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-text-field label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Auth Source" name="auth" :value="userInfo.auth" required></v-text-field>
+                            <v-select label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-flex>
                           <v-flex xs12>
                             <v-text-field label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
@@ -241,6 +241,8 @@ export default{
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
       tempArray: [],
+      nameOptions: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKIN_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
+      authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"]
       roleArray: [],
       systemArray: [],
       fab: false,

@@ -11,13 +11,6 @@ const {
 
 const router = express.Router();
 
-function isAuthenticated(req, res, next) {
-  if(req.isAuthenticated()){
-    return next();
-  }
-  res.redirect('/api/auth/login');
-}
-
 
 router.get('/', (_req, res) => {
   res.status(200).json({
@@ -77,7 +70,7 @@ router.post('/refresh', [
 });
 
 //provides a jwt to authenticated users
-router.use('/token', isAuthenticated, auth.removeExpired, (req, res) => {
+router.use('/token', auth.removeExpired, (req, res) => {
   if (req.user && req.user.jwt && req.user.refreshToken) {
     res.status(200).json(req.user);
   } else {
