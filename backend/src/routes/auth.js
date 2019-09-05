@@ -10,7 +10,7 @@ const {
 } = require('express-validator');
 
 const router = express.Router();
-
+/*
 function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()){
     if(req.user.permission === 'Admin Permission'){
@@ -22,6 +22,7 @@ function isAuthenticated(req, res, next) {
   }
   res.redirect('/api/auth/login');
 }
+*/
 
 router.get('/', (_req, res) => {
   res.status(200).json({
@@ -81,7 +82,7 @@ router.post('/refresh', [
 });
 
 //provides a jwt to authenticated users
-router.use('/token', isAuthenticated, auth.removeExpired, (req, res) => {
+router.use('/token', auth.removeExpired, (req, res) => {
   if (req.user && req.user.jwt && req.user.refreshToken) {
     res.status(200).json(req.user);
   } else {
