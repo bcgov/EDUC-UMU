@@ -90,7 +90,6 @@ const auth = {
     }
 
     next();
-    return;
   }
 };
 
