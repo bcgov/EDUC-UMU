@@ -70,7 +70,7 @@ router.post('/refresh', [
 });
 
 //provides a jwt to authenticated users
-router.use('/token', auth.removeExpired, (req, res) => {
+router.use('/token', auth.refreshJWT, (req, res) => {
   if (req.user && req.user.jwt && req.user.refreshToken) {
     res.status(200).json(req.user);
   } else {
