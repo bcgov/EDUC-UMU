@@ -1,6 +1,6 @@
 /*eslint-disable*/
 'use strict';
-const passport = require('passport');
+//const passport = require('passport');
 const express = require('express');
 //const keycloak = require('../components/keycloak');
 const router = express.Router();

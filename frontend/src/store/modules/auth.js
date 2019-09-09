@@ -27,14 +27,14 @@ export default {
           state.acronyms = [];
         }
 
-        if(state.acronyms.includes("umu-access")){
+       /* if(state.acronyms.includes("umu-access")){
           state.isAuthenticated = true;
           localStorage.setItem('jwtToken', token);
         } else{
           state.acronyms = [];
           state.isAuthenticated = false;
           localStorage.removeItem('jwtToken');
-        }
+        }*/
       } else {
         state.acronyms = [];
         state.isAuthenticated = false;
