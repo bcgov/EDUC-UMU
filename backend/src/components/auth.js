@@ -88,7 +88,6 @@ const auth = {
     } catch (error) {
       log.error('refreshJWT', error.message);
     }
-
     next();
   }
 };
