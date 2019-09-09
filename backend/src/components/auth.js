@@ -1,10 +1,10 @@
 /* eslint-disable */
 'use strict';
 
-const atob = require('atob');
 const axios = require('axios');
 const config = require('../config/index');
 const log = require('npmlog');
+const jsonwebtoken = require('jsonwebtoken');
 const qs = require('querystring');
 const utils = require('./utils');
 
@@ -12,8 +12,7 @@ const auth = {
   // Check if JWT Access Token has expired
   isTokenExpired(token) {
     const now = Date.now().valueOf() / 1000;
-    const jwtPayload = token.split('.')[1];
-    const payload = JSON.parse(atob(jwtPayload));
+    const payload = jsonwebtoken.decode(token);
 
     return (!!payload.exp && payload.exp < now);
   },
@@ -21,8 +20,7 @@ const auth = {
   // Check if JWT Refresh Token has expired
   isRenewable(token) {
     const now = Date.now().valueOf() / 1000;
-    const jwtPayload = token.split('.')[1];
-    const payload = JSON.parse(atob(jwtPayload));
+    const payload = jsonwebtoken.decode(token);
 
     // Check if expiration exists, or lacks expiration
     return (typeof (payload.exp) !== 'undefined' && payload.exp !== null &&
@@ -63,24 +61,21 @@ const auth = {
   },
 
   // Update or remove token based on JWT and user state
-  async removeExpired(req, _res, next) {
+  async refreshJWT(req, _res, next) {
     try {
       if (!!req.user && !!req.user.jwt) {
         log.verbose('removeExpired', 'User & JWT exists');
 
         if (auth.isTokenExpired(req.user.jwt)) {
-          log.verbose('removeExpired', 'JWT has expired');
+          log.verbose('refresh', 'JWT has expired');
 
           if (!!req.user.refreshToken && auth.isRenewable(req.user.refreshToken)) {
             log.verbose('removeExpired', 'Can refresh JWT token');
 
             // Get new JWT and Refresh Tokens and update the request
-            const {
-              jwt,
-              refreshToken
-            } = await auth.renew(req.user.refreshToken);
-            req.user.jwt = jwt; // eslint-disable-line require-atomic-updates
-            req.user.refreshToken = refreshToken; // eslint-disable-line require-atomic-updates
+            const result = (req.user.refreshToken);
+            req.user.jwt = result.jwt; // eslint-disable-line require-atomic-updates
+            req.user.refreshToken = result.refreshToken; // eslint-disable-line require-atomic-updates
           } else {
             log.verbose('removeExpired', 'Cannot refresh JWT token');
             delete req.user;
