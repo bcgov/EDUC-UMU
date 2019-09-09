@@ -72,7 +72,7 @@ router.post('/refresh', [
 //provides a jwt to authenticated users
 router.use('/token', auth.removeExpired, (req, res) => {
   if (req.user && req.user.jwt && req.user.refreshToken) {
-    res.status(200).json(req);
+    res.status(200).json(req.user);
   } else {
     res.status(200).json({
       message: 'Not logged in'
