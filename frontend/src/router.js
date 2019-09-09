@@ -18,14 +18,14 @@ const router = new VueRouter({
       component: Home
     },
     {
-      path: '*',
-      name: 'notfound',
-      redirect: '/'
-    },
-    {
       path: '/unauthorized',
       name: 'unauthorized',
       component: Unauthorized
+    },
+    {
+      path: '*',
+      name: 'notfound',
+      redirect: '/'
     }
   ]
 });
