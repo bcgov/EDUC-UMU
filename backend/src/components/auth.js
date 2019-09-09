@@ -64,29 +64,29 @@ const auth = {
   async refreshJWT(req, _res, next) {
     try {
       if (!!req.user && !!req.user.jwt) {
-        log.verbose('removeExpired', 'User & JWT exists');
+        log.verbose('refreshJWT', 'User & JWT exists');
 
         if (auth.isTokenExpired(req.user.jwt)) {
-          log.verbose('refresh', 'JWT has expired');
+          log.verbose('refreshJWT', 'JWT has expired');
 
           if (!!req.user.refreshToken && auth.isRenewable(req.user.refreshToken)) {
-            log.verbose('removeExpired', 'Can refresh JWT token');
+            log.verbose('refreshJWT', 'Can refresh JWT token');
 
             // Get new JWT and Refresh Tokens and update the request
             const result = (req.user.refreshToken);
             req.user.jwt = result.jwt; // eslint-disable-line require-atomic-updates
             req.user.refreshToken = result.refreshToken; // eslint-disable-line require-atomic-updates
           } else {
-            log.verbose('removeExpired', 'Cannot refresh JWT token');
+            log.verbose('refreshJWT', 'Cannot refresh JWT token');
             delete req.user;
           }
         }
       } else {
-        log.verbose('removeExpired', 'No existing User or JWT');
+        log.verbose('refreshJWT', 'No existing User or JWT');
         delete req.user;
       }
     } catch (error) {
-      log.error('removeExpired', error.message);
+      log.error('refreshJWT', error.message);
     }
 
     next();
