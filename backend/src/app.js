@@ -13,8 +13,8 @@ const cors = require('cors');
 
 dotenv.config();
 
-const JWTStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+//const JWTStrategy = require('passport-jwt').Strategy;
+//const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./components/utils');
@@ -88,7 +88,7 @@ utils.getOidcDiscovery().then(discovery => {
     profile.jwt = accessToken;
     profile.refreshToken = refreshToken;
     return done(null, profile);
-  }));
+  }));/*
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
     // Keycloak 7.3.0 no longer automatically supplies matching client_id audience.
@@ -97,7 +97,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey')
+    secretOrKey: config.get('oidc:clientSecret')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
@@ -111,7 +111,7 @@ utils.getOidcDiscovery().then(discovery => {
       name: jwtPayload.name,
       preferredUsername: jwtPayload.preferred_username,
     });
-  }));
+  }));*/
 });
 //functions for serializing/deserializing users
 passport.serializeUser((user, next) => {

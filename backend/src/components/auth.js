@@ -89,6 +89,7 @@ const auth = {
       log.error('refreshJWT', error.message);
     }
     next();
+    return;
   }
 };
 
