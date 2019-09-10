@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Unauthorized from '@/components/Unauthorized.vue';
 import Home from '@/components/Home.vue';
 import { AuthRoutes } from '@/utils/constants';
 import store from './store';
@@ -18,11 +17,6 @@ const router = new VueRouter({
       component: Home
     },
     {
-      path: '/unauthorized',
-      name: 'unauthorized',
-      component: Unauthorized
-    },
-    {
       path: '*',
       name: 'notfound',
       redirect: '/'
@@ -33,10 +27,7 @@ const router = new VueRouter({
 // Checks authentication BEFORE rendering to show (or not) password protected locations
 router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if(store.getters.accessDenied){
-      window.location.href = '/unauthorized';
-    }
-    else if (!store.getters.isAuthenticated) {
+    if (!store.getters.isAuthenticated) {
       // next('login');
       window.location.href = AuthRoutes.LOGIN;
     }

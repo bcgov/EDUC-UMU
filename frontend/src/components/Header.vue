@@ -31,6 +31,9 @@
       </div>
     </v-toolbar>
   </header>
+  <v-system-bar dark color="#d93e45" v-if="accessDenied">
+    You are not permitted to access this site.
+  </v-system-bar>
 </template>
 
 <script>
@@ -44,7 +47,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('auth', ['isAuthenticated'])
+    ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters('auth', ['accessDenied'])
   },
   methods: {
     clearStorage() {
