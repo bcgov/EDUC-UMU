@@ -6,7 +6,7 @@ export default {
   state: {
     acronyms: [],
     isAuthenticated: localStorage.getItem('jwtToken') !== null,
-    accessDenied: false
+    accessDenied: true
   },
   getters: {
     acronyms: state => state.acronyms,
@@ -31,6 +31,7 @@ export default {
 
         if(state.acronyms.includes("umu-access")){
           state.isAuthenticated = true;
+          state.accessDenied = false;
           localStorage.setItem('jwtToken', token);
         }
         else{
