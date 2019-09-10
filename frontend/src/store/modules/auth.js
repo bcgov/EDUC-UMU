@@ -6,7 +6,7 @@ export default {
   state: {
     acronyms: [],
     isAuthenticated: localStorage.getItem('jwtToken') !== null,
-    accessDenied: true
+    accessDenied: false
   },
   getters: {
     acronyms: state => state.acronyms,
