@@ -22,13 +22,21 @@ export default {
         const roles = payload.realm_access.roles;
 
         if (typeof roles === 'object' && roles instanceof Array) {
-          state.acronyms = roles.filter(role => !role.match(/offline_access|uma_authorization|umu-access/));
+          state.acronyms = roles.filter(role => !role.match(/offline_access|uma_authorization/));
         } else {
           state.acronyms = [];
         }
 
+        /*if(state.acronyms.includes("umu-access")){
+          state.isAuthenticated = true;
+          localStorage.setItem('jwtToken', token);
+        }
+        else{
+          state.isAuthenticated = false;
+          localStorage.removeItem('jwtToken');
+        }*/
         state.isAuthenticated = true;
-        localStorage.setItem('jwtToken');
+        localStorage.setItem('jwtToken', token);
       } else {
         state.acronyms = [];
         state.isAuthenticated = false;
