@@ -33,7 +33,10 @@ const router = new VueRouter({
 // Checks authentication BEFORE rendering to show (or not) password protected locations
 router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters.isAuthenticated) {
+    if(store.getters.accessDenied){
+      window.location.href = '/unauthorized'
+    }
+    else if (!store.getters.isAuthenticated) {
       // next('login');
       window.location.href = AuthRoutes.LOGIN;
     }
