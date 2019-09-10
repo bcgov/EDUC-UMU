@@ -30,10 +30,11 @@
         <v-btn dark text tile id="nav-login" @click="clearStorage" :href="authRoutes.LOGIN">Login</v-btn>
       </div>
     </v-toolbar>
+    <v-system-bar dark color="#d93e45" v-if="accessDenied">
+      <v-icon>error</v-icon>
+      You are not permitted to access this site.
+    </v-system-bar>
   </header>
-  <v-system-bar dark color="#d93e45" v-if="accessDenied">
-    You are not permitted to access this site.
-  </v-system-bar>
 </template>
 
 <script>
