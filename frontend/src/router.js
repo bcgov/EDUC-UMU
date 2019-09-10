@@ -34,7 +34,7 @@ const router = new VueRouter({
 router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if(store.getters.accessDenied){
-      router.push({ name: 'unauthorized'});
+      window.location.href = '/unauthorized';
     }
     else if (!store.getters.isAuthenticated) {
       // next('login');

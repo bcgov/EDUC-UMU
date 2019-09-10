@@ -3,7 +3,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-    name: 'unauthorized'
+    name: 'unauthorized',
+    computed: {
+        ...mapGetters('auth', ['isAuthenticated'])
+    }
 }
 </script>
