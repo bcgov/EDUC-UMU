@@ -13,8 +13,8 @@ const cors = require('cors');
 
 dotenv.config();
 
-//const JWTStrategy = require('passport-jwt').Strategy;
-//const ExtractJwt = require('passport-jwt').ExtractJwt;
+const JWTStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./components/utils');
