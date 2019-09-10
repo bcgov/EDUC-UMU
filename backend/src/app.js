@@ -97,7 +97,7 @@ utils.getOidcDiscovery().then(discovery => {
     audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:publicKey')
+    secretOrKey: config.get('oidc:clientSecret')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
