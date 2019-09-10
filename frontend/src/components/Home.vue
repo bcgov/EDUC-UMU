@@ -54,7 +54,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('auth', ['isAuthenticated'])
+    ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters('auth', ['accessDenied'])
   }
 };
 </script>

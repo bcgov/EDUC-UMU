@@ -5,11 +5,13 @@ export default {
   namespaced: true,
   state: {
     acronyms: [],
-    isAuthenticated: localStorage.getItem('jwtToken') !== null
+    isAuthenticated: localStorage.getItem('jwtToken') !== null,
+    accessDenied: false
   },
   getters: {
     acronyms: state => state.acronyms,
     isAuthenticated: state => state.isAuthenticated,
+    accessDenied: state => state.accessDenied,
     jwtToken: () => localStorage.getItem('jwtToken'),
     refreshToken: () => localStorage.getItem('refreshToken'),
   },
@@ -27,8 +29,19 @@ export default {
           state.acronyms = [];
         }
 
-        state.isAuthenticated = true;
-        localStorage.setItem('jwtToken', token);
+        if(state.acronyms.includes("umu-access")){
+          state.isAuthenticated = true;
+          state.accessDenied = false;
+          localStorage.setItem('jwtToken', token);
+        }
+        else{
+          state.isAuthenticated = false;
+          state.accessDenied = true;
+          localStorage.removeItem('jwtToken');
+          localStorage.removeItem('refreshToken');
+        }
+        //state.isAuthenticated = true;
+        //localStorage.setItem('jwtToken', token);
       } else {
         state.acronyms = [];
         state.isAuthenticated = false;
@@ -52,7 +65,7 @@ export default {
       try {
         if (context.getters.isAuthenticated && !!context.getters.refreshToken) {
           const now = Date.now().valueOf() / 1000;
-          const jwtPayload = localStorage.getItem('jwtToken').split('.')[1];
+          const jwtPayload = context.getters.jwtToken.split('.')[1];
           const payload = JSON.parse(window.atob(jwtPayload));
 
           if (payload.exp > now) {

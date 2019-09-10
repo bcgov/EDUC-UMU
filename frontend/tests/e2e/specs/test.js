@@ -15,7 +15,7 @@ module.exports = {
             .click('#footer-home')
             .pause(2000)
             .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home')
-            /*.end;
+            /*.end();
             These tests do not work for firefox, as GeckoDriver provides marionette error
             Can re-enable this tests when GeckoDriver fixes this issue*/
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
@@ -48,7 +48,7 @@ module.exports = {
             .end();
     },
     //This test logs into the UMU in order to see password protected resources
-    'Navigate to login': (browser) => {
+    'Perform Login': (browser) => {
         browser
             .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
             .waitForElementVisible('#nav-login', 5000)

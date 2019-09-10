@@ -1,5 +1,6 @@
 /*eslint-disable*/
 'use strict';
+//const passport = require('passport');
 const express = require('express');
 //const keycloak = require('../components/keycloak');
 const router = express.Router();
@@ -7,13 +8,12 @@ const router = express.Router();
 const dbRouter = require('./db_routes/db');
 
 //uses the builtin OIDC function to determine whether user is authenticated
-function isAuthenticated(req, res, next) {
+function isAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
   res.redirect('/api/auth/login');
 }
-
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
   res.status(200).json({

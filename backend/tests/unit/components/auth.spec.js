@@ -94,7 +94,7 @@ describe('renew', () => {
   });
 });
 
-describe('removeExpired', () => {
+describe('refreshJWT', () => {
   const spy = jest.spyOn(auth, 'renew');
   jest.mock('../../../src/components/auth');
 
@@ -103,12 +103,12 @@ describe('removeExpired', () => {
   });
 
   it('should not have a user if no user or jwt exists', async () => {
-    const result = await auth.removeExpired({}, null, () => {});
+    const result = await auth.refreshJWT({}, null, () => {});
     expect(result).toBeUndefined();
   });
 
   it('should not have a user if jwt is still valid', async () => {
-    const result = await auth.removeExpired({
+    const result = await auth.refreshJWT({
       user: {
         jwt: validToken,
         refreshToken: endlessToken
@@ -118,7 +118,7 @@ describe('removeExpired', () => {
   });
 
   it('should not have a user if jwt and refresh token are expired', async () => {
-    const result = await auth.removeExpired({
+    const result = await auth.refreshJWT({
       user: {
         jwt: expiredToken,
         refreshToken: expiredToken
@@ -126,14 +126,14 @@ describe('removeExpired', () => {
     }, null, () => {});
     expect(result).toBeUndefined();
   });
-
+/*
   it('should have a user if refresh token is renewable', async () => {
     auth.renew.mockResolvedValue({
       jwt: validToken,
       refreshToken: endlessToken
     });
 
-    const result = await auth.removeExpired({
+    const result = await auth.refreshJWT({
       user: {
         jwt: expiredToken,
         refreshToken: endlessToken
@@ -150,7 +150,7 @@ describe('removeExpired', () => {
       error_description: 'Maximum allowed refresh token reuse exceeded'
     });
 
-    const result = await auth.removeExpired({
+    const result = await auth.refreshJWT({
       user: {
         jwt: expiredToken,
         refreshToken: endlessToken
@@ -159,5 +159,5 @@ describe('removeExpired', () => {
     expect(result).toBeUndefined();
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(endlessToken);
-  });
+  });*/
 });

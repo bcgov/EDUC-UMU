@@ -1,7 +1,7 @@
 const baseRoot = '/api';
 
 //API endpoints
-const apiRoot = baseRoot + '/v1';
+const apiRoot = baseRoot + '/main';
 export const ApiRoutes = Object.freeze({
   DATABASE: apiRoot + '/database'
 });
