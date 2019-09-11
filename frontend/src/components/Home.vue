@@ -27,11 +27,6 @@
                 <v-tab-item>
                   <ApplicationRoles></ApplicationRoles>
                 </v-tab-item>
-
-                <v-tab>API Auth Test</v-tab>
-                <v-tab-item>
-                  {{ users }}
-                </v-tab-item>
               </v-tabs>
             </v-flex>
           </v-layout>

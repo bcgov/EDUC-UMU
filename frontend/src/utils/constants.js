@@ -3,7 +3,9 @@ const baseRoot = '/api';
 //API endpoints
 const apiRoot = baseRoot + '/main';
 export const ApiRoutes = Object.freeze({
-  USERS: apiRoot + '/database/users'
+  USERS: apiRoot + '/database/users',
+  PROXY: apiRoot + '/database/proxy',
+  ROLES: apiRoot + '/database/roles'
 });
 
 //Authentication endpoints
