@@ -27,12 +27,12 @@
                 <v-tab-item>
                   <ApplicationRoles></ApplicationRoles>
                 </v-tab-item>
-              </v-tabs>
 
-              <v-tab>API Auth Test</v-tab>
-              <v-tab-item>
-                { apiRes }
-              </v-tab-item>
+                <v-tab>API Auth Test</v-tab>
+                <v-tab-item>
+                  {{ users }}
+                </v-tab-item>
+              </v-tabs>
             </v-flex>
           </v-layout>
     </v-container>
@@ -43,7 +43,7 @@ import { mapGetters } from 'vuex';
 import UserTable from './UserTable.vue';
 import ProxyTable from './ProxyTable.vue';
 import ApplicationRoles from './ApplicationRoles.vue';
-import axios from 'axios';
+import apiService from '../common/apiService.js';
 
 export default {
   name: 'home',
@@ -62,16 +62,15 @@ export default {
   },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
-    ...mapGetters('auth', ['accessDenied'])
+    ...mapGetters('auth', ['accessDenied']),
+    ...mapGetters('database', ['users'])
   },
   mounted: function(){
-    this.apiResponse();
+    this.getApiResponse();
   },
   methods: {
-    apiResponse() {
-      axios.get('/api/main/database').then(response => {
-        this.apiRes = response.data;
-      });
+    getApiResponse() {
+      this.$store.dispatch('database/getUsers');
     }
   }
 };
