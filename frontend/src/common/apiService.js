@@ -86,5 +86,24 @@ export default {
       console.log(`Failed to fetch from API - ${e}`);
       throw e;
     }
+  },
+
+  async addUser(userInfo){
+    try{
+      const response = await apiAxios.post(ApiRoutes.USERS, userInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateUser(updateInfo){
+    try{
+      const response = await apiAxios.put(ApiRoutes.USERS, {updateInfo});
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
   }
 };
