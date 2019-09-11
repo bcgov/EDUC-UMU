@@ -46,7 +46,7 @@ export default {
             context.commit('updateUser', null);
             try {
                 const response = await ApiService.updateUser(info);
-                context.commit(updateUser, response);
+                context.commit('updateUser', response);
             } catch(e) {
                 context.commit('updateUser', e);
             }
