@@ -66,7 +66,7 @@ export default {
   },
   mounted: function(){
     this.apiResponse();
-  }
+  },
   methods: {
     apiResponse() {
       axios.get('/api/main/database').then(response => {
