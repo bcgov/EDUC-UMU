@@ -3,8 +3,7 @@ import ApiService from '@/common/apiService';
 export default {
     namespaced: true,
     state: {
-        getUsers: null,
-        users: {}
+        users: null
     },
     getters: {
         users: state => state.users
