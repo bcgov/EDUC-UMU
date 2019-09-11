@@ -13,8 +13,8 @@ const cors = require('cors');
 
 dotenv.config();
 
-//const JWTStrategy = require('passport-jwt').Strategy;
-//const ExtractJwt = require('passport-jwt').ExtractJwt;
+const JWTStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const OidcStrategy = require('passport-openidconnect').Strategy;
 
 const utils = require('./components/utils');
@@ -76,7 +76,7 @@ utils.getOidcDiscovery().then(discovery => {
     userInfoURL: discovery.userinfo_endpoint,
     clientID: config.get('oidc:clientID'),
     clientSecret: config.get('oidc:clientSecret'),
-    callbackURL: '/api/auth/callback',
+    callbackURL: process.env.SERVER_FRONTEND + '/api/auth/callback',
     scope: discovery.scopes_supported
   }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
     if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
@@ -88,16 +88,16 @@ utils.getOidcDiscovery().then(discovery => {
     profile.jwt = accessToken;
     profile.refreshToken = refreshToken;
     return done(null, profile);
-  }));/*
+  }));
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
     // Keycloak 7.3.0 no longer automatically supplies matching client_id audience.
     // If audience checking is needed, check the following SO to update Keycloak first.
     // Ref: https://stackoverflow.com/a/53627747
-    audience: config.get('oidc:clientID'),
+    //audience: config.get('oidc:clientID'),
     issuer: discovery.issuer,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.get('oidc:clientSecret')
+    secretOrKey: config.get('oidc:publicKey')
   }, (jwtPayload, done) => {
     if ((typeof (jwtPayload) === 'undefined') || (jwtPayload === null)) {
       return done('No JWT token', null);
@@ -111,15 +111,11 @@ utils.getOidcDiscovery().then(discovery => {
       name: jwtPayload.name,
       preferredUsername: jwtPayload.preferred_username,
     });
-  }));*/
+  }));
 });
 //functions for serializing/deserializing users
-passport.serializeUser((user, next) => {
-  next(null, user);
-});
-passport.deserializeUser((obj, next) => {
-  next(null, obj);
-});
+passport.serializeUser((user, next) => next(null, user));
+passport.deserializeUser((obj, next) => next(null, obj));
 
 // GetOK Base API Directory
 apiRouter.get('/', (_req, res) => {

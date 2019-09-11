@@ -233,6 +233,7 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex'
 
 export default{
   data: () =>  ({
@@ -322,12 +323,12 @@ export default{
       items: [],
       userInfo: {}
   }),
-
-  //automatically populates the table on page load
-
+  computed: {
+    ...mapGetters('database', ['users'])
+  },
   mounted(){
-    this.getSystems();
     //this.getItems();
+    this.getSystems();
   },
 
   methods: {

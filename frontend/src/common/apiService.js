@@ -1,5 +1,6 @@
 import axios from 'axios';
 import AuthService from '@/common/authService';
+import { ApiRoutes } from '@/utils/constants';
 
 // Buffer concurrent requests while refresh token is being acquired
 let isRefreshing = false;
@@ -75,6 +76,34 @@ export default {
       apiAxios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
       delete apiAxios.defaults.headers.common['Authorization'];
+    }
+  },
+  async getUsers() {
+    try{
+      const response = await apiAxios.get(ApiRoutes.USERS);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to fetch from API - ${e}`);
+      throw e;
+    }
+  },
+
+  async addUser(userInfo){
+    try{
+      const response = await apiAxios.post(ApiRoutes.USERS, userInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateUser(updateInfo){
+    try{
+      const response = await apiAxios.put(ApiRoutes.USERS, {updateInfo});
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
     }
   }
 };
