@@ -76,7 +76,7 @@ utils.getOidcDiscovery().then(discovery => {
     userInfoURL: discovery.userinfo_endpoint,
     clientID: config.get('oidc:clientID'),
     clientSecret: config.get('oidc:clientSecret'),
-    callbackURL: '/api/auth/callback',
+    callbackURL: process.env.SERVER_FRONTEND + '/api/auth/callback',
     scope: discovery.scopes_supported
   }, (_issuer, _sub, profile, accessToken, refreshToken, done) => {
     if ((typeof (accessToken) === 'undefined') || (accessToken === null) ||
