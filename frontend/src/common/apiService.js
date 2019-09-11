@@ -83,7 +83,7 @@ export default {
       const response = await apiAxios.get(ApiRoutes.USERS);
       return response.data;
     } catch(e) {
-      consolse.log(`Failed to fetch from API - ${e}`);
+      console.log(`Failed to fetch from API - ${e}`);
       throw e;
     }
   }

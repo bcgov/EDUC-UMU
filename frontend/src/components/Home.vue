@@ -43,7 +43,6 @@ import { mapGetters } from 'vuex';
 import UserTable from './UserTable.vue';
 import ProxyTable from './ProxyTable.vue';
 import ApplicationRoles from './ApplicationRoles.vue';
-import apiService from '../common/apiService.js';
 
 export default {
   name: 'home',
