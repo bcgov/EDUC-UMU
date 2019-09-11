@@ -8,7 +8,6 @@ const router = express.Router();
 const dbRouter = require('./db_routes/db');
 
 //uses the builtin OIDC function to determine whether user is authenticated
-
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
   res.status(200).json({
