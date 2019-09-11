@@ -28,6 +28,11 @@
                   <ApplicationRoles></ApplicationRoles>
                 </v-tab-item>
               </v-tabs>
+
+              <v-tab>API Auth Test</v-tab>
+              <v-tab-item>
+                { apiRes }
+              </v-tab-item>
             </v-flex>
           </v-layout>
     </v-container>
@@ -38,6 +43,7 @@ import { mapGetters } from 'vuex';
 import UserTable from './UserTable.vue';
 import ProxyTable from './ProxyTable.vue';
 import ApplicationRoles from './ApplicationRoles.vue';
+import axios from 'axios';
 
 export default {
   name: 'home',
@@ -48,6 +54,7 @@ export default {
   },
   data() {
     return {
+      apiRes: {},
       dialog: false,
       testBody: '',
       bodyError: ''
@@ -56,6 +63,16 @@ export default {
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
     ...mapGetters('auth', ['accessDenied'])
+  },
+  mounted: function(){
+    this.apiResponse();
+  }
+  methods: {
+    apiResponse() {
+      axios.get('/api/main/database').then(response => {
+        this.apiRes = response.data;
+      });
+    }
   }
 };
 </script>
