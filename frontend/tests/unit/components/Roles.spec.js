@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Roles from '@/components/ApplicationRoles.vue';
 import auth from '@/store/modules/auth.js';
+import roleActions from '@/store/modules/roleActions.js';
 
 
 describe('ApplicationRoles.vue', () => {
@@ -15,7 +16,7 @@ describe('ApplicationRoles.vue', () => {
         Vue.use(Vuex);
 
         store = new Vuex.Store({
-            modules: { auth }
+            modules: { auth, roleActions }
         });
         wrapper = shallowMount(Roles, {
             Vue,

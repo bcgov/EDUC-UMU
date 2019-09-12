@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Proxy from '@/components/ProxyTable.vue';
 import auth from '@/store/modules/auth.js';
+import proxyActions from '@/stoer/modules/proxyActions.js';
 
 
 describe('ProxyTable.vue', () => {
@@ -15,7 +16,7 @@ describe('ProxyTable.vue', () => {
         Vue.use(Vuex);
 
         store = new Vuex.Store({
-            modules: { auth }
+            modules: { auth, proxyActions }
         });
         wrapper = shallowMount(Proxy, {
             Vue,
