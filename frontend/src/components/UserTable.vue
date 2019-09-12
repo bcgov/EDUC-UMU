@@ -302,7 +302,7 @@ export default{
       userInfo: {}
   }),
   mounted: function(){
-    this.$store.dispatch('datbase', ['getUsers']).then(response => {
+    this.$store.dispatch('database', ['getUsers']).then(response => {
       this.itemJson = response;
       this.isLoading = false;
     })
