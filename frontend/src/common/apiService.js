@@ -99,7 +99,7 @@ export default {
   },
   async updateUser(updateInfo){
     try{
-      const response = await apiAxios.put(ApiRoutes.USERS, {updateInfo});
+      const response = await apiAxios.put(ApiRoutes.USERS, updateInfo);
       return response.data;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
