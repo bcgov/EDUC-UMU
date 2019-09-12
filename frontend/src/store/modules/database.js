@@ -29,10 +29,8 @@ export default {
             try {
                 const response = await ApiService.getUsers();
                 context.commit('setUsers', response);
-                return response;
             } catch(e) {
                 context.commit('setUsers', e);
-                return e;
             }
         },
         async addUser(context, info){

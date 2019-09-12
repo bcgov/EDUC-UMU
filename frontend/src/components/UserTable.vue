@@ -305,14 +305,14 @@ export default{
     ...mapGetters('database', ['users'])
   },
   mounted: function(){
-    this.getUsers();
+    this.getUsersAPI();
     this.itemJson = this.users;
     this.isLoading = false;
   },
 
   methods: {
     //validates forms
-    getUsers() {
+    getUsersAPI() {
       this.$store.dispatch('database/getUsers');
     },
     validate () {
