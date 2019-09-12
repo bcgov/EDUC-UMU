@@ -147,8 +147,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data: () => ({
     dialog_pForm: false,
@@ -208,16 +206,10 @@ export default {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      axios.get('/api/main/database/proxy').then(response => {
-        this.items = response.data;
-        this.isLoading=false;
-        var tempArray = this.items;
-        var jsonArray = [];
-        tempArray.forEach(function(element){
-          jsonArray.push({'proxy': element[0], 'target': element[1], 'level': element[2]});
-        });
-        this.itemJson = jsonArray;
-      });
+      this.$store.dispatch('proxyActions/getProxy').then(response => {
+        this.itemJson = response;
+        this.isLoading = false;
+      })
     },
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level) {

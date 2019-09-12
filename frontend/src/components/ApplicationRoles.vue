@@ -142,8 +142,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default{
   data: () => ({
     dialog_c: false,
