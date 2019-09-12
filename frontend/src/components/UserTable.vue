@@ -233,7 +233,7 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default{
   data: () =>  ({
@@ -246,7 +246,6 @@ export default{
       authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"],
       roleArray: [],
       systemArray: [],
-      fab: false,
       groupOpen: false,
       dialog_a: false,
       deleteMessage: '',
@@ -302,16 +301,13 @@ export default{
       items: [],
       userInfo: {}
   }),
-  computed: {
-    ...mapGetters('database', ['users']),
-    this.itemJson = users
-  },
-  mounted(){
-    //this.getItems();
+  async mounted(){
+    this.itemJson = await this.getUsers();
     this.getSystems();
   },
 
   methods: {
+    ...mapActions('database', ['getUsers']);
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
