@@ -233,7 +233,7 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default{
   data: () =>  ({
@@ -301,20 +301,14 @@ export default{
       items: [],
       userInfo: {}
   }),
-  computed: {
-    ...mapGetters('database', ['users'])
-  },
   mounted: function(){
-    this.getUsersAPI();
-    this.itemJson = this.users;
+    this.itemJson = this.getUsers();
     this.isLoading = false;
   },
 
   methods: {
     //validates forms
-    getUsersAPI() {
-      this.$store.dispatch('database/getUsers');
-    },
+    ...mapActions('database', ['getUsers']);
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
