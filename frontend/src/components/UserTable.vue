@@ -303,8 +303,8 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('database', ['users']);
-    this.itemJson = users;
+    ...mapGetters('database', ['users']),
+    this.itemJson = users
   },
   mounted(){
     //this.getItems();
