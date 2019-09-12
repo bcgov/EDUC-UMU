@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import Proxy from '@/components/ProxyTable.vue';
 import auth from '@/store/modules/auth.js';
-import proxyActions from '@/stoer/modules/proxyActions.js';
+import proxyActions from '@/store/modules/proxyActions.js';
 
 
 describe('ProxyTable.vue', () => {
