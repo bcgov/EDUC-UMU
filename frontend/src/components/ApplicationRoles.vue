@@ -217,16 +217,10 @@ export default{
       this.isLoading = true;
       this.items = [];
       this.itemJson = [];
-      axios.get('/api/main/database/roles').then(response => {
-        this.items = response.data;
-        this.isLoading = false;
-        var tempArray = this.items;
-        var jsonArray = [];
-        tempArray.forEach(function(element, index){
-          jsonArray.push({'system': element[0], 'role': element[1], 'create': element[2], 'createDate': element[3], 'update': element[4], 'updateDate': element[5], 'id': index});
-        });
-        this.itemJson = jsonArray;
-      });
+      this.$store.dispatch('roleActions/getRoles').then(response => {
+          this.itemJson = response;
+          this.isLoading = false;
+      })
     },
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
@@ -234,10 +228,15 @@ export default{
       this.dialog_rForm = true;
     },
     //Adds a role to the database then refreshes the table
-    addRole () {
+    addRole (roleInfo) {
       this.dialog_rForm = false;
       this.dialog_c = false;
-      this.getRoles();
+      this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
+        if(response == 'error'){
+          this.itemJson - [];
+        }
+        this.getRoles();
+      })
     },
     //Deletes a role from the database
     deleteRole() {

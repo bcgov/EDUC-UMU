@@ -337,7 +337,7 @@ export default{
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      this.$store.dispatch('database/getUsers').then(response => {
+      this.$store.dispatch('userActions/getUsers').then(response => {
         this.itemJson = response;
         this.isLoading = false;
       });
