@@ -25,15 +25,17 @@ export default {
     },
     actions: {
         async getUsers(context){
-            context.commit('setUsers', null);
-            try {
-                const response = await ApiService.getUsers();
-                context.commit('setUsers', response);
-                return response;
-            } catch(e) {
-                context.commit('setUsers', e);
-                return e;
-            }
+            return new Promise((resolve, reject) => {
+                context.commit('setUsers', null);
+                try {
+                    const response = await ApiService.getUsers();
+                    context.commit('setUsers', response);
+                    resolve(reponse);
+                } catch(e) {
+                    context.commit('setUsers', e);
+                    reject(e);
+                }
+            })
         },
         async addUser(context, info){
             context.commit('addUser', null);

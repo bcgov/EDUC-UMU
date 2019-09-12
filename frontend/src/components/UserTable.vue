@@ -302,8 +302,10 @@ export default{
       userInfo: {}
   }),
   mounted: function(){
-    this.itemJson = this.getUsers();
-    this.isLoading = false;
+    this.store.dispatch('datbase', ['getUsers']).then(response => {
+      this.itemJson = response;
+      this.isLoading = false;
+    })
   },
 
   methods: {
