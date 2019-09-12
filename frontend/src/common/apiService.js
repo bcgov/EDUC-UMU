@@ -105,5 +105,59 @@ export default {
       console.log(`Failed to post to API - ${e}`);
       throw e;
     }
+  },
+  async getRoles(){
+    try{
+      const response = await apiAxios.get(ApiRoutes.ROLES);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to fetch from API - ${e}`);
+      throw e;
+    }
+  },
+  async addRole(roleInfo){
+    try{
+      const response = await apiAxios.post(ApiRoutes.ROLES, roleInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateRole(roleInfo){
+    try{
+      const response = await apiAxios.put(ApiRoutes.ROLES, roleInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async getProxy(){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY, roleInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to fetch from API - ${e}`);
+      throw e;
+    }
+  },
+  async addProxy(proxyInfo){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateProxy(proxyInfo){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
   }
 };

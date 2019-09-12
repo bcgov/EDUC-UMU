@@ -232,8 +232,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default{
   data: () =>  ({
       usernameGroup: '',
@@ -301,7 +299,7 @@ export default{
       userInfo: {}
   }),
   mounted: function(){
-    this.$store.dispatch('database/getUsers').then(response => {
+    this.$store.dispatch('userActions/getUsers').then(response => {
       this.itemJson = response;
       this.isLoading = false;
     })
@@ -339,15 +337,9 @@ export default{
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      axios.get('/api/main/database/users').then(response => {
-        this.items = response.data;
+      this.$store.dispatch('database/getUsers').then(response => {
+        this.itemJson = response;
         this.isLoading = false;
-        var tempArray = this.items;
-        var tempJson = [];
-        tempArray.forEach(function(element, index){
-          tempJson.push({'system': element[0], 'username': element[1], 'name': element[2], 'value': element[3], 'authSource': element[4], 'guid': element[5], 'create': element[6], 'createDate': element[7], 'update': element[8], 'updateDate': element[9], 'id': index});
-        });
-        this.itemJson = tempJson;
       });
     },
     /*

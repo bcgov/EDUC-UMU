@@ -149,7 +149,7 @@ export default{
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
-    isLoading: false,
+    isLoading: true,
     valid: true,
     hoverA: false,
     hoverB: false,
@@ -199,9 +199,12 @@ export default{
     itemJson: [],
     roleInfo: {}
   }),
-  /*mounted: function() {
-    this.getRoles();
-  },*/
+  mounted: function() {
+    this.$store.dispatch('roleActions/getRoles').then(response => {
+      this.itemJson = response;
+      this.isLoading = false;
+    })
+  },
   methods: {
   //validates forms
     validate () {

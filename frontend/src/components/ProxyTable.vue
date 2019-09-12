@@ -154,7 +154,7 @@ export default {
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
-    isLoading: false,
+    isLoading: true,
     valid: true,
     search: '',
     hoverA: false,
@@ -190,9 +190,12 @@ export default {
     proxyInfo: {}
   }),
   //Automatically fetches the table contents from the database on page load
-  /*mounted: function() {
-    this.getProxy();
-  },*/
+  mounted: function() {
+    this.$store.dispatch('proxyActions/getProxy').then(response => {
+      this.itemJson = response;
+      this.isLoading = false;
+    })
+  },
   methods: {
     //validates forms
     validate () {
