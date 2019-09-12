@@ -302,7 +302,7 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('datbase', ['users'])
+    ...mapGetters('database', ['users'])
   },
   mounted: function(){
     this.getUsers();
