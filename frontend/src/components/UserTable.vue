@@ -307,7 +307,7 @@ export default{
   },
 
   methods: {
-    ...mapActions('database', ['getUsers']);
+    ...mapActions('database', ['getUsers']),
     //validates forms
     validate () {
       if (this.$refs.form.validate()){
