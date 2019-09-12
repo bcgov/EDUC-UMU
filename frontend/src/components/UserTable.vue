@@ -306,7 +306,7 @@ export default{
   },
   mounted: function(){
     this.getUsers();
-    this.itemJson = users;
+    this.itemJson = this.users;
     this.getSystems();
     this.isLoading = false;
   },
