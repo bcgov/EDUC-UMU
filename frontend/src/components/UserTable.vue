@@ -308,7 +308,7 @@ export default{
 
   methods: {
     //validates forms
-    ...mapActions('database', ['getUsers']);
+    ...mapActions('database', ['getUsers']),
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
