@@ -69,7 +69,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-
+      :loading="isLoading"
       show-expand
       single-expand
     >
@@ -233,7 +233,7 @@
 
 <script>
 import axios from 'axios';
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default{
   data: () =>  ({
@@ -251,7 +251,7 @@ export default{
       deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
-      isLoading: false,
+      isLoading: true,
       valid: true,
       hoverA: false,
       hoverB: false,
@@ -301,14 +301,21 @@ export default{
       items: [],
       userInfo: {}
   }),
-  async mounted(){
-    this.itemJson = await this.getUsers();
+  computed: {
+    ...mapGetters('datbase', ['users']);
+  },
+  mounted: function(){
+    this.getUsers();
+    this.itemJson = users;
     this.getSystems();
+    this.isLoading = false;
   },
 
   methods: {
-    ...mapActions('database', ['getUsers']),
     //validates forms
+    getUsers() {
+      this.$store.dispatch('database/getUsers');
+    }
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
