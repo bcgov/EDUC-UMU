@@ -315,7 +315,7 @@ export default{
     //validates forms
     getUsers() {
       this.$store.dispatch('database/getUsers');
-    }
+    },
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
