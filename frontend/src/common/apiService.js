@@ -135,7 +135,7 @@ export default {
   },
   async getProxy(){
     try{
-      const response = await apiAxios.get(ApiRoutes.PROXY, roleInfo);
+      const response = await apiAxios.get(ApiRoutes.PROXY);
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
