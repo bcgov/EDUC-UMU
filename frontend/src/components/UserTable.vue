@@ -302,7 +302,7 @@ export default{
       userInfo: {}
   }),
   mounted: function(){
-    this.$store.dispatch('database', ['getUsers']).then(response => {
+    this.$store.dispatch('database/getUsers').then(response => {
       this.itemJson = response;
       this.isLoading = false;
     })
@@ -310,7 +310,6 @@ export default{
 
   methods: {
     //validates forms
-    ...mapActions('database', ['getUsers']),
     validate () {
       if (this.$refs.form.validate()){
         this.snackbar=true;
