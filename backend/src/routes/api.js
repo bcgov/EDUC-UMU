@@ -7,10 +7,14 @@ const router = express.Router();
 //const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
 
-function checkRoles(req){
-  console.log(req.user._json.realm_role);
+function checkRoles(req, next){
+  if(req.user._json.realm_role.includes('umu-access')){
+    next();
+  }
+  else{
+    next(new Error('Unauthorized'));
+  }
 };
-//uses the builtin OIDC function to determine whether user is authenticated
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
   res.status(200).json({
