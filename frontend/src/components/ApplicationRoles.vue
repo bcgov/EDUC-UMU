@@ -88,6 +88,11 @@
       </template>
     </v-data-table>
 
+    <template
+        v-slot:no-data
+      >
+        <p>Unable to retrieve data from database.</p>
+    </template>
 
   <!-- Pop-up to add role -->
     <v-dialog v-model="dialog_rForm" persistent max-width="700px">

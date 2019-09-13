@@ -138,7 +138,11 @@
           v-text="header.text"/>
       </template>
 
-
+      <template
+        v-slot:no-data
+      >
+        <p>Unable to retrieve data from database.</p>
+      </template>
     <!-- Displays as the row that expands from a row -->
       <template
         v-slot:expanded-item="props">

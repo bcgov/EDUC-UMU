@@ -81,6 +81,11 @@
           v-text="header.text"/>
       </template>
      
+     <template
+        v-slot:no-data
+      >
+        <p>Unable to retrieve data from database.</p>
+      </template>
 
     <!-- Displays when a search query returns no results -->
       <template v-slot:no-results>
