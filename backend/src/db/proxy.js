@@ -18,7 +18,7 @@ class Proxy {
   }*/
   //select all proxies from table
   async selectAll() {
-    let connection = await oracledb.getConnection({
+    /*let connection = await oracledb.getConnection({
       user: process.env.ORACLE_USER,
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
@@ -31,8 +31,8 @@ class Proxy {
       } catch(err){
         console.error(err);
       }
-    }
-    return result.rows;
+    }*/
+    return [{'proxy': 'test', 'target': 'test', 'level': 'test'}];
   }
   /*
   async select(id, callback) {
