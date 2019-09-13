@@ -30,20 +30,6 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(helmet.noCache());
-app.use(helmet.hsts({
-  maxAge: 31536000
-}));
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"]
-  }
-}));
-app.use(helmet.referrerPolicy({policy: 'same-origin'}));
-app.use(helmet.featurePolicy({
-  features: {
-    fullscreen: ["'self'"]
-  }
-}))
 
 //tells the app to use json as means of transporting data
 app.use(express.json());
@@ -82,7 +68,7 @@ log.debug('Config', utils.prettyStringify(config));
 //initialize our authentication strategy
 
 utils.getOidcDiscovery().then(discovery => {
-  //OIDC Strategy is used for authentication
+  //OIDC Strategy is used for authorization
   passport.use('oidc', new OidcStrategy({
     issuer: discovery.issuer,
     authorizationURL: discovery.authorization_endpoint,
