@@ -19,7 +19,7 @@ export default {
         addProxy: (state, proxyRes) => {
             state.proxyAdd = proxyRes
         },
-        updateProxt: (state, proxyRes) => {
+        updateProxy: (state, proxyRes) => {
             state.rproxyUpdate = proxyRes;
         }
     },
