@@ -7,11 +7,11 @@ const router = express.Router();
 //const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
 
-function checkRoles(req, next){
+function checkRoles(req, res, next){
   if(req.user.jwt.realm_access.roles.includes('umu-access')){
     return next();
   }
-  return next(new Error('Unauthorized'));
+  res.redirect('/api/auth/login');
 };
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
