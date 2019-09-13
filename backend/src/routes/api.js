@@ -9,11 +9,9 @@ const dbRouter = require('./db_routes/db');
 
 function checkRoles(req, next){
   if(req.user.jwt.realm_access.roles.includes('umu-access')){
-    next();
+    return next();
   }
-  else{
-    next(new Error('Unauthorized'));
-  }
+  return next(new Error('Unauthorized'));
 };
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
