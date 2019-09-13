@@ -7,8 +7,8 @@ const router = express.Router();
 //const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
 
-function checkRoles(req, next){
-  if(req.user._json.realm_role.includes('umu-access')){
+function checkRoles(_req, next){
+  if(req.user.jwt.realm_access.roles.includes('umu-access')){
     next();
   }
   else{
