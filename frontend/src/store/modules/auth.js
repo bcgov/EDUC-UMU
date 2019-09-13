@@ -29,7 +29,7 @@ export default {
           state.acronyms = [];
         }
 
-        if(state.acronyms.includes("umu-access")){
+        /*if(state.acronyms.includes("umu-access")){
           state.isAuthenticated = true;
           state.accessDenied = false;
           localStorage.setItem('jwtToken', token);
@@ -39,9 +39,9 @@ export default {
           state.accessDenied = true;
           localStorage.removeItem('jwtToken');
           localStorage.removeItem('refreshToken');
-        }
-        //state.isAuthenticated = true;
-        //localStorage.setItem('jwtToken', token);
+        }*/
+        state.isAuthenticated = true;
+        localStorage.setItem('jwtToken', token);
       } else {
         state.acronyms = [];
         state.isAuthenticated = false;
