@@ -301,6 +301,7 @@ export default{
   mounted: function(){
     this.$store.dispatch('userActions/getUsers').then(response => {
       this.itemJson = response;
+      this.getSystems();
       this.isLoading = false;
     })
   },
@@ -339,6 +340,8 @@ export default{
       this.isLoading = true;
       this.$store.dispatch('userActions/getUsers').then(response => {
         this.itemJson = response;
+        this.getSystems();
+        this.resetUsername();
         this.isLoading = false;
       });
     },
