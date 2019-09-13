@@ -199,8 +199,12 @@ export default{
   }),
   mounted: function() {
     this.$store.dispatch('roleActions/getRoles').then(response => {
-      this.itemJson = response;
-      this.isLoading = false;
+      if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.isLoading = false;
+        }
     })
   },
   methods: {
@@ -216,8 +220,12 @@ export default{
       this.items = [];
       this.itemJson = [];
       this.$store.dispatch('roleActions/getRoles').then(response => {
+          if(response === 500){
+          this.itemJson = [];
+        } else {
           this.itemJson = response;
           this.isLoading = false;
+        }
       })
     },
     //Passes information from a specific row to the Update form

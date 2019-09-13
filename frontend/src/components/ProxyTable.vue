@@ -190,8 +190,12 @@ export default {
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
     this.$store.dispatch('proxyActions/getProxy').then(response => {
-      this.itemJson = response;
-      this.isLoading = false;
+      if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.isLoading = false;
+        }
     })
   },
   methods: {
@@ -207,8 +211,12 @@ export default {
       this.itemJson = [];
       this.isLoading = true;
       this.$store.dispatch('proxyActions/getProxy').then(response => {
-        this.itemJson = response;
-        this.isLoading = false;
+        if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.isLoading = false;
+        }
       })
     },
     //Passes information from a specific row to the Update dialog box

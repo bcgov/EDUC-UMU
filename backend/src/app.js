@@ -68,7 +68,7 @@ log.debug('Config', utils.prettyStringify(config));
 //initialize our authentication strategy
 
 utils.getOidcDiscovery().then(discovery => {
-  // Add Passport OIDC Strategy
+  //OIDC Strategy is used for authentication
   passport.use('oidc', new OidcStrategy({
     issuer: discovery.issuer,
     authorizationURL: discovery.authorization_endpoint,
@@ -89,6 +89,8 @@ utils.getOidcDiscovery().then(discovery => {
     profile.refreshToken = refreshToken;
     return done(null, profile);
   }));
+
+  //JWT strategy is used for authorization
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
     // Keycloak 7.3.0 no longer automatically supplies matching client_id audience.
