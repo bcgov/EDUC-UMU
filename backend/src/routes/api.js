@@ -11,7 +11,9 @@ function checkRoles(req, res, next){
   if(req.user.jwt.realm_access.roles.includes('umu-access')){
     return next();
   }
-  res.redirect('/api/auth/login');
+  return res.status(401).json({
+    message: 'Unauthorized user'
+  })
 };
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
