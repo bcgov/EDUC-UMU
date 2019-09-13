@@ -336,10 +336,10 @@ export default{
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
       this.isLoading = true;
+      this.resetUsername();
       this.$store.dispatch('userActions/getUsers').then(response => {
         this.itemJson = response;
         this.getSystems();
-        //this.resetUsername();
         this.isLoading = false;
       });
     },
