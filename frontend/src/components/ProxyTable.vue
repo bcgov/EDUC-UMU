@@ -200,8 +200,7 @@ export default {
       if(response === 500){
           this.itemJson = [];
         } else {
-          this.guidArr = response;
-          this.itemJson = mapGuids(this.guidArr);
+          this.itemJson = this.mapGuids(response);
           this.isLoading = false;
         }
     })
@@ -222,7 +221,7 @@ export default {
         if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = response;
+          this.itemJson = this.mapGuids(response);
           this.isLoading = false;
         }
       })
