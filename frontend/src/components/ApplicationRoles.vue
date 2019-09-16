@@ -243,7 +243,7 @@ export default{
         }
       });
       this.systemArray = sysArr;
-    
+    },
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
       this.roleInfo = {'system': system, 'role': role};

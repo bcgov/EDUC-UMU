@@ -168,13 +168,13 @@ export default {
     headers: [
       {
         sortable: true,
-        text: 'Proxy ID (GUID)',
-        value: 'proxy.name'
+        text: 'Proxy User',
+        value: 'proxy'
       },
       {
         sortable: true,
-        text: 'Target ID (GUID)',
-        value: 'target.name'
+        text: 'Target User',
+        value: 'target'
       },
       {
         sortable: true,
@@ -232,10 +232,10 @@ export default {
       const getUsers = this.$store.dispatch('userActions/getUsers');
       arr.forEach(element => {
         if(getUsers.find(x => x.guid === element.proxy)){
-          element.proxy = { "name": getUsers.find(x => x.guid === element.proxy).username,  "guid": element.proxy };
+          element.proxy = getUsers.find(x => x.guid === element.proxy).username;
         }
         if(getUsers.find(x => x.guid === element.target)){
-          element.target = { "name": getUsers.find(x => x.guid === element.target).username, "guid": element.target };
+          element.target = getUsers.find(x => x.guid === element.target).username;
         }
       });
       return arr;
