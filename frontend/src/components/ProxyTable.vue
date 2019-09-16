@@ -19,6 +19,13 @@
       :search="search"
       :loading="isLoading"
     >
+
+    <template v-slot:item.proxyName>
+      {{ item.proxyName + '(' + item.proxy + ')' }}
+    </template>
+    <template v-slot:item.targetName>
+      {{ item.targetName + '(' + item.target + ')' }}
+    </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
@@ -93,13 +100,6 @@
         </v-alert>
       </template>
     </v-data-table>
-
-    <template v-slot:item.proxyName>
-      {{ item.proxyName + '(' + item.proxy + ')' }}
-    </template>
-    <template v-slot:item.targetName>
-      {{ item.targetName + '(' + item.target + ')' }}
-    </template>
 
   <!-- The dialog box for adding a proxy to the database -->
     <v-dialog v-model="dialog_pForm" persistent max-width="700px">
