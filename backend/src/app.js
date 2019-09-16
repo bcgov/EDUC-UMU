@@ -89,7 +89,6 @@ utils.getOidcDiscovery().then(discovery => {
     profile.refreshToken = refreshToken;
     return done(null, profile);
   }));
-
   //JWT strategy is used for authorization
   passport.use('jwt', new JWTStrategy({
     algorithms: discovery.token_endpoint_auth_signing_alg_values_supported,
