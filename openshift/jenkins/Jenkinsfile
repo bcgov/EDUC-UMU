@@ -28,6 +28,7 @@ pipeline{
 
         REPO_NAME = 'educ-umu'
 
+        //with multiple developers, these variables should be dynamic to allow for multiple builds within the same OpenShift namespace
         OWNER = 'ndenny1'
         JOB_NAME = 'demo'
 

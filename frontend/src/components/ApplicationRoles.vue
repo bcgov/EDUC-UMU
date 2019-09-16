@@ -88,6 +88,11 @@
       </template>
     </v-data-table>
 
+    <template
+        v-slot:no-data
+      >
+        <p>Unable to retrieve data from database.</p>
+    </template>
 
   <!-- Pop-up to add role -->
     <v-dialog v-model="dialog_rForm" persistent max-width="700px">
@@ -142,14 +147,12 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default{
   data: () => ({
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
-    isLoading: false,
+    isLoading: true,
     valid: true,
     hoverA: false,
     hoverB: false,
@@ -199,9 +202,16 @@ export default{
     itemJson: [],
     roleInfo: {}
   }),
-  /*mounted: function() {
-    this.getRoles();
-  },*/
+  mounted: function() {
+    this.$store.dispatch('roleActions/getRoles').then(response => {
+      if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.isLoading = false;
+        }
+    })
+  },
   methods: {
   //validates forms
     validate () {
@@ -214,16 +224,14 @@ export default{
       this.isLoading = true;
       this.items = [];
       this.itemJson = [];
-      axios.get('/api/main/database/roles').then(response => {
-        this.items = response.data;
-        this.isLoading = false;
-        var tempArray = this.items;
-        var jsonArray = [];
-        tempArray.forEach(function(element, index){
-          jsonArray.push({'system': element[0], 'role': element[1], 'create': element[2], 'createDate': element[3], 'update': element[4], 'updateDate': element[5], 'id': index});
-        });
-        this.itemJson = jsonArray;
-      });
+      this.$store.dispatch('roleActions/getRoles').then(response => {
+          if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.isLoading = false;
+        }
+      })
     },
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
@@ -231,10 +239,15 @@ export default{
       this.dialog_rForm = true;
     },
     //Adds a role to the database then refreshes the table
-    addRole () {
+    addRole (roleInfo) {
       this.dialog_rForm = false;
       this.dialog_c = false;
-      this.getRoles();
+      this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
+        if(response == 'error'){
+          this.itemJson - [];
+        }
+        this.getRoles();
+      })
     },
     //Deletes a role from the database
     deleteRole() {

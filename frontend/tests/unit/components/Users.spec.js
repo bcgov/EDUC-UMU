@@ -4,6 +4,7 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Users from '@/components/UserTable.vue';
 import auth from '@/store/modules/auth.js';
+import userActions from '@/store/modules/userActions.js'
 
 describe('UserTable.vue', () => {
     let wrapper;
@@ -14,7 +15,7 @@ describe('UserTable.vue', () => {
         Vue.use(Vuex);
 
         store = new Vuex.Store({
-            modules: { auth }
+            modules: { auth, userActions}
         });
         
         wrapper = shallowMount(Users, {

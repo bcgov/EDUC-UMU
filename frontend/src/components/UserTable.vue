@@ -69,7 +69,7 @@
       :items="itemJson"
       :search="search"
       item-key="id"
-
+      :loading="isLoading"
       show-expand
       single-expand
     >
@@ -138,7 +138,11 @@
           v-text="header.text"/>
       </template>
 
-
+      <template
+        v-slot:no-data
+      >
+        <p>Unable to retrieve data from database.</p>
+      </template>
     <!-- Displays as the row that expands from a row -->
       <template
         v-slot:expanded-item="props">
@@ -232,9 +236,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapGetters } from 'vuex'
-
 export default{
   data: () =>  ({
       usernameGroup: '',
@@ -246,13 +247,12 @@ export default{
       authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"],
       roleArray: [],
       systemArray: [],
-      fab: false,
       groupOpen: false,
       dialog_a: false,
       deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
-      isLoading: false,
+      isLoading: true,
       valid: true,
       hoverA: false,
       hoverB: false,
@@ -298,37 +298,20 @@ export default{
           align: 'center'
         }
       ],
-      itemJson: [
-        {"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
-        {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
-        {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
-        {"system": "EDW","username": "NDenny","name": "gfdagdfe", "value": "hgj5effa", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 5 },
-        {"system": "EDW","username": "PHolland","name": "54fq34yu", "value": "23589yht9", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 6 },
-        {"system": "EDW","username": "PHolland","name": "refgwe54tui90", "value": "afwer2nn54", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 7 },
-        {"system": "EDW","username": "PHolland","name": "qv3jhun34", "value": "q4tv", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 8 },
-        {"system": "EDW","username": "NDenny","name": "sdfsdfas", "value": "wefaweff", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 4 },
-        {"system": "EDW","username": "PHolland","name": "nwh456", "value": "25yn4nwertwb", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 9 },
-        {"system": "EDW","username": "PHolland","name": "qwbtqtret", "value": "wetbrtbwertt34", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 10 },
-        {"system": "EDW","username": "TRankin","name": "4tbbq4t", "value": "qetbrbbt", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 11 },
-        {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
-        {"system": "EDW","username": "TRankin","name": "436bbqwrtbrbe", "value": "yjumsea", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 12 },
-        {"system": "EDW","username": "TRankin","name": "34tbw34bg", "value": "weby6um3", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 14 },
-        {"system": "EDW","username": "TRankin","name": "b3wtwtbwer", "value": "btrnurnrew", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 15 },
-        {"system": "EDW","username": "SShaw","name": "n625nwerv", "value": "wbtrt324n62", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 16 },
-        {"system": "EDW","username": "SShaw","name": "rewtn34n63", "value": "wernt3562", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 17 },
-        {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
-        {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
-        {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }
-      ],
+      itemJson: [],
       items: [],
       userInfo: {}
   }),
-  computed: {
-    ...mapGetters('database', ['users'])
-  },
-  mounted(){
-    //this.getItems();
-    this.getSystems();
+  mounted: function(){
+    this.$store.dispatch('userActions/getUsers').then(response => {
+      if(response === 500){
+        this.itemJson = [];
+      } else {
+        this.itemJson = response;
+        this.getSystems();
+        this.isLoading = false;
+      }
+    })
   },
 
   methods: {
@@ -360,18 +343,16 @@ export default{
     },
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
-      this.items = [];
-      this.itemJson = [];
       this.isLoading = true;
-      axios.get('/api/main/database/users').then(response => {
-        this.items = response.data;
-        this.isLoading = false;
-        var tempArray = this.items;
-        var tempJson = [];
-        tempArray.forEach(function(element, index){
-          tempJson.push({'system': element[0], 'username': element[1], 'name': element[2], 'value': element[3], 'authSource': element[4], 'guid': element[5], 'create': element[6], 'createDate': element[7], 'update': element[8], 'updateDate': element[9], 'id': index});
-        });
-        this.itemJson = tempJson;
+      this.resetUsername();
+      this.$store.dispatch('userActions/getUsers').then(response => {
+        if(response === 500){
+          this.itemJson = [];
+        } else {
+          this.itemJson = response;
+          this.getSystems();
+          this.isLoading = false;
+        }
       });
     },
     /*

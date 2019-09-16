@@ -19,7 +19,7 @@ class Roles {
   */
   //select all roles from table
   async selectAll() {
-    let connection = await oracledb.getConnection({
+    /*let connection = await oracledb.getConnection({
       user: process.env.ORACLE_USER,
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
@@ -32,8 +32,8 @@ class Roles {
       } catch(err){
         console.error(err);
       }
-    }
-    return result.rows;
+    }*/
+    return [{'system': 'test', 'role': 'test', 'create': 'test', 'createDate': 'test', 'update': 'test', 'updateDate': 'test'}];
   }
   /*
   select(id, callback) {

@@ -7,7 +7,14 @@ const router = express.Router();
 //const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
 
-//uses the builtin OIDC function to determine whether user is authenticated
+function checkRoles(req, res, next){
+  if(req.user.jwt.realm_access.roles.includes('umu-access')){
+    return next();
+  }
+  return res.status(401).json({
+    message: 'Unauthorized user'
+  })
+};
 //provides routing to the database endpoints
 router.get('/', (_req, res) => {
   res.status(200).json({
@@ -21,6 +28,6 @@ router.get('/', (_req, res) => {
 //ensures only authenticated users can access the database endpoints
 router.use('/database', passport.authenticate('jwt', {
   session: false
-}), dbRouter);
+}), checkRoles, dbRouter);
 
 module.exports = router;

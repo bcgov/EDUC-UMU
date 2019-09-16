@@ -81,6 +81,9 @@ export default {
   async getUsers() {
     try{
       const response = await apiAxios.get(ApiRoutes.USERS);
+      if(response.status == 500){
+        return response.status;
+      }
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
@@ -91,6 +94,9 @@ export default {
   async addUser(userInfo){
     try{
       const response = await apiAxios.post(ApiRoutes.USERS, userInfo);
+      if(response.status == 500){
+        return response.status;
+      }
       return response.data;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
@@ -99,7 +105,82 @@ export default {
   },
   async updateUser(updateInfo){
     try{
-      const response = await apiAxios.put(ApiRoutes.USERS, {updateInfo});
+      const response = await apiAxios.put(ApiRoutes.USERS, updateInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async getRoles(){
+    try{
+      const response = await apiAxios.get(ApiRoutes.ROLES);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to fetch from API - ${e}`);
+      throw e;
+    }
+  },
+  async addRole(roleInfo){
+    try{
+      const response = await apiAxios.post(ApiRoutes.ROLES, roleInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateRole(roleInfo){
+    try{
+      const response = await apiAxios.put(ApiRoutes.ROLES, roleInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async getProxy(){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to fetch from API - ${e}`);
+      throw e;
+    }
+  },
+  async addProxy(proxyInfo){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async updateProxy(proxyInfo){
+    try{
+      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      if(response.status == 500){
+        return response.status;
+      }
       return response.data;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
