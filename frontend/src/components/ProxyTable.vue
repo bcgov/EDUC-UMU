@@ -168,13 +168,13 @@ export default {
     headers: [
       {
         sortable: true,
-        text: 'Proxy ID',
-        value: 'proxy'
+        text: 'Proxy ID (GUID)',
+        value: 'proxy.name'
       },
       {
         sortable: true,
-        text: 'Target ID',
-        value: 'target'
+        text: 'Target ID (GUID)',
+        value: 'target.name'
       },
       {
         sortable: true,
@@ -189,6 +189,8 @@ export default {
       }
     ],
     items: [],
+    guidArr: [],
+    userArr: [],
     itemJson: [],
     proxyInfo: {}
   }),
@@ -198,7 +200,8 @@ export default {
       if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = response;
+          this.guidArr = response;
+          this.userArr = mapGuids(this.guidArr);
           this.isLoading = false;
         }
     })
@@ -224,6 +227,19 @@ export default {
         }
       })
     },
+
+    mapGuids(arr){
+      const getUsers = this.$store.dispatch('userActions/getUsers');
+      arr.forEach(element => {
+        if(getUsers.find(x => x.guid === element.proxy)){
+          element.proxy = { "name": getUsers.find(x => x.guid === element.proxy).username,  "guid": element.proxy };
+        }
+        if(getUsers.find(x => x.guid === element.target)){
+          element.target = { "name": getUsers.find(x => x.guid === element.target).username, "guid": element.target };
+        }
+      });
+      return arr;
+    }
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level) {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};

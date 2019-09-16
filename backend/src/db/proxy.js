@@ -32,7 +32,10 @@ class Proxy {
         console.error(err);
       }
     }*/
-    return [{'proxy': 'test', 'target': 'test', 'level': 'test'}];
+    return [
+            {'proxy': '239786FWEUHDFGSDKFASDF', 'target': '54789THERIFU23G54WYRT', 'level': 'full'},
+            {'proxy': '54789THERIFU23G54WYRT', 'target': 'FVBNJTY89WEFUHEFIBRQ', 'level': 'not full'}
+          ];
   }
   /*
   async select(id, callback) {
