@@ -199,6 +199,7 @@ export default{
       }
     ],
     items: [],
+    systemArray: [],
     itemJson: [],
     roleInfo: {}
   }),
@@ -208,6 +209,7 @@ export default{
           this.itemJson = [];
         } else {
           this.itemJson = response;
+          this.getSystems();
           this.isLoading = false;
         }
     })
@@ -233,6 +235,15 @@ export default{
         }
       })
     },
+    getSystems() {
+      const sysArr = [];
+      (this.itemJson).forEach(function(element){
+        if(!(sysArr.includes(element.system))){
+          sysArr.push(element.system);
+        }
+      });
+      this.systemArray = sysArr;
+    
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
       this.roleInfo = {'system': system, 'role': role};

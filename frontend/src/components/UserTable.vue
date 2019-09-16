@@ -107,7 +107,7 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select :items="authSources" label="Auth Source" name="auth" :readonly="groupOpen" required></v-select>
+                            <v-select :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
                             <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
@@ -182,7 +182,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" :value="userInfo.username" name="system" label="System"></v-select>
+                            <v-select :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
