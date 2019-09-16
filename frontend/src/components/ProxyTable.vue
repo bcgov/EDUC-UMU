@@ -20,10 +20,10 @@
       :loading="isLoading"
     >
 
-    <template v-slot:item.proxyName>
+    <template v-slot:item.proxyName="{ item }">
       {{ item.proxyName + '(' + item.proxy + ')' }}
     </template>
-    <template v-slot:item.targetName>
+    <template v-slot:item.targetName="{ item }">
       {{ item.targetName + '(' + item.target + ')' }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
