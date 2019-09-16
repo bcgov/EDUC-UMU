@@ -200,15 +200,14 @@ export default {
     proxyInfo: {}
   }),
   //Automatically fetches the table contents from the database on page load
-  mounted: async function() {
-    this.$store.dispatch('proxyActions/getProxy').then(async function(response){
+  mounted: function() {
+    this.$store.dispatch('proxyActions/getProxy').then(response => {
       if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson =  await this.mapGuids(response);
-          this.isLoading = false;
+          this.itemJson = this.mapGuids(response);
         }
-    })
+    }).then(this.isLoading = false;);
   },
   methods: {
     //validates forms
@@ -218,22 +217,23 @@ export default {
       }
     },
     //retrieves table entries from the API endpoint and places them in a JSON array
-    async getProxy () {
+    getProxy () {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      this.$store.dispatch('proxyActions/getProxy').then(async function(response){
+      this.$store.dispatch('proxyActions/getProxy').then(response => {
         if(response === 500){
           this.itemJson = [];
+          return;
         } else {
-          this.itemJson = await this.mapGuids(response);
+          this.itemJson = this.mapGuids(response);
           this.isLoading = false;
         }
       })
     },
 
     //map each user GUID to a readable username
-    async mapGuids(arr){
+    mapGuids(arr){
       this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
           if(response.find(x => x.guid === element.proxy)){
