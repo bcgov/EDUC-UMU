@@ -203,11 +203,14 @@ export default {
   mounted: function() {
     this.$store.dispatch('proxyActions/getProxy').then(response => {
       if(response === 500){
-          this.itemJson = [];
+          return [];
         } else {
-          this.itemJson = this.mapGuids(response);
+          return this.mapGuids(response);
         }
-    }).then(this.isLoading = false);
+    }).then(response => {
+      this.itemJson = response;
+      this.isLoading = false
+    });
   },
   methods: {
     //validates forms
