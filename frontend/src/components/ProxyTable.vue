@@ -94,6 +94,12 @@
       </template>
     </v-data-table>
 
+    <template v-slot:item.proxyName>
+      {{ item.proxyName + '(' + item.proxy + ')' }}
+    </template>
+    <template v-slot:item.targetName>
+      {{ item.targetName + '(' + item.target + ')' }}
+    </template>
 
   <!-- The dialog box for adding a proxy to the database -->
     <v-dialog v-model="dialog_pForm" persistent max-width="700px">
@@ -199,7 +205,7 @@ export default {
       if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = this.mapGuids(response);
+          this.itemJson =  await this.mapGuids(response);
           this.isLoading = false;
         }
     })
@@ -227,7 +233,7 @@ export default {
     },
 
     //map each user GUID to a readable username
-    mapGuids(arr){
+    async mapGuids(arr){
       this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
           if(response.find(x => x.guid === element.proxy)){
