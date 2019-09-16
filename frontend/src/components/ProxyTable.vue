@@ -207,7 +207,7 @@ export default {
         } else {
           this.itemJson = this.mapGuids(response);
         }
-    }).then(this.isLoading = false;);
+    }).then(this.isLoading = false);
   },
   methods: {
     //validates forms
