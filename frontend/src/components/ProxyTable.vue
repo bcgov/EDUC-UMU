@@ -201,7 +201,7 @@ export default {
           this.itemJson = [];
         } else {
           this.guidArr = response;
-          this.userArr = mapGuids(this.guidArr);
+          this.itemJson = mapGuids(this.guidArr);
           this.isLoading = false;
         }
     })
@@ -239,7 +239,7 @@ export default {
         }
       });
       return arr;
-    }
+    },
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level) {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};
