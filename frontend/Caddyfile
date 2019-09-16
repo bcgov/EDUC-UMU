@@ -15,7 +15,7 @@
         Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate"
         X-Content-Type-Options "nosniff"
         Strict-Transport-Security "max-age=31536000"
-        Content-Security-Policy "default-src 'self'"
+        Content-Security-Policy "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://fonts.googleapis.com"
         Referrer-Policy "same-origin"
         Feature-Policy "fullscreen 'self'"
     }
