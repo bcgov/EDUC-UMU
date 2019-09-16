@@ -201,7 +201,7 @@ export default {
   }),
   //Automatically fetches the table contents from the database on page load
   mounted: async function() {
-    this.$store.dispatch('proxyActions/getProxy').then(response => {
+    this.$store.dispatch('proxyActions/getProxy').then(async function(response){
       if(response === 500){
           this.itemJson = [];
         } else {
@@ -222,7 +222,7 @@ export default {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      this.$store.dispatch('proxyActions/getProxy').then(response => {
+      this.$store.dispatch('proxyActions/getProxy').then(async function(response){
         if(response === 500){
           this.itemJson = [];
         } else {
