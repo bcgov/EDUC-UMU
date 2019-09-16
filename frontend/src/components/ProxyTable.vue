@@ -228,7 +228,7 @@ export default {
 
     //map each user GUID to a readable username
     mapGuids(arr){
-      const getUsers = this.$store.dispatch('userActions/getUsers').then(response => {
+      this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
           if(response.find(x => x.guid === element.proxy)){
             element.proxyName = response.find(x => x.guid === element.proxy).username;
