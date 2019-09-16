@@ -21,10 +21,10 @@
     >
 
     <template v-slot:item.proxyName="{ item }">
-      {{ item.proxyName + '(' + item.proxy + ')' }}
+      {{ item.proxyName + ' (' + item.proxy + ')' }}
     </template>
     <template v-slot:item.targetName="{ item }">
-      {{ item.targetName + '(' + item.target + ')' }}
+      {{ item.targetName + ' (' + item.target + ')' }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
@@ -173,12 +173,12 @@ export default {
     headers: [
       {
         sortable: true,
-        text: 'Proxy User',
+        text: 'Proxy User (GUID)',
         value: 'proxyName'
       },
       {
         sortable: true,
-        text: 'Target User',
+        text: 'Target User (GUID)',
         value: 'targetName'
       },
       {
@@ -226,17 +226,18 @@ export default {
       this.isLoading = true;
       this.$store.dispatch('proxyActions/getProxy').then(response => {
         if(response === 500){
-          this.itemJson = [];
-          return;
+          return [];
         } else {
-          this.itemJson = this.mapGuids(response);
-          this.isLoading = false;
+          return this.mapGuids(response);
         }
+      }).then(response => {
+        this.itemJson = response;
+        this.isLoading = false;
       })
     },
 
     //map each user GUID to a readable username
-    mapGuids(arr){
+    async mapGuids(arr){
       this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
           if(response.find(x => x.guid === element.proxy)){

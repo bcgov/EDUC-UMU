@@ -33,8 +33,8 @@ class Proxy {
       }
     }*/
     return [
-            {'proxy': '239786FWEUHDFGSDKFASDF', 'target': '54789THERIFU23G54WYRT', 'level': 'full'},
-            {'proxy': '54789THERIFU23G54WYRT', 'target': 'FVBNJTY89WEFUHEFIBRQ', 'level': 'not full'}
+            {'proxy': '239786FWEUHDFGSDKFASDF', 'target': '54789THERIFU23G54WYRT', 'level': 'full', 'proxyName': '', 'targetName': ''},
+            {'proxy': '54789THERIFU23G54WYRT', 'target': 'FVBNJTY89WEFUHEFIBRQ', 'level': 'not full', 'proxyName': '', 'targetName': ''}
           ];
   }
   /*
