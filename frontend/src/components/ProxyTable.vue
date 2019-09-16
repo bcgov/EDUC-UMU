@@ -19,7 +19,6 @@
       :search="search"
       :loading="isLoading"
     >
-
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
@@ -169,12 +168,12 @@ export default {
       {
         sortable: true,
         text: 'Proxy User',
-        value: 'proxy'
+        value: 'proxyName'
       },
       {
         sortable: true,
         text: 'Target User',
-        value: 'target'
+        value: 'targetName'
       },
       {
         sortable: true,
@@ -227,15 +226,17 @@ export default {
       })
     },
 
+    //map each user GUID to a readable username
     mapGuids(arr){
-      const getUsers = this.$store.dispatch('userActions/getUsers');
-      arr.forEach(element => {
-        if(getUsers.find(x => x.guid === element.proxy)){
-          element.proxy = getUsers.find(x => x.guid === element.proxy).username;
-        }
-        if(getUsers.find(x => x.guid === element.target)){
-          element.target = getUsers.find(x => x.guid === element.target).username;
-        }
+      const getUsers = this.$store.dispatch('userActions/getUsers').then(response => {
+        arr.forEach(element => {
+          if(response.find(x => x.guid === element.proxy)){
+            element.proxyName = response.find(x => x.guid === element.proxy).username;
+          }
+          if(response.find(x => x.guid === element.target)){
+            element.targetName = response.find(x => x.guid === element.target).username;
+          }
+        });
       });
       return arr;
     },
