@@ -56,7 +56,16 @@ export default {
   },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
-    ...mapGetters('auth', ['accessDenied'])
+    ...mapGetters('auth', ['accessDenied']),
+    ...mapGetters('database', ['users'])
+  },
+  mounted: function(){
+    this.getApiResponse();
+  },
+  methods: {
+    getApiResponse() {
+      this.$store.dispatch('database/getUsers');
+    }
   }
 };
 </script>
