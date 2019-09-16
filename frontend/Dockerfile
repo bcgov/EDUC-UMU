@@ -1,10 +1,7 @@
 #start with java base image so we can run selenium
-FROM openjdk:14-alpine
+FROM node:lts-alpine
 
 WORKDIR /opt/app-root/src
-
-#add node and npm
-RUN apk add --update nodejs npm
 
 COPY package*.json ./
 RUN npm install
