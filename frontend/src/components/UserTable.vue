@@ -82,7 +82,11 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
-            <v-btn color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
+            <v-btn class="ma-2" dark color="#003366" :href='csvRoute'>
+              <v-icon left color="white">save_alt</v-icon>
+              CSV Template
+            </v-btn>
+            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
                   <v-card>
@@ -107,7 +111,7 @@
                             <v-text-field label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select :items="authSources" label="Auth Source" name="auth" :readonly="groupOpen" required></v-select>
+                            <v-select :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
                             <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
@@ -182,7 +186,7 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" :value="userInfo.username" name="system" label="System"></v-select>
+                            <v-select :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
                             <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
@@ -236,8 +240,10 @@
 </template>
 
 <script>
+import { DownloadRoutes } from '@/utils/constants';
 export default{
   data: () =>  ({
+      csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
       usernameArr: [
         {"system": '', "username": '', "guid": '', "authSource": ''}

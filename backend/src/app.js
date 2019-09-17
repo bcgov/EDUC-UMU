@@ -20,6 +20,7 @@ const OidcStrategy = require('passport-openidconnect').Strategy;
 const utils = require('./components/utils');
 const authRouter = require('./routes/auth');
 const mainRouter = require('./routes/api');
+const downloadRouter = require('./routes/download');
 
 const apiRouter = express.Router();
 
@@ -124,7 +125,8 @@ apiRouter.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/api/auth',
-      '/api/main'
+      '/api/main',
+      '/api/download'
     ],
     versions: [
       1
@@ -137,6 +139,7 @@ app.use(/(\/getok)?(\/api)?/, apiRouter);
 
 apiRouter.use('/auth', authRouter);
 apiRouter.use('/main', mainRouter);
+apiRouter.use('/download', downloadRouter);
 
 //Handle 500 error
 app.use((err, _req, res, next) => {

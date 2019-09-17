@@ -41,7 +41,7 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-text-field label="System" required></v-text-field>
+                          <v-select :items="systemArray" label="System" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
                           <v-text-field label="Application Role" required></v-text-field>
@@ -105,7 +105,7 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-text-field label="System" :value="roleInfo.system" required></v-text-field>
+                          <v-select :items="systemArray" label="System" :value="roleInfo.system" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
                           <v-text-field label="Application Role" :value="roleInfo.role" required></v-text-field>
@@ -199,6 +199,7 @@ export default{
       }
     ],
     items: [],
+    systemArray: [],
     itemJson: [],
     roleInfo: {}
   }),
@@ -208,6 +209,7 @@ export default{
           this.itemJson = [];
         } else {
           this.itemJson = response;
+          this.getSystems();
           this.isLoading = false;
         }
     })
@@ -232,6 +234,15 @@ export default{
           this.isLoading = false;
         }
       })
+    },
+    getSystems() {
+      const sysArr = [];
+      (this.itemJson).forEach(function(element){
+        if(!(sysArr.includes(element.system))){
+          sysArr.push(element.system);
+        }
+      });
+      this.systemArray = sysArr;
     },
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {

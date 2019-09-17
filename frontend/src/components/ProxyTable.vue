@@ -20,10 +20,16 @@
       :loading="isLoading"
     >
 
+    <template v-slot:item.proxyName="{ item }">
+      {{ item.proxyName + ' (' + item.proxy + ')' }}
+    </template>
+    <template v-slot:item.targetName="{ item }">
+      {{ item.targetName + ' (' + item.target + ')' }}
+    </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level)" color="#003366">edit</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#003366">edit</v-icon>
         <v-icon class="list_action" @click.stop="deleteProxy()" color="#003366">delete</v-icon>
       </template>
 
@@ -46,17 +52,31 @@
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12>
-                          <v-text-field label="Proxy ID" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field label="Target ID" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
+                      <v-radio-group v-model="userSelect" row>
+                        <v-radio color="#003366" name="userSelect" label="GUID" :value="false"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="Username" :value="true"></v-radio>
+                      </v-radio-group>
+                      <v-row>
+                        <v-col>
+                          <v-text-field :disabled="userSelect" label="Proxy ID"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field :disabled="userSelect" label="Target ID"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
+                          <v-text-field :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field :disabled="!userSelect" label="Target Username"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
                           <v-text-field label="Proxy Level" required></v-text-field>
-                        </v-flex>
-                      </v-layout>
+                        </v-col>
+                      </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
@@ -95,7 +115,6 @@
       </template>
     </v-data-table>
 
-
   <!-- The dialog box for adding a proxy to the database -->
     <v-dialog v-model="dialog_pForm" persistent max-width="700px">
               <v-form>
@@ -105,17 +124,31 @@
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12>
-                          <v-text-field label="Proxy ID" :value="proxyInfo.proxy" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field label="Target ID" required :value="proxyInfo.target"></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
+                      <v-radio-group v-model="userSelect" row>
+                        <v-radio color="#003366" name="userSelect" label="GUID" :value="false"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="Username" :value="true"></v-radio>
+                      </v-radio-group>
+                      <v-row>
+                        <v-col>
+                          <v-text-field :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
+                          <v-text-field :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
                           <v-text-field label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
-                        </v-flex>
-                      </v-layout>
+                        </v-col>
+                      </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
@@ -154,6 +187,7 @@
 <script>
 export default {
   data: () => ({
+    userSelect: false,
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
@@ -168,13 +202,13 @@ export default {
     headers: [
       {
         sortable: true,
-        text: 'Proxy ID',
-        value: 'proxy'
+        text: 'Proxy User (GUID)',
+        value: 'proxyName'
       },
       {
         sortable: true,
-        text: 'Target ID',
-        value: 'target'
+        text: 'Target User (GUID)',
+        value: 'targetName'
       },
       {
         sortable: true,
@@ -189,6 +223,8 @@ export default {
       }
     ],
     items: [],
+    guidArr: [],
+    userArr: [],
     itemJson: [],
     proxyInfo: {}
   }),
@@ -196,12 +232,14 @@ export default {
   mounted: function() {
     this.$store.dispatch('proxyActions/getProxy').then(response => {
       if(response === 500){
-          this.itemJson = [];
+          return [];
         } else {
-          this.itemJson = response;
-          this.isLoading = false;
+          return this.mapGuids(response);
         }
-    })
+    }).then(response => {
+      this.itemJson = response;
+      this.isLoading = false
+    });
   },
   methods: {
     //validates forms
@@ -217,16 +255,33 @@ export default {
       this.isLoading = true;
       this.$store.dispatch('proxyActions/getProxy').then(response => {
         if(response === 500){
-          this.itemJson = [];
+          return [];
         } else {
-          this.itemJson = response;
-          this.isLoading = false;
+          return this.mapGuids(response);
         }
+      }).then(response => {
+        this.itemJson = response;
+        this.isLoading = false;
       })
     },
+
+    //map each user GUID to a readable username
+    async mapGuids(arr){
+      this.$store.dispatch('userActions/getUsers').then(response => {
+        arr.forEach(element => {
+          if(response.find(x => x.guid === element.proxy)){
+            element.proxyName = response.find(x => x.guid === element.proxy).username;
+          }
+          if(response.find(x => x.guid === element.target)){
+            element.targetName = response.find(x => x.guid === element.target).username;
+          }
+        });
+      });
+      return arr;
+    },
     //Passes information from a specific row to the Update dialog box
-    updateProxyForm (proxy, target, level) {
-      this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};
+    updateProxyForm (proxy, target, level, proxyName, targetName) {
+      this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
       this.dialog_pForm = true;
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
