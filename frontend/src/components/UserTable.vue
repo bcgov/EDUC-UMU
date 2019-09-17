@@ -83,7 +83,7 @@
             <v-layout row justify-center>
             <!-- Add user form -->
             <v-btn class="ma-2" dark color="#003366" :href='csvRoute'>
-              <v-icon left color="white">save_alt</v-icon>
+              <v-icon left>save_alt</v-icon>
               CSV Template
             </v-btn>
             <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
