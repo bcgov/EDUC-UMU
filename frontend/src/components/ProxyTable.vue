@@ -53,8 +53,8 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-radio-group v-model="userSelect" row>
-                        <v-radio color="#003366" name="userSelect" label="GUID" :value="0"></v-radio>
-                        <v-radio color="#003366" name="userSelect" label="Username" :value="1"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="GUID" :value="false"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="Username" :value="true"></v-radio>
                       </v-radio-group>
                       <v-row>
                         <v-col>
@@ -125,8 +125,8 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-radio-group v-model="userSelect" row>
-                        <v-radio color="#003366" name="userSelect" label="GUID" :value="0"></v-radio>
-                        <v-radio color="#003366" name="userSelect" label="Username" :value="1"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="GUID" :value="false"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="Username" :value="true"></v-radio>
                       </v-radio-group>
                       <v-row>
                         <v-col>

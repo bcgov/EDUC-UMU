@@ -82,11 +82,11 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
-            <v-btn :href='csvRoute'>
-              <v-icon left color="#003366">save_alt</v-icon>
+            <v-btn class="ma-2" dark color="#003366" :href='csvRoute'>
+              <v-icon left color="white">save_alt</v-icon>
               CSV Template
             </v-btn>
-            <v-btn color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
+            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
                   <v-card>
