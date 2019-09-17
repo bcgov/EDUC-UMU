@@ -13,7 +13,7 @@ router.get('/', (_req, res) =>{
 router.get('/csvTemplate', (_req, res) => {
     res.setHeader('Content-disposition', 'attachment; filename=csvTemplate.csv');
     res.set('Content-Type', 'text/csv');
-    res.status(200).sendFile('csvTemplate.csv');
+    res.download('./csvTemplate.csv');
 
 });
 

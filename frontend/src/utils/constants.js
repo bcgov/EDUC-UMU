@@ -8,8 +8,9 @@ export const ApiRoutes = Object.freeze({
   ROLES: apiRoot + '/database/roles'
 });
 
+const downloadRoot = baseRoot + '/download';
 export const DownloadRoutes = Object.freeze({
-  CSV: '/csvTemplate'
+  CSV: downloadRoot + '/csvTemplate'
 });
 //Authentication endpoints
 const authRoot = baseRoot + '/auth';
