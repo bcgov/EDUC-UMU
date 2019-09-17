@@ -82,6 +82,10 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
+            <v-btn :href='csvRoute'>
+              <v-icon left color="#003366">save_alt</v-icon>
+              CSV Template
+            </v-btn>
             <v-btn color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
@@ -236,8 +240,10 @@
 </template>
 
 <script>
+import { DownloadRoutes } from '@/utils/constants';
 export default{
   data: () =>  ({
+      csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
       usernameArr: [
         {"system": '', "username": '', "guid": '', "authSource": ''}

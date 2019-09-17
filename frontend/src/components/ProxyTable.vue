@@ -53,8 +53,8 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-radio-group row>
-                        <v-radio color="#003366" label="GUID" value="guidRadio"></v-radio>
-                        <v-radio color="#003366" label="Username" value="userRadio"></v-radio>
+                        <v-radio color="#003366" label="GUID" :value="guidRadio"></v-radio>
+                        <v-radio color="#003366" label="Username" :value="userRadio"></v-radio>
                       </v-radio-group>
                       <v-row>
                         <v-col>
@@ -125,8 +125,8 @@
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-radio-group row>
-                        <v-radio color="#003366" label="GUID" value="guidRadio"></v-radio>
-                        <v-radio color="#003366" label="Username" value="userRadio"></v-radio>
+                        <v-radio color="#003366" label="GUID" :value="guidRadio"></v-radio>
+                        <v-radio color="#003366" label="Username" :value="userRadio"></v-radio>
                       </v-radio-group>
                       <v-row>
                         <v-col>
@@ -188,7 +188,7 @@
 export default {
   data: () => ({
     guidRadio: true,
-    userRadio: true,
+    userRadio: false,
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
