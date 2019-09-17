@@ -282,7 +282,7 @@ export default {
     },
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level, proxyName, targetName) {
-      this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};
+      this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
       this.dialog_pForm = true;
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
