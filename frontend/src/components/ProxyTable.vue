@@ -52,24 +52,24 @@
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
-                      <v-radio-group row>
-                        <v-radio color="#003366" label="GUID" :value="guidRadio"></v-radio>
-                        <v-radio color="#003366" label="Username" :value="userRadio"></v-radio>
+                      <v-radio-group v-model="userSelect" row>
+                        <v-radio color="#003366" name="userSelect" label="GUID" :value="0"></v-radio>
+                        <v-radio color="#003366" name="userSelect" label="Username" :value="1"></v-radio>
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field disabled="userRadio" label="Proxy ID"></v-text-field>
+                          <v-text-field :disabled="userSelect" label="Proxy ID"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field disabled="userRadio" label="Target ID"></v-text-field>
+                          <v-text-field :disabled="userSelect" label="Target ID"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field disabled="guidRadio" label="Proxy Username"></v-text-field>
+                          <v-text-field :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field disabled="guidRadio" label="Target Username"></v-text-field>
+                          <v-text-field :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
