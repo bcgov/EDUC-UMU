@@ -29,7 +29,7 @@
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level)" color="#003366">edit</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#003366">edit</v-icon>
         <v-icon class="list_action" @click.stop="deleteProxy()" color="#003366">delete</v-icon>
       </template>
 
@@ -52,17 +52,31 @@
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12>
-                          <v-text-field label="Proxy ID" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field label="Target ID" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
+                      <v-radio-group row>
+                        <v-radio color="#003366" label="GUID" value="guidRadio"></v-radio>
+                        <v-radio color="#003366" label="Username" value="userRadio"></v-radio>
+                      </v-radio-group>
+                      <v-row>
+                        <v-col>
+                          <v-text-field disabled="userRadio" label="Proxy ID"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field disabled="userRadio" label="Target ID"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
+                          <v-text-field disabled="guidRadio" label="Proxy Username"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field disabled="guidRadio" label="Target Username"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
                           <v-text-field label="Proxy Level" required></v-text-field>
-                        </v-flex>
-                      </v-layout>
+                        </v-col>
+                      </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
@@ -110,17 +124,31 @@
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
-                      <v-layout wrap>
-                        <v-flex xs12>
-                          <v-text-field label="Proxy ID" :value="proxyInfo.proxy" required></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                          <v-text-field label="Target ID" required :value="proxyInfo.target"></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
+                      <v-radio-group row>
+                        <v-radio color="#003366" label="GUID" value="guidRadio"></v-radio>
+                        <v-radio color="#003366" label="Username" value="userRadio"></v-radio>
+                      </v-radio-group>
+                      <v-row>
+                        <v-col>
+                          <v-text-field disabled="userRadio" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field disabled="userRadio" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
+                          <v-text-field disabled="guidRadio" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field disabled="guidRadio" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col>
                           <v-text-field label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
-                        </v-flex>
-                      </v-layout>
+                        </v-col>
+                      </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
@@ -159,6 +187,8 @@
 <script>
 export default {
   data: () => ({
+    guidRadio: true,
+    userRadio: true,
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
@@ -251,7 +281,7 @@ export default {
       return arr;
     },
     //Passes information from a specific row to the Update dialog box
-    updateProxyForm (proxy, target, level) {
+    updateProxyForm (proxy, target, level, proxyName, targetName) {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level};
       this.dialog_pForm = true;
     },
