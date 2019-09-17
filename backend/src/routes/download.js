@@ -11,9 +11,10 @@ router.get('/', (_req, res) =>{
 });
 
 router.get('/csvTemplate', (_req, res) => {
+    var csv = 'system,username,name,value,authSource,guid';
     res.setHeader('Content-disposition', 'attachment; filename=csvTemplate.csv');
     res.set('Content-Type', 'text/csv');
-    res.download('./csvTemplate.csv');
+    res.status(200).send(csv);
 
 });
 
