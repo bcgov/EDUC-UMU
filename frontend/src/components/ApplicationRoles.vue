@@ -41,10 +41,10 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" required></v-select>
+                          <v-select :items="systemArray" label="System" ref="addSystem" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" required></v-text-field>
+                          <v-text-field label="Application Role" ref="addRole" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -66,7 +66,7 @@
       <template
         v-slot:item.action="{ item }">
               <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
-              <v-icon class="list_action" @click="deleteRole()" color="#003366">delete</v-icon>
+              <v-icon class="list_action" @click="deleteRole(item.system, item.role)" color="#003366">delete</v-icon>
       </template>
 
 
@@ -105,17 +105,17 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" :value="roleInfo.system" required></v-select>
+                          <v-select :items="systemArray" label="System" ref="updateSystem" :value="roleInfo.system" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" :value="roleInfo.role" required></v-text-field>
+                          <v-text-field label="Application Role" ref="updateRole" :value="roleInfo.role" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_rForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="addRole()">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="updateRole()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -138,8 +138,8 @@
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Cancel</v-btn>
-            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Delete</v-btn>
+            <v-btn color="#003366" dark text @click="cancelDelete()">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="deleteRole()">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -149,6 +149,7 @@
 <script>
 export default{
   data: () => ({
+    deleteJson: {},
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
@@ -204,15 +205,7 @@ export default{
     roleInfo: {}
   }),
   mounted: function() {
-    this.$store.dispatch('roleActions/getRoles').then(response => {
-      if(response === 500){
-          this.itemJson = [];
-        } else {
-          this.itemJson = response;
-          this.getSystems();
-          this.isLoading = false;
-        }
-    })
+    this.getRoles()
   },
   methods: {
   //validates forms
@@ -227,13 +220,13 @@ export default{
       this.items = [];
       this.itemJson = [];
       this.$store.dispatch('roleActions/getRoles').then(response => {
-          if(response === 500){
+        if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = response;
-          this.isLoading = false;
+          this.itemJson = this.$store.roleActions.state.roles;
+          this.getSystems();
         }
-      })
+      });
     },
     getSystems() {
       const sysArr = [];
@@ -249,20 +242,41 @@ export default{
       this.roleInfo = {'system': system, 'role': role};
       this.dialog_rForm = true;
     },
+    updateRole() {
+      const roleInfo = {'system': this.$refs.updateSystem, 'role': this.$refs.updateRole};
+      this.$store.dispatch('roleActions/updateRole', roleInfo).then(response => {
+        if(response === 500){
+          this.dialog_rForm = false;
+          this.getRoles();
+        }
+      });
+      this.roleInfo = {};
+    }
     //Adds a role to the database then refreshes the table
-    addRole (roleInfo) {
-      this.dialog_rForm = false;
+    addRole () {
+      const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
       this.dialog_c = false;
       this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
-        if(response == 'error'){
-          this.itemJson - [];
-        }
         this.getRoles();
-      })
+      });
     },
     //Deletes a role from the database
-    deleteRole() {
+    deleteForm(system, role) {
+      this.deleteJson = {'system': system, 'role': role};
       this.dialog_rDelete = true;
+    },
+    deleteRole() {
+      this.$store.dispatch('roleActions/deleteRole', this.deleteJson).then(response => {
+        if(response === 500){
+          this.itemJson = [];
+        }
+      });
+      this.dialog_rDelete = false;
+      this.getRoles();
+    },
+    cancelDelete() {
+      this.deleteJson = {};
+      this.dialog_rDelete = false;
     }
   }
 };

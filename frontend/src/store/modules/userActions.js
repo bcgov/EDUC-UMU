@@ -5,12 +5,14 @@ export default {
     state: {
         users: null,
         userAdd: null,
-        userUpdate: null
+        userUpdate: null,
+        userDelete: null
     },
     getters: {
         users: state => state.users,
         addMessage: state => state.userAdd,
-        updateMessage: state => state.userUpdate
+        updateMessage: state => state.userUpdate,
+        deleteMessage: state => state.userDelete
     },
     mutations: {
         setUsers: (state, userRes) => {
@@ -21,6 +23,9 @@ export default {
         },
         updateUser: (state, userRes) => {
             state.userUpdate = userRes;
+        },
+        deleteUser: (state, userRes) => {
+            state.deleteUser = userRes;
         }
     },
     actions: {
@@ -51,6 +56,15 @@ export default {
                 context.commit('updateUser', response);
             } catch(e) {
                 context.commit('updateUser', e);
+            }
+        },
+        async deleteUser(context, info){
+            context.commit('deleteUser', null);
+            try {
+                const response = await ApiService.deleteUser(info);
+                context.commit('deleteUser', response);
+            } catch(e) {
+                context.commit('deleteUser', e);
             }
         }
     }

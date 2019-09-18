@@ -5,12 +5,14 @@ export default {
     state: {
         proxy: null,
         proxyAdd: null,
-        proxyUpdate: null
+        proxyUpdate: null,
+        proxyDelete: null
     },
     getters: {
         proxy: state => state.proxy,
         addMessage: state => state.proxyAdd,
-        updateMessage: state => state.proxyUpdate
+        updateMessage: state => state.proxyUpdate,
+        deleteMessage: state => state.proxyDelete
     },
     mutations: {
         setProxy: (state, proxyRes) => {
@@ -20,7 +22,10 @@ export default {
             state.proxyAdd = proxyRes
         },
         updateProxy: (state, proxyRes) => {
-            state.rproxyUpdate = proxyRes;
+            state.proxyUpdate = proxyRes;
+        },
+        deleteProxy: (state, proxyRes) => {
+            state.proxyDelete = proxyRes;
         }
     },
     actions: {
@@ -51,6 +56,14 @@ export default {
                 context.commit('updateProxy', response);
             } catch(e) {
                 context.commit('updateProxy', e);
+            }
+        },
+        async deleteProxy(context, info){
+            try {
+                const response = await ApiService.deleteProxy(info);
+                context.commit('deleteProxy', response);
+            } catch(e) {
+                context.commit('deleteProxy', e);
             }
         }
     }

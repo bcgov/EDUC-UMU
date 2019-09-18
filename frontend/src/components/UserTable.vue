@@ -30,7 +30,7 @@
                 class="mr-2"
                 dark
                 color="#d93e45"
-                @click="deleteUser('Are you sure you want to delete all entries with this username?')"
+                @click="deleteGroup()"
               >
                 <v-icon left>delete</v-icon>
                 Delete group
@@ -97,24 +97,22 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-
-                            <v-select label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
+                            <v-select ref="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
-
+                            <v-text-field ref="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select :items="nameOptions" label="Name" name="name" required></v-select>
+                            <v-select ref="addName" :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Value" name="value"></v-text-field>
+                            <v-text-field ref="addValue" label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
+                            <v-select ref="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field ref="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -163,7 +161,7 @@
         v-slot:item.action="{ item }">
           <v-btn icon class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
           <v-btn icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="deleteUser('Are you sure you want to delete this user?')" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="deleteUser(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
       </template>
 
 
@@ -186,29 +184,29 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
+                            <v-select ref="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                            <v-text-field ref="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select label="Name" name="name" :items="nameOptions" required></v-select>
+                            <v-select ref="updateName" label="Name" name="name" :items="nameOptions" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field label="Value" name="value" :value="userInfo.value"></v-text-field>
+                            <v-text-field ref="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select label="Auth Source" :items="authSources" name="auth" required></v-select>
+                            <v-select ref="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field ref="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_uForm = false">Close</v-btn>
-                      <v-btn color="#003366" dark text @click="addUser()">Update</v-btn>
+                      <v-btn color="#003366" dark text @click="updateUser()">Update</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -225,14 +223,14 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>{{ deleteMessage }}</span>
+                  <span>Are you sure you want to delete this entry?</span>
                 </v-flex>
               </v-layout>
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="dialog_uDelete = false">Cancel</v-btn>
-            <v-btn color="#003366" dark text @click="dialog_uDelete = false">Delete</v-btn>
+            <v-btn color="#003366" dark text @click="cancelDelete()">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="deleteUser()">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -245,6 +243,8 @@ export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
+      actionInitiate: '',
+      actionStatus: true,
       usernameArr: [
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
@@ -309,15 +309,7 @@ export default{
       userInfo: {}
   }),
   mounted: function(){
-    this.$store.dispatch('userActions/getUsers').then(response => {
-      if(response === 500){
-        this.itemJson = [];
-      } else {
-        this.itemJson = response;
-        this.getSystems();
-        this.isLoading = false;
-      }
-    })
+    this.getItems()
   },
 
   methods: {
@@ -327,12 +319,16 @@ export default{
         this.snackbar=true;
       }
     },
+
+    //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
       this.usernameArr = [{"system": '', "username": '', "guid": '', "authSource": ''}];
       this.usernameGroup = '';
       this.itemJson = this.tempArray;
     },
+
+    //select all entries with the same username
     selectUsername(usrname){
       if(this.groupOpen){
         return;
@@ -347,6 +343,7 @@ export default{
         this.itemJson = this.usernameArr;
       }
     },
+
     //retrieves users from the API endpoint and puts them into a JSON array
     getItems () {
       this.isLoading = true;
@@ -355,7 +352,7 @@ export default{
         if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = response;
+          this.itemJson = this.$store.userActions.state.users;
           this.getSystems();
           this.isLoading = false;
         }
@@ -365,22 +362,61 @@ export default{
     submitUser () {
       userForm.submit().then(dialog_a = false);
     },*/
+
     //Passes information from a specific row in the table to the Update user form
     updateUserForm(system, username, name, value, auth, guid) {
       this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
       this.dialog_uForm = true;
     },
+    updateUser(){
+      const updateJson = {'system': this.$refs.updateSystem, 'username': this.$refs.updateUsername, 'name': this.$refs.updatename, 'value': this.$refs.updateValue, 'authSource':this.$refs.updateAuth, 'guid':this.$refs.updateGuid};
+      this.$store.dispatch('userActions/updateUser', updateJson).then(response => {
+        if(response === 500){
+          this.actionStatus = false;
+        }
+      });
+      this.getItems();
+      this.userInfo = {};
+      this.dialog_uForm = false;
+    }
+
     //initiates the add user dialog box and reloads the table once the user has been added
     addUser() {
-      this.dialog_a = false;
-      this.dialog_uForm = false;
+      const user = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
+      this.actionInitiate = 'add';
+      this.$store.dispatch('userActions/addUser', user).then(response => {
+        if(response === 500){
+          this.actionStatus = false;
+        }
+      });
+      this.actionStatus = true;
       this.getItems();
+      this.dialog_a = false;
     },
+
     //initiates the delete user dialog box
-    deleteUser(message) {
-      this.deleteMessage = message;
+    deleteForm(system, username, name, value, authSource, guid) {
       this.dialog_uDelete = true;
+      this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
+    deleteUser() {
+      this.actionInitiate = 'delete';
+      this.$store.dispatch('userActions/deleteUser', this.deleteJson).then(response => {
+          if(response === 500){
+            this.actionStatus = false;
+          } else {
+            this.actionStatus = true;
+          }
+      });
+      this.dialog_uDelete = false;
+      this.deleteJson = {};
+    },
+    cancelDelete() {
+      this.dialog_uDelete = false;
+      this.deleteJson = {}
+    },
+
+    //find all valid systems by searching database response
     getSystems() {
       const sysArr = this.systemArray;
       (this.itemJson).forEach(function(element){
@@ -389,10 +425,30 @@ export default{
         }
       });
       this.systemArray = sysArr;
-    }/*
+    },
+
+    //delete actions
     deleteGroup(){
-      
-    }*/
+      this.actionInitiate = 'bulkDelete';
+      this.dialog_uDelete = false;
+      this.itemJson.foreach(function(element){
+        this.deleteJson = element;
+        this.deleteUser();
+      });
+      this.getItems();
+    },
+    addCsv(csvRes){
+      this.actionInitiate = 'bulkAdd';
+      csvRes.foreach(function(element){
+        this.$store.dispatch('userActions/addUser', element).then(response => {
+          if(response === 500){
+            this.actionStatus = false;
+            break;
+          }
+        });
+      });
+      this.actionStatus = true;
+    }
   }
 };
 </script>

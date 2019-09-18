@@ -30,7 +30,7 @@
       <template
         v-slot:item.action="{ item }">
         <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#003366">edit</v-icon>
-        <v-icon class="list_action" @click.stop="deleteProxy()" color="#003366">delete</v-icon>
+        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#003366">delete</v-icon>
       </template>
 
 
@@ -66,15 +66,15 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field ref="addProxy" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Target Username"></v-text-field>
+                          <v-text-field ref="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field label="Proxy Level" required></v-text-field>
+                          <v-text-field ref="addLevel" label="Proxy Level" required></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -138,22 +138,22 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field ref="updateProxy" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                          <v-text-field ref="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                          <v-text-field ref="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_pForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="addProxy()">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="updateProxy()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -176,8 +176,8 @@
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="dialog_pDelete = false">Cancel</v-btn>
-            <v-btn color="#003366" dark text @click="dialog_pDelete = false">Delete</v-btn>
+            <v-btn color="#003366" dark text @click="cancelDelete()">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="deleteProxy()">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -187,7 +187,10 @@
 <script>
 export default {
   data: () => ({
+    deleteJson: {},
     userSelect: false,
+    actionStatus: true,
+    actionInitiate: '',
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
@@ -230,16 +233,7 @@ export default {
   }),
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
-    this.$store.dispatch('proxyActions/getProxy').then(response => {
-      if(response === 500){
-          return [];
-        } else {
-          return this.mapGuids(response);
-        }
-    }).then(response => {
-      this.itemJson = response;
-      this.isLoading = false
-    });
+    this.getProxy()
   },
   methods: {
     //validates forms
@@ -257,7 +251,7 @@ export default {
         if(response === 500){
           return [];
         } else {
-          return this.mapGuids(response);
+          return this.mapGuids(this.$store.proxyActions.state.proxy);
         }
       }).then(response => {
         this.itemJson = response;
@@ -284,15 +278,50 @@ export default {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
       this.dialog_pForm = true;
     },
+    updateProxy(){
+      const updateJson = {'proxy': this.$refs.updateProxy, 'target': this.$refs.updateTarget, 'level': this.$refs.updateLevel};
+      this.$store.dispatch('proxyActions/updateProxy', updateJson).then(response => {
+        if(response != 500){
+          this.getProxy();
+          this.proxyInfo = {};
+          this.dialog_pForm = false;
+        }
+      });
+    }
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     addProxy () {
+      const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};
       this.dialog_b = false;
-      this.dialog_pForm = false;
+      this.actionInitiate = 'add';
+      this.$store.dispatch('proxyActions/addProxy', proxyJson).then(response => {
+        if(response === 500){
+          this.actionStatus = false;
+        } else {
+          this.actionStatus = true;
+        }
+      });
       this.getProxy();
     },
     //initiates the proxy delete function
-    deleteProxy() {
+    deleteForm(proxy, target, level){
       this.dialog_pDelete = true;
+      this.deleteJson = {'proxy': proxy, 'target': target, 'level': level};
+    },
+    deleteProxy() {
+      this.actionInitiate = 'delete';
+      this.$store.dispatch('proxyActions/deleteProxy', proxy).then(response => {
+        if(response === 500){
+          this.actionStatus = false;
+        } else {
+          this.actionStatus = true;
+        }
+      });
+      this.dialog_pDelete = false;
+      this.deleteJson = {}
+    },
+    cancelDelete() {
+      this.dialog_pDelete = false;
+      this.deleteJson = {};
     }
   }
 };

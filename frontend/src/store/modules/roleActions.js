@@ -5,12 +5,14 @@ export default {
     state: {
         roles: null,
         roleAdd: null,
-        roleUpdate: null
+        roleUpdate: null,
+        roleDelete: null
     },
     getters: {
-        users: state => state.roles,
+        roles: state => state.roles,
         addMessage: state => state.roleAdd,
-        updateMessage: state => state.roleUpdate
+        updateMessage: state => state.roleUpdate,
+        deleteMessage: state => state.roleDelete
     },
     mutations: {
         setRoles: (state, roleRes) => {
@@ -21,6 +23,9 @@ export default {
         },
         updateRole: (state, roleRes) => {
             state.roleUpdate = roleRes;
+        },
+        deleteRole: (state, roleRes) => {
+            state.roleDelete = roleRes;
         }
     },
     actions: {
@@ -51,6 +56,15 @@ export default {
                 context.commit('updateRole', response);
             } catch(e) {
                 context.commit('updateRole', e);
+            }
+        },
+        async deleteRole(context, info){
+            context.commit('deleteRole', null);
+            try {
+                const response = await ApiService.deleteRole(info);
+                context.commit('deleteRole', response);
+            } catch(e) {
+                context.commit('deleteRole', e);
             }
         }
     }

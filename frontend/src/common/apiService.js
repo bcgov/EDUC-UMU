@@ -115,6 +115,18 @@ export default {
       throw e;
     }
   },
+  async deleteUser(userInfo){
+    try{
+      const response = await apiAxios.delete(ApiRoutes.USERS, userInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to delete from API - ${e}`);
+      throw e;
+    }
+  },
   async getRoles(){
     try{
       const response = await apiAxios.get(ApiRoutes.ROLES);
@@ -148,6 +160,18 @@ export default {
       return response.data;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
+      throw e;
+    }
+  },
+  async deleteRole(roleInfo){
+    try{
+      const response = await apiAxios.delete(ApiRoutes.ROLES, roleInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to delete from API - ${e}`);
       throw e;
     }
   },
@@ -186,5 +210,17 @@ export default {
       console.log(`Failed to post to API - ${e}`);
       throw e;
     }
-  }
+  },
+  async deleteProxy(proxyInfo){
+    try{
+      const response = await apiAxios.delete(ApiRoutes.PROXY, proxyInfo);
+      if(response.status == 500){
+        return response.status;
+      }
+      return response.data;
+    } catch(e) {
+      console.log(`Failed to delete from API - ${e}`);
+      throw e;
+    }
+  },
 };
