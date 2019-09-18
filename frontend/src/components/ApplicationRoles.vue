@@ -226,9 +226,11 @@ export default{
       this.$store.dispatch('roleActions/getRoles').then(response => {
         if(response === 500){
           this.itemJson = [];
+          this.isLoading = false;
         } else {
           this.itemJson = this.roles;
           this.getSystems();
+          this.isLoading = false;
         }
       });
     },

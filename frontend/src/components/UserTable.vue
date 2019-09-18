@@ -161,7 +161,7 @@
         v-slot:item.action="{ item }">
           <v-btn icon class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
           <v-btn icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="deleteUser(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="deleteForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
       </template>
 
 
