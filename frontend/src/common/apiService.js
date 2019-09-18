@@ -189,7 +189,7 @@ export default {
   },
   async addProxy(proxyInfo){
     try{
-      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      const response = await apiAxios.post(ApiRoutes.PROXY, proxyInfo);
       if(response.status == 500){
         return response.status;
       }
@@ -201,7 +201,7 @@ export default {
   },
   async updateProxy(proxyInfo){
     try{
-      const response = await apiAxios.get(ApiRoutes.PROXY, proxyInfo);
+      const response = await apiAxios.put(ApiRoutes.PROXY, proxyInfo);
       if(response.status == 500){
         return response.status;
       }
