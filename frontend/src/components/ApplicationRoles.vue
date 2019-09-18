@@ -257,7 +257,9 @@ export default{
       const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
       this.dialog_c = false;
       this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
-        this.getRoles();
+        if(response != 500){
+          this.getRoles();
+        }
       });
     },
     //Deletes a role from the database

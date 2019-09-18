@@ -443,7 +443,7 @@ export default{
         this.$store.dispatch('userActions/addUser', element).then(response => {
           if(response === 500){
             this.actionStatus = false;
-            break;
+            return;
           }
         });
       });

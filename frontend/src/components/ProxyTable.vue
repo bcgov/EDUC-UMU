@@ -309,7 +309,7 @@ export default {
     },
     deleteProxy() {
       this.actionInitiate = 'delete';
-      this.$store.dispatch('proxyActions/deleteProxy', proxy).then(response => {
+      this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson).then(response => {
         if(response === 500){
           this.actionStatus = false;
         } else {
