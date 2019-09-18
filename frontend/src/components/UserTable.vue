@@ -239,6 +239,7 @@
 
 <script>
 import { DownloadRoutes } from '@/utils/constants';
+import { mapGetters } from 'vuex';
 export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
@@ -308,6 +309,9 @@ export default{
       items: [],
       userInfo: {}
   }),
+  computed: {
+    ...mapGetters('userActions', ['users']);
+  },
   mounted: function(){
     this.getItems()
   },
@@ -352,7 +356,7 @@ export default{
         if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = this.$store.userActions.state.users;
+          this.itemJson = this.users;
           this.getSystems();
           this.isLoading = false;
         }

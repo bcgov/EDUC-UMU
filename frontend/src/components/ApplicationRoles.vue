@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default{
   data: () => ({
     deleteJson: {},
@@ -204,6 +205,9 @@ export default{
     itemJson: [],
     roleInfo: {}
   }),
+  computed: {
+    ...mapGetters('roleActions', ['roles']);
+  },
   mounted: function() {
     this.getRoles()
   },
@@ -223,7 +227,7 @@ export default{
         if(response === 500){
           this.itemJson = [];
         } else {
-          this.itemJson = this.$store.roleActions.state.roles;
+          this.itemJson = this.roles;
           this.getSystems();
         }
       });

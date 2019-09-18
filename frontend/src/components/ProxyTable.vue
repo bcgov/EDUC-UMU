@@ -185,6 +185,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data: () => ({
     deleteJson: {},
@@ -231,6 +232,9 @@ export default {
     itemJson: [],
     proxyInfo: {}
   }),
+  computed: {
+    ...mapGetters('proxyActions', ['proxy']);
+  },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
     this.getProxy()
@@ -251,7 +255,7 @@ export default {
         if(response === 500){
           return [];
         } else {
-          return this.mapGuids(this.$store.proxyActions.state.proxy);
+          return this.mapGuids(this.proxy);
         }
       }).then(response => {
         this.itemJson = response;

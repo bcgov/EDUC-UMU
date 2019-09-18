@@ -36,8 +36,8 @@ class Database {
       callback(rows[0].last_value);
     }));
   }
-  async deleteUser(authUser, callback) {
-    this.authUsers.delete(authUser.userId, callback);
+  async deleteUser(authUser) {
+    this.authUsers.delete(authUser.userId);
   }
   async selectUsers() {
     let result = this.authUsers.selectAll();
@@ -68,8 +68,8 @@ class Database {
       callback(rows[0].last_value);
     }));
   }
-  async deleteProxy(proxyDetails, callback) {
-    this.proxy.delete(proxyDetails.proxyId, callback);
+  async deleteProxy(proxyDetails) {
+    this.proxy.delete(proxyDetails.proxyId);
   }
   async selectProxies(callback) {
     let result = this.proxy.selectAll(callback);
@@ -99,8 +99,8 @@ class Database {
       callback(rows[0].last_value);
     }));
   }
-  async deleteRole(roleDetails, callback) {
-    this.roles.delete(roleDetails.roleId, callback);
+  async deleteRole(roleDetails) {
+    this.roles.delete(roleDetails.roleId);
   }
   async selectRole(callback) {
     let result = this.roles.selectAll(callback);

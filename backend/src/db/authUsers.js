@@ -6,15 +6,27 @@ dotenv.config();
 
 class AuthUser {
   constructor() {}
-  /*
-  async create(options, callback) {
+  
+  async create(options) {
+      /*
       db.execute(`insert into :1(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATED_BY) values(:2, :3, :4, :5, :6, :7, :8);`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirnmae, options.guid, options.createdBy], () => {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
-      });
+      });*/
+      if(options != null){
+        return 'kjsfhsldfsa'
+      }
+
+      return 'whatever';
   }
-  async delete(id, callback) {
+  async delete(id) {
+      /*
       db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
-  }*/
+      */
+     if(id != null){
+       return 'kjsfhsldfsa'
+     }
+     return 'whatever';
+  }
   //select all users from table
   async selectAll() {
     const users =  [{"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
@@ -55,16 +67,19 @@ class AuthUser {
     }
     return result.rows;*/
     return users;
-  }
-  /*
-  async select(system, username, name, value, userguid) {
-      db.execute(`select * from :1 where USERGUID=:2 AND `, [process.env.AUTH_TABLE, id]);
-  }
-  async update(options, callback) {
-      db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
-          db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
-      });
+  }/*
+  async select(options) {
+      //db.execute(`select * from :1 where USERGUID=:2 AND `, [process.env.AUTH_TABLE, id]);
   }*/
+  async update(options) {
+      /*db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
+          db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE]);
+      });*/
+      if(options != null){
+        return 'asdklfhaerjkfahse'
+      }
+      return 'whatever';
+  }
 };
 
 module.exports = AuthUser;
