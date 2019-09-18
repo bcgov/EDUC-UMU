@@ -287,7 +287,7 @@ export default {
           this.dialog_pForm = false;
         }
       });
-    }
+    },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     addProxy () {
       const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};

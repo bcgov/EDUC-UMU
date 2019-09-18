@@ -378,7 +378,7 @@ export default{
       this.getItems();
       this.userInfo = {};
       this.dialog_uForm = false;
-    }
+    },
 
     //initiates the add user dialog box and reloads the table once the user has been added
     addUser() {

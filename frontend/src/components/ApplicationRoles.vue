@@ -251,7 +251,7 @@ export default{
         }
       });
       this.roleInfo = {};
-    }
+    },
     //Adds a role to the database then refreshes the table
     addRole () {
       const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
