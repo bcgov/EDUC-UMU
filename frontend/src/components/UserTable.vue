@@ -310,7 +310,7 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('userActions', ['users']);
+    ...mapGetters('userActions', ['users'])
   },
   mounted: function(){
     this.getItems()

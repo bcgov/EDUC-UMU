@@ -206,7 +206,7 @@ export default{
     roleInfo: {}
   }),
   computed: {
-    ...mapGetters('roleActions', ['roles']);
+    ...mapGetters('roleActions', ['roles'])
   },
   mounted: function() {
     this.getRoles()

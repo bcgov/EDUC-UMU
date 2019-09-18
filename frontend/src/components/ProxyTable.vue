@@ -233,7 +233,7 @@ export default {
     proxyInfo: {}
   }),
   computed: {
-    ...mapGetters('proxyActions', ['proxy']);
+    ...mapGetters('proxyActions', ['proxy'])
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
