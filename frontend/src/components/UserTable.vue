@@ -88,7 +88,7 @@
             </v-btn>
             <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
-                <v-form @submit="addUser()" id="addForm">
+                <v-form>
                   <v-card>
                     <v-card-title>
                       <span><h4>Add Auth User</h4></span>
@@ -119,7 +119,7 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
-                      <v-btn color="#003366" dark text type="submit" form="addForm">Add</v-btn>
+                      <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
                       <v-file-input accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
