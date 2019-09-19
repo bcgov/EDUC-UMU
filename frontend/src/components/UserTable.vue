@@ -349,7 +349,7 @@ export default{
     },
 
     //retrieves users from the API endpoint and puts them into a JSON array
-    getItems () {
+    async getItems () {
       this.isLoading = true;
       this.resetUsername();
       await this.$store.dispatch('userActions/getUsers');
@@ -367,7 +367,7 @@ export default{
       this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
       this.dialog_uForm = true;
     },
-    updateUser(){
+    async updateUser(){
       const updateJson = {'system': this.$refs.updateSystem, 'username': this.$refs.updateUsername, 'name': this.$refs.updatename, 'value': this.$refs.updateValue, 'authSource':this.$refs.updateAuth, 'guid':this.$refs.updateGuid};
       await this.$store.dispatch('userActions/updateUser', updateJson)
       this.getItems();
@@ -376,7 +376,7 @@ export default{
     },
 
     //initiates the add user dialog box and reloads the table once the user has been added
-    addUser() {
+    async addUser() {
       const user = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
       this.actionInitiate = 'add';
       await this.$store.dispatch('userActions/addUser', user);
@@ -390,7 +390,7 @@ export default{
       this.dialog_uDelete = true;
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
-    deleteUser() {
+    async deleteUser() {
       this.actionInitiate = 'delete';
       await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
       this.dialog_uDelete = false;
@@ -422,7 +422,7 @@ export default{
       });
       this.getItems();
     },
-    addCsv(csvRes){
+    async addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
       csvRes.foreach(function(element){
         await this.$store.dispatch('userActions/addUser', element);

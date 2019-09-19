@@ -219,7 +219,7 @@ export default{
       }
     },
     //retrieve roles from the API endpoint
-    getRoles () {
+    async getRoles () {
       this.isLoading = true;
       this.items = [];
       this.itemJson = [];
@@ -242,7 +242,7 @@ export default{
       this.roleInfo = {'system': system, 'role': role};
       this.dialog_rForm = true;
     },
-    updateRole() {
+    async updateRole() {
       const roleInfo = {'system': this.$refs.updateSystem, 'role': this.$refs.updateRole};
       await this.$store.dispatch('roleActions/updateRole', roleInfo);
       this.dialog_rForm = false;
@@ -250,7 +250,7 @@ export default{
       this.roleInfo = {};
     },
     //Adds a role to the database then refreshes the table
-    addRole () {
+    async addRole () {
       const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
@@ -261,7 +261,7 @@ export default{
       this.deleteJson = {'system': system, 'role': role};
       this.dialog_rDelete = true;
     },
-    deleteRole() {
+    async deleteRole() {
       await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
       this.dialog_rDelete = false;
       this.getRoles();

@@ -247,7 +247,7 @@ export default {
       }
     },
     //retrieves table entries from the API endpoint and places them in a JSON array
-    getProxy () {
+    async getProxy () {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
@@ -277,7 +277,7 @@ export default {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
       this.dialog_pForm = true;
     },
-    updateProxy(){
+    async updateProxy(){
       const updateJson = {'proxy': this.$refs.updateProxy, 'target': this.$refs.updateTarget, 'level': this.$refs.updateLevel};
       await this.$store.dispatch('proxyActions/updateProxy', updateJson);
       this.getProxy();
@@ -286,7 +286,7 @@ export default {
 
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
-    addProxy () {
+    async addProxy () {
       const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
@@ -298,7 +298,7 @@ export default {
       this.dialog_pDelete = true;
       this.deleteJson = {'proxy': proxy, 'target': target, 'level': level};
     },
-    deleteProxy() {
+    async deleteProxy() {
       this.actionInitiate = 'delete';
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson)
       this.dialog_pDelete = false;
