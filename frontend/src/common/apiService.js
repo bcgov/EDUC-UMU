@@ -93,7 +93,7 @@ export default {
 
   async addUser(userInfo){
     try{
-      const response = await apiAxios.post(ApiRoutes.USERS, { data: userInfo });
+      const response = await apiAxios.post(ApiRoutes.USERS, userInfo);
       if(response.status == 500){
         return response.status;
       }
