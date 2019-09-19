@@ -40,7 +40,7 @@ export default {
                 return e;
             }
         },
-        async addUser(context, info){
+        async addNewUser(context, info){
             context.commit('addUser', null);
             try {
                 const response = await ApiService.addUser(info);

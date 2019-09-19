@@ -377,9 +377,9 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
-      const user = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
+      const userJson = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
       this.actionInitiate = 'add';
-      await this.$store.dispatch('userActions/addUser', user);
+      await this.$store.dispatch('userActions/addNewUser', userJson);
       this.actionStatus = true;
       this.getItems();
       this.dialog_a = false;
@@ -425,7 +425,7 @@ export default{
     async addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
       csvRes.forEach(async function(element){
-        await this.$store.dispatch('userActions/addUser', element);
+        await this.$store.dispatch('userActions/addNewUser', element);
       });
     }
   }
