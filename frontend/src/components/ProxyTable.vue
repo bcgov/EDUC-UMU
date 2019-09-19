@@ -29,8 +29,8 @@
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#003366">edit</v-icon>
-        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#003366">delete</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
+        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#d93e45">delete</v-icon>
       </template>
 
 
