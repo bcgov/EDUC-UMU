@@ -13,16 +13,16 @@ class Roles {
           db.execute(`select last_value from :1;`, [process.env.ROLES_TABLE]);
       });*/
       if(options != null){
-        return 'jsdklfwefasef';
+        return options;
       }
-      return 'whatever';
+      return {'result': 'null'};
   }
   async delete(id) {
       //db.execute(`delete from :1 where id=:2`, [process.env.ROLES_TABLE, id]);
       if(id != null){
-        return 'jhaefjkawasf';
+        return id;
       }
-      return 'whatever';
+      return {'result': 'null'};
   }
 
   //select all roles from table
@@ -52,9 +52,9 @@ class Roles {
           db.execute(`select last_value from :1`, [process.env.ROLES_TABLE], callback);
       });*/
       if(options != null){
-        return 'jklasfhwejklfhse';
+        return options;
       }
-      return 'whatever';
+      return {'result': 'null'};
   }
 
 };

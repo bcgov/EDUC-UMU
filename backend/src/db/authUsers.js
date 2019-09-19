@@ -13,19 +13,18 @@ class AuthUser {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
       });*/
       if(options != null){
-        return 'kjsfhsldfsa'
+        return options;
       }
-
-      return 'whatever';
+      return {'result': 'null'};
   }
   async delete(id) {
       /*
       db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
       */
      if(id != null){
-       return 'kjsfhsldfsa'
+       return id;
      }
-     return 'whatever';
+     return {'result': 'null'};
   }
   //select all users from table
   async selectAll() {
@@ -76,9 +75,9 @@ class AuthUser {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE]);
       });*/
       if(options != null){
-        return 'asdklfhaerjkfahse'
+        return options;
       }
-      return 'whatever';
+      return {'result': 'null'};
   }
 };
 
