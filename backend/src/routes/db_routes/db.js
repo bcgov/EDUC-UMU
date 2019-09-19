@@ -36,7 +36,7 @@ dbRouter.put('/users', async(_req, res) => {
     }
 });
 dbRouter.post('/users', async(_req, res) => {
-    let data = _req.body.data;
+    let data = _req.body;
     const response = await database.createUser(data);
     if(response){
         res.status(200).json(data);

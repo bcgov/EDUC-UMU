@@ -416,7 +416,7 @@ export default{
     deleteGroup(){
       this.actionInitiate = 'bulkDelete';
       this.dialog_uDelete = false;
-      this.itemJson.foreach(function(element){
+      (this.itemJson).forEach(function(element){
         this.deleteJson = element;
         this.deleteUser();
       });
@@ -424,7 +424,7 @@ export default{
     },
     async addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
-      csvRes.foreach(async function(element){
+      csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addUser', element);
       });
     }
