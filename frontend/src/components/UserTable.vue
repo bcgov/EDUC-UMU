@@ -368,7 +368,7 @@ export default{
       this.dialog_uForm = true;
     },
     async updateUser(){
-      const updateJson = {'system': this.$refs.updateSystem, 'username': this.$refs.updateUsername, 'name': this.$refs.updatename, 'value': this.$refs.updateValue, 'authSource':this.$refs.updateAuth, 'guid':this.$refs.updateGuid};
+      const updateJson = {'system': this.$refs.updateSystem.value, 'username': this.$refs.updateUsername.value, 'name': this.$refs.updatename.value, 'value': this.$refs.updateValue.value, 'authSource':this.$refs.updateAuth.value, 'guid':this.$refs.updateGuid.value};
       await this.$store.dispatch('userActions/updateUser', updateJson)
       this.getItems();
       this.userInfo = {};
@@ -377,7 +377,7 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
-      const userJson = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
+      const userJson = {'system': this.$refs.addSystem.value, 'username': this.$refs.addUsername.value, 'name': this.$refs.addName.value, 'value': this.$refs.addValue.value, 'authSource': this.$refs.addAuth.value, 'guid': this.$refs.addGuid.value};
       this.actionInitiate = 'add';
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.actionStatus = true;
