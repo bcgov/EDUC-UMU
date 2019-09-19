@@ -4,28 +4,28 @@ export default {
     namespaced: true,
     state: {
         roles: null,
-        roleAdd: null,
-        roleUpdate: null,
-        roleDelete: null
+        addError: true,
+        updateError: true,
+        deleteError: true
     },
     getters: {
         roles: state => state.roles,
-        addMessage: state => state.roleAdd,
-        updateMessage: state => state.roleUpdate,
-        deleteMessage: state => state.roleDelete
+        roleAddError: state => state.addError,
+        roleUpdateError: state => state.updateError,
+        roleDeleteError: state => state.deleteError
     },
     mutations: {
         setRoles: (state, roleRes) => {
             state.roles = roleRes;
         },
         addRole: (state, roleRes) => {
-            state.roleAdd = roleRes
+            state.addError = roleRes
         },
         updateRole: (state, roleRes) => {
-            state.roleUpdate = roleRes;
+            state.updateError = roleRes;
         },
         deleteRole: (state, roleRes) => {
-            state.roleDelete = roleRes;
+            state.deleteError = roleRes;
         }
     },
     actions: {
@@ -44,9 +44,9 @@ export default {
             context.commit('addRole', null);
             try {
                 const response = await ApiService.addRole(info);
-                context.commit('roleAdd', response);
+                context.commit('addRole', response);
             } catch(e) {
-                context.commit('roleAdd', e);
+                context.commit('addRole', e);
             }
         },
         async updateRole(context, info){

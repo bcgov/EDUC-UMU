@@ -4,25 +4,25 @@ export default {
     namespaced: true,
     state: {
         users: null,
-        userAdd: null,
-        userUpdate: null,
-        userDelete: null
+        addError: false,
+        updateError: false,
+        deleteError: false
     },
     getters: {
         users: state => state.users,
-        addMessage: state => state.userAdd,
-        updateMessage: state => state.userUpdate,
-        deleteMessage: state => state.userDelete
+        userAddError: state => state.addError,
+        userUpdateError: state => state.updateError,
+        userDeleteError: state => state.deleteError
     },
     mutations: {
         setUsers: (state, userRes) => {
             state.users = userRes;
         },
         addUser: (state, userRes) => {
-            state.userAdd = userRes
+            state.addError = userRes
         },
         updateUser: (state, userRes) => {
-            state.userUpdate = userRes;
+            state.updateError = userRes;
         },
         deleteUser: (state, userRes) => {
             state.deleteUser = userRes;
@@ -44,9 +44,9 @@ export default {
             context.commit('addUser', null);
             try {
                 const response = await ApiService.addUser(info);
-                context.commit('userAdd', response);
+                context.commit('addUser', response);
             } catch(e) {
-                context.commit('userAdd', e);
+                context.commit('addUser', e);
             }
         },
         async updateUser(context, info){

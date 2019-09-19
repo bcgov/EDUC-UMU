@@ -4,28 +4,28 @@ export default {
     namespaced: true,
     state: {
         proxy: null,
-        proxyAdd: null,
-        proxyUpdate: null,
-        proxyDelete: null
+        addError: false,
+        updateError: false,
+        deleteError: false
     },
     getters: {
         proxy: state => state.proxy,
-        addMessage: state => state.proxyAdd,
-        updateMessage: state => state.proxyUpdate,
-        deleteMessage: state => state.proxyDelete
+        proxyAddError: state => state.addError,
+        proxyUpdateError: state => state.updateError,
+        proxyDeleteError: state => state.deleteError
     },
     mutations: {
         setProxy: (state, proxyRes) => {
             state.proxy = proxyRes;
         },
         addProxy: (state, proxyRes) => {
-            state.proxyAdd = proxyRes
+            state.addError = proxyRes
         },
         updateProxy: (state, proxyRes) => {
-            state.proxyUpdate = proxyRes;
+            state.updateError = proxyRes;
         },
         deleteProxy: (state, proxyRes) => {
-            state.proxyDelete = proxyRes;
+            state.deleteError = proxyRes;
         }
     },
     actions: {
@@ -44,9 +44,9 @@ export default {
             context.commit('addProxy', null);
             try {
                 const response = await ApiService.addProxy(info);
-                context.commit('proxyAdd', response);
+                context.commit('addProxy', response);
             } catch(e) {
-                context.commit('proxyAdd', e);
+                context.commit('addProxy', true);
             }
         },
         async updateProxy(context, info){
@@ -55,7 +55,7 @@ export default {
                 const response = await ApiService.updateProxy(info);
                 context.commit('updateProxy', response);
             } catch(e) {
-                context.commit('updateProxy', e);
+                context.commit('updateProxy', true);
             }
         },
         async deleteProxy(context, info){
@@ -63,7 +63,7 @@ export default {
                 const response = await ApiService.deleteProxy(info);
                 context.commit('deleteProxy', response);
             } catch(e) {
-                context.commit('deleteProxy', e);
+                context.commit('deleteProxy', true);
             }
         }
     }
