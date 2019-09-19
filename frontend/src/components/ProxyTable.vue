@@ -284,12 +284,10 @@ export default {
     },
     updateProxy(){
       const updateJson = {'proxy': this.$refs.updateProxy, 'target': this.$refs.updateTarget, 'level': this.$refs.updateLevel};
-      this.$store.dispatch('proxyActions/updateProxy', updateJson).then(response => {
-        if(response != 500){
+      this.$store.dispatch('proxyActions/updateProxy', updateJson).then(function() {
           this.getProxy();
           this.proxyInfo = {};
           this.dialog_pForm = false;
-        }
       });
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
@@ -297,14 +295,9 @@ export default {
       const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
-      this.$store.dispatch('proxyActions/addProxy', proxyJson).then(response => {
-        if(response === 500){
-          this.actionStatus = false;
-        } else {
-          this.actionStatus = true;
-        }
+      this.$store.dispatch('proxyActions/addProxy', proxyJson).then(function() {
+        this.getProxy();
       });
-      this.getProxy();
     },
     //initiates the proxy delete function
     deleteForm(proxy, target, level){
@@ -313,15 +306,10 @@ export default {
     },
     deleteProxy() {
       this.actionInitiate = 'delete';
-      this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson).then(response => {
-        if(response === 500){
-          this.actionStatus = false;
-        } else {
-          this.actionStatus = true;
-        }
+      this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson).then(function() {
+        this.dialog_pDelete = false;
+        this.deleteJson = {}
       });
-      this.dialog_pDelete = false;
-      this.deleteJson = {}
     },
     cancelDelete() {
       this.dialog_pDelete = false;

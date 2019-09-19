@@ -250,11 +250,9 @@ export default{
     },
     updateRole() {
       const roleInfo = {'system': this.$refs.updateSystem, 'role': this.$refs.updateRole};
-      this.$store.dispatch('roleActions/updateRole', roleInfo).then(response => {
-        if(response === 500){
+      this.$store.dispatch('roleActions/updateRole', roleInfo).then(function() {
           this.dialog_rForm = false;
           this.getRoles();
-        }
       });
       this.roleInfo = {};
     },
@@ -262,10 +260,8 @@ export default{
     addRole () {
       const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
       this.dialog_c = false;
-      this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
-        if(response != 500){
-          this.getRoles();
-        }
+      this.$store.dispatch('roleActions/addRole', roleInfo).then(function() {
+        this.getRoles();
       });
     },
     //Deletes a role from the database
@@ -274,10 +270,8 @@ export default{
       this.dialog_rDelete = true;
     },
     deleteRole() {
-      this.$store.dispatch('roleActions/deleteRole', this.deleteJson).then(response => {
-        if(response === 500){
+      this.$store.dispatch('roleActions/deleteRole', this.deleteJson).then(function() {
           this.itemJson = [];
-        }
       });
       this.dialog_rDelete = false;
       this.getRoles();
