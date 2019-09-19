@@ -368,7 +368,7 @@ export default{
       this.dialog_uForm = true;
     },
     async updateUser(){
-      const updateJson = {'system': this.$refs.updateSystem.value, 'username': this.$refs.updateUsername.value, 'name': this.$refs.updatename.value, 'value': this.$refs.updateValue.value, 'authSource':this.$refs.updateAuth.value, 'guid':this.$refs.updateGuid.value};
+      const updateJson = {'system': this.$refs.updateSystem.value, 'username': this.$refs.updateUsername.value, 'name': this.$refs.updateName.value, 'value': this.$refs.updateValue.value, 'authSource':this.$refs.updateAuth.value, 'guid':this.$refs.updateGuid.value};
       await this.$store.dispatch('userActions/updateUser', updateJson)
       this.getItems();
       this.userInfo = {};

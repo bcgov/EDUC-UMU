@@ -278,7 +278,7 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateJson = {'proxy': this.$refs.updateProxy, 'target': this.$refs.updateTarget, 'level': this.$refs.updateLevel};
+      const updateJson = {'proxy': this.$refs.updateProxy.value, 'target': this.$refs.updateTarget.value, 'level': this.$refs.updateLevel.value};
       await this.$store.dispatch('proxyActions/updateProxy', updateJson);
       this.getProxy();
       this.proxyInfo = {};
@@ -287,7 +287,7 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};
+      const proxyJson = {'proxy': this.$refs.addProxy.value, 'target': this.$refs.addTarget.value, 'level': this.$refs.addLevel.value};
       this.dialog_b = false;
       this.actionInitiate = 'add';
       await this.$store.dispatch('proxyActions/addProxy', proxyJson)
