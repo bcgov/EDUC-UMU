@@ -424,7 +424,7 @@ export default{
     },
     async addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
-      csvRes.foreach(function(element){
+      csvRes.foreach(async function(element){
         await this.$store.dispatch('userActions/addUser', element);
       });
     }
