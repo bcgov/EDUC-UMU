@@ -223,16 +223,10 @@ export default{
       this.isLoading = true;
       this.items = [];
       this.itemJson = [];
-      this.$store.dispatch('roleActions/getRoles').then(response => {
-        if(response === 500){
-          this.itemJson = [];
-          this.isLoading = false;
-        } else {
-          this.itemJson = this.roles;
-          this.getSystems();
-          this.isLoading = false;
-        }
-      });
+      await this.$store.dispatch('roleActions/getRoles');
+      this.itemJson = this.roles;
+      this.getSystems();
+      this.isLoading = false;
     },
     getSystems() {
       const sysArr = [];
@@ -250,19 +244,17 @@ export default{
     },
     updateRole() {
       const roleInfo = {'system': this.$refs.updateSystem, 'role': this.$refs.updateRole};
-      this.$store.dispatch('roleActions/updateRole', roleInfo).then(function() {
-          this.dialog_rForm = false;
-          this.getRoles();
-      });
+      await this.$store.dispatch('roleActions/updateRole', roleInfo);
+      this.dialog_rForm = false;
+      this.getRoles();
       this.roleInfo = {};
     },
     //Adds a role to the database then refreshes the table
     addRole () {
       const roleInfo = {'system': this.$refs.addSystem, 'role': this.$refs.addRole};
       this.dialog_c = false;
-      this.$store.dispatch('roleActions/addRole', roleInfo).then(function() {
-        this.getRoles();
-      });
+      await this.$store.dispatch('roleActions/addRole', roleInfo);
+      this.getRoles();
     },
     //Deletes a role from the database
     deleteForm(system, role) {
@@ -270,9 +262,7 @@ export default{
       this.dialog_rDelete = true;
     },
     deleteRole() {
-      this.$store.dispatch('roleActions/deleteRole', this.deleteJson).then(function() {
-          this.itemJson = [];
-      });
+      await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
       this.dialog_rDelete = false;
       this.getRoles();
     },

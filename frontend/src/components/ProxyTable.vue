@@ -251,16 +251,11 @@ export default {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      this.$store.dispatch('proxyActions/getProxy').then(response => {
-        if(response === 500){
-          return [];
-        } else {
-          return this.mapGuids(this.proxy);
-        }
-      }).then(response => {
+      await this.$store.dispatch('proxyActions/getProxy');
+      this.mapGuids(this.proxy).then(response => {
         this.itemJson = response;
         this.isLoading = false;
-      })
+      });
     },
 
     //map each user GUID to a readable username
@@ -284,20 +279,19 @@ export default {
     },
     updateProxy(){
       const updateJson = {'proxy': this.$refs.updateProxy, 'target': this.$refs.updateTarget, 'level': this.$refs.updateLevel};
-      this.$store.dispatch('proxyActions/updateProxy', updateJson).then(function() {
-          this.getProxy();
-          this.proxyInfo = {};
-          this.dialog_pForm = false;
-      });
+      await this.$store.dispatch('proxyActions/updateProxy', updateJson);
+      this.getProxy();
+      this.proxyInfo = {};
+      this.dialog_pForm = false;
+
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     addProxy () {
       const proxyJson = {'proxy': this.$refs.addProxy, 'target': this.$refs.addTarget, 'level': this.$refs.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
-      this.$store.dispatch('proxyActions/addProxy', proxyJson).then(function() {
-        this.getProxy();
-      });
+      await this.$store.dispatch('proxyActions/addProxy', proxyJson)
+      this.getProxy();
     },
     //initiates the proxy delete function
     deleteForm(proxy, target, level){
@@ -306,10 +300,9 @@ export default {
     },
     deleteProxy() {
       this.actionInitiate = 'delete';
-      this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson).then(function() {
-        this.dialog_pDelete = false;
-        this.deleteJson = {}
-      });
+      await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson)
+      this.dialog_pDelete = false;
+      this.deleteJson = {};
     },
     cancelDelete() {
       this.dialog_pDelete = false;

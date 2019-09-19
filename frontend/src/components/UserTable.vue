@@ -352,15 +352,10 @@ export default{
     getItems () {
       this.isLoading = true;
       this.resetUsername();
-      this.$store.dispatch('userActions/getUsers').then(response => {
-        if(response === 500){
-          this.itemJson = [];
-        } else {
-          this.itemJson = this.users;
-          this.getSystems();
-          this.isLoading = false;
-        }
-      });
+      await this.$store.dispatch('userActions/getUsers');
+      this.itemJson = this.users;
+      this.getSystems();
+      this.isLoading = false;
     },
     /*
     submitUser () {
@@ -374,22 +369,17 @@ export default{
     },
     updateUser(){
       const updateJson = {'system': this.$refs.updateSystem, 'username': this.$refs.updateUsername, 'name': this.$refs.updatename, 'value': this.$refs.updateValue, 'authSource':this.$refs.updateAuth, 'guid':this.$refs.updateGuid};
-      this.$store.dispatch('userActions/updateUser', updateJson).then(function() {
-        this.getItems();
-        this.userInfo = {};
-        this.dialog_uForm = false;
-      });
+      await this.$store.dispatch('userActions/updateUser', updateJson)
+      this.getItems();
+      this.userInfo = {};
+      this.dialog_uForm = false;
     },
 
     //initiates the add user dialog box and reloads the table once the user has been added
     addUser() {
       const user = {'system': this.$refs.addSystem, 'username': this.$refs.addUsername, 'name': this.$refs.addName, 'value': this.$refs.addValue, 'authSource': this.$refs.addAuth, 'guid': this.$refs.addGuid};
       this.actionInitiate = 'add';
-      this.$store.dispatch('userActions/addUser', user).then(response => {
-        if(response === 500){
-          this.actionStatus = false;
-        }
-      });
+      await this.$store.dispatch('userActions/addUser', user);
       this.actionStatus = true;
       this.getItems();
       this.dialog_a = false;
@@ -402,10 +392,9 @@ export default{
     },
     deleteUser() {
       this.actionInitiate = 'delete';
-      this.$store.dispatch('userActions/deleteUser', this.deleteJson).then(function(){
-          this.dialog_uDelete = false;
-          this.deleteJson = {};
-      });
+      await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
+      this.dialog_uDelete = false;
+      this.deleteJson = {};
     },
     cancelDelete() {
       this.dialog_uDelete = false;
@@ -436,9 +425,7 @@ export default{
     addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
       csvRes.foreach(function(element){
-        this.$store.dispatch('userActions/addUser', element).then(function(){
-          this.actionStatus = true;
-        });
+        await this.$store.dispatch('userActions/addUser', element);
       });
     }
   }
