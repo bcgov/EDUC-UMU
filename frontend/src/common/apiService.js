@@ -97,7 +97,7 @@ export default {
       if(response.status == 500){
         return response.status;
       }
-      return response.data;
+      return response;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -193,7 +193,7 @@ export default {
       if(response.status == 500){
         return response.status;
       }
-      return response.data;
+      return response;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;

@@ -374,14 +374,11 @@ export default{
     },
     updateUser(){
       const updateJson = {'system': this.$refs.updateSystem, 'username': this.$refs.updateUsername, 'name': this.$refs.updatename, 'value': this.$refs.updateValue, 'authSource':this.$refs.updateAuth, 'guid':this.$refs.updateGuid};
-      this.$store.dispatch('userActions/updateUser', updateJson).then(response => {
-        if(response === 500){
-          this.actionStatus = false;
-        }
+      this.$store.dispatch('userActions/updateUser', updateJson).then(function() {
+        this.getItems();
+        this.userInfo = {};
+        this.dialog_uForm = false;
       });
-      this.getItems();
-      this.userInfo = {};
-      this.dialog_uForm = false;
     },
 
     //initiates the add user dialog box and reloads the table once the user has been added
@@ -405,15 +402,10 @@ export default{
     },
     deleteUser() {
       this.actionInitiate = 'delete';
-      this.$store.dispatch('userActions/deleteUser', this.deleteJson).then(response => {
-          if(response === 500){
-            this.actionStatus = false;
-          } else {
-            this.actionStatus = true;
-          }
+      this.$store.dispatch('userActions/deleteUser', this.deleteJson).then(function(){
+          this.dialog_uDelete = false;
+          this.deleteJson = {};
       });
-      this.dialog_uDelete = false;
-      this.deleteJson = {};
     },
     cancelDelete() {
       this.dialog_uDelete = false;
@@ -444,14 +436,10 @@ export default{
     addCsv(csvRes){
       this.actionInitiate = 'bulkAdd';
       csvRes.foreach(function(element){
-        this.$store.dispatch('userActions/addUser', element).then(response => {
-          if(response === 500){
-            this.actionStatus = false;
-            return;
-          }
+        this.$store.dispatch('userActions/addUser', element).then(function(){
+          this.actionStatus = true;
         });
       });
-      this.actionStatus = true;
     }
   }
 };
