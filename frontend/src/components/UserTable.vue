@@ -357,6 +357,7 @@ export default{
         return;
       }
       else{
+        this.grouOpen = true;
         this.usernameGroup = usrname;
         this.usernameArr = (this.itemJson).filter(function(item){
                                                   return item.username == usrname;

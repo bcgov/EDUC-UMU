@@ -250,17 +250,21 @@ export default{
       this.dialog_rForm = true;
     },
     async updateRole() {
-      const roleInfo = {'system': this.$refs.updateSystem.value, 'role': this.$refs.updateRole.value};
+      const roleInfo = {'system': this.updateSystem, 'role': this.updateRole};
       await this.$store.dispatch('roleActions/updateRole', roleInfo);
       this.dialog_rForm = false;
+      this.updateSystem = null;
+      this.updateRole = null;
       this.getRoles();
       this.roleInfo = {};
     },
     //Adds a role to the database then refreshes the table
     async addRole () {
-      const roleInfo = {'system': this.$refs.addSystem.value, 'role': this.addRoleInput};
+      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
+      this.addSystem = null;
+      this.addRoleInput = null;
       this.getRoles();
     },
     //Deletes a role from the database

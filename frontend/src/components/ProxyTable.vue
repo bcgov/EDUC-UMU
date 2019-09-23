@@ -299,7 +299,7 @@ export default {
       const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
-      await this.$store.dispatch('proxyActions/addProxy', proxyJson)
+      await this.$store.dispatch('proxyActions/addProxy', proxyJson);
       this.getProxy();
     },
     //initiates the proxy delete function
