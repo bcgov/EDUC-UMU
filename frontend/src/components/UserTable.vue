@@ -234,16 +234,13 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog v-model="errorDialog" persistent max-width="320px">
+      <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-title>
-            <span><h4>Database Error</h4></span>
-          </v-card-title>
           <v-card-text>
-            {{ errorMessage }}
+            {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="errorDialog = false">Close</v-btn>
+            <v-btn color="#003366" dark text @click="statusDialog = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -257,8 +254,8 @@ export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
-      errorDialog: false,
-      errorMessage: "",
+      statusDialog: false,
+      statusMessage: "",
 
       updateSystem: null,
       updateUsername: null,
@@ -413,9 +410,11 @@ export default{
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
+      this.statusDialog = true;
       if(this.userAddError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to update user";
+        this.statusMessage = "Unable to update user";
+      } else {
+        this.statusMessage = "Successfully updated user"
       }
       this.getItems();
       this.userInfo = {};
@@ -426,9 +425,11 @@ export default{
     async addUser() {
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       await this.$store.dispatch('userActions/addNewUser', userJson);
+      this.statusDialog = true;
       if(this.userAddError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to add user";
+        this.statusMessage = "Unable to add user";
+      } else {
+        this.statusMessage = "Successfully added user";
       }
       this.addSystem = null;
       this.addUsername = null;
@@ -447,9 +448,11 @@ export default{
     },
     async deleteUser() {
       await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
+      this.statusDialog = true;
       if(this.userDeleteError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to delete user";
+        this.statusMessage = "Unable to delete user";
+      } else {
+        this.statusMessage = "Successfully deleted user"
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};

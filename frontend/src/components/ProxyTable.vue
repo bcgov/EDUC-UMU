@@ -181,16 +181,15 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog v-model="errorDialog" persistent max-width="320px">
+
+
+      <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-title>
-            <span><h4>Database Error</h4></span>
-          </v-card-title>
           <v-card-text>
-            {{ errorMessage }}
+            {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="errorDialog = false">Close</v-btn>
+            <v-btn color="#003366" dark text @click="statusDialog = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -203,8 +202,8 @@ export default {
   data: () => ({
     deleteJson: {},
     userSelect: false,
-    errorDialog: false,
-    errorMessage: "",
+    statusDialog: false,
+    statusMessage: "",
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
@@ -303,9 +302,11 @@ export default {
       const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
+      this.statusDialog = true;
       if(this.proxyUpdateError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to update proxy.";
+        this.statusMessage = "Unable to update proxy";
+      } else {
+        this.statusMessage = "Proxy successfully updated";
       }
       this.getProxy();
       this.proxyInfo = {};
@@ -317,9 +318,11 @@ export default {
       const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
       this.dialog_b = false;
       await this.$store.dispatch('proxyActions/addProxy', proxyJson);
+      this.statusDialog = true;
       if(this.proxyAddError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to add proxy.";
+        this.statusMessage = "Unable to add proxy";
+      } else {
+        this.statusMessage = "Proxy successfully added"
       }
       this.getProxy();
     },
@@ -330,9 +333,11 @@ export default {
     },
     async deleteProxy() {
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
+      this.statusDialog = true;
       if(this.deleteProxy){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to delete proxy";
+        this.statusMessage = "Unable to delete proxy";
+      } else {
+        this.statusMessage = "Proxy successfully deleted";
       }
       this.dialog_pDelete = false;
       this.deleteJson = {};

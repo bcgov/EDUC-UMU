@@ -66,7 +66,7 @@
       <template
         v-slot:item.action="{ item }">
               <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#43893e">edit</v-icon>
-              <v-icon class="list_action" @click="deleteRole(item.system, item.role)" color="#d93e45">delete</v-icon>
+              <v-icon class="list_action" @click="deleteForm(item.system, item.role)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -143,16 +143,13 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog v-model="errorDialog" persistent max-width="320px">
+      <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-title>
-            <span><h4>Database Error</h4></span>
-          </v-card-title>
           <v-card-text>
-            {{ errorMessage }}
+            {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="errorDialog = false">Close</v-btn>
+            <v-btn color="#003366" dark text @click="statusDialog = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -163,8 +160,8 @@
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
-    errorDialog: false,
-    errorMessage: "",
+    statusDialog: false,
+    statusMessage: "",
     deleteJson: {},
     dialog_c: false,
     dialog_rForm: false,
@@ -272,9 +269,11 @@ export default{
       const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
+      this.statusDialog = true;
       if(this.roleUpdateError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to update role.";
+        this.statusMessage = "Unable to update role.";
+      } else {
+        this.statusMessage = "Successfully updated role";
       }
       this.dialog_rForm = false;
       this.updateSystem = null;
@@ -287,9 +286,11 @@ export default{
       const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
+      this.statusDialog = true;
       if(this.roleAddError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to add role.";
+        this.statusMessage = "Unable to add role.";
+      } else {
+        this.statusMessage = "Successfully added role"
       }
       this.addSystem = null;
       this.addRoleInput = null;
@@ -302,9 +303,11 @@ export default{
     },
     async deleteRole() {
       await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
+      this.statusDialog = true;
       if(this.roleDeleteError){
-        this.errorDialog = true;
-        this.errorMessage = "Unable to delete role.";
+        this.statusMessage = "Unable to delete role.";
+      } else {
+        this.statusMessage = "Successfully deleted role";
       }
       this.dialog_rDelete = false;
       this.getRoles();
