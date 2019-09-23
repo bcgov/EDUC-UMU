@@ -12,19 +12,21 @@ class AuthUser {
       db.execute(`insert into :1(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATED_BY) values(:2, :3, :4, :5, :6, :7, :8);`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirnmae, options.guid, options.createdBy], () => {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
       });*/
+      //return false here since there is no error
       if(options != null){
-        return options;
+        return {'error': false};
       }
-      return {'result': 'null'};
+      //there was an error
+      return {'error': true};
   }
   async delete(id) {
       /*
       db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
       */
      if(id != null){
-       return id;
+       return {'error': false};
      }
-     return {'result': 'null'};
+     return {'error': true};
   }
   //select all users from table
   async selectAll() {
@@ -75,9 +77,9 @@ class AuthUser {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE]);
       });*/
       if(options != null){
-        return options;
-      }
-      return {'result': 'null'};
+        return {'error': false};
+     }
+     return {'error': true};
   }
 };
 

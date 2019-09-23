@@ -95,9 +95,9 @@ export default {
     try{
       const response = await apiAxios.post(ApiRoutes.USERS, userInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -107,9 +107,9 @@ export default {
     try{
       const response = await apiAxios.put(ApiRoutes.USERS, updateInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -119,9 +119,9 @@ export default {
     try{
       const response = await apiAxios.delete(ApiRoutes.USERS, userInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to delete from API - ${e}`);
       throw e;
@@ -143,9 +143,9 @@ export default {
     try{
       const response = await apiAxios.post(ApiRoutes.ROLES, roleInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -155,9 +155,9 @@ export default {
     try{
       const response = await apiAxios.put(ApiRoutes.ROLES, roleInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -167,9 +167,9 @@ export default {
     try{
       const response = await apiAxios.delete(ApiRoutes.ROLES, roleInfo);
       if(response.status == 500){
-        return response.status;
+        return error;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to delete from API - ${e}`);
       throw e;
@@ -191,9 +191,9 @@ export default {
     try{
       const response = await apiAxios.post(ApiRoutes.PROXY, proxyInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -203,9 +203,9 @@ export default {
     try{
       const response = await apiAxios.put(ApiRoutes.PROXY, proxyInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to post to API - ${e}`);
       throw e;
@@ -215,9 +215,9 @@ export default {
     try{
       const response = await apiAxios.delete(ApiRoutes.PROXY, proxyInfo);
       if(response.status == 500){
-        return response.status;
+        return true;
       }
-      return response.data;
+      return response.data.error;
     } catch(e) {
       console.log(`Failed to delete from API - ${e}`);
       throw e;

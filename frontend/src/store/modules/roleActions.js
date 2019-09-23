@@ -4,9 +4,9 @@ export default {
     namespaced: true,
     state: {
         roles: null,
-        addError: true,
-        updateError: true,
-        deleteError: true
+        addError: false,
+        updateError: false,
+        deleteError: false
     },
     getters: {
         roles: state => state.roles,

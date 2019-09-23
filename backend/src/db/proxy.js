@@ -13,16 +13,16 @@ class Proxy {
           db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE]);
       });*/
       if(options != null){
-        return options;
-      }
-      return {'result': 'null'};
+        return {'error': false};
+     }
+     return {'error': true};
   }
   async delete(id) {
       //db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
       if(id != null){
-        return id;
-      }
-      return {'result': 'null'};
+        return {'error': false};
+     }
+     return {'error': true};
   }
   //select all proxies from table
   async selectAll() {
@@ -55,9 +55,9 @@ class Proxy {
           db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
       });*/
       if(options != null){
-        return options;
-      }
-      return {'result': 'null'};
+        return {'error': false};
+     }
+     return {'error': true};
   }
 };
 

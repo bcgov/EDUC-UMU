@@ -143,6 +143,19 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="errorDialog" persistent max-width="320px">
+        <v-card>
+          <v-card-title>
+            <span><h4>Database Error</h4></span>
+          </v-card-title>
+          <v-card-text>
+            {{ errorMessage }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="#003366" dark text @click="errorDialog = false">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
   </v-card>
 </template>
 
@@ -150,6 +163,8 @@
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
+    errorDialog: false,
+    errorMessage: "",
     deleteJson: {},
     dialog_c: false,
     dialog_rForm: false,
@@ -214,7 +229,7 @@ export default{
     roleInfo: {}
   }),
   computed: {
-    ...mapGetters('roleActions', ['roles'])
+    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
   },
   mounted: function() {
     this.getRoles()
@@ -257,9 +272,13 @@ export default{
       const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
+      if(this.roleUpdateError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to update role.";
+      }
       this.dialog_rForm = false;
       this.updateSystem = null;
-      this.updateRole = null;
+      this.updateRoleInput = null;
       this.getRoles();
       this.roleInfo = {};
     },
@@ -268,6 +287,10 @@ export default{
       const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
+      if(this.roleAddError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to add role.";
+      }
       this.addSystem = null;
       this.addRoleInput = null;
       this.getRoles();
@@ -279,6 +302,10 @@ export default{
     },
     async deleteRole() {
       await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
+      if(this.roleDeleteError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to delete role.";
+      }
       this.dialog_rDelete = false;
       this.getRoles();
     },

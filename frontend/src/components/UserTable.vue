@@ -234,6 +234,19 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="errorDialog" persistent max-width="320px">
+        <v-card>
+          <v-card-title>
+            <span><h4>Database Error</h4></span>
+          </v-card-title>
+          <v-card-text>
+            {{ errorMessage }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="#003366" dark text @click="errorDialog = false">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
   </v-card>
 </template>
 
@@ -244,7 +257,8 @@ export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
-      actionInitiate: '',
+      errorDialog: false,
+      errorMessage: "",
 
       updateSystem: null,
       updateUsername: null,
@@ -260,7 +274,6 @@ export default{
       addAuth: null,
       addGuid: null,
 
-      actionStatus: true,
       usernameArr: [
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
@@ -325,7 +338,7 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('userActions', ['users'])
+    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']);
   },
   mounted: function(){
     this.getItems()
@@ -400,6 +413,10 @@ export default{
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
+      if(this.userAddError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to update user";
+      }
       this.getItems();
       this.userInfo = {};
       this.dialog_uForm = false;
@@ -408,8 +425,11 @@ export default{
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
-      this.actionInitiate = 'add';
       await this.$store.dispatch('userActions/addNewUser', userJson);
+      if(this.userAddError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to add user";
+      }
       this.addSystem = null;
       this.addUsername = null;
       this.addName = null;
@@ -426,8 +446,11 @@ export default{
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
     async deleteUser() {
-      this.actionInitiate = 'delete';
       await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
+      if(this.userDeleteError){
+        this.errorDialog = true;
+        this.errorMessage = "Unable to delete user";
+      }
       this.dialog_uDelete = false;
       this.deleteJson = {};
     },
@@ -449,7 +472,6 @@ export default{
 
     //delete actions
     deleteGroup(){
-      this.actionInitiate = 'bulkDelete';
       this.dialog_uDelete = false;
       (this.itemJson).forEach(element => {
         this.deleteJson = element;
@@ -458,7 +480,6 @@ export default{
       this.getItems();
     },
     async addCsv(csvRes){
-      this.actionInitiate = 'bulkAdd';
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
       });
