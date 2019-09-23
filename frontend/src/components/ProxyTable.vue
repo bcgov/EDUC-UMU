@@ -287,8 +287,9 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateJson = {'proxy': this.updateProxy, 'target': this.updateTarget, 'level': this.updateLevel};
-      await this.$store.dispatch('proxyActions/updateProxy', updateJson);
+      const updateInfo = {'proxy': this.updateProxy, 'target': this.updateTarget, 'level': this.updateLevel};
+      const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
+      await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
       this.getProxy();
       this.proxyInfo = {};
       this.dialog_pForm = false;

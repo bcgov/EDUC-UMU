@@ -108,7 +108,7 @@
                           <v-select :items="systemArray" label="System" v-model="updateSystem" :value="roleInfo.system" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" v-model="updateRole" :value="roleInfo.role" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="updateRoleInput" :value="roleInfo.role" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -154,13 +154,14 @@ export default{
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
+    oldRoleData: {},
     isLoading: true,
     valid: true,
     hoverA: false,
     hoverB: false,
     search: '',
 
-    updateRole: null,
+    updateRoleInput: null,
     updateSystem: null,
 
     addRoleInput: null,
@@ -247,13 +248,15 @@ export default{
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
       this.roleInfo = {'system': system, 'role': role};
+      this.oldRoleData = {'system': system, 'role': role};
       this.updateSystem = system;
-      this.updateRole = role;
+      this.updateRoleInput = role;
       this.dialog_rForm = true;
     },
     async updateRole() {
-      const roleInfo = {'system': this.updateSystem, 'role': this.updateRole};
-      await this.$store.dispatch('roleActions/updateRole', roleInfo);
+      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
+      const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
+      await this.$store.dispatch('roleActions/updateRole', UpdateJson);
       this.dialog_rForm = false;
       this.updateSystem = null;
       this.updateRole = null;
