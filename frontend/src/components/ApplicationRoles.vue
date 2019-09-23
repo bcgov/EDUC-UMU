@@ -44,7 +44,7 @@
                           <v-select :items="systemArray" label="System" v-model="addSystem" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" v-model="addRole" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="addRoleInput" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -163,7 +163,7 @@ export default{
     updateRole: null,
     updateSystem: null,
 
-    addRole: null,
+    addRoleInput: null,
     addSystem: null,
 
     rules: [
@@ -258,7 +258,7 @@ export default{
     },
     //Adds a role to the database then refreshes the table
     async addRole () {
-      const roleInfo = {'system': this.$refs.addSystem.value, 'role': this.$refs.addRole.value};
+      const roleInfo = {'system': this.$refs.addSystem.value, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
       this.getRoles();

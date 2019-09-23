@@ -66,7 +66,7 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="addProxy" :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field v-model="addProxyInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
                           <v-text-field v-model="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
@@ -201,7 +201,7 @@ export default {
     updateTarget: null,
     updateLevel: null,
 
-    addProxy: null,
+    addProxyInput: null,
     addTarget: null,
     addLevel: null,
 
@@ -296,7 +296,7 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {'proxy': this.addProxy, 'target': this.addTarget, 'level': this.addLevel};
+      const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
       await this.$store.dispatch('proxyActions/addProxy', proxyJson)
