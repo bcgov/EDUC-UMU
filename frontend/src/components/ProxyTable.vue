@@ -29,8 +29,8 @@
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#003366">edit</v-icon>
-        <v-icon class="list_action" @click.stop="deleteProxy()" color="#003366">delete</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
+        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -66,15 +66,15 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field v-model="addProxyInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Target Username"></v-text-field>
+                          <v-text-field v-model="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field label="Proxy Level" required></v-text-field>
+                          <v-text-field v-model="addLevel" label="Proxy Level" required></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -138,22 +138,22 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_pForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="addProxy()">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="updateProxy()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -176,8 +176,20 @@
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="dialog_pDelete = false">Cancel</v-btn>
-            <v-btn color="#003366" dark text @click="dialog_pDelete = false">Delete</v-btn>
+            <v-btn color="#003366" dark text @click="cancelDelete()">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="deleteProxy()">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
+      <v-dialog v-model="statusDialog" persistent max-width="320px">
+        <v-card>
+          <v-card-text class="textOnlyCard">
+            {{ statusMessage }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="#003366" dark text @click="statusDialog = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -185,13 +197,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data: () => ({
+    deleteJson: {},
     userSelect: false,
+    statusDialog: false,
+    statusMessage: "",
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
     isLoading: true,
+
+    updateProxyInput: null,
+    updateTarget: null,
+    updateLevel: null,
+
+    addProxyInput: null,
+    addTarget: null,
+    addLevel: null,
+
     valid: true,
     search: '',
     hoverA: false,
@@ -228,18 +253,12 @@ export default {
     itemJson: [],
     proxyInfo: {}
   }),
+  computed: {
+    ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError'])
+  },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
-    this.$store.dispatch('proxyActions/getProxy').then(response => {
-      if(response === 500){
-          return [];
-        } else {
-          return this.mapGuids(response);
-        }
-    }).then(response => {
-      this.itemJson = response;
-      this.isLoading = false
-    });
+    this.getProxy()
   },
   methods: {
     //validates forms
@@ -249,20 +268,15 @@ export default {
       }
     },
     //retrieves table entries from the API endpoint and places them in a JSON array
-    getProxy () {
+    async getProxy () {
       this.items = [];
       this.itemJson = [];
       this.isLoading = true;
-      this.$store.dispatch('proxyActions/getProxy').then(response => {
-        if(response === 500){
-          return [];
-        } else {
-          return this.mapGuids(response);
-        }
-      }).then(response => {
+      await this.$store.dispatch('proxyActions/getProxy');
+      this.mapGuids(this.proxy).then(response => {
         this.itemJson = response;
         this.isLoading = false;
-      })
+      });
     },
 
     //map each user GUID to a readable username
@@ -284,15 +298,53 @@ export default {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
       this.dialog_pForm = true;
     },
-    //Initiates the add proxy dialog box and reloads the table when proxy has been added
-    addProxy () {
-      this.dialog_b = false;
+    async updateProxy(){
+      const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+      const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
+      await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
+      this.statusDialog = true;
+      if(this.proxyUpdateError){
+        this.statusMessage = "Unable to update proxy";
+      } else {
+        this.statusMessage = "Proxy successfully updated";
+      }
+      this.getProxy();
+      this.proxyInfo = {};
       this.dialog_pForm = false;
+
+    },
+    //Initiates the add proxy dialog box and reloads the table when proxy has been added
+    async addProxy () {
+      const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+      this.dialog_b = false;
+      await this.$store.dispatch('proxyActions/addProxy', proxyJson);
+      this.statusDialog = true;
+      if(this.proxyAddError){
+        this.statusMessage = "Unable to add proxy";
+      } else {
+        this.statusMessage = "Proxy successfully added"
+      }
       this.getProxy();
     },
     //initiates the proxy delete function
-    deleteProxy() {
+    deleteForm(proxy, target, level){
       this.dialog_pDelete = true;
+      this.deleteJson = {'proxy': proxy, 'target': target, 'level': level};
+    },
+    async deleteProxy() {
+      await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
+      this.statusDialog = true;
+      if(this.proxyDeleteError){
+        this.statusMessage = "Unable to delete proxy";
+      } else {
+        this.statusMessage = "Proxy successfully deleted";
+      }
+      this.dialog_pDelete = false;
+      this.deleteJson = {};
+    },
+    cancelDelete() {
+      this.dialog_pDelete = false;
+      this.deleteJson = {};
     }
   }
 };

@@ -7,16 +7,24 @@ dotenv.config();
 
 class Roles {
   constructor() {}
-  /*
-  create(options, callback) {
-      db.execute(`insert into :1(SYSTEM, APPLICATION_ROLE, CREATE_BY) values(:2, :3, :4)`, [process.env.ROLES_TABLE, options.system, options.role, options.createdBy], () => {
-          db.execute(`select last_value from :1;`, [process.env.ROLES_TABLE], callback);
-      });
+
+  async create(options) {
+      /*db.execute(`insert into :1(SYSTEM, APPLICATION_ROLE, CREATE_BY) values(:2, :3, :4)`, [process.env.ROLES_TABLE, options.system, options.role, options.createdBy], () => {
+          db.execute(`select last_value from :1;`, [process.env.ROLES_TABLE]);
+      });*/
+      if(options != null){
+        return {'error': false};
+     }
+     return {'error': true};
   }
-  delete(id, callback) {
-      db.execute(`delete from :1 where id=:2`, [process.env.ROLES_TABLE, id], callback);
+  async delete(id) {
+      //db.execute(`delete from :1 where id=:2`, [process.env.ROLES_TABLE, id]);
+      if(id != null){
+        return {'error': false};
+     }
+     return {'error': true};
   }
-  */
+
   //select all roles from table
   async selectAll() {
     /*let connection = await oracledb.getConnection({
@@ -38,13 +46,17 @@ class Roles {
   /*
   select(id, callback) {
       db.execute(`select * from :1 where id=:2`, [process.env.ROLES_TABLE, id], callback);
-  }
-  update(options, callback) {
-      db.execute(`update :1 set SYSTEM=:2, APPLICATION_ROLE=:3, UPDATED_BY=:4`, [process.env.ROLES_TABLE, options.system, options.role, options.updatedBy], () => {
+  }*/
+  async update(options) {
+      /*db.execute(`update :1 set SYSTEM=:2, APPLICATION_ROLE=:3, UPDATED_BY=:4`, [process.env.ROLES_TABLE, options.system, options.role, options.updatedBy], () => {
           db.execute(`select last_value from :1`, [process.env.ROLES_TABLE], callback);
-      });
+      });*/
+      if(options != null){
+        return {'error': false};
+     }
+     return {'error': true};
   }
-  */
+
 };
 
 module.exports = Roles;

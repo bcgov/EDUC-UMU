@@ -81,7 +81,6 @@ podTemplate(
   ]
 ){
   node('jenkins-python3nodejs') {
-
     stage('Checkout Source') {
       echo "Checking out source code ..."
       checkout scm

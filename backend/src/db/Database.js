@@ -16,28 +16,17 @@ class Database {
 /**********************************************************/
 /*********             User Functions             *********/
 /**********************************************************/
-  async createUser(authUser, callback) {
-    this.authUsers.select(authUser.userId, ifError({ notify: callback }).otherwise((rows) => {
-      if (!rows || rows.length === 0) {
-        this.authUsers.create(authUser, ifError({ notify: callback }).otherwise((rows) => {
-          callback(rows[0].last_value);
-        }));
-      }
-      else {
-        authUser.id = rows[0].id;
-          this.authUsers.update(authUser, ifError({ notify: callback }).otherwise((rows) => {
-            callback(rows[0].last_value);
-          }));
-        }
-    }));
+  async createUser(authUser) {
+    let result = this.authUsers.create(authUser);
+    return result;
   }
-  async updateUser(authUser, callback) {
-    this.authUsers.update(authUser, ifError({ notify: callback }).otherwise((rows) => {
-      callback(rows[0].last_value);
-    }));
+  async updateUser(authUser) {
+    let result = this.authUsers.update(authUser);
+    return result;
   }
-  async deleteUser(authUser, callback) {
-    this.authUsers.delete(authUser.userId, callback);
+  async deleteUser(authUser) {
+    let result = this.authUsers.delete(authUser);
+    return result;
   }
   async selectUsers() {
     let result = this.authUsers.selectAll();
@@ -48,28 +37,17 @@ class Database {
 /**********************************************************/
 /*********             Proxy Functions            *********/
 /**********************************************************/
-  async createProxy(proxyDetails, callback) {
-    this.proxy.select(proxyDetails.proxyId, ifError({ notify: callback }).otherwise((rows) => {
-      if (!rows || rows.length === 0) {
-        this.proxy.create(proxyDetails, ifError({ notify: callback }).otherwise((rows) => {
-          callback(rows[0].last_value);
-        }));
-      }
-      else {
-        proxyDetails.id = rows[0].id;
-        this.proxy.update(proxyDetails, ifError({ notify: callback }).otherwise((rows) => {
-          callback(rows[0].last_value);
-        }));
-      }
-    }));
+  async createProxy(proxyDetails) {
+    let result = this.proxy.create(proxyDetails);
+    return result;
   }
-  async updateProxy(proxyDetails, callback) {
-    this.proxy.update(proxyDetails, ifError({ notify: callback }).otherwise((rows) => {
-      callback(rows[0].last_value);
-    }));
+  async updateProxy(proxyDetails) {
+    let result = this.proxy.update(proxyDetails);
+    return result;
   }
-  async deleteProxy(proxyDetails, callback) {
-    this.proxy.delete(proxyDetails.proxyId, callback);
+  async deleteProxy(proxyDetails) {
+    let result = this.proxy.delete(proxyDetails);
+    return result;
   }
   async selectProxies(callback) {
     let result = this.proxy.selectAll(callback);
@@ -79,28 +57,17 @@ class Database {
 /**********************************************************/
 /*********             Role Functions             *********/
 /**********************************************************/
-  async createRole(roleDetails, callback) {
-    this.roles.select(rolesDetails.roleId, ifError({ notify: callback }).otherwise((rows) => {
-      if (!rows || rows.length === 0) {
-        this.roles.create(roleDetails, ifError({ notify: callback }).otherwise((rows) => {
-          callback(rows[0].last_value);
-        }));
-      }
-      else {
-        roleDetails.id = rows[0].id;
-        this.roles.update(roleDetails, ifError({ notify: callback }).otherwise((rows) => {
-          callback(rows[0].last_value);
-        }));
-      }
-    }));
+  async createRole(roleDetails) {
+    let result = this.roles.create(roleDetails);
+    return result;
   }
-  async updateRole(roleDetails, callback) {
-    this.roles.update(roleDetails, ifError({ notify: callback }).otherwise((rows) => {
-      callback(rows[0].last_value);
-    }));
+  async updateRole(roleDetails) {
+    let result = this.roles.update(roleDetails);
+    return result;
   }
-  async deleteRole(roleDetails, callback) {
-    this.roles.delete(roleDetails.roleId, callback);
+  async deleteRole(roleDetails) {
+    let result = this.roles.delete(roleDetails);
+    return result;
   }
   async selectRole(callback) {
     let result = this.roles.selectAll(callback);

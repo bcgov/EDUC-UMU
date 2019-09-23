@@ -41,10 +41,10 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" required></v-select>
+                          <v-select :items="systemArray" label="System" v-model="addSystem" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="addRoleInput" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -65,8 +65,8 @@
     <!-- The actions you can take on any row of the table -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#003366">edit</v-icon>
-              <v-icon class="list_action" @click="deleteRole()" color="#003366">delete</v-icon>
+              <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#43893e">edit</v-icon>
+              <v-icon class="list_action" @click="deleteForm(item.system, item.role)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -105,17 +105,17 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" :value="roleInfo.system" required></v-select>
+                          <v-select :items="systemArray" label="System" v-model="updateSystem" :value="roleInfo.system" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" :value="roleInfo.role" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="updateRoleInput" :value="roleInfo.role" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
                     <v-btn color="#003366" dark text @click="dialog_rForm = false">Close</v-btn>
-                    <v-btn color="#003366" dark text @click="addRole()">Update</v-btn>
+                    <v-btn color="#003366" dark text @click="updateRole()">Update</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
@@ -138,8 +138,18 @@
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Cancel</v-btn>
-            <v-btn color="#003366" dark text @click="dialog_rDelete = false">Delete</v-btn>
+            <v-btn color="#003366" dark text @click="cancelDelete()">Cancel</v-btn>
+            <v-btn color="#003366" dark text @click="deleteRole()">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="statusDialog" persistent max-width="320px">
+        <v-card>
+          <v-card-text class="textOnlyCard">
+            {{ statusMessage }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="#003366" dark text @click="statusDialog = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -147,16 +157,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default{
   data: () => ({
+    statusDialog: false,
+    statusMessage: "",
+    deleteJson: {},
     dialog_c: false,
     dialog_rForm: false,
     dialog_rDelete: false,
+    oldRoleData: {},
     isLoading: true,
     valid: true,
     hoverA: false,
     hoverB: false,
     search: '',
+
+    updateRoleInput: null,
+    updateSystem: null,
+
+    addRoleInput: null,
+    addSystem: null,
+
     rules: [
       v => !!v || 'Required'
     ],
@@ -203,16 +225,11 @@ export default{
     itemJson: [],
     roleInfo: {}
   }),
+  computed: {
+    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
+  },
   mounted: function() {
-    this.$store.dispatch('roleActions/getRoles').then(response => {
-      if(response === 500){
-          this.itemJson = [];
-        } else {
-          this.itemJson = response;
-          this.getSystems();
-          this.isLoading = false;
-        }
-    })
+    this.getRoles()
   },
   methods: {
   //validates forms
@@ -222,18 +239,14 @@ export default{
       }
     },
     //retrieve roles from the API endpoint
-    getRoles () {
+    async getRoles () {
       this.isLoading = true;
       this.items = [];
       this.itemJson = [];
-      this.$store.dispatch('roleActions/getRoles').then(response => {
-          if(response === 500){
-          this.itemJson = [];
-        } else {
-          this.itemJson = response;
-          this.isLoading = false;
-        }
-      })
+      await this.$store.dispatch('roleActions/getRoles');
+      this.itemJson = this.roles;
+      this.getSystems();
+      this.isLoading = false;
     },
     getSystems() {
       const sysArr = [];
@@ -247,22 +260,61 @@ export default{
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
       this.roleInfo = {'system': system, 'role': role};
+      this.oldRoleData = {'system': system, 'role': role};
+      this.updateSystem = system;
+      this.updateRoleInput = role;
       this.dialog_rForm = true;
     },
-    //Adds a role to the database then refreshes the table
-    addRole (roleInfo) {
+    async updateRole() {
+      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
+      const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
+      await this.$store.dispatch('roleActions/updateRole', UpdateJson);
+      this.statusDialog = true;
+      if(this.roleUpdateError){
+        this.statusMessage = "Unable to update role";
+      } else {
+        this.statusMessage = "Role successfully updated";
+      }
       this.dialog_rForm = false;
+      this.updateSystem = null;
+      this.updateRoleInput = null;
+      this.getRoles();
+      this.roleInfo = {};
+    },
+    //Adds a role to the database then refreshes the table
+    async addRole () {
+      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
-      this.$store.dispatch('roleActions/addRole', roleInfo).then(response => {
-        if(response == 'error'){
-          this.itemJson - [];
-        }
-        this.getRoles();
-      })
+      await this.$store.dispatch('roleActions/addRole', roleInfo);
+      this.statusDialog = true;
+      if(this.roleAddError){
+        this.statusMessage = "Unable to add role";
+      } else {
+        this.statusMessage = "Role successfully added"
+      }
+      this.addSystem = null;
+      this.addRoleInput = null;
+      this.getRoles();
     },
     //Deletes a role from the database
-    deleteRole() {
+    deleteForm(system, role) {
+      this.deleteJson = {'system': system, 'role': role};
       this.dialog_rDelete = true;
+    },
+    async deleteRole() {
+      await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
+      this.statusDialog = true;
+      if(this.roleDeleteError){
+        this.statusMessage = "Unable to delete role";
+      } else {
+        this.statusMessage = "Role successfully deleted";
+      }
+      this.dialog_rDelete = false;
+      this.getRoles();
+    },
+    cancelDelete() {
+      this.deleteJson = {};
+      this.dialog_rDelete = false;
     }
   }
 };

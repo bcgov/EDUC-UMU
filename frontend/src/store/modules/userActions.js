@@ -4,23 +4,28 @@ export default {
     namespaced: true,
     state: {
         users: null,
-        userAdd: null,
-        userUpdate: null
+        addError: false,
+        updateError: false,
+        deleteError: false
     },
     getters: {
         users: state => state.users,
-        addMessage: state => state.userAdd,
-        updateMessage: state => state.userUpdate
+        userAddError: state => state.addError,
+        userUpdateError: state => state.updateError,
+        userDeleteError: state => state.deleteError
     },
     mutations: {
         setUsers: (state, userRes) => {
             state.users = userRes;
         },
         addUser: (state, userRes) => {
-            state.userAdd = userRes
+            state.addError = userRes
         },
         updateUser: (state, userRes) => {
-            state.userUpdate = userRes;
+            state.updateError = userRes;
+        },
+        deleteUser: (state, userRes) => {
+            state.deleteUser = userRes;
         }
     },
     actions: {
@@ -35,13 +40,13 @@ export default {
                 return e;
             }
         },
-        async addUser(context, info){
+        async addNewUser(context, info){
             context.commit('addUser', null);
             try {
                 const response = await ApiService.addUser(info);
-                context.commit('userAdd', response);
+                context.commit('addUser', response);
             } catch(e) {
-                context.commit('userAdd', e);
+                context.commit('addUser', e);
             }
         },
         async updateUser(context, info){
@@ -51,6 +56,15 @@ export default {
                 context.commit('updateUser', response);
             } catch(e) {
                 context.commit('updateUser', e);
+            }
+        },
+        async deleteUser(context, info){
+            context.commit('deleteUser', null);
+            try {
+                const response = await ApiService.deleteUser(info);
+                context.commit('deleteUser', response);
+            } catch(e) {
+                context.commit('deleteUser', e);
             }
         }
     }
