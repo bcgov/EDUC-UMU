@@ -387,6 +387,7 @@ export default{
       await this.$store.dispatch('userActions/updateUser', updateJson);
       this.getItems();
       this.userInfo = {};
+      
       this.dialog_uForm = false;
     },
 
