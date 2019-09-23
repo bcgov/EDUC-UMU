@@ -247,6 +247,8 @@ export default{
     //Passes information from a specific row to the Update form
     updateRoleForm (system, role) {
       this.roleInfo = {'system': system, 'role': role};
+      this.updateSystem = system;
+      this.updateRole = role;
       this.dialog_rForm = true;
     },
     async updateRole() {
