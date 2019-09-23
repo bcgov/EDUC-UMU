@@ -292,7 +292,6 @@ export default{
       systemArray: [],
       groupOpen: false,
       dialog_a: false,
-      deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
       isLoading: true,
