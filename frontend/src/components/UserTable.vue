@@ -398,7 +398,7 @@ export default{
     },
     async updateUser(){
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
-      const UpdateJson = {'old': userInfo, 'new': updateInfo};
+      const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.getItems();
       this.userInfo = {};
