@@ -352,7 +352,7 @@ export default{
   mounted: async function(){
     this.getItems();
     await this.$store.dispatch('roleActions/getRoles');
-    (this.roles).forEach(element => {
+    (this.roles).forEach( async element => {
       if(!((this.roleList).includes(element.role))){
         this.roleList.push(element.role)
       }
