@@ -138,7 +138,7 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateProxy" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
                           <v-text-field v-model="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
@@ -210,7 +210,7 @@ export default {
     dialog_pDelete: false,
     isLoading: true,
 
-    updateProxy: null,
+    updateProxyInput: null,
     updateTarget: null,
     updateLevel: null,
 
@@ -300,7 +300,7 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateInfo = {'proxy': this.updateProxy, 'target': this.updateTarget, 'level': this.updateLevel};
+      const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
       if(this.proxyUpdateError){
