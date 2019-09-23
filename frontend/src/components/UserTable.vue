@@ -235,8 +235,8 @@
         </v-card>
       </v-dialog>
       <v-dialog v-model="statusDialog" persistent max-width="320px">
-        <v-card>
-          <v-card-text class="textOnlyCard">
+        <v-card class="textOnlyCard">
+          <v-card-text>
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -415,9 +415,9 @@ export default{
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to update user";
+        this.statusMessage = "Unable to update item";
       } else {
-        this.statusMessage = "User successfully updated"
+        this.statusMessage = "Item successfully updated"
       }
       this.getItems();
       this.userInfo = {};
@@ -430,9 +430,9 @@ export default{
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to add user";
+        this.statusMessage = "Unable to add item";
       } else {
-        this.statusMessage = "User successfully added";
+        this.statusMessage = "Item successfully added";
       }
       this.addSystem = null;
       this.addUsername = null;
@@ -454,9 +454,9 @@ export default{
       if(!(this.bulkDelete)){
         this.statusDialog = true;
         if(this.userDeleteError){
-          this.statusMessage = "Unable to delete user";
+          this.statusMessage = "Unable to delete item";
         } else {
-          this.statusMessage = "User successfully deleted"
+          this.statusMessage = "Item successfully deleted"
         }
       }
       this.dialog_uDelete = false;
