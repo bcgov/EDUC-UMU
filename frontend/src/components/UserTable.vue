@@ -257,6 +257,9 @@ export default{
       statusDialog: false,
       statusMessage: "",
 
+      bulkAdd: false,
+      bulkDelete:false,
+
       updateSystem: null,
       updateUsername: null,
       updateName: null,
@@ -448,11 +451,13 @@ export default{
     },
     async deleteUser() {
       await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
-      this.statusDialog = true;
-      if(this.userDeleteError){
-        this.statusMessage = "Unable to delete user";
-      } else {
-        this.statusMessage = "Successfully deleted user"
+      if(!(this.bulkDelete)){
+        this.statusDialog = true;
+        if(this.userDeleteError){
+          this.statusMessage = "Unable to delete user";
+        } else {
+          this.statusMessage = "Successfully deleted user"
+        }
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
@@ -476,10 +481,12 @@ export default{
     //delete actions
     deleteGroup(){
       this.dialog_uDelete = false;
+      this.bulkDelete = true;
       (this.itemJson).forEach(element => {
         this.deleteJson = element;
         this.deleteUser();
       });
+
       this.getItems();
     },
     async addCsv(csvRes){

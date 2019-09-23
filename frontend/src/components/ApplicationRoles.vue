@@ -271,7 +271,7 @@ export default{
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
       this.statusDialog = true;
       if(this.roleUpdateError){
-        this.statusMessage = "Unable to update role.";
+        this.statusMessage = "Unable to update role";
       } else {
         this.statusMessage = "Successfully updated role";
       }
@@ -288,7 +288,7 @@ export default{
       await this.$store.dispatch('roleActions/addRole', roleInfo);
       this.statusDialog = true;
       if(this.roleAddError){
-        this.statusMessage = "Unable to add role.";
+        this.statusMessage = "Unable to add role";
       } else {
         this.statusMessage = "Successfully added role"
       }
@@ -305,7 +305,7 @@ export default{
       await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
       this.statusDialog = true;
       if(this.roleDeleteError){
-        this.statusMessage = "Unable to delete role.";
+        this.statusMessage = "Unable to delete role";
       } else {
         this.statusMessage = "Successfully deleted role";
       }
