@@ -66,15 +66,15 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field ref="addProxy" :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field v-model="addProxy" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field ref="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
+                          <v-text-field v-model="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field ref="addLevel" label="Proxy Level" required></v-text-field>
+                          <v-text-field v-model="addLevel" label="Proxy Level" required></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -138,15 +138,15 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field ref="updateProxy" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field v-model="updateProxy" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field ref="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field ref="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -196,6 +196,15 @@ export default {
     dialog_b: false,
     dialog_pDelete: false,
     isLoading: true,
+
+    updateProxy: null,
+    updateTarget: null,
+    updateLevel: null,
+
+    addProxy: null,
+    addTarget: null,
+    addLevel: null,
+
     valid: true,
     search: '',
     hoverA: false,
@@ -278,7 +287,7 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateJson = {'proxy': this.$refs.updateProxy.value, 'target': this.$refs.updateTarget.value, 'level': this.$refs.updateLevel.value};
+      const updateJson = {'proxy': this.updateProxy, 'target': this.updateTarget, 'level': this.updateLevel};
       await this.$store.dispatch('proxyActions/updateProxy', updateJson);
       this.getProxy();
       this.proxyInfo = {};
@@ -287,7 +296,7 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {'proxy': this.$refs.addProxy.value, 'target': this.$refs.addTarget.value, 'level': this.$refs.addLevel.value};
+      const proxyJson = {'proxy': this.addProxy, 'target': this.addTarget, 'level': this.addLevel};
       this.dialog_b = false;
       this.actionInitiate = 'add';
       await this.$store.dispatch('proxyActions/addProxy', proxyJson)

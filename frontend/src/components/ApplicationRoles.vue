@@ -41,10 +41,10 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" ref="addSystem" required></v-select>
+                          <v-select :items="systemArray" label="System" v-model="addSystem" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" ref="addRole" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="addRole" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -105,10 +105,10 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" ref="updateSystem" :value="roleInfo.system" required></v-select>
+                          <v-select :items="systemArray" label="System" v-model="updateSystem" :value="roleInfo.system" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" ref="updateRole" :value="roleInfo.role" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="updateRole" :value="roleInfo.role" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -159,6 +159,13 @@ export default{
     hoverA: false,
     hoverB: false,
     search: '',
+
+    updateRole: null,
+    updateSystem: null,
+
+    addRole: null,
+    addSystem: null,
+
     rules: [
       v => !!v || 'Required'
     ],

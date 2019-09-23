@@ -344,6 +344,10 @@ export default{
       this.groupOpen = false;
       this.usernameArr = [{"system": '', "username": '', "guid": '', "authSource": ''}];
       this.usernameGroup = '';
+      this.addSystem = null;
+      this.addUsername = null;
+      this.addAuth = null;
+      this.addGuid = null;
       this.itemJson = this.tempArray;
     },
 
@@ -353,13 +357,16 @@ export default{
         return;
       }
       else{
-        this.groupOpen = true;
         this.usernameGroup = usrname;
         this.usernameArr = (this.itemJson).filter(function(item){
                                                   return item.username == usrname;
                                                 });
         this.tempArray = this.itemJson;
         this.itemJson = this.usernameArr;
+        this.addSystem = itemJson[0].system;
+        this.addUsername = itemJson[0].username;
+        this.addAuth = itemJson[0].authSource;
+        this.addGuid = itemJson[0].guid;
       }
     },
 
@@ -379,6 +386,12 @@ export default{
 
     //Passes information from a specific row in the table to the Update user form
     updateUserForm(system, username, name, value, auth, guid) {
+      this.updateSystem = system;
+      this.updateUsername = username;
+      this.updateName = name;
+      this.updateValue = value;
+      this.updateAuth = auth;
+      this.updateGuid = guid;
       this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
       this.dialog_uForm = true;
     },
@@ -387,7 +400,6 @@ export default{
       await this.$store.dispatch('userActions/updateUser', updateJson);
       this.getItems();
       this.userInfo = {};
-      
       this.dialog_uForm = false;
     },
 
@@ -396,7 +408,12 @@ export default{
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       this.actionInitiate = 'add';
       await this.$store.dispatch('userActions/addNewUser', userJson);
-      this.actionStatus = true;
+      this.addSystem = null;
+      this.addUsername = null;
+      this.addName = null;
+      this.addValue = null;
+      this.addAuth = null;
+      this.addGuid = null;
       this.getItems();
       this.dialog_a = false;
     },
