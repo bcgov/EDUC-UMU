@@ -102,13 +102,13 @@
                           <v-flex xs12 sm6>
                             <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-select v-model="addName" :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-text-field v-model="addValue" label="Value" name="value"></v-text-field>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
@@ -189,16 +189,16 @@
                           <v-flex xs12 sm6>
                             <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
                             <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
                             <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
                             <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          <v-flex xs12 sm6>
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-flex>
                           <v-flex xs12>
@@ -349,7 +349,7 @@ export default{
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
     ...mapGetters('roleActions', ['roles'])
   },
-  mounted: function(){
+  mounted: async function(){
     this.getItems();
     await this.$store.dispatch('roleActions/getRoles');
     (this.roles).forEach(element => {
