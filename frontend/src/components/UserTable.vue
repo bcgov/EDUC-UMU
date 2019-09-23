@@ -190,10 +190,13 @@
                             <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select v-model="updateName" label="Name" name="name" :items="nameOptions" required></v-select>
+                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
+                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
@@ -258,8 +261,13 @@ export default{
       statusMessage: "",
       deleteMessage: "",
 
+      roleList: [],
+      districtList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      schoolList: ['School A', 'School B', 'School C', 'School D'],
+
       bulkAdd: false,
       bulkDelete:false,
+
 
       updateSystem: null,
       updateUsername: null,
@@ -281,7 +289,6 @@ export default{
       tempArray: [],
       nameOptions: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKING_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
       authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"],
-      roleArray: [],
       systemArray: [],
       groupOpen: false,
       dialog_a: false,
@@ -339,10 +346,17 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError'])
+    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
+    ...mapGetters('roleActions', ['roles'])
   },
   mounted: function(){
-    this.getItems()
+    this.getItems();
+    await this.$store.dispatch('roleActions/getRoles');
+    (this.roles).forEach(element => {
+      if(!((this.roleList).includes(element.role))){
+        this.roleList.push(element.role)
+      }
+    })
   },
 
   methods: {
