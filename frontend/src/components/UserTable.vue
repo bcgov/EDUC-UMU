@@ -97,22 +97,22 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select ref="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
+                            <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field ref="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
+                            <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select ref="addName" :items="nameOptions" label="Name" name="name" required></v-select>
+                            <v-select v-model="addName" :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field ref="addValue" label="Value" name="value"></v-text-field>
+                            <v-text-field v-model="addValue" label="Value" name="value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select ref="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
+                            <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field ref="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -184,22 +184,22 @@
                       <v-container grid-list-md>
                         <v-layout wrap>
                           <v-flex xs12 sm6>
-                            <v-select ref="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
+                            <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
                           </v-flex>
                           <v-flex xs12 sm6>
-                            <v-text-field ref="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                            <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select ref="updateName" label="Name" name="name" :items="nameOptions" required></v-select>
+                            <v-select v-model="updateName" label="Name" name="name" :items="nameOptions" required></v-select>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-text-field ref="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
+                            <v-text-field v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-flex>
                           <v-flex xs12 sm6 md4>
-                            <v-select ref="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
+                            <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-flex>
                           <v-flex xs12>
-                            <v-text-field ref="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -245,6 +245,21 @@ export default{
       csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
       actionInitiate: '',
+
+      updateSystem: null,
+      updateUsername: null,
+      updateName: null,
+      updateValue: null,
+      updateAuth: null,
+      updateGuid: null,
+
+      addSystem: null,
+      addUsername: null,
+      addName: null,
+      addValue: null,
+      addAuth: null,
+      addGuid: null,
+
       actionStatus: true,
       usernameArr: [
         {"system": '', "username": '', "guid": '', "authSource": ''}
@@ -368,8 +383,8 @@ export default{
       this.dialog_uForm = true;
     },
     async updateUser(){
-      const updateJson = {'system': this.$refs.updateSystem.value, 'username': this.$refs.updateUsername.value, 'name': this.$refs.updateName.value, 'value': this.$refs.updateValue.value, 'authSource':this.$refs.updateAuth.value, 'guid':this.$refs.updateGuid.value};
-      await this.$store.dispatch('userActions/updateUser', updateJson)
+      const updateJson = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
+      await this.$store.dispatch('userActions/updateUser', updateJson);
       this.getItems();
       this.userInfo = {};
       this.dialog_uForm = false;
@@ -377,7 +392,7 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
-      const userJson = {'system': this.$refs.addSystem.value, 'username': this.$refs.addUsername.value, 'name': this.$refs.addName.value, 'value': this.$refs.addValue.value, 'authSource': this.$refs.addAuth.value, 'guid': this.$refs.addGuid.value};
+      const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       this.actionInitiate = 'add';
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.actionStatus = true;
