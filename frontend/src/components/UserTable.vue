@@ -236,7 +236,7 @@
       </v-dialog>
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-text>
+          <v-card-text class="textOnlyCard">
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -417,7 +417,7 @@ export default{
       if(this.userAddError){
         this.statusMessage = "Unable to update user";
       } else {
-        this.statusMessage = "Successfully updated user"
+        this.statusMessage = "User successfully updated"
       }
       this.getItems();
       this.userInfo = {};
@@ -432,7 +432,7 @@ export default{
       if(this.userAddError){
         this.statusMessage = "Unable to add user";
       } else {
-        this.statusMessage = "Successfully added user";
+        this.statusMessage = "User successfully added";
       }
       this.addSystem = null;
       this.addUsername = null;
@@ -456,7 +456,7 @@ export default{
         if(this.userDeleteError){
           this.statusMessage = "Unable to delete user";
         } else {
-          this.statusMessage = "Successfully deleted user"
+          this.statusMessage = "User successfully deleted"
         }
       }
       this.dialog_uDelete = false;

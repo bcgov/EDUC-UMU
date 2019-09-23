@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style>
+  .textOnlyCard{
+    padding-top: 20px;
+  }
   .file_in{
     max-width: 40%;
   }

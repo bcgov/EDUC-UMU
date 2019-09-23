@@ -145,7 +145,7 @@
       </v-dialog>
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-text>
+          <v-card-text class="textOnlyCard">
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -273,7 +273,7 @@ export default{
       if(this.roleUpdateError){
         this.statusMessage = "Unable to update role";
       } else {
-        this.statusMessage = "Successfully updated role";
+        this.statusMessage = "Role successfully updated";
       }
       this.dialog_rForm = false;
       this.updateSystem = null;
@@ -290,7 +290,7 @@ export default{
       if(this.roleAddError){
         this.statusMessage = "Unable to add role";
       } else {
-        this.statusMessage = "Successfully added role"
+        this.statusMessage = "Role successfully added"
       }
       this.addSystem = null;
       this.addRoleInput = null;
@@ -307,7 +307,7 @@ export default{
       if(this.roleDeleteError){
         this.statusMessage = "Unable to delete role";
       } else {
-        this.statusMessage = "Successfully deleted role";
+        this.statusMessage = "Role successfully deleted";
       }
       this.dialog_rDelete = false;
       this.getRoles();

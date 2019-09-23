@@ -185,7 +185,7 @@
 
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card>
-          <v-card-text>
+          <v-card-text class="textOnlyCard">
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -334,7 +334,7 @@ export default {
     async deleteProxy() {
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
       this.statusDialog = true;
-      if(this.deleteProxy){
+      if(this.proxyDeleteError){
         this.statusMessage = "Unable to delete proxy";
       } else {
         this.statusMessage = "Proxy successfully deleted";
