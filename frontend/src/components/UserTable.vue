@@ -363,10 +363,10 @@ export default{
                                                 });
         this.tempArray = this.itemJson;
         this.itemJson = this.usernameArr;
-        this.addSystem = itemJson[0].system;
-        this.addUsername = itemJson[0].username;
-        this.addAuth = itemJson[0].authSource;
-        this.addGuid = itemJson[0].guid;
+        this.addSystem = this.itemJson[0].system;
+        this.addUsername = this.itemJson[0].username;
+        this.addAuth = this.itemJson[0].authSource;
+        this.addGuid = this.itemJson[0].guid;
       }
     },
 
@@ -449,7 +449,7 @@ export default{
     deleteGroup(){
       this.actionInitiate = 'bulkDelete';
       this.dialog_uDelete = false;
-      (this.itemJson).forEach(function(element){
+      (this.itemJson).forEach(element => {
         this.deleteJson = element;
         this.deleteUser();
       });
