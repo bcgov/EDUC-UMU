@@ -223,7 +223,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>Are you sure you want to delete this entry?</span>
+                  <span>{{ deleteMessage }}</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -256,6 +256,7 @@ export default{
       usernameGroup: '',
       statusDialog: false,
       statusMessage: "",
+      deleteMessage: "",
 
       bulkAdd: false,
       bulkDelete:false,
@@ -446,18 +447,24 @@ export default{
 
     //initiates the delete user dialog box
     deleteForm(system, username, name, value, authSource, guid) {
+      this.deleteMessage = "Are yyou sure you want to delete this item?";
       this.dialog_uDelete = true;
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
     async deleteUser() {
-      await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
       if(!(this.bulkDelete)){
+        await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
         this.statusDialog = true;
         if(this.userDeleteError){
           this.statusMessage = "Unable to delete item";
         } else {
           this.statusMessage = "Item successfully deleted"
         }
+      } else {
+        (this.itemJson).forEach(element => {
+          this.deleteJson = element;
+          await this.$store.dispatch('userActions/deleteUser', element);
+        });
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
@@ -482,12 +489,8 @@ export default{
     deleteGroup(){
       this.dialog_uDelete = false;
       this.bulkDelete = true;
-      (this.itemJson).forEach(element => {
-        this.deleteJson = element;
-        this.deleteUser();
-      });
-
-      this.getItems();
+      this.deleteMessage = "Are you sure you want to delete all entries with this username?"
+      this.dialog_uDelete = true;
     },
     async addCsv(csvRes){
       csvRes.forEach(async function(element){
