@@ -167,7 +167,7 @@ export default {
     try{
       const response = await apiAxios.delete(ApiRoutes.ROLES, roleInfo);
       if(response.status == 500){
-        return error;
+        return true;
       }
       return response.data.error;
     } catch(e) {

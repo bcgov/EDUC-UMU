@@ -338,7 +338,7 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']);
+    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError'])
   },
   mounted: function(){
     this.getItems()
