@@ -57,9 +57,6 @@ export default {
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
     ...mapGetters('auth', ['accessDenied'])
-  },
-  mounted: function(){
-    this.$store.dispatch('roleActions/getRoles');
   }
 };
 </script>
