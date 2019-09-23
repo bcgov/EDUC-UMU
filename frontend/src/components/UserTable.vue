@@ -351,12 +351,14 @@ export default{
   },
   mounted: async function(){
     this.getItems();
+    const list = [];
     await this.$store.dispatch('roleActions/getRoles');
     (this.roles).forEach( async element => {
-      if(!((this.roleList).includes(element.role))){
-        this.roleList.push(element.role)
+      if(!((list).includes(element.role))){
+        list.push(element.role);
       }
-    })
+    });
+    this.roleList = list;
   },
 
   methods: {
@@ -475,8 +477,7 @@ export default{
           this.statusMessage = "Item successfully deleted"
         }
       } else {
-        (this.itemJson).forEach(element => {
-          this.deleteJson = element;
+        (this.itemJson).forEach(async element => {
           await this.$store.dispatch('userActions/deleteUser', element);
         });
       }
