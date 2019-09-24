@@ -21,10 +21,10 @@
     >
 
     <template v-slot:item.proxyName="{ item }">
-      {{ item.proxyName + ' (' + item.proxy + ')' }}
+      <b>{{ item.proxyName }}</b>{{ ' (' + item.proxy + ')' }}
     </template>
     <template v-slot:item.targetName="{ item }">
-      {{ item.targetName + ' (' + item.target + ')' }}
+      <b>{{ item.targetName }}</b>{{ ' (' + item.target + ')' }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
@@ -58,18 +58,18 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Proxy ID"></v-text-field>
+                          <v-text-field v-model="addProxyInput" :disabled="userSelect" label="Proxy ID"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Target ID"></v-text-field>
+                          <v-text-field v-model="addTarget" :disabled="userSelect" label="Target ID"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="addProxyInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field v-model="addProxyNameInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
+                          <v-text-field v-model="addTargetName" :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -130,18 +130,18 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateProxyInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field v-model="updateProxyNameInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                          <v-text-field v-model="updateTargetName" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -213,10 +213,14 @@ export default {
     updateProxyInput: null,
     updateTarget: null,
     updateLevel: null,
+    updateProxyNameInput: null,
+    updateTargetName: null,
 
     addProxyInput: null,
     addTarget: null,
     addLevel: null,
+    addProxyNameInput: null,
+    addTargetName: null,
 
     valid: true,
     search: '',
@@ -255,7 +259,8 @@ export default {
     proxyInfo: {}
   }),
   computed: {
-    ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError'])
+    ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError']),
+    ...mapGetters('userActions', ['users'])
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
@@ -300,7 +305,19 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+      if(this.userSelect){
+        const proxyGuid = usernameToGuid(this.updateProxyNameInput);
+        const targetGuid = usernameToGuid(this.updateTargetName);
+        if((proxyGuid === null) || (targetGuid === null)){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        } else {
+          const updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
+        }
+      } else {
+        const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+      }
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
       this.statusDialog = true;
@@ -316,14 +333,26 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+      if(this.userSelect){
+        const proxyGuid = usernameToGuid(this.addProxyNameInput);
+        const targetGuid = usernameToGuid(this.addTargetName);
+        if((proxyGuid === null) || (targetGuid === null)){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        } else {
+          const proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
+        }
+      } else {
+        const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+      }
       this.dialog_b = false;
       await this.$store.dispatch('proxyActions/addProxy', proxyJson);
       this.statusDialog = true;
       if(this.proxyAddError){
         this.statusMessage = "Unable to add proxy";
       } else {
-        this.statusMessage = "Proxy successfully added"
+        this.statusMessage = "Proxy successfully added";
       }
       this.getProxy();
     },
@@ -346,6 +375,14 @@ export default {
     cancelDelete() {
       this.dialog_pDelete = false;
       this.deleteJson = {};
+    },
+    usernameToGuid(username) {
+      (this.users).forEach(element => {
+        if(element.username === username){
+          return element.guid;
+        }
+      });
+      return null;
     }
   }
 };

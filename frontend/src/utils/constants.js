@@ -29,3 +29,10 @@ export const FieldValidations = Object.freeze({
   PASSWORD_MIN_LENGTH: 8,
   PASSWORD_MAX_LENGTH: 60
 });
+
+export const FormLists = Object.freeze({
+  SCHOOL_DISTRICTS: [],
+  SCHOOLS: [],
+  AUTH_SOURCES: {'test': ['IDIR', 'CAP TBCEID'], 'prod': ['IDIR', 'CAP BCEID']},
+  PROXY_LEVEL: []
+})
