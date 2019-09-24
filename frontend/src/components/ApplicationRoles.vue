@@ -50,7 +50,7 @@
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn color="#003366" dark text @click="dialog_c = false">Close</v-btn>
+                    <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                     <v-btn color="#003366" dark text @click="addRole()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
@@ -299,6 +299,11 @@ export default{
       this.addSystem = null;
       this.addRoleInput = null;
       this.getRoles();
+    },
+    cancelAdd(){
+      this.addSystem = null;
+      this.addRoleInput = null;
+      this.dialog_c = false;
     },
     //Deletes a role from the database
     deleteForm(system, role) {

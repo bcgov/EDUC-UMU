@@ -477,6 +477,15 @@ export default{
       this.getItems();
       this.dialog_a = false;
     },
+    cancelAdd(){
+      this.addSystem = null;
+      this.addUsername = null;
+      this.addName = null;
+      this.addValue = null;
+      this.addAuth = null;
+      this.addGuid = null;
+      this.dialog_a = false;
+    },
 
     //initiates the delete user dialog box
     deleteForm(system, username, name, value, authSource, guid) {
