@@ -119,6 +119,7 @@
                             <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-col>
                         </v-row>
+
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
@@ -234,7 +235,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>{{ deleteMessage }}</span>
+                  <span>Are you sure you want to delete this entry?</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -248,6 +249,7 @@
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card class="textOnlyCard">
           <v-card-text>
+
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -273,9 +275,9 @@ export default{
       districtList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       schoolList: ['School A', 'School B', 'School C', 'School D'],
 
+
       bulkAdd: false,
       bulkDelete:false,
-
 
       updateSystem: null,
       updateUsername: null,

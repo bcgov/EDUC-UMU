@@ -186,6 +186,7 @@
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card class="textOnlyCard">
           <v-card-text>
+
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
