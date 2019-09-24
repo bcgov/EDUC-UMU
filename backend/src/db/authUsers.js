@@ -73,7 +73,11 @@ class AuthUser {
       //db.execute(`select * from :1 where USERGUID=:2 AND `, [process.env.AUTH_TABLE, id]);
   }*/
   async update(options) {
-      /*db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
+      /*
+      const old = options.old;
+      const new = options.new;
+      const query = 'UPDATE ' + process.env.AUTH_TABLE + ' SET system=' + new.system + ', username=' + new.username + ', name=' + new.name + ', value=' +  new.value + ',' + new.authSource + ',' + new.guid + ') WHERE 
+      db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
           db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE]);
       });*/
       if(options != null){
