@@ -305,18 +305,19 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
+      const updateInfo ={};
       if(this.userSelect){
-        const proxyGuid = usernameToGuid(this.updateProxyNameInput);
-        const targetGuid = usernameToGuid(this.updateTargetName);
+        const proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
+        const targetGuid = this.usernameToGuid(this.updateTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
           return;
         } else {
-          const updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
+          updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
         }
       } else {
-        const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+        updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
       }
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
@@ -333,18 +334,19 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
+      const proxyJson = {};
       if(this.userSelect){
-        const proxyGuid = usernameToGuid(this.addProxyNameInput);
-        const targetGuid = usernameToGuid(this.addTargetName);
+        const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
+        const targetGuid = this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
           return;
         } else {
-          const proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
+          proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
         }
       } else {
-        const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+        proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
       }
       this.dialog_b = false;
       await this.$store.dispatch('proxyActions/addProxy', proxyJson);
