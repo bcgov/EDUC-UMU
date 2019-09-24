@@ -108,7 +108,10 @@
                             <v-select v-model="addName" :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="addValue" label="Value" name="value"></v-text-field>
+                            <v-select v-if="addName === 'ROLES'" v-model="addValue" label="value" name="value" :items="roleList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_DISTRICT'" v-model="addValue" label="value" name="value" :items="districtList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_SCHOOL'" v-model="addValue" label="value" name="value" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="addValue" label="Value" name="value"></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -235,7 +238,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>Are you sure you want to delete this entry?</span>
+                  <span>{{ deleteMessage }}</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -489,9 +492,13 @@ export default{
         (this.itemJson).forEach(async element => {
           await this.$store.dispatch('userActions/deleteUser', element);
         });
+        this.statusDialog = true;
+        this.statusMessage = "Username Group successfully deleted";
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
+      this.resetUsername();
+      this.getItems();
     },
     cancelDelete() {
       this.dialog_uDelete = false;
