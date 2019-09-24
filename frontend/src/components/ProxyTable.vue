@@ -384,7 +384,7 @@ export default {
       this.addLevel = null;
       this.addProxyInput = null;
       this.addTarget = null;
-    }
+    },
     //initiates the proxy delete function
     deleteForm(proxy, target, level){
       this.dialog_pDelete = true;
