@@ -305,7 +305,7 @@ export default {
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateInfo ={};
+      let updateInfo ={};
       if(this.userSelect){
         const proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
         const targetGuid = this.usernameToGuid(this.updateTargetName);
@@ -334,7 +334,7 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {};
+      let proxyJson = {};
       if(this.userSelect){
         const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
         const targetGuid = this.usernameToGuid(this.addTargetName);
