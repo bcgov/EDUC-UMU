@@ -126,7 +126,7 @@
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
+                      <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
                       <v-file-input accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
