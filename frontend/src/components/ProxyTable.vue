@@ -388,7 +388,7 @@ export default {
       this.dialog_pDelete = false;
       this.deleteJson = {};
     },
-    usernameToGuid(userInput) {
+    async usernameToGuid(userInput) {
       await this.$store.dispatch('userActions/getUsers');
       (this.users).forEach(element => {
         if(element.username == userInput){
