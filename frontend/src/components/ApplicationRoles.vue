@@ -283,6 +283,10 @@ export default{
     },
     //Adds a role to the database then refreshes the table
     async addRole () {
+      if((this.addSystem === null) || (this.addRoleInput === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+      }
       const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);

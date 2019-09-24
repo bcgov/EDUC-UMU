@@ -336,6 +336,11 @@ export default {
     async addProxy () {
       let proxyJson = {};
       if(this.userSelect){
+        if((this.addProxyNameInput === null) || (this.addTargetName === null) || (this.addLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
         const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
         const targetGuid = this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
@@ -346,6 +351,11 @@ export default {
           proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
         }
       } else {
+        if((this.addProxyInput === null) || (this.addTarget === null) || (this.addLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
         proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
       }
       this.dialog_b = false;

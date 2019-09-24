@@ -108,9 +108,9 @@
                             <v-select v-model="addName" :items="nameOptions" label="Name" name="name" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-select v-if="addName === 'ROLES'" v-model="addValue" label="value" name="value" :items="roleList" required></v-select>
-                            <v-select v-else-if="addName === 'EDW_MASKING_USER_DISTRICT'" v-model="addValue" label="value" name="value" :items="districtList" required></v-select>
-                            <v-select v-else-if="addName === 'EDW_MASKING_USER_SCHOOL'" v-model="addValue" label="value" name="value" :items="schoolList" required></v-select>
+                            <v-select v-if="addName === 'ROLES'" v-model="addValue" label="Value" name="value" :items="roleList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_DISTRICT'" v-model="addValue" label="Value" name="value" :items="districtList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_SCHOOL'" v-model="addValue" label="Value" name="value" :items="schoolList" required></v-select>
                             <v-text-field v-else v-model="addValue" label="Value" name="value"></v-text-field>
                           </v-col>
                         </v-row>
@@ -203,9 +203,9 @@
                             <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
+                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
                             <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
                           </v-col>
                         </v-row>
@@ -455,6 +455,11 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
+      if((this.addSystem === null) || (this.addUsername === null) || (this.addName === null) || (this.addValue === null) || (this.addAuth === null) || (this.addGuid === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+        return;
+      }
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
