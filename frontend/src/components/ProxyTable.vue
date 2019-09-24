@@ -80,7 +80,7 @@
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn color="#003366" dark text @click="dialog_b = false">Close</v-btn>
+                    <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                     <v-btn color="#003366" dark text @click="addProxy()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
@@ -302,6 +302,11 @@ export default {
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level, proxyName, targetName) {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
+      this.updateProxyNameInput = proxyName;
+      this.updateTargetName = targetName;
+      this.updateProxyInput = proxy;
+      this.updateTarget = target;
+      this.updateLevel = level;
       this.dialog_pForm = true;
     },
     async updateProxy(){
@@ -366,8 +371,20 @@ export default {
       } else {
         this.statusMessage = "Proxy successfully added";
       }
+      this.addProxyNameInput = null;
+      this.addTargetName = null;
+      this.addLevel = null;
+      this.addProxyInput = null;
+      this.addTarget = null;
       this.getProxy();
     },
+    cancelAdd(){
+      this.addProxyNameInput = null;
+      this.addTargetName = null;
+      this.addLevel = null;
+      this.addProxyInput = null;
+      this.addTarget = null;
+    }
     //initiates the proxy delete function
     deleteForm(proxy, target, level){
       this.dialog_pDelete = true;
