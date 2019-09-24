@@ -206,10 +206,10 @@
                           </v-col>
                         </v-row>
                         <v-row>
-                          <v-col>
+                          <v-col cols="4">
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-col>
-                          <v-col>
+                          <v-col cols="12">
                             <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
                           </v-col>
                         </v-row>
