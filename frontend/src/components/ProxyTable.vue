@@ -400,6 +400,7 @@ export default {
         this.statusMessage = "Proxy successfully deleted";
       }
       this.dialog_pDelete = false;
+      this.getProxy();
       this.deleteJson = {};
     },
     cancelDelete() {
