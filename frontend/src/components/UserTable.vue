@@ -115,7 +115,7 @@
                           <v-col cols="4">
                             <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
                           </v-col>
-                          <v-col cols="12">
+                          <v-col>
                             <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
                           </v-col>
                         </v-row>
@@ -210,7 +210,7 @@
                           <v-col cols="4">
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-col>
-                          <v-col cols="12">
+                          <v-col>
                             <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
                           </v-col>
                         </v-row>
