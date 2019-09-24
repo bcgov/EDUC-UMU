@@ -341,8 +341,8 @@ export default {
           this.statusMessage = "All fields must have inputs";
           return;
         }
-        const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
-        const targetGuid = this.usernameToGuid(this.addTargetName);
+        const proxyGuid = await this.usernameToGuid(this.addProxyNameInput);
+        const targetGuid = await this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
