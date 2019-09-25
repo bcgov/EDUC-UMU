@@ -14,7 +14,7 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e":"./node_modules/nightwatch/bin/nightwatch -e chrome -t ./tests/e2e/specs/test"
+    "test:e2e": "./node_modules/nightwatch/bin/nightwatch -e chrome -t ./tests/e2e/specs/test"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
@@ -120,9 +120,11 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-
   "jest": {
-    "reporters": ["default", "jest-junit"],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "clearMocks": true,
     "setupFiles": [
       "<rootDir>/tests/unit/setup.js",

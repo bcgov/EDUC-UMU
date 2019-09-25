@@ -7,23 +7,21 @@ dotenv.config();
 class AuthUser {
   constructor() {}
   
-  async create(options) {
+  async create(opt) {
       /*
-      db.execute(`insert into :1(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATED_BY) values(:2, :3, :4, :5, :6, :7, :8);`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirnmae, options.guid, options.createdBy], () => {
-          db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE], callback);
-      });*/
+      const query = 'INSERT INTO ' + process.env.AUTH_TABLE + '(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) 
+      VALUES (' + opt.system + ',' + opt.username + ',' + opt.name + ',' + opt.value + ',' + opt.authSource + ',' + opt.guid + ')'; */
       //return false here since there is no error
-      if(options != null){
+      if(opt != null){
         return {'error': false};
       }
       //there was an error
       return {'error': true};
   }
-  async delete(id) {
-      /*
-      db.execute(`delete from :1 where userguid=:2;`, [process.env.AUTH_TABLE, id], callback);
-      */
-     if(id != null){
+  async delete(opt) {
+    //const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
+    //' WHERE SYSTEM=' + opt.system + 'AND USERNAME=' + opt.username + 'AND NAME=' + opt.name + 'AND VALUE=' +  opt.value + 'AND AUTHDIRNAME=' + opt.authSource + 'AND USERGUID=' + opt.guid';
+     if(opt != null){
        return {'error': false};
      }
      return {'error': true};
@@ -68,18 +66,15 @@ class AuthUser {
     }
     return result.rows;*/
     return users;
-  }/*
-  async select(options) {
-      //db.execute(`select * from :1 where USERGUID=:2 AND `, [process.env.AUTH_TABLE, id]);
-  }*/
+  }
   async update(options) {
       /*
       const old = options.old;
       const new = options.new;
-      const query = 'UPDATE ' + process.env.AUTH_TABLE + ' SET system=' + new.system + ', username=' + new.username + ', name=' + new.name + ', value=' +  new.value + ',' + new.authSource + ',' + new.guid + ') WHERE 
-      db.execute(`update :1 set SYSTEM=:2, USERNAME=:3, NAME=:4, VALUE=:5, AUTHDIRNAME=:6, USERGUID=:7, UPDATED_BY=:8`, [process.env.AUTH_TABLE, options.system, options.username, options.name, options.value, options.authdirname, options.guid, options.updatedBy], () => {
-          db.execute(`select last_value from :1;`, [process.env.AUTH_TABLE]);
-      });*/
+      const query = 'UPDATE ' + process.env.AUTH_TABLE + 
+        ' SET SYSTEM=' + new.system + ', USERNAME=' + new.username + ', NAME=' + new.name + ', VALUE=' +  new.value + ', AUTHDIRNAME=' + new.authSource + ', GUID=' + new.guid + 
+        ' WHERE SYSTEM=' + old.system + 'AND USERNAME=' + old.username + 'AND NAME=' + old.name + 'AND VALUE=' +  old.value + 'AND AUTHDIRNAME=' + old.authSource + 'AND GUID=' + old.guid';
+      */
       if(options != null){
         return {'error': false};
      }
