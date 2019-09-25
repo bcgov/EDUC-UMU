@@ -264,8 +264,9 @@
 </template>
 
 <script>
-import { DownloadRoutes, FormLists } from '@/utils/constants';
+import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
@@ -278,7 +279,7 @@ export default{
       districtList: FormLists.SCHOOL_DISTRICTS,
       schoolList: FormLists.SCHOOLS,
       nameOptions: FormLists.NAME_OPTIONS,
-      authSources: FormLists.AUTH_SOURCES,
+      authSources: [],
 
 
       bulkAdd: false,
@@ -362,6 +363,7 @@ export default{
     ...mapGetters('roleActions', ['roles'])
   },
   mounted: async function(){
+    await this.getAuth();
     this.getItems();
     const list = [];
     await this.$store.dispatch('roleActions/getRoles');
@@ -381,6 +383,10 @@ export default{
       }
     },
 
+    async getAuth(){
+      const auths = await axios.get(ApiRoutes.AUTH_SOURCES);
+      this.authSources = auths;
+    },
     //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
