@@ -385,8 +385,9 @@ export default{
 
     async getAuth(){
       const auths = await axios.get(ApiRoutes.AUTH_SOURCES);
-      console.log(auths.data.array);
-      this.authSources = auths.data.array;
+      (auths.data).forEach(element => {
+        (this.authSources).push(element);
+      })
     },
     //remove the user group that is currently selected
     resetUsername(){
