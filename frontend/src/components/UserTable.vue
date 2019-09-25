@@ -264,7 +264,7 @@
 </template>
 
 <script>
-import { DownloadRoutes } from '@/utils/constants';
+import { DownloadRoutes, FormLists } from '@/utils/constants';
 import { mapGetters } from 'vuex';
 export default{
   data: () =>  ({
@@ -275,8 +275,10 @@ export default{
       deleteMessage: "",
 
       roleList: [],
-      districtList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      schoolList: ['School A', 'School B', 'School C', 'School D'],
+      districtList: FormLists.SCHOOL_DISTRICTS,
+      schoolList: FormLists.SCHOOLS,
+      nameOptions: FormLists.NAME_OPTIONS,
+      authSources: FormLists.AUTH_SOURCES,
 
 
       bulkAdd: false,
@@ -300,8 +302,6 @@ export default{
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
       tempArray: [],
-      nameOptions: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKING_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
-      authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"],
       systemArray: [],
       groupOpen: false,
       dialog_a: false,

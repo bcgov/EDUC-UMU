@@ -31,8 +31,9 @@ export const FieldValidations = Object.freeze({
 });
 
 export const FormLists = Object.freeze({
-  SCHOOL_DISTRICTS: [],
-  SCHOOLS: [],
-  AUTH_SOURCES: {'test': ['IDIR', 'CAP TBCEID'], 'prod': ['IDIR', 'CAP BCEID']},
+  SCHOOL_DISTRICTS: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  NAME_OPTIONS: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKING_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
+  SCHOOLS: ['School A', 'School B', 'School C', 'School D'],
+  AUTH_SOURCES: ['IDIR', 'CAP TBCEID', 'CAP BCEID'],
   PROXY_LEVEL: []
 })

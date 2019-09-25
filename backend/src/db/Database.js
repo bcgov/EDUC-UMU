@@ -21,6 +21,11 @@ class Database {
     return result;
   }
   async updateUser(authUser) {
+    //test if the user exists before updating
+    /*let test = this.authUsers.select(authUser.old);
+    if(!test){
+      return test;
+    }*/
     let result = this.authUsers.update(authUser);
     return result;
   }
@@ -42,6 +47,11 @@ class Database {
     return result;
   }
   async updateProxy(proxyDetails) {
+    //test if the proxy exists before updating
+    /*let test = this.proxy.select(proxyDetails.old);
+    if(!test){
+      return test;
+    }*/
     let result = this.proxy.update(proxyDetails);
     return result;
   }
@@ -62,6 +72,11 @@ class Database {
     return result;
   }
   async updateRole(roleDetails) {
+    //test if the role exists before updating
+    /*let test = this.roles.select(roleDetails.old);
+    if(!test){
+      return test;
+    }*/
     let result = this.roles.update(roleDetails);
     return result;
   }
