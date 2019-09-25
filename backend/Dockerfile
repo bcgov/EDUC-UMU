@@ -31,7 +31,8 @@ COPY package*.json ./
 RUN npm install
 COPY . /opt/app-root/src
 
-RUN npm run build
+#Run a clean install of node dependencies
+RUN npm ci
 # --no-optional --production
 
 EXPOSE 8080 1521 443
