@@ -346,8 +346,8 @@ export default {
           this.statusMessage = "All fields must have inputs";
           return;
         }
-        const proxyGuid = await this.usernameToGuid(this.addProxyNameInput);
-        const targetGuid = await this.usernameToGuid(this.addTargetName);
+        const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
+        const targetGuid = this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
@@ -407,13 +407,10 @@ export default {
       this.dialog_pDelete = false;
       this.deleteJson = {};
     },
-    async usernameToGuid(userInput) {
+    usernameToGuid(userInput) {
       const returnValue = null;
-      await this.$store.dispatch('userActions/getUsers');
       (this.users).forEach(element => {
-        console.log(element.username);
-        console.log(userInput);
-        if(element.username == userInput){
+        if(userInput == element){
           returnValue = element.guid;
         }
       });
