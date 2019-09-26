@@ -410,8 +410,10 @@ export default {
     async usernameToGuid(userInput) {
       await this.$store.dispatch('userActions/getUsers');
       console.log("User Input: " + userInput + "\n");
+      const userArray = this.users;
+      console.log("User Array: " + userArray + "\n");
       (this.users).forEach(element => {
-        console.log("User Element: " + element);
+        console.log("User Element: " + element.username);
         if(element.username === userInput){
           return element.guid;
         }
