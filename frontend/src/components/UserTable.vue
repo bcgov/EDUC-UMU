@@ -8,7 +8,6 @@
             class="left-col"
           > Adding multiple users... {{ bulkComplete }} of {{ bulkTotal }} completed</v-col>
         </v-row>
-        </v-row>
         <v-row>
           <v-col 
             cols="auto"
@@ -93,12 +92,12 @@
               <v-icon left>save_alt</v-icon>
               CSV Template
             </v-btn>
-            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
+            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth Item</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
                   <v-card>
                     <v-card-title>
-                      <span><h4>Add Auth User</h4></span>
+                      <span><h4>Add Auth Item</h4></span>
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
