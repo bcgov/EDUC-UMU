@@ -575,7 +575,7 @@ export default{
      if(numErrors > 0){
        this.statusMessage = "Could not add " + numErrors + " of the " + totalAttempt + " user(s) from CSV file";
      } else if(numSuccess === 0) {
-       this.statusMessage = "CSV file is empty or formatted incorrectly. No users added";
+       this.statusMessage = "CSV file is empty or formatted incorrectly";
       } else {
        this.statusMessage = "Successfully added " + numSuccess + " user(s) from CSV file";
      }
