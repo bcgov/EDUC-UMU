@@ -266,6 +266,10 @@ export default{
       this.dialog_rForm = true;
     },
     async updateRole() {
+      if((this.updateSystem === null) || (this.updateRoleInput === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+      }
       const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);

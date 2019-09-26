@@ -445,6 +445,11 @@ export default{
       this.dialog_uForm = true;
     },
     async updateUser(){
+      if((this.updateSystem === null) || (this.updateUsername === null) || (this.updateName === null) || (this.updateValue === null) || (this.updateAuth === null) || (this.updateGuid === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+        return;
+      }
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
