@@ -566,10 +566,12 @@ export default{
       });
       */
      this.fileInput = null;
+     /*
      if(numErrors > 0){
        this.statusDialog = true;
        this.statusMessage = "Could not add " + numErrors + " user(s) from CSV file.";
      }
+     */
     }
   }
 };
