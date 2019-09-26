@@ -571,8 +571,9 @@ export default{
       */
      this.fileInput = null;
      this.statusDialog = true;
+     let totalAttempt = numErrors + numSuccess;
      if(numErrors > 0){
-       this.statusMessage = "Could not add " + numErrors + " user(s) from CSV file";
+       this.statusMessage = "Could not add " + numErrors + " of the " + totalAttempt " user(s) from CSV file";
      } else if(numSuccess === 0) {
        this.statusMessage = "CSV file is empty or formatted incorrectly. No users added";
       } else {
