@@ -8,18 +8,20 @@ dotenv.config();
 class Roles {
   constructor() {}
 
-  async create(options) {
-      /*db.execute(`insert into :1(SYSTEM, APPLICATION_ROLE, CREATE_BY) values(:2, :3, :4)`, [process.env.ROLES_TABLE, options.system, options.role, options.createdBy], () => {
-          db.execute(`select last_value from :1;`, [process.env.ROLES_TABLE]);
-      });*/
-      if(options != null){
+  async create(opt) {
+      /*
+      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (' + opt.system + ',' + opt.role + ')';
+      */
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};
   }
-  async delete(id) {
-      //db.execute(`delete from :1 where id=:2`, [process.env.ROLES_TABLE, id]);
-      if(id != null){
+  async delete(opt) {
+      /*
+      const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=' + opt.system + 'AND APPLICATION_ROLE=' + opt.role; 
+      */
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};
@@ -27,19 +29,13 @@ class Roles {
 
   //select all roles from table
   async selectAll() {
-    /*let connection = await oracledb.getConnection({
-      user: process.env.ORACLE_USER,
-      password : process.env.ORACLE_PASSWORD,
-      connectString : process.env.ORACLE_CONNECT
-    });
+    /*
     const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
-    let result = await connection.execute(query);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-      }
+    const res = get from ords
+    res.forEach(element => {
+
+    });
+    return res;
     }*/
     return [{'system': 'test', 'role': 'test', 'create': 'test', 'createDate': 'test', 'update': 'test', 'updateDate': 'test'}];
   }
@@ -47,11 +43,13 @@ class Roles {
   select(id, callback) {
       db.execute(`select * from :1 where id=:2`, [process.env.ROLES_TABLE, id], callback);
   }*/
-  async update(options) {
-      /*db.execute(`update :1 set SYSTEM=:2, APPLICATION_ROLE=:3, UPDATED_BY=:4`, [process.env.ROLES_TABLE, options.system, options.role, options.updatedBy], () => {
-          db.execute(`select last_value from :1`, [process.env.ROLES_TABLE], callback);
-      });*/
-      if(options != null){
+  async update(opt) {
+      /*
+      const new = opt.new;
+      const old = opt.old;
+      const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=' + new.system + ', APPLICATION_ROLE=' + new.role + ' WHERE SYSTEM=' + old.system + ' AND APPLICATION_ROLE=' + old.role;
+      */
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};

@@ -21,10 +21,10 @@
     >
 
     <template v-slot:item.proxyName="{ item }">
-      {{ item.proxyName + ' (' + item.proxy + ')' }}
+      <b>{{ item.proxyName }}</b>{{ ' (' + item.proxy + ')' }}
     </template>
     <template v-slot:item.targetName="{ item }">
-      {{ item.targetName + ' (' + item.target + ')' }}
+      <b>{{ item.targetName }}</b>{{ ' (' + item.target + ')' }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
@@ -58,18 +58,18 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Proxy ID"></v-text-field>
+                          <v-text-field v-model="addProxyInput" :disabled="userSelect" label="Proxy ID"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Target ID"></v-text-field>
+                          <v-text-field v-model="addTarget" :disabled="userSelect" label="Target ID"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="addProxyInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
+                          <v-text-field v-model="addProxyNameInput" :disabled="!userSelect" label="Proxy Username"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="addTarget" :disabled="!userSelect" label="Target Username"></v-text-field>
+                          <v-text-field v-model="addTargetName" :disabled="!userSelect" label="Target Username"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -80,7 +80,7 @@
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn color="#003366" dark text @click="dialog_b = false">Close</v-btn>
+                    <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                     <v-btn color="#003366" dark text @click="addProxy()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
@@ -130,18 +130,18 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateProxyInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
+                          <v-text-field v-model="updateProxyNameInput" :disabled="!userSelect" label="Proxy Username" :value="proxyInfo.proxyName"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="updateTarget" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
+                          <v-text-field v-model="updateTargetName" :disabled="!userSelect" label="Target Username" :value="proxyInfo.targetName"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -184,8 +184,9 @@
 
 
       <v-dialog v-model="statusDialog" persistent max-width="320px">
-        <v-card>
-          <v-card-text class="textOnlyCard">
+        <v-card class="textOnlyCard">
+          <v-card-text>
+
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -212,10 +213,14 @@ export default {
     updateProxyInput: null,
     updateTarget: null,
     updateLevel: null,
+    updateProxyNameInput: null,
+    updateTargetName: null,
 
     addProxyInput: null,
     addTarget: null,
     addLevel: null,
+    addProxyNameInput: null,
+    addTargetName: null,
 
     valid: true,
     search: '',
@@ -254,7 +259,8 @@ export default {
     proxyInfo: {}
   }),
   computed: {
-    ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError'])
+    ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError']),
+    ...mapGetters('userActions', ['users'])
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
@@ -296,10 +302,45 @@ export default {
     //Passes information from a specific row to the Update dialog box
     updateProxyForm (proxy, target, level, proxyName, targetName) {
       this.proxyInfo = {'proxy': proxy, 'target': target, 'level': level, 'proxyName': proxyName, 'targetName': targetName};
+      this.updateProxyNameInput = proxyName;
+      this.updateTargetName = targetName;
+      this.updateProxyInput = proxy;
+      this.updateTarget = target;
+      this.updateLevel = level;
       this.dialog_pForm = true;
     },
     async updateProxy(){
-      const updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+      let updateInfo ={};
+      if(this.userSelect){
+        if((this.updateProxyNameInput === null) || (this.updateTargetName === null) || (this.updateLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
+        let targetGuid = this.usernameToGuid(this.updateTargetName);
+        if((proxyGuid === null) || (targetGuid === null)){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        } else {
+          updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
+        }
+      } else {
+        if((this.updateProxyInput === null) || (this.updateTarget === null) || (this.updateLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.checkGuid(this.updateProxyInput);
+        let targetGuid = this.checkGuid(this.updateTarget);
+        if(!proxyGuid || !targetGuid){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        }
+        updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
+      }
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
       this.statusDialog = true;
@@ -315,16 +356,59 @@ export default {
     },
     //Initiates the add proxy dialog box and reloads the table when proxy has been added
     async addProxy () {
-      const proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+      let proxyJson = {};
+      if(this.userSelect){
+        if((this.addProxyNameInput === null) || (this.addTargetName === null) || (this.addLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.usernameToGuid(this.addProxyNameInput);
+        let targetGuid = this.usernameToGuid(this.addTargetName);
+        if((proxyGuid === null) || (targetGuid === null)){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        } else {
+          proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
+        }
+      } else {
+        if((this.addProxyInput === null) || (this.addTarget === null) || (this.addLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.checkGuid(this.addProxyInput);
+        let targetGuid = this.checkGuid(this.addTarget);
+        if(!proxyGuid || !targetGuid){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        }
+        proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
+      }
       this.dialog_b = false;
       await this.$store.dispatch('proxyActions/addProxy', proxyJson);
       this.statusDialog = true;
       if(this.proxyAddError){
         this.statusMessage = "Unable to add proxy";
       } else {
-        this.statusMessage = "Proxy successfully added"
+        this.statusMessage = "Proxy successfully added";
       }
+      this.addProxyNameInput = null;
+      this.addTargetName = null;
+      this.addLevel = null;
+      this.addProxyInput = null;
+      this.addTarget = null;
       this.getProxy();
+    },
+    cancelAdd(){
+      this.addProxyNameInput = null;
+      this.addTargetName = null;
+      this.addLevel = null;
+      this.addProxyInput = null;
+      this.addTarget = null;
+      this.dialog_b = false;
     },
     //initiates the proxy delete function
     deleteForm(proxy, target, level){
@@ -340,11 +424,30 @@ export default {
         this.statusMessage = "Proxy successfully deleted";
       }
       this.dialog_pDelete = false;
+      this.getProxy();
       this.deleteJson = {};
     },
     cancelDelete() {
       this.dialog_pDelete = false;
       this.deleteJson = {};
+    },
+    usernameToGuid(userInput) {
+      let returnValue = null;
+      (this.users).forEach(element => {
+        if(userInput == element.username){
+          returnValue = element.guid;
+        }
+      });
+      return returnValue;
+    },
+    checkGuid(guidInput) {
+      let returnValue = false;
+      (this.users).forEach(element => {
+        if(guidInput == element.guid){
+          returnValue = true;
+        }
+      });
+      return returnValue;
     }
   }
 };

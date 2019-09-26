@@ -7,54 +7,45 @@ dotenv.config();
 
 class Proxy {
   constructor() {}
-  async create(options) {
+  async create(opt) {
     /*
-      db.execute(`insert into :1(PROXYID, TARGETID, PROXYLEVEL) values(:2, :3, :4);`, [process.env.PROXY_TABLE, options.proxy, options.target, options.level], () => {
-          db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE]);
-      });*/
-      if(options != null){
+      const query = 'INSERT INTO ' + process.env.PROXY_TABLE + ' (PROXYID, TARGETID, PROXYLEVEL) 
+      VALUES (' + opt.proxy + ',' + opt.target + ',' + opt.level + ')';*/
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};
   }
-  async delete(id) {
-      //db.execute(`delete from :1 where id=:2;`, [process.env.PROXY_TABLE, id]);
-      if(id != null){
+  async delete(opt) {
+      /*
+      const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=' + opt.proxy + ' AND ' + opt.target + ' AND ' + opt.level; 
+      */
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};
   }
   //select all proxies from table
   async selectAll() {
-    /*let connection = await oracledb.getConnection({
-      user: process.env.ORACLE_USER,
-      password : process.env.ORACLE_PASSWORD,
-      connectString : process.env.ORACLE_CONNECT
-    });
+    /*
     const query = 'SELECT * FROM ' + process.env.PROXY_TABLE;
-    let result = await connection.execute(query);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-      }
+    const res = send to ords
+    res.forEach(element => {
+
+    })
     }*/
     return [
             {'proxy': '239786FWEUHDFGSDKFASDF', 'target': '54789THERIFU23G54WYRT', 'level': 'full', 'proxyName': '', 'targetName': ''},
             {'proxy': '54789THERIFU23G54WYRT', 'target': 'FVBNJTY89WEFUHEFIBRQ', 'level': 'not full', 'proxyName': '', 'targetName': ''}
           ];
   }
-  /*
-  async select(id, callback) {
-      db.execute(`select * from :1 where id=:2`, [process.env.PROXY_TABLE, id], callback);
-  }
-  */
-  async update(options) {
-      /*db.execute(`update :1 set PROXYID=:2, TARGETID=:3, PROXYLEVEL=:4;`, [process.env.PROXY_TABLE, options.proxy, options.target, options.level], () => {
-          db.execute(`select last_value from :1;`, [process.env.PROXY_TABLE], callback);
-      });*/
-      if(options != null){
+  async update(opt) {
+      /*
+      const new = opt.new;
+      const old = opt.old;
+      const query = 'UPDATE ' + process.env.PROXY_TABLE + ' SET PROXYID=' + new.proxy + ',' TARGETID=' + new.target + 'PROXYLEVEL=' + new.level + ' WHERE PROXYID=' + old.proxy + ', TARGETID=' + old.target + ',PROXYLEVEL=' + old.level;
+      */
+      if(opt != null){
         return {'error': false};
      }
      return {'error': true};

@@ -27,10 +27,10 @@ ENV TWO_TASK=edw2d.world
 # Install NPM Dependencies
 COPY package*.json ./
 
-# RUN rm -rf node_modules
-RUN npm install
+RUN npm ci
 COPY . /opt/app-root/src
 
+#Run a clean install of node dependencies
 RUN npm run build
 # --no-optional --production
 

@@ -50,7 +50,7 @@
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
-                    <v-btn color="#003366" dark text @click="dialog_c = false">Close</v-btn>
+                    <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                     <v-btn color="#003366" dark text @click="addRole()">Add</v-btn>
                   </v-card-actions>
                 </v-card>
@@ -144,8 +144,8 @@
         </v-card>
       </v-dialog>
       <v-dialog v-model="statusDialog" persistent max-width="320px">
-        <v-card>
-          <v-card-text class="textOnlyCard">
+        <v-card class="textOnlyCard">
+          <v-card-text>
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -266,6 +266,10 @@ export default{
       this.dialog_rForm = true;
     },
     async updateRole() {
+      if((this.updateSystem === null) || (this.updateRoleInput === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+      }
       const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
@@ -283,6 +287,10 @@ export default{
     },
     //Adds a role to the database then refreshes the table
     async addRole () {
+      if((this.addSystem === null) || (this.addRoleInput === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+      }
       const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
@@ -295,6 +303,11 @@ export default{
       this.addSystem = null;
       this.addRoleInput = null;
       this.getRoles();
+    },
+    cancelAdd(){
+      this.addSystem = null;
+      this.addRoleInput = null;
+      this.dialog_c = false;
     },
     //Deletes a role from the database
     deleteForm(system, role) {

@@ -95,32 +95,40 @@
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
-                        <v-layout wrap>
-                          <v-flex xs12 sm6>
+                        <v-row>
+                          <v-col>
                             <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
-                          </v-flex>
-                          <v-flex xs12 sm6>
+                          </v-col>
+                          <v-col>
                             <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col>
                             <v-select v-model="addName" :items="nameOptions" label="Name" name="name" required></v-select>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
-                            <v-text-field v-model="addValue" label="Value" name="value"></v-text-field>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          </v-col>
+                          <v-col>
+                            <v-select v-if="addName === 'ROLES'" v-model="addValue" label="Value" name="value" :items="roleList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_DISTRICT'" v-model="addValue" label="Value" name="value" :items="districtList" required></v-select>
+                            <v-select v-else-if="addName === 'EDW_MASKING_USER_SCHOOL'" v-model="addValue" label="Value" name="value" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="addValue" label="Value" name="value"></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col cols="4">
                             <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
-                          </v-flex>
-                          <v-flex xs12>
+                          </v-col>
+                          <v-col>
                             <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
-                          </v-flex>
-                        </v-layout>
+                          </v-col>
+                        </v-row>
+
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
-                      <v-btn color="#003366" dark text @click="dialog_a = false">Close</v-btn>
+                      <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <v-file-input v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -182,26 +190,33 @@
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
-                        <v-layout wrap>
-                          <v-flex xs12 sm6>
+                        <v-row>
+                          <v-col>
                             <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
-                          </v-flex>
-                          <v-flex xs12 sm6>
+                          </v-col>
+                          <v-col>
                             <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
-                            <v-select v-model="updateName" label="Name" name="name" :items="nameOptions" required></v-select>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
-                            <v-text-field v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
-                          </v-flex>
-                          <v-flex xs12 sm6 md4>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col>
+                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
+                          </v-col>
+                          <v-col>
+                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col cols="4">
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
-                          </v-flex>
-                          <v-flex xs12>
+                          </v-col>
+                          <v-col>
                             <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
-                          </v-flex>
-                        </v-layout>
+                          </v-col>
+                        </v-row>
                       </v-container>
                     </v-card-text>
                     <v-card-actions>
@@ -223,7 +238,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span>Are you sure you want to delete this entry?</span>
+                  <span>{{ deleteMessage }}</span>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -235,8 +250,9 @@
         </v-card>
       </v-dialog>
       <v-dialog v-model="statusDialog" persistent max-width="320px">
-        <v-card>
-          <v-card-text class="textOnlyCard">
+        <v-card class="textOnlyCard">
+          <v-card-text>
+
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -248,14 +264,24 @@
 </template>
 
 <script>
-import { DownloadRoutes } from '@/utils/constants';
+import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
       usernameGroup: '',
       statusDialog: false,
       statusMessage: "",
+      deleteMessage: "",
+
+      roleList: [],
+      districtList: FormLists.SCHOOL_DISTRICTS,
+      schoolList: FormLists.SCHOOLS,
+      nameOptions: FormLists.NAME_OPTIONS,
+      authSources: [],
+
+      fileInput: null,
 
       bulkAdd: false,
       bulkDelete:false,
@@ -278,13 +304,9 @@ export default{
         {"system": '', "username": '', "guid": '', "authSource": ''}
       ],
       tempArray: [],
-      nameOptions: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKING_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
-      authSources: ["IDIR", "CAP BCEID", "CAP TBCEID"],
-      roleArray: [],
       systemArray: [],
       groupOpen: false,
       dialog_a: false,
-      deleteMessage: '',
       dialog_uForm: false,
       dialog_uDelete: false,
       isLoading: true,
@@ -338,10 +360,20 @@ export default{
       userInfo: {}
   }),
   computed: {
-    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError'])
+    ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
+    ...mapGetters('roleActions', ['roles'])
   },
-  mounted: function(){
-    this.getItems()
+  mounted: async function(){
+    await this.getAuth();
+    this.getItems();
+    const list = [];
+    await this.$store.dispatch('roleActions/getRoles');
+    (this.roles).forEach( async element => {
+      if(!((list).includes(element.role))){
+        list.push(element.role);
+      }
+    });
+    this.roleList = list;
   },
 
   methods: {
@@ -352,6 +384,10 @@ export default{
       }
     },
 
+    async getAuth(){
+      const auths = await axios.get(ApiRoutes.AUTH_SOURCES);
+      this.authSources = auths.data;
+    },
     //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
@@ -410,14 +446,19 @@ export default{
       this.dialog_uForm = true;
     },
     async updateUser(){
+      if((this.updateSystem === null) || (this.updateUsername === null) || (this.updateName === null) || (this.updateValue === null) || (this.updateAuth === null) || (this.updateGuid === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+        return;
+      }
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to update user";
+        this.statusMessage = "Unable to update item";
       } else {
-        this.statusMessage = "User successfully updated"
+        this.statusMessage = "Item successfully updated"
       }
       this.getItems();
       this.userInfo = {};
@@ -426,13 +467,21 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
+      if(this.fileInput !== null){
+        this.addCsv();
+      }
+      if((this.addSystem === null) || (this.addUsername === null) || (this.addName === null) || (this.addValue === null) || (this.addAuth === null) || (this.addGuid === null)){
+        this.statusDialog = true;
+        this.statusMessage = "All fields must have inputs";
+        return;
+      }
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to add user";
+        this.statusMessage = "Unable to add item";
       } else {
-        this.statusMessage = "User successfully added";
+        this.statusMessage = "Item successfully added";
       }
       this.addSystem = null;
       this.addUsername = null;
@@ -443,24 +492,42 @@ export default{
       this.getItems();
       this.dialog_a = false;
     },
+    cancelAdd(){
+      this.addSystem = null;
+      this.addUsername = null;
+      this.addName = null;
+      this.addValue = null;
+      this.addAuth = null;
+      this.addGuid = null;
+      this.dialog_a = false;
+    },
 
     //initiates the delete user dialog box
     deleteForm(system, username, name, value, authSource, guid) {
+      this.deleteMessage = "Are yyou sure you want to delete this item?";
       this.dialog_uDelete = true;
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
     async deleteUser() {
-      await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
       if(!(this.bulkDelete)){
+        await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
         this.statusDialog = true;
         if(this.userDeleteError){
-          this.statusMessage = "Unable to delete user";
+          this.statusMessage = "Unable to delete item";
         } else {
-          this.statusMessage = "User successfully deleted"
+          this.statusMessage = "Item successfully deleted"
         }
+      } else {
+        (this.itemJson).forEach(async element => {
+          await this.$store.dispatch('userActions/deleteUser', element);
+        });
+        this.statusDialog = true;
+        this.statusMessage = "Username Group successfully deleted";
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
+      this.resetUsername();
+      this.getItems();
     },
     cancelDelete() {
       this.dialog_uDelete = false;
@@ -482,17 +549,17 @@ export default{
     deleteGroup(){
       this.dialog_uDelete = false;
       this.bulkDelete = true;
-      (this.itemJson).forEach(element => {
-        this.deleteJson = element;
-        this.deleteUser();
-      });
-
-      this.getItems();
+      this.deleteMessage = "Are you sure you want to delete all entries with this username?"
+      this.dialog_uDelete = true;
     },
-    async addCsv(csvRes){
+    async addCsv(){
+      let csv = this.fileInput;
+      console.log(csv);
+      /*
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
       });
+      */
     }
   }
 };

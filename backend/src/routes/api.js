@@ -6,6 +6,7 @@ const express = require('express');
 const router = express.Router();
 //const auth = require('./auth/auth');
 const dbRouter = require('./db_routes/db');
+const envRouter = require('./envRouter');
 
 function checkRoles(req, res, next){
   if(req.user.jwt.realm_access.roles.includes('umu-access')){
@@ -20,7 +21,8 @@ router.get('/', (_req, res) => {
   res.status(200).json({
     endpoints: [
       '/database',
-      '/validation'
+      '/validation',
+      '/environment'
     ]
   });
 });
@@ -29,5 +31,7 @@ router.get('/', (_req, res) => {
 router.use('/database', passport.authenticate('jwt', {
   session: false
 }), checkRoles, dbRouter);
+
+router.use('/environment', envRouter);
 
 module.exports = router;
