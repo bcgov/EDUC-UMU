@@ -469,6 +469,7 @@ export default{
     async addUser() {
       if(this.fileInput !== null){
         this.addCsv();
+        return;
       }
       if((this.addSystem === null) || (this.addUsername === null) || (this.addName === null) || (this.addValue === null) || (this.addAuth === null) || (this.addGuid === null)){
         this.statusDialog = true;
@@ -556,10 +557,19 @@ export default{
       let csv = this.fileInput;
       console.log(csv);
       /*
+      let numErrors = 0;
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
+        if(this.userAddError){
+          numErrors++;
+        }
       });
       */
+     this.fileInput = null;
+     if(numErrors > 0){
+       this.statusDialog = true;
+       this.statusMessage = "Could not add " + numErrors + " user(s) from CSV file.";
+     }
     }
   }
 };
