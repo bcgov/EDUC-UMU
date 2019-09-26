@@ -312,6 +312,11 @@ export default {
     async updateProxy(){
       let updateInfo ={};
       if(this.userSelect){
+        if((this.updateProxyNameInput === null) || (this.updateTargetName === null) || (this.updateLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
         let proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
         let targetGuid = this.usernameToGuid(this.updateTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
@@ -322,6 +327,18 @@ export default {
           updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
         }
       } else {
+        if((this.updateProxyInput === null) || (this.updateTarget === null) || (this.updateLevel === null)){
+          this.statusDialog = true;
+          this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.checkGuid(this.updateProxyInput);
+        let targetGuid = this.checkGuid(this.updateTarget);
+        if(!proxyGuid || !targetGuid){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
+          return;
+        }
         updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
       }
       const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
@@ -359,6 +376,13 @@ export default {
         if((this.addProxyInput === null) || (this.addTarget === null) || (this.addLevel === null)){
           this.statusDialog = true;
           this.statusMessage = "All fields must have inputs";
+          return;
+        }
+        let proxyGuid = this.checkGuid(this.addProxyInput);
+        let targetGuid = this.checkGuid(this.addTarget);
+        if(!proxyGuid || !targetGuid){
+          this.statusDialog = true;
+          this.statusMessage = "Username/GUID does not exist in the database";
           return;
         }
         proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
@@ -412,6 +436,15 @@ export default {
       (this.users).forEach(element => {
         if(userInput == element.username){
           returnValue = element.guid;
+        }
+      });
+      return returnValue;
+    },
+    checkGuid(guidInput) {
+      let returnValue = false;
+      (this.users).forEach(element => {
+        if(guidInput == element.guid){
+          returnValue = true;
         }
       });
       return returnValue;
