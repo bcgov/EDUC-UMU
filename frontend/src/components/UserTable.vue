@@ -128,7 +128,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <v-file-input v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -281,6 +281,7 @@ export default{
       nameOptions: FormLists.NAME_OPTIONS,
       authSources: [],
 
+      fileInput: null,
 
       bulkAdd: false,
       bulkDelete:false,
@@ -466,6 +467,9 @@ export default{
 
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
+      if(this.fileInput !== null){
+        this.addCsv();
+      }
       if((this.addSystem === null) || (this.addUsername === null) || (this.addName === null) || (this.addValue === null) || (this.addAuth === null) || (this.addGuid === null)){
         this.statusDialog = true;
         this.statusMessage = "All fields must have inputs";
@@ -548,10 +552,14 @@ export default{
       this.deleteMessage = "Are you sure you want to delete all entries with this username?"
       this.dialog_uDelete = true;
     },
-    async addCsv(csvRes){
+    async addCsv(){
+      let csv = this.fileInput;
+      console.log(csv);
+      /*
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
       });
+      */
     }
   }
 };
