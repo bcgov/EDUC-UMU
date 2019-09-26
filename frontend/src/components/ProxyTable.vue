@@ -409,7 +409,6 @@ export default {
     },
     async usernameToGuid(userInput) {
       await this.$store.dispatch('userActions/getUsers');
-      const userArray = this.users;
       (this.users).forEach(element => {
         console.log(element.username);
         console.log(userInput);

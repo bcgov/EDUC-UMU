@@ -38,11 +38,11 @@
                 "webStorageEnabled": true,
                 "chromeOptions": {
                     "args": [
-                        "disable-gpu",
-                        "no-sandbox",
-                        "headless",
-                        "ignore-certificate-errors",
-                        "window-size=1920,1080"
+                        "--disable-gpu",
+                        "--no-sandbox",
+                        "--headless",
+                        "--ignore-certificate-errors",
+                        "--window-size=1920,1080"
                     ]
                 }
             }
