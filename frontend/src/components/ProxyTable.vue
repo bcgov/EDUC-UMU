@@ -412,7 +412,7 @@ export default {
       (this.users).forEach(element => {
         console.log(element.username);
         console.log(userInput);
-        if(element.username === userInput){
+        if(element.username == userInput){
           return element.guid;
         }
       });
