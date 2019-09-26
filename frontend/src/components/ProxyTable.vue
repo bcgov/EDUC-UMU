@@ -408,9 +408,12 @@ export default {
       this.deleteJson = {};
     },
     usernameToGuid(userInput) {
-      const returnValue = null;
+      let returnValue = null;
+      let usrName = null;
       (this.users).forEach(element => {
-        if(userInput == element){
+        console.log(typeof userInput);
+        console.log(typeof element.username);
+        if(userInput == usrName){
           returnValue = element.guid;
         }
       });
