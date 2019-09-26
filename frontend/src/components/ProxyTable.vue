@@ -346,8 +346,8 @@ export default {
           this.statusMessage = "All fields must have inputs";
           return;
         }
-        const proxyGuid = this.usernameToGuid(this.addProxyNameInput);
-        const targetGuid = this.usernameToGuid(this.addTargetName);
+        let proxyGuid = this.usernameToGuid(this.addProxyNameInput);
+        let targetGuid = this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
@@ -411,9 +411,7 @@ export default {
       let returnValue = null;
       let usrName = null;
       (this.users).forEach(element => {
-        console.log(typeof userInput);
-        console.log(typeof element.username);
-        if(userInput == usrName){
+        if(userInput == element.username){
           returnValue = element.guid;
         }
       });
