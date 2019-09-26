@@ -312,8 +312,8 @@ export default {
     async updateProxy(){
       let updateInfo ={};
       if(this.userSelect){
-        const proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
-        const targetGuid = this.usernameToGuid(this.updateTargetName);
+        let proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
+        let targetGuid = this.usernameToGuid(this.updateTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
           this.statusMessage = "Username/GUID does not exist in the database";
@@ -408,15 +408,16 @@ export default {
       this.deleteJson = {};
     },
     async usernameToGuid(userInput) {
+      const returnValue = null;
       await this.$store.dispatch('userActions/getUsers');
       (this.users).forEach(element => {
         console.log(element.username);
         console.log(userInput);
         if(element.username == userInput){
-          return element.guid;
+          returnValue = element.guid;
         }
       });
-      return null;
+      return returnValue;
     }
   }
 };
