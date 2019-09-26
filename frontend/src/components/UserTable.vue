@@ -570,7 +570,7 @@ export default{
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
-      csvRes.forEach(async function(element){
+      csv.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
         this.bulkComplete++;
         if(this.userAddError){
