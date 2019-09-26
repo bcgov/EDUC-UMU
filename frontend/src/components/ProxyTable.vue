@@ -409,7 +409,6 @@ export default {
     },
     usernameToGuid(userInput) {
       let returnValue = null;
-      let usrName = null;
       (this.users).forEach(element => {
         if(userInput == element.username){
           returnValue = element.guid;
