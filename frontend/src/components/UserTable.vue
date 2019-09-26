@@ -2,6 +2,13 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
+        <v-row v-if="addingMultiple">
+          <v-col
+            cols=""
+            class="left-col"
+          > Adding multiple users... {{ bulkComplete }} of {{ bulkTotal }} completed</v-col>
+        </v-row>
+        </v-row>
         <v-row>
           <v-col 
             cols="auto"
@@ -274,6 +281,10 @@ export default{
       statusDialog: false,
       statusMessage: "",
       deleteMessage: "",
+
+      addingMultiple: false,
+      bulkComplete: 0,
+      bulkTotal: 0,
 
       roleList: [],
       districtList: FormLists.SCHOOL_DISTRICTS,
@@ -559,9 +570,11 @@ export default{
       console.log(csv);
       let numSuccess = 0;
       let numErrors = 0;
+      this.addingMultiple = true;
       /*
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
+        this.bulkComplete++;
         if(this.userAddError){
           numErrors++;
         } else {
@@ -570,6 +583,7 @@ export default{
       });
       */
      this.fileInput = null;
+     this.addingMultiple = true;
      this.statusDialog = true;
      let totalAttempt = numErrors + numSuccess;
      if(numErrors > 0){
