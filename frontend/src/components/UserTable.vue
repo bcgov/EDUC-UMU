@@ -506,7 +506,7 @@ export default{
 
     //initiates the delete user dialog box
     deleteForm(system, username, name, value, authSource, guid) {
-      this.deleteMessage = "Are yyou sure you want to delete this item?";
+      this.deleteMessage = "Are you sure you want to delete this item?";
       this.dialog_uDelete = true;
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
@@ -573,8 +573,10 @@ export default{
      this.statusDialog = true;
      if(numErrors > 0){
        this.statusMessage = "Could not add " + numErrors + " user(s) from CSV file";
-     } else {
-       this.statusMessage = "Successfully added " + numSuccess + " from CSV file";
+     } else if(numSuccess === 0) {
+       this.statusMessage = "CSV file is empty or formatted incorrectly. No users added";
+      } else {
+       this.statusMessage = "Successfully added " + numSuccess + " user(s) from CSV file";
      }
     }
   }
