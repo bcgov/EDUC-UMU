@@ -570,7 +570,6 @@ export default{
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
-      /*
       csvRes.forEach(async function(element){
         await this.$store.dispatch('userActions/addNewUser', element);
         this.bulkComplete++;
@@ -580,7 +579,6 @@ export default{
           numSuccess++;
         }
       });
-      */
      this.fileInput = null;
      this.addingMultiple = true;
      this.statusDialog = true;
