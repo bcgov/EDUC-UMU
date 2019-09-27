@@ -2,19 +2,18 @@
   <v-card class="bottom-round">
     <div class="gov-blue">
       <v-card-title>
-        <v-row v-if="addingMultiple">
+        <v-row>
           <v-col
-            cols=""
+            
+            v-if="addingMultiple"
             class="left-col"
-          ><p>{{ bulkComplete }} of {{ bulkTotal }} users added</p></v-col>
-          <v-col>
+          >
             <v-progress-circular
               :value="progress"
               color="#43893e">
             </v-progress-circular>
+            <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
           </v-col>
-        </v-row>
-        <v-row>
           <v-col 
             cols="auto"
             class="left-col"
@@ -576,12 +575,13 @@ export default{
     },
     async parseCsv(){
       let csv = this.fileInput;
-      Papa.parse(csv[0], {
+      let parsed = await Papa.parse(csv[0], {
         header: true,
         complete: function(results){
           return results.data;
         }
       });
+      return parsed;
     },
     async addCsv(){
       let result = await this.parseCsv();
