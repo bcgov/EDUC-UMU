@@ -583,6 +583,7 @@ export default{
       let csv = this.fileInput;
       Papa.parse(csv[0], {
         header: true,
+        skipEmptyLines: true,
         complete: function(results){
           callback(results.data);
         }
@@ -592,14 +593,12 @@ export default{
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
-      this.bulkTotal = result.length - 1;
+      this.bulkTotal = result.length;
       result.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
         console.log(element);
         this.bulkComplete++;
-        if(!element.system || !element.username || !element.name || !element.value || !element.guid || !element.authSource){
-          this.bulkComplete--;
-        }
+
         if(this.userAddError){
           numErrors++;
         } else {
