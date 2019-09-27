@@ -8,31 +8,31 @@ import proxyActions from '@/store/modules/proxyActions.js';
 
 
 describe('ProxyTable.vue', () => {
-    let wrapper;
-    let store;
+  let wrapper;
+  let store;
     
-    beforeEach(() => {
-        Vue.use(Vuetify);
-        Vue.use(Vuex);
+  beforeEach(() => {
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
-        store = new Vuex.Store({
-            modules: { auth, proxyActions }
-        });
-        wrapper = shallowMount(Proxy, {
-            Vue,
-            store
-        });
+    store = new Vuex.Store({
+      modules: { auth, proxyActions }
     });
+    wrapper = shallowMount(Proxy, {
+      Vue,
+      store
+    });
+  });
 
-    test('should contain table', () => {
-        expect(wrapper.html()).toContain('<v-data-table-stub');
-    });
-    test('should exectue functions', () => {
-        //wrapper.vm.validate();
-        //wrapper.vm.getProxy();
-        wrapper.vm.updateProxyForm('test', 'test', 'test');
-        wrapper.vm.addProxy();
-        wrapper.vm.deleteProxy();
-        expect(wrapper).toBeTruthy();
-    })
+  test('should contain table', () => {
+    expect(wrapper.html()).toContain('<v-data-table-stub');
+  });
+  test('should exectue functions', () => {
+    //wrapper.vm.validate();
+    //wrapper.vm.getProxy();
+    wrapper.vm.updateProxyForm('test', 'test', 'test');
+    wrapper.vm.addProxy();
+    wrapper.vm.deleteProxy();
+    expect(wrapper).toBeTruthy();
+  });
 });

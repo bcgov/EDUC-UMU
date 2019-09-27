@@ -204,7 +204,7 @@ export default {
     deleteJson: {},
     userSelect: false,
     statusDialog: false,
-    statusMessage: "",
+    statusMessage: '',
     dialog_pForm: false,
     dialog_b: false,
     dialog_pDelete: false,
@@ -264,7 +264,7 @@ export default {
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
-    this.getProxy()
+    this.getProxy();
   },
   methods: {
     //validates forms
@@ -314,14 +314,14 @@ export default {
       if(this.userSelect){
         if((this.updateProxyNameInput === null) || (this.updateTargetName === null) || (this.updateLevel === null)){
           this.statusDialog = true;
-          this.statusMessage = "All fields must have inputs";
+          this.statusMessage = 'All fields must have inputs';
           return;
         }
         let proxyGuid = this.usernameToGuid(this.updateProxyNameInput);
         let targetGuid = this.usernameToGuid(this.updateTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
-          this.statusMessage = "Username/GUID does not exist in the database";
+          this.statusMessage = 'Username/GUID does not exist in the database';
           return;
         } else {
           updateInfo = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.updateLevel};
@@ -329,25 +329,25 @@ export default {
       } else {
         if((this.updateProxyInput === null) || (this.updateTarget === null) || (this.updateLevel === null)){
           this.statusDialog = true;
-          this.statusMessage = "All fields must have inputs";
+          this.statusMessage = 'All fields must have inputs';
           return;
         }
         let proxyGuid = this.checkGuid(this.updateProxyInput);
         let targetGuid = this.checkGuid(this.updateTarget);
         if(!proxyGuid || !targetGuid){
           this.statusDialog = true;
-          this.statusMessage = "Username/GUID does not exist in the database";
+          this.statusMessage = 'Username/GUID does not exist in the database';
           return;
         }
         updateInfo = {'proxy': this.updateProxyInput, 'target': this.updateTarget, 'level': this.updateLevel};
       }
-      const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo}
+      const UpdateJson = {'old': this.proxyInfo, 'new': updateInfo};
       await this.$store.dispatch('proxyActions/updateProxy', UpdateJson);
       this.statusDialog = true;
       if(this.proxyUpdateError){
-        this.statusMessage = "Unable to update proxy";
+        this.statusMessage = 'Unable to update proxy';
       } else {
-        this.statusMessage = "Proxy successfully updated";
+        this.statusMessage = 'Proxy successfully updated';
       }
       this.getProxy();
       this.proxyInfo = {};
@@ -360,14 +360,14 @@ export default {
       if(this.userSelect){
         if((this.addProxyNameInput === null) || (this.addTargetName === null) || (this.addLevel === null)){
           this.statusDialog = true;
-          this.statusMessage = "All fields must have inputs";
+          this.statusMessage = 'All fields must have inputs';
           return;
         }
         let proxyGuid = this.usernameToGuid(this.addProxyNameInput);
         let targetGuid = this.usernameToGuid(this.addTargetName);
         if((proxyGuid === null) || (targetGuid === null)){
           this.statusDialog = true;
-          this.statusMessage = "Username/GUID does not exist in the database";
+          this.statusMessage = 'Username/GUID does not exist in the database';
           return;
         } else {
           proxyJson = {'proxy': proxyGuid, 'target': targetGuid, 'level': this.addLevel};
@@ -375,14 +375,14 @@ export default {
       } else {
         if((this.addProxyInput === null) || (this.addTarget === null) || (this.addLevel === null)){
           this.statusDialog = true;
-          this.statusMessage = "All fields must have inputs";
+          this.statusMessage = 'All fields must have inputs';
           return;
         }
         let proxyGuid = this.checkGuid(this.addProxyInput);
         let targetGuid = this.checkGuid(this.addTarget);
         if(!proxyGuid || !targetGuid){
           this.statusDialog = true;
-          this.statusMessage = "Username/GUID does not exist in the database";
+          this.statusMessage = 'Username/GUID does not exist in the database';
           return;
         }
         proxyJson = {'proxy': this.addProxyInput, 'target': this.addTarget, 'level': this.addLevel};
@@ -391,9 +391,9 @@ export default {
       await this.$store.dispatch('proxyActions/addProxy', proxyJson);
       this.statusDialog = true;
       if(this.proxyAddError){
-        this.statusMessage = "Unable to add proxy";
+        this.statusMessage = 'Unable to add proxy';
       } else {
-        this.statusMessage = "Proxy successfully added";
+        this.statusMessage = 'Proxy successfully added';
       }
       this.addProxyNameInput = null;
       this.addTargetName = null;
@@ -419,9 +419,9 @@ export default {
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
       this.statusDialog = true;
       if(this.proxyDeleteError){
-        this.statusMessage = "Unable to delete proxy";
+        this.statusMessage = 'Unable to delete proxy';
       } else {
-        this.statusMessage = "Proxy successfully deleted";
+        this.statusMessage = 'Proxy successfully deleted';
       }
       this.dialog_pDelete = false;
       this.getProxy();

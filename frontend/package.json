@@ -37,7 +37,7 @@
     "dotenv": "^8.0.0",
     "regenerator-runtime": "^0.13.3",
     "jest-junit": "^7.0.0",
-    "csvtojson": "2.0.10"
+    "papaparse": "5.1.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",
@@ -98,7 +98,7 @@
       ],
       "linebreak-style": [
         "error",
-        "unix"
+        "windows"
       ],
       "quotes": [
         "error",

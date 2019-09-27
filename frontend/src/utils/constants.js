@@ -33,7 +33,7 @@ export const FieldValidations = Object.freeze({
 
 export const FormLists = Object.freeze({
   SCHOOL_DISTRICTS: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  NAME_OPTIONS: ["ROLES", "DISPLAYNAME", "EDW_MASKING_USER_DISTRICT", "EDW_MASKING_USER_SCHOOL", "ENCRYPTED_ODBC_PASSWORD", "PORTALPATH"],
+  NAME_OPTIONS: ['ROLES', 'DISPLAYNAME', 'EDW_MASKING_USER_DISTRICT', 'EDW_MASKING_USER_SCHOOL', 'ENCRYPTED_ODBC_PASSWORD', 'PORTALPATH'],
   SCHOOLS: ['School A', 'School B', 'School C', 'School D'],
   PROXY_LEVEL: []
 });

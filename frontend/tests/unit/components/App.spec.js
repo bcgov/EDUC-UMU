@@ -7,35 +7,35 @@ import Vue from 'vue';
 import auth from '@/store/modules/auth.js';
 
 describe('App.vue', () => {
-    let wrapper;
-    //let getters;
-    let store;
-    let vuet;
+  let wrapper;
+  //let getters;
+  let store;
+  let vuet;
 
-    beforeEach(() => {
-        Vue.use(Vuetify);
-        Vue.use(Vuex);
-        Vue.use(VueRouter);
+  beforeEach(() => {
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
+    Vue.use(VueRouter);
 
-        store = new Vuex.Store({
-            modules: { auth }
-        });
-        vuet = new Vuetify({
-            icons: {
-                iconfont: 'md',
-            }
-        });
-
-        const router = new VueRouter();
-        wrapper = shallowMount(App, {
-            Vue,
-            vuet,
-            store,
-            router
-        });
+    store = new Vuex.Store({
+      modules: { auth }
+    });
+    vuet = new Vuetify({
+      icons: {
+        iconfont: 'md',
+      }
     });
 
-    test('app exists', () => {
-        expect(wrapper).toBeTruthy();
+    const router = new VueRouter();
+    wrapper = shallowMount(App, {
+      Vue,
+      vuet,
+      store,
+      router
     });
+  });
+
+  test('app exists', () => {
+    expect(wrapper).toBeTruthy();
+  });
 });

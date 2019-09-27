@@ -8,31 +8,31 @@ import roleActions from '@/store/modules/roleActions.js';
 
 
 describe('ApplicationRoles.vue', () => {
-    let wrapper;
-    let store;
+  let wrapper;
+  let store;
     
-    beforeEach(() => {
-        Vue.use(Vuetify);
-        Vue.use(Vuex);
+  beforeEach(() => {
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
-        store = new Vuex.Store({
-            modules: { auth, roleActions }
-        });
-        wrapper = shallowMount(Roles, {
-            Vue,
-            store
-        });
+    store = new Vuex.Store({
+      modules: { auth, roleActions }
     });
+    wrapper = shallowMount(Roles, {
+      Vue,
+      store
+    });
+  });
 
-    test('should contain table', () => {
-        expect(wrapper.html()).toContain('<v-data-table-stub');
-    });
-    test('should execute functions', () => {
-        //wrapper.vm.validate();
-        //wrapper.vm.getRoles();
-        wrapper.vm.updateRoleForm('test', 'test');
-        wrapper.vm.addRole();
-        wrapper.vm.deleteRole();
-        expect(wrapper).toBeTruthy();
-    });
+  test('should contain table', () => {
+    expect(wrapper.html()).toContain('<v-data-table-stub');
+  });
+  test('should execute functions', () => {
+    //wrapper.vm.validate();
+    //wrapper.vm.getRoles();
+    wrapper.vm.updateRoleForm('test', 'test');
+    wrapper.vm.addRole();
+    wrapper.vm.deleteRole();
+    expect(wrapper).toBeTruthy();
+  });
 });

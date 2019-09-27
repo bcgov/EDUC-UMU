@@ -5,7 +5,7 @@
   "description": "OBIEE User Management Tool",
   "scripts": {
     "build": "babel /opt/app-root/src/ --out-dir dist --ignore 'node_modules/**/*.js'",
-    "serve": "babel-node ./src/server.js",
+    "serve": "nodemon ./src/server.js",
     "start": "node ./dist/src/server.js",
     "lint": "node_modules/.bin/eslint . --no-fix --ignore-pattern 'node_modules' --ext .js",
     "lint:fix": "node_modules/.bin/eslint . --fix --ignore-pattern 'node_modules' --ext .js",
@@ -91,7 +91,7 @@
       ],
       "linebreak-style": [
         "error",
-        "unix"
+        "windows"
       ],
       "quotes": [
         "error",

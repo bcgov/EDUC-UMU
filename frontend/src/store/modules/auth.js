@@ -29,7 +29,7 @@ export default {
           state.acronyms = [];
         }
 
-        if(state.acronyms.includes("umu-access")){
+        if(state.acronyms.includes('umu-access')){
           state.isAuthenticated = true;
           state.accessDenied = false;
           localStorage.setItem('jwtToken', token);

@@ -3,6 +3,24 @@
     <div class="gov-blue">
       <v-card-title>
         <v-row>
+          <v-col
+            v-if="addingMultiple"
+            class="left-col"
+          >
+            <v-row>
+              <v-col>
+                <v-progress-circular
+                  size="40"
+                  width=""
+                  :value="progress"
+                  color="#43893e">
+                </v-progress-circular>
+              </v-col>
+              <v-col>
+                <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
+              </v-col>
+            </v-row>
+          </v-col>
           <v-col 
             cols="auto"
             class="left-col"
@@ -86,12 +104,12 @@
               <v-icon left>save_alt</v-icon>
               CSV Template
             </v-btn>
-            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth User</v-btn>
+            <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth Item</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
                   <v-card>
                     <v-card-title>
-                      <span><h4>Add Auth User</h4></span>
+                      <span><h4>Add Auth Item</h4></span>
                     </v-card-title>
                     <v-card-text>
                       <v-container grid-list-md>
@@ -267,101 +285,109 @@
 import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
+import Papa from 'papaparse';
 export default{
   data: () =>  ({
-      csvRoute: DownloadRoutes.CSV,
-      usernameGroup: '',
-      statusDialog: false,
-      statusMessage: "",
-      deleteMessage: "",
+    csvRoute: DownloadRoutes.CSV,
+    usernameGroup: '',
+    statusDialog: false,
+    statusMessage: '',
+    deleteMessage: '',
 
-      roleList: [],
-      districtList: FormLists.SCHOOL_DISTRICTS,
-      schoolList: FormLists.SCHOOLS,
-      nameOptions: FormLists.NAME_OPTIONS,
-      authSources: [],
+    addingMultiple: false,
+    bulkComplete: 0,
+    bulkTotal: 0,
 
-      fileInput: null,
+    roleList: [],
+    districtList: FormLists.SCHOOL_DISTRICTS,
+    schoolList: FormLists.SCHOOLS,
+    nameOptions: FormLists.NAME_OPTIONS,
+    authSources: [],
 
-      bulkAdd: false,
-      bulkDelete:false,
+    fileInput: null,
 
-      updateSystem: null,
-      updateUsername: null,
-      updateName: null,
-      updateValue: null,
-      updateAuth: null,
-      updateGuid: null,
+    bulkAdd: false,
+    bulkDelete:false,
 
-      addSystem: null,
-      addUsername: null,
-      addName: null,
-      addValue: null,
-      addAuth: null,
-      addGuid: null,
+    updateSystem: null,
+    updateUsername: null,
+    updateName: null,
+    updateValue: null,
+    updateAuth: null,
+    updateGuid: null,
 
-      usernameArr: [
-        {"system": '', "username": '', "guid": '', "authSource": ''}
-      ],
-      tempArray: [],
-      systemArray: [],
-      groupOpen: false,
-      dialog_a: false,
-      dialog_uForm: false,
-      dialog_uDelete: false,
-      isLoading: true,
-      valid: true,
-      hoverA: false,
-      hoverB: false,
-      search: '',
-      rules: [
-        v => !!v || 'Required'
-      ],
-      headers: [
-        {
-          sortable: true,
-          text: 'System',
-          value: 'system'
-        },
-        {
-          sortable: true,
-          text: 'Username',
-          value: 'username'
-        },
-        {
-          sortable: true,
-          text: 'Name',
-          value: 'name'
-        },
-        {
-          sortable: true,
-          text: 'Value',
-          value: 'value'
-        },
-        {
-          sortable: true,
-          text: 'Auth source',
-          value: 'authSource'
-        },
-        {
-          sortable: true,
-          text: 'User GUID',
-          value: 'guid'
-        },
-        {
-          sortable: false,
-          text: 'Actions',
-          value: 'action',
-          align: 'center'
-        }
-      ],
-      itemJson: [],
-      items: [],
-      userInfo: {}
+    addSystem: null,
+    addUsername: null,
+    addName: null,
+    addValue: null,
+    addAuth: null,
+    addGuid: null,
+
+    usernameArr: [
+      {'system': '', 'username': '', 'guid': '', 'authSource': ''}
+    ],
+    tempArray: [],
+    systemArray: [],
+    groupOpen: false,
+    dialog_a: false,
+    dialog_uForm: false,
+    dialog_uDelete: false,
+    isLoading: true,
+    valid: true,
+    hoverA: false,
+    hoverB: false,
+    search: '',
+    rules: [
+      v => !!v || 'Required'
+    ],
+    headers: [
+      {
+        sortable: true,
+        text: 'System',
+        value: 'system'
+      },
+      {
+        sortable: true,
+        text: 'Username',
+        value: 'username'
+      },
+      {
+        sortable: true,
+        text: 'Name',
+        value: 'name'
+      },
+      {
+        sortable: true,
+        text: 'Value',
+        value: 'value'
+      },
+      {
+        sortable: true,
+        text: 'Auth source',
+        value: 'authSource'
+      },
+      {
+        sortable: true,
+        text: 'User GUID',
+        value: 'guid'
+      },
+      {
+        sortable: false,
+        text: 'Actions',
+        value: 'action',
+        align: 'center'
+      }
+    ],
+    itemJson: [],
+    items: [],
+    userInfo: {}
   }),
   computed: {
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
-    ...mapGetters('roleActions', ['roles'])
+    ...mapGetters('roleActions', ['roles']),
+    progress: function () {
+      return ((this.bulkComplete / this.bulkTotal) * 100);
+    }
   },
   mounted: async function(){
     await this.getAuth();
@@ -391,7 +417,7 @@ export default{
     //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
-      this.usernameArr = [{"system": '', "username": '', "guid": '', "authSource": ''}];
+      this.usernameArr = [{'system': '', 'username': '', 'guid': '', 'authSource': ''}];
       this.usernameGroup = '';
       this.addSystem = null;
       this.addUsername = null;
@@ -409,8 +435,8 @@ export default{
         this.groupOpen = true;
         this.usernameGroup = usrname;
         this.usernameArr = (this.itemJson).filter(function(item){
-                                                  return item.username == usrname;
-                                                });
+          return item.username == usrname;
+        });
         this.tempArray = this.itemJson;
         this.itemJson = this.usernameArr;
         this.addSystem = this.itemJson[0].system;
@@ -448,7 +474,7 @@ export default{
     async updateUser(){
       if((this.updateSystem === null) || (this.updateUsername === null) || (this.updateName === null) || (this.updateValue === null) || (this.updateAuth === null) || (this.updateGuid === null)){
         this.statusDialog = true;
-        this.statusMessage = "All fields must have inputs";
+        this.statusMessage = 'All fields must have inputs';
         return;
       }
       const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
@@ -456,9 +482,9 @@ export default{
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to update item";
+        this.statusMessage = 'Unable to update item';
       } else {
-        this.statusMessage = "Item successfully updated"
+        this.statusMessage = 'Item successfully updated';
       }
       this.getItems();
       this.userInfo = {};
@@ -468,20 +494,22 @@ export default{
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
       if(this.fileInput !== null){
-        this.addCsv();
+        this.addCsv(this.csvToDb);
+        this.dialog_a = false;
+        return;
       }
       if((this.addSystem === null) || (this.addUsername === null) || (this.addName === null) || (this.addValue === null) || (this.addAuth === null) || (this.addGuid === null)){
         this.statusDialog = true;
-        this.statusMessage = "All fields must have inputs";
+        this.statusMessage = 'All fields must have inputs';
         return;
       }
       const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
       if(this.userAddError){
-        this.statusMessage = "Unable to add item";
+        this.statusMessage = 'Unable to add item';
       } else {
-        this.statusMessage = "Item successfully added";
+        this.statusMessage = 'Item successfully added';
       }
       this.addSystem = null;
       this.addUsername = null;
@@ -504,7 +532,7 @@ export default{
 
     //initiates the delete user dialog box
     deleteForm(system, username, name, value, authSource, guid) {
-      this.deleteMessage = "Are yyou sure you want to delete this item?";
+      this.deleteMessage = 'Are you sure you want to delete this item?';
       this.dialog_uDelete = true;
       this.deleteJson = {'system': system, 'username': username, 'name': name, 'value': value, 'authSource': authSource, 'guid': guid};
     },
@@ -513,16 +541,16 @@ export default{
         await this.$store.dispatch('userActions/deleteUser', this.deleteJson);
         this.statusDialog = true;
         if(this.userDeleteError){
-          this.statusMessage = "Unable to delete item";
+          this.statusMessage = 'Unable to delete item';
         } else {
-          this.statusMessage = "Item successfully deleted"
+          this.statusMessage = 'Item successfully deleted';
         }
       } else {
         (this.itemJson).forEach(async element => {
           await this.$store.dispatch('userActions/deleteUser', element);
         });
         this.statusDialog = true;
-        this.statusMessage = "Username Group successfully deleted";
+        this.statusMessage = 'Username Group successfully deleted';
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
@@ -531,7 +559,7 @@ export default{
     },
     cancelDelete() {
       this.dialog_uDelete = false;
-      this.deleteJson = {}
+      this.deleteJson = {};
     },
 
     //find all valid systems by searching database response
@@ -549,17 +577,47 @@ export default{
     deleteGroup(){
       this.dialog_uDelete = false;
       this.bulkDelete = true;
-      this.deleteMessage = "Are you sure you want to delete all entries with this username?"
+      this.deleteMessage = 'Are you sure you want to delete all entries with this username?';
       this.dialog_uDelete = true;
     },
-    async addCsv(){
+    async addCsv(callback){
       let csv = this.fileInput;
-      console.log(csv);
-      /*
-      csvRes.forEach(async function(element){
-        await this.$store.dispatch('userActions/addNewUser', element);
+      Papa.parse(csv[0], {
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results){
+          callback(results.data);
+        }
       });
-      */
+    },
+    async csvToDb(result){
+      let numSuccess = 0;
+      let numErrors = 0;
+      this.addingMultiple = true;
+      this.bulkTotal = result.length;
+      result.forEach(async element => {
+        //await this.$store.dispatch('userActions/addNewUser', element);
+        console.log(element);
+        this.bulkComplete++;
+
+        if(this.userAddError){
+          numErrors++;
+        } else {
+          numSuccess++;
+        }
+      });
+      this.fileInput = null;
+      this.statusDialog = true;
+      let totalAttempt = numErrors + numSuccess;
+      if(numErrors > 0){
+        this.statusMessage = 'Could not add ' + numErrors + ' of the ' + totalAttempt + ' user(s) from CSV file';
+      } else if(numSuccess === 0) {
+        this.statusMessage = 'CSV file is empty or formatted incorrectly';
+      } else {
+        this.statusMessage = 'Successfully added ' + numSuccess + ' user(s) from CSV file';
+      }
+      this.addingMultiple = false;
+      this.bulkComplete = 0;
     }
   }
 };
