@@ -581,10 +581,10 @@ export default{
       await Papa.parse(csv[0], {
         header: true,
         complete: function(results){
+          console.log(results);
           result = results.data;
         }
       });
-      console.log(result);
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
