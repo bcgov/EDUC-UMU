@@ -4,21 +4,22 @@
       <v-card-title>
         <v-row>
           <v-col
-            
             v-if="addingMultiple"
             class="left-col"
           >
-            <v-col>
-              <v-progress-circular
-                size="40"
-                width=""
-                :value="progress"
-                color="#43893e">
-              </v-progress-circular>
-            </v-col>
-            <v-col>
-              <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
-            </v-col>
+            <v-row>
+              <v-col>
+                <v-progress-circular
+                  size="40"
+                  width=""
+                  :value="progress"
+                  color="#43893e">
+                </v-progress-circular>
+              </v-col>
+              <v-col>
+                <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
+              </v-col>
+            </v-row>
           </v-col>
           <v-col 
             cols="auto"
