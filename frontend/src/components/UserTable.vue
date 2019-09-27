@@ -592,7 +592,7 @@ export default{
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
-      this.bulkTotal = result.length;
+      this.bulkTotal = result.length - 1;
       result.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
         console.log(element);
