@@ -598,7 +598,7 @@ export default{
         console.log(element);
         this.bulkComplete++;
         if(!element.system || !element.username || !element.name || !element.value || !element.guid || !element.authSource){
-          console.log(element);
+          this.bulkComplete--;
         }
         if(this.userAddError){
           numErrors++;
