@@ -161,7 +161,7 @@ import { mapGetters } from 'vuex';
 export default{
   data: () => ({
     statusDialog: false,
-    statusMessage: "",
+    statusMessage: '',
     deleteJson: {},
     dialog_c: false,
     dialog_rForm: false,
@@ -229,7 +229,7 @@ export default{
     ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
   },
   mounted: function() {
-    this.getRoles()
+    this.getRoles();
   },
   methods: {
   //validates forms
@@ -268,16 +268,16 @@ export default{
     async updateRole() {
       if((this.updateSystem === null) || (this.updateRoleInput === null)){
         this.statusDialog = true;
-        this.statusMessage = "All fields must have inputs";
+        this.statusMessage = 'All fields must have inputs';
       }
       const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
       this.statusDialog = true;
       if(this.roleUpdateError){
-        this.statusMessage = "Unable to update role";
+        this.statusMessage = 'Unable to update role';
       } else {
-        this.statusMessage = "Role successfully updated";
+        this.statusMessage = 'Role successfully updated';
       }
       this.dialog_rForm = false;
       this.updateSystem = null;
@@ -289,16 +289,16 @@ export default{
     async addRole () {
       if((this.addSystem === null) || (this.addRoleInput === null)){
         this.statusDialog = true;
-        this.statusMessage = "All fields must have inputs";
+        this.statusMessage = 'All fields must have inputs';
       }
       const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
       this.statusDialog = true;
       if(this.roleAddError){
-        this.statusMessage = "Unable to add role";
+        this.statusMessage = 'Unable to add role';
       } else {
-        this.statusMessage = "Role successfully added"
+        this.statusMessage = 'Role successfully added';
       }
       this.addSystem = null;
       this.addRoleInput = null;
@@ -318,9 +318,9 @@ export default{
       await this.$store.dispatch('roleActions/deleteRole', this.deleteJson);
       this.statusDialog = true;
       if(this.roleDeleteError){
-        this.statusMessage = "Unable to delete role";
+        this.statusMessage = 'Unable to delete role';
       } else {
-        this.statusMessage = "Role successfully deleted";
+        this.statusMessage = 'Role successfully deleted';
       }
       this.dialog_rDelete = false;
       this.getRoles();

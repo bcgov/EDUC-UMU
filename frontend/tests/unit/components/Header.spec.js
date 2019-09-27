@@ -6,28 +6,28 @@ import Header from '@/components/Header.vue';
 import auth from '@/store/modules/auth.js';
 
 describe('Header.vue', () => {
-    let wrapper;
-    let store;
+  let wrapper;
+  let store;
 
-    beforeEach(() => {
-        Vue.use(Vuetify);
-        Vue.use(Vuex);
+  beforeEach(() => {
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
-        store = new Vuex.Store({
-            modules: { auth }
-        });
-
-        wrapper = shallowMount(Header, {
-            Vue: Vue,
-            store
-        });
+    store = new Vuex.Store({
+      modules: { auth }
     });
 
-    test('expect site title', () => {
-        expect(wrapper.html()).toContain('User Management Utility');
+    wrapper = shallowMount(Header, {
+      Vue: Vue,
+      store
     });
-    test('expect empty localStorage', () => {
-        wrapper.vm.clearStorage();
-        expect(wrapper).toBeTruthy();
-    });
+  });
+
+  test('expect site title', () => {
+    expect(wrapper.html()).toContain('User Management Utility');
+  });
+  test('expect empty localStorage', () => {
+    wrapper.vm.clearStorage();
+    expect(wrapper).toBeTruthy();
+  });
 });

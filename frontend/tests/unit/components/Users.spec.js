@@ -4,37 +4,37 @@ import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import Users from '@/components/UserTable.vue';
 import auth from '@/store/modules/auth.js';
-import userActions from '@/store/modules/userActions.js'
+import userActions from '@/store/modules/userActions.js';
 
 describe('UserTable.vue', () => {
-    let wrapper;
-    let store;
+  let wrapper;
+  let store;
     
-    beforeEach(() => {
-        Vue.use(Vuetify);
-        Vue.use(Vuex);
+  beforeEach(() => {
+    Vue.use(Vuetify);
+    Vue.use(Vuex);
 
-        store = new Vuex.Store({
-            modules: { auth, userActions}
-        });
+    store = new Vuex.Store({
+      modules: { auth, userActions}
+    });
         
-        wrapper = shallowMount(Users, {
-            Vue,
-            store
-        });
+    wrapper = shallowMount(Users, {
+      Vue,
+      store
     });
+  });
 
-    test('should contain table', () => {
-        expect(wrapper.html()).toContain('<v-data-table-stub');
-    });
+  test('should contain table', () => {
+    expect(wrapper.html()).toContain('<v-data-table-stub');
+  });
 
-    test('should execute functions', () => {
-        //wrapper.vm.validate();
-        //wrapper.vm.getItems();
-        wrapper.vm.addUser();
-        wrapper.vm.updateUserForm('test', 'test', 'test', 'test', 'test', 'test');
-        wrapper.vm.deleteUser();
-        expect(wrapper).toBeTruthy();
-    });
+  test('should execute functions', () => {
+    //wrapper.vm.validate();
+    //wrapper.vm.getItems();
+    wrapper.vm.addUser();
+    wrapper.vm.updateUserForm('test', 'test', 'test', 'test', 'test', 'test');
+    wrapper.vm.deleteUser();
+    expect(wrapper).toBeTruthy();
+  });
 
 });
