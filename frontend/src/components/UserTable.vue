@@ -574,17 +574,17 @@ export default{
       this.deleteMessage = 'Are you sure you want to delete all entries with this username?';
       this.dialog_uDelete = true;
     },
-    async addCsv(){
-      let result;
+    async parseCsv(){
       let csv = this.fileInput;
-      this.bulkComplete = 0;
-      await Papa.parse(csv[0], {
+      Papa.parse(csv[0], {
         header: true,
         complete: function(results){
-          console.log(results);
-          result = results.data;
+          return results.data;
         }
       });
+    },
+    async addCsv(){
+      let result = await parseCsv();
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
