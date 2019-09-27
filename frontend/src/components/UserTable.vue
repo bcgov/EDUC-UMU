@@ -575,21 +575,21 @@ export default{
       this.dialog_uDelete = true;
     },
     async addCsv(){
+      let result;
       let csv = this.fileInput;
       this.bulkComplete = 0;
-      console.log(typeof csv[0]);
-      Papa.parse(csv[0], {
+      await Papa.parse(csv[0], {
         header: true,
         complete: function(results){
-          csv = results.data;
+          result = results.data;
         }
       });
-      console.log(csv);
+      console.log(result);
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
-      csv.forEach(async function(element){
-        await this.$store.dispatch('userActions/addNewUser', element);
+      csv.forEach(async element => {
+        //await this.$store.dispatch('userActions/addNewUser', element);
         this.bulkComplete++;
         if(this.userAddError){
           numErrors++;
@@ -598,7 +598,6 @@ export default{
         }
       });
       this.fileInput = null;
-      this.addingMultiple = true;
       this.statusDialog = true;
       let totalAttempt = numErrors + numSuccess;
       if(numErrors > 0){
