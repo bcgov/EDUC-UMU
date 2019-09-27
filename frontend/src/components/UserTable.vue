@@ -594,7 +594,7 @@ export default{
       this.addingMultiple = true;
       result.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
-        console.log(result);
+        console.log(element);
         if(!element){
           console.log('Uh-oh');
         }
