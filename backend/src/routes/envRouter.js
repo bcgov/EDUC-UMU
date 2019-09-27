@@ -9,7 +9,3 @@ router.get('/auth_source', (_req, res) => {
 });
 
 module.exports = router;
-    res.status(200).json(jsonSend);
-});
-
-module.exports = router;
