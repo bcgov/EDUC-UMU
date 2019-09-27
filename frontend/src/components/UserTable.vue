@@ -576,7 +576,7 @@ export default{
     },
     async addCsv(){
       let csv = this.fileInput;
-      console.log(csv.data);
+      console.log(csv);
       console.log(typeof csv);
       Papa.parse(csv, {
         header: true,
