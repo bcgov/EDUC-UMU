@@ -582,11 +582,12 @@ export default{
         header: true,
         complete: function(results){
           console.log(results);
-          result = results.data;
+          result = results;
         }
       });
       let numSuccess = 0;
       let numErrors = 0;
+      console.log(result);
       this.addingMultiple = true;
       csv.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
