@@ -8,11 +8,17 @@
             v-if="addingMultiple"
             class="left-col"
           >
-            <v-progress-circular
-              :value="progress"
-              color="#43893e">
-            </v-progress-circular>
-            <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
+            <v-col>
+              <v-progress-circular
+                size="40"
+                width=""
+                :value="progress"
+                color="#43893e">
+              </v-progress-circular>
+            </v-col>
+            <v-col>
+              <p class="small-letters">{{ bulkComplete }} of {{ bulkTotal }} users added</p>
+            </v-col>
           </v-col>
           <v-col 
             cols="auto"
@@ -487,7 +493,7 @@ export default{
     //initiates the add user dialog box and reloads the table once the user has been added
     async addUser() {
       if(this.fileInput !== null){
-        this.addCsv();
+        this.addCsv(this.csvToDb);
         this.dialog_a = false;
         return;
       }
@@ -573,19 +579,16 @@ export default{
       this.deleteMessage = 'Are you sure you want to delete all entries with this username?';
       this.dialog_uDelete = true;
     },
-    async parseCsv(){
+    async addCsv(callback){
       let csv = this.fileInput;
-      let parsed = await Papa.parse(csv[0], {
+      Papa.parse(csv[0], {
         header: true,
         complete: function(results){
-          return results.data;
+          callback(results.data);
         }
       });
-      console.log(parsed);
-      return parsed;
     },
-    async addCsv(){
-      let result = await this.parseCsv();
+    async csvToDb(result){
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;

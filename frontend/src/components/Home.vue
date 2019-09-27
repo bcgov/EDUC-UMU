@@ -81,6 +81,7 @@ export default {
   }
   .small-letters{
     font-size: 1.0rem;
+    margin-bottom: 0px;
   }
   .list_action{
     padding-right: 2.5px;
