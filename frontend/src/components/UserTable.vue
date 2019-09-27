@@ -146,7 +146,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <v-file-input v-if="!groupOpen" v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
                     </v-card-actions>
                   </v-card>
                 </v-form>
