@@ -592,13 +592,14 @@ export default{
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
+      this.bulkTotal = result.length;
       result.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
         console.log(element);
-        if(!element){
-          console.log('Uh-oh');
-        }
         this.bulkComplete++;
+        if(!element.system || !element.username || !element.name || !element.value || !element.guid || !element.authSource){
+          console.log(element);
+        }
         if(this.userAddError){
           numErrors++;
         } else {
@@ -616,6 +617,7 @@ export default{
         this.statusMessage = 'Successfully added ' + numSuccess + ' user(s) from CSV file';
       }
       this.addingMultiple = false;
+      this.bulkComplete = 0;
     }
   }
 };
