@@ -581,6 +581,7 @@ export default{
           return results.data;
         }
       });
+      console.log(parsed);
       return parsed;
     },
     async addCsv(){
