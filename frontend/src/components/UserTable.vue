@@ -590,6 +590,9 @@ export default{
       this.addingMultiple = true;
       csv.forEach(async element => {
         //await this.$store.dispatch('userActions/addNewUser', element);
+        if(!element){
+          console.log('Uh-oh');
+        }
         this.bulkComplete++;
         if(this.userAddError){
           numErrors++;
