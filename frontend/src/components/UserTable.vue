@@ -584,7 +584,7 @@ export default{
       });
     },
     async addCsv(){
-      let result = await parseCsv();
+      let result = await this.parseCsv();
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
