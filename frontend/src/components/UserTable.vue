@@ -576,8 +576,8 @@ export default{
     },
     async addCsv(){
       let csv = this.fileInput;
+      console.log(typeof csv);
       csv = Papa.parse(csv);
-      console.log(csv);
       let numSuccess = 0;
       let numErrors = 0;
       this.addingMultiple = true;
