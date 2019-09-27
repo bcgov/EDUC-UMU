@@ -6,7 +6,13 @@
           <v-col
             cols=""
             class="left-col"
-          > Adding multiple users... {{ bulkComplete }} of {{ bulkTotal }} completed</v-col>
+          ><p>{{ bulkComplete }} of {{ bulkTotal }} users added</p></v-col>
+          <v-col>
+            <v-progress-circular
+              :value="progress"
+              color="#43893e">
+            </v-progress-circular>
+          </v-col>
         </v-row>
         <v-row>
           <v-col 
@@ -273,6 +279,7 @@
 import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
+import Papa from 'papaparse';
 export default{
   data: () =>  ({
       csvRoute: DownloadRoutes.CSV,
@@ -371,7 +378,10 @@ export default{
   }),
   computed: {
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
-    ...mapGetters('roleActions', ['roles'])
+    ...mapGetters('roleActions', ['roles']),
+    progress: function () {
+      return ((this.bulkComplete / this.bulkTotal) * 100);
+    }
   },
   mounted: async function(){
     await this.getAuth();
@@ -566,6 +576,7 @@ export default{
     },
     async addCsv(){
       let csv = this.fileInput;
+      csv = Papa.parse(csv);
       console.log(csv);
       let numSuccess = 0;
       let numErrors = 0;
@@ -590,6 +601,7 @@ export default{
       } else {
        this.statusMessage = "Successfully added " + numSuccess + " user(s) from CSV file";
      }
+     this.addingMultiple = false;
     }
   }
 };
