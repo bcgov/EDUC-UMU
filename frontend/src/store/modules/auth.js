@@ -66,7 +66,7 @@ export default {
   actions: {
 
     startLogoutTimer() {
-      setTimeout('timerLogout()', 350);
+      setTimeout('timerLogout()', 35000);
     },
     timerLogout(context) {
       context.state.isAuthenticated = false;
