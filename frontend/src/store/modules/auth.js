@@ -56,10 +56,22 @@ export default {
       } else {
         localStorage.removeItem('refreshToken');
       }
+    },
+    logoutState: (state) => {
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('jwtToken');
+      state.isAuthenticated = false;
     }
   },
   actions: {
 
+    startLogoutTimer() {
+      setTimeout('timerLogout()', 350);
+    },
+    timerLogout(context) {
+      context.state.isAuthenticated = false;
+      location.reload();
+    },
     //retrieves the json web token from local storage. If not in local storage, retrieves it from API
     async getJwtToken(context) {
       try {
