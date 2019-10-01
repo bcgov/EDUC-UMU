@@ -37,7 +37,7 @@ module.exports = {
       .waitForElementVisible('#app', 5000)
       .click('#footer-accessibility')
       .pause(2000)
-      .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home/accessibility')
+      .assert.urlEquals('https://www2.gov.bc.ca/gov/content/home/accessible-government')
       .url('https://obiee-umu-pbuo5q-dev.pathfinder.gov.bc.ca/')
       .waitForElementVisible('#app', 5000)
       .click('#footer-copyright')
