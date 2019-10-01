@@ -546,11 +546,14 @@ export default{
           this.statusMessage = 'Item successfully deleted';
         }
       } else {
+        let deleteCount = 0;
         (this.itemJson).forEach(async element => {
           await this.$store.dispatch('userActions/deleteUser', element);
+          deleteCount++;
         });
         this.statusDialog = true;
-        this.statusMessage = 'Username Group successfully deleted';
+        this.statusMessage = deleteCount + ' users successfully deleted';
+        this.bulkDelete = false;
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
