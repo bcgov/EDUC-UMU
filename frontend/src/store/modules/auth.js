@@ -64,14 +64,6 @@ export default {
     }
   },
   actions: {
-
-    startLogoutTimer() {
-      setTimeout('timerLogout()', 35000);
-    },
-    timerLogout(context) {
-      context.state.isAuthenticated = false;
-      location.reload();
-    },
     //retrieves the json web token from local storage. If not in local storage, retrieves it from API
     async getJwtToken(context) {
       try {
