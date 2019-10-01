@@ -393,7 +393,9 @@ export default{
     await this.getAuth();
     this.getItems();
     const list = [];
-    await this.$store.dispatch('roleActions/getRoles');
+    if(this.roles === null){
+      await this.$store.dispatch('roleActions/getRoles');
+    }
     (this.roles).forEach( async element => {
       if(!((list).includes(element.role))){
         list.push(element.role);
