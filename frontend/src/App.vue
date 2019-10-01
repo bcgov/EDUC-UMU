@@ -27,6 +27,10 @@ export default {
 </script>
 
 <style>
+.v-application {
+  font-family: 'BCSans', sans-serif;
+}
+
 .v-card--flat {
   background-color: transparent !important;
 }
