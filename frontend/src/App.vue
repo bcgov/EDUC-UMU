@@ -28,7 +28,7 @@ export default {
 
 <style>
 .v-application {
-  font-family: 'BCSans', sans-serif;
+  font-family: 'BCSans', 'Verdana', 'Arial', 'sans-serif';
 }
 
 .v-card--flat {
