@@ -68,7 +68,7 @@ class AuthUser {
     return result.rows;*/
     const query = 'select sysdate from dual;';
     const url = 'https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql';
-    const res = axios.post(url, query, {
+    const res = await axios.post(url, query, {
       auth: {
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD
