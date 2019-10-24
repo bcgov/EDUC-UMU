@@ -8,8 +8,7 @@ const session = require('express-session');
 const express = require('express');
 const passport = require('passport');
 const helmet = require('helmet');
-const cors = require('cors');
-//const keycloak = require('./components/keycloak');
+//const cors = require('cors');
 
 dotenv.config();
 
@@ -43,7 +42,6 @@ if(process.env.NODE_ENV !== 'test'){
   app.use(morgan(config.get('server:morganFormat')));
 }
 
-//app.use(keycloak.middleware());
 //sets cookies for security purposes (prevent cookie access, allow secure connections only, etc)
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(session({
