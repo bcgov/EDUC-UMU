@@ -14,7 +14,7 @@
         X-Content-Type-Options "nosniff"
         Strict-Transport-Security "max-age=31536000"
         Content-Security-Policy "default-src 'self' https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://fonts.googleapis.com http://www.w3.org"
-        Referrer-Policy "same-origin"
+        Referrer-Policy "unsafe-url"
         Feature-Policy "fullscreen 'self'; camera 'none'; microphone 'none'"
     }
 
