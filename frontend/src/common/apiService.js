@@ -80,7 +80,18 @@ export default {
   },
   async getUsers() {
     try{
-      const response = await apiAxios.get(ApiRoutes.USERS);
+      //const response = await apiAxios.get(ApiRoutes.USERS);
+      const query = 'select sysdate from dual;';
+      const url = 'https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql';
+      const response = await axios.post(url, query, {
+        auth: {
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD
+        },
+        headers: {
+          'Content-Type': 'application/sql'
+        }
+      });
       if(response.status == 500){
         return response.status;
       }
