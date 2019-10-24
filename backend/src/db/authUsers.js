@@ -1,6 +1,7 @@
 /* eslint-disable */
 'use strict'
 
+const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -65,6 +66,18 @@ class AuthUser {
       }
     }
     return result.rows;*/
+    const query = 'select sysdate from dual;';
+    const url = 'https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql';
+    const res = axios.post(url, query, {
+      auth: {
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD
+      },
+      headers: {
+        'Content-Type': 'application/sql'
+      }
+    });
+    console.log(res);
     return users;
   }
   async update(options) {
