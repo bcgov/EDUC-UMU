@@ -29,6 +29,7 @@ class AuthUser {
   }
   //select all users from table
   async selectAll() {
+    /*
     const users =  [{"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
     {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
     {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
@@ -49,35 +50,17 @@ class AuthUser {
     {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
     {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
     {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }];
-    /*
-    let connection = await oracledb.getConnection({
-      user: process.env.ORACLE_USER,
-      password : process.env.ORACLE_PASSWORD,
-      connectString : process.env.ORACLE_CONNECT
-    });
-    const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-    let result = await connection.execute(query);
-    console.log(result);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-      }
-    }
-    return result.rows;*/
-    const query = 'select sysdate from dual;';
-    const url = 'https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql';
-    const res = await axios.post(url, query, {
-      auth: {
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD
-      },
-      headers: {
-        'Content-Type': 'application/sql'
-      }
-    });
-    console.log(res);
+    */
+    const query = 'select * from ' + process.env.AUTH_TABLE;
+      const url = process.env.DB_ENDPOINT;
+      const response = await axios.post(url, {
+        headers: {
+          'Content-Type': 'application/sql',
+          'Authorization': 'Basic ' + process.env.DB_AUTH
+        },
+        data: query
+      });
+    console.log(response.data.items.resultSet.items);
     return users;
   }
   async update(options) {

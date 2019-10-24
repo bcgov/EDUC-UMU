@@ -28,7 +28,7 @@ const apiRouter = express.Router();
 const app = express();
 
 //sets security measures (headers, etc)
-app.use(cors());
+//app.use(cors());
 app.use(helmet());
 app.use(helmet.noCache());
 
