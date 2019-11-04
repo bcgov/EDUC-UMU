@@ -52,14 +52,14 @@ class AuthUser {
     {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }];
     */
     const query = 'select * from ' + process.env.AUTH_TABLE;
-      const url = process.env.DB_ENDPOINT;
-      const response = await axios.post(url, {
-        headers: {
-          'Content-Type': 'application/sql',
-          'Authorization': 'Basic ' + process.env.DB_AUTH
-        },
-        data: query
-      });
+    const url = process.env.DB_ENDPOINT;
+    const response = await axios.post(url, {
+      headers: {
+        'Content-Type': 'application/sql',
+        'Authorization': 'Basic ' + process.env.DB_AUTH
+      },
+      data: query
+    });
     console.log(response.data.items.resultSet.items);
     return users;
   }

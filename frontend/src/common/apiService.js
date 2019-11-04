@@ -80,10 +80,22 @@ export default {
   },
   async getUsers() {
     try{
+      /*
       const response = await apiAxios.get(ApiRoutes.USERS);
       if(response.status == 500){
         return response.status;
       }
+      */
+      const query = 'select * from ' + process.env.AUTH_TABLE;
+      const url = process.env.DB_ENDPOINT;
+      const response = await axios.post(url, {
+        headers: {
+          'Content-Type': 'application/sql',
+          'Authorization': 'Basic ' + process.env.DB_AUTH
+        },
+        data: query
+      });
+      console.log(response.data);
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
