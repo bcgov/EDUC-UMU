@@ -86,12 +86,12 @@ export default {
         return response.status;
       }
       */
-      const query = 'select * from ' + process.env.AUTH_TABLE;
-      const url = process.env.DB_ENDPOINT;
+      const query = 'SELECT SYSDATE FROM DUAL;';
+      const url = process.env.STUDENT_ENDPOINT;
       const response = await axios.post(url, {
         auth: {
-          username: process.env.DB_USERNAME,
-          password: process.env.DB_PASSWORD
+          username: process.env.STUDENT_USERNAME,
+          password: process.env.STUDENT_PASSWORD
         },
         headers: {
           'Content-Type': 'application/sql'
