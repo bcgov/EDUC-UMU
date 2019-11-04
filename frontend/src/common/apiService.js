@@ -86,9 +86,9 @@ export default {
         return response.status;
       }
       */
-      const query = 'SELECT SYSDATE FROM DUAL;';
+      const query = 'select sysdate from dual;';
       const url = process.env.STUDENT_ENDPOINT;
-      const response = await axios.post(url, query, {
+      const response = await apiAxios.post(url, query, {
         auth: {
           username: process.env.STUDENT_USERNAME,
           password: process.env.STUDENT_PASSWORD
@@ -97,7 +97,7 @@ export default {
           'Content-Type': 'application/sql'
         }
       });
-      console.log(response.data);
+      console.log(response);
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
