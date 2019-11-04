@@ -89,9 +89,12 @@ export default {
       const query = 'select * from ' + process.env.AUTH_TABLE;
       const url = process.env.DB_ENDPOINT;
       const response = await axios.post(url, {
+        auth: {
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD
+        },
         headers: {
-          'Content-Type': 'application/sql',
-          'Authorization': 'Basic ' + process.env.DB_AUTH
+          'Content-Type': 'application/sql'
         },
         data: query
       });
