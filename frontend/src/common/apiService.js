@@ -87,6 +87,8 @@ export default {
       }
       */
       const query = 'select sysdate from dual;';
+      console.log('Username: ' + process.env.STUDENT_USERNAME);
+      console.log('Password: ' + process.env.STUDENT_PASSWORD);
       const url = process.env.STUDENT_ENDPOINT;
       const response = await apiAxios.post(url, {
         auth: {
@@ -98,7 +100,6 @@ export default {
         },
         data: query
       });
-      console.log(response);
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
