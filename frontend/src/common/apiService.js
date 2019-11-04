@@ -88,15 +88,14 @@ export default {
       */
       const query = 'SELECT SYSDATE FROM DUAL;';
       const url = process.env.STUDENT_ENDPOINT;
-      const response = await axios.post(url, {
+      const response = await axios.post(url, query, {
         auth: {
           username: process.env.STUDENT_USERNAME,
           password: process.env.STUDENT_PASSWORD
         },
         headers: {
           'Content-Type': 'application/sql'
-        },
-        data: query
+        }
       });
       console.log(response.data);
       return response.data;
