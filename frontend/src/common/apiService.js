@@ -88,14 +88,15 @@ export default {
       */
       const query = 'select sysdate from dual;';
       const url = process.env.STUDENT_ENDPOINT;
-      const response = await apiAxios.post(url, query, {
+      const response = await apiAxios.post(url, {
         auth: {
           username: process.env.STUDENT_USERNAME,
           password: process.env.STUDENT_PASSWORD
         },
         headers: {
           'Content-Type': 'application/sql'
-        }
+        },
+        data: query
       });
       console.log(response);
       return response.data;
