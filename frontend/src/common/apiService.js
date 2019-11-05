@@ -80,10 +80,25 @@ export default {
   },
   async getUsers() {
     try{
-      const response = await apiAxios.get(ApiRoutes.USERS);
+      //const response = await apiAxios.get(ApiRoutes.USERS);
+      const query = 'select sysdate from dual;';
+      const url = 'https://trinity-websbx1.educ.gov.bc.ca/ords/obiee_sys/_/sql';
+      console.log('Username: ' + process.env.DB_USERNAME);
+      console.log('Password: ' + process.env.DB_PASSWORD);
+      const response = await axios.post(url, {
+        auth: {
+          username: process.env.DB_USERNAME,
+          password: process.env.DB_PASSWORD
+        },
+        headers: {
+          'Content-Type': 'application/sql'
+        },
+        data: query
+      });
       if(response.status == 500){
         return response.status;
       }
+      console.log(response.data);
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
