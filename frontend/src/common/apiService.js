@@ -80,27 +80,10 @@ export default {
   },
   async getUsers() {
     try{
-      /*
       const response = await apiAxios.get(ApiRoutes.USERS);
       if(response.status == 500){
         return response.status;
       }
-      */
-      const query = 'select sysdate from dual;';
-      console.log('Username: ' + process.env.STUDENT_USERNAME);
-      console.log('Password: ' + process.env.STUDENT_PASSWORD);
-      console.log('Endpoint: ' + process.env.STUDENT_ENDPOINT);
-      const url = process.env.STUDENT_ENDPOINT;
-      const response = await apiAxios.post(url, {
-        auth: {
-          username: process.env.STUDENT_USERNAME,
-          password: process.env.STUDENT_PASSWORD
-        },
-        headers: {
-          'Content-Type': 'application/sql'
-        },
-        data: query
-      });
       return response.data;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);

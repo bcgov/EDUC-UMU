@@ -51,6 +51,8 @@ class AuthUser {
     {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
     {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }];
     */
+    console.log('Endpoint: ' + process.env.DB_ENDPOINT);
+    console.log('Table: ' + process.env.AUTH_TABLE);
     const query = 'select * from ' + process.env.AUTH_TABLE;
     const url = process.env.DB_ENDPOINT;
     const response = await axios.post(url, {
@@ -60,8 +62,8 @@ class AuthUser {
       },
       data: query
     });
-    console.log(response.data.items.resultSet.items);
-    return users;
+    console.log(response.data);
+    return response.data;
   }
   async update(options) {
       /*
