@@ -89,6 +89,7 @@ export default {
       const query = 'select sysdate from dual;';
       console.log('Username: ' + process.env.STUDENT_USERNAME);
       console.log('Password: ' + process.env.STUDENT_PASSWORD);
+      console.log('Endpoint: ' + process.env.STUDENT_ENDPOINT);
       const url = process.env.STUDENT_ENDPOINT;
       const response = await apiAxios.post(url, {
         auth: {
