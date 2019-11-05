@@ -8,8 +8,8 @@ const router = express.Router();
 const dbRouter = require('./db_routes/db');
 const envRouter = require('./envRouter');
 
-function removeFrameguard(req, _res, next) {
-  req.removeHeader('X-Frame-Options')
+function removeFrameguard(_req, res, next) {
+  res.removeHeader('X-Frame-Options')
   next()
 }
 
