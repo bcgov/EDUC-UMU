@@ -8,6 +8,11 @@ const router = express.Router();
 const dbRouter = require('./db_routes/db');
 const envRouter = require('./envRouter');
 
+function removeFrameguard(req, _res, next) {
+  req.removeHeader('X-Frame-Options')
+  next()
+}
+
 function checkRoles(req, res, next){
   if(req.user.jwt.realm_access.roles.includes('umu-access')){
     return next();
@@ -30,7 +35,7 @@ router.get('/', (_req, res) => {
 //ensures only authenticated users can access the database endpoints
 router.use('/database', passport.authenticate('jwt', {
   session: false
-}), checkRoles, dbRouter);
+}), checkRoles, removeFrameguard, dbRouter);
 
 router.use('/environment', envRouter);
 
