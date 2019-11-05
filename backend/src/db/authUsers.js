@@ -53,7 +53,7 @@ class AuthUser {
     */
     console.log('Endpoint: ' + process.env.DB_ENDPOINT);
     console.log('Table: ' + process.env.AUTH_TABLE);
-    const query = 'select * from ' + process.env.AUTH_TABLE;
+    const query = 'select sysdate from dual;';
     const url = process.env.DB_ENDPOINT;
     const response = await axios.post(url, {
       headers: {
@@ -62,7 +62,7 @@ class AuthUser {
       },
       data: query
     });
-    console.log(response.data);
+    console.log('Data' + response.data);
     return response.data;
   }
   async update(options) {
