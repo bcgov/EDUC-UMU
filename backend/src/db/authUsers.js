@@ -50,6 +50,7 @@ class AuthUser {
   }
   //select all users from table
   async selectAll() {
+    try{
       let connection = await oracledb.getConnection({
         user: process.env.ORACLE_USER,
         password : process.env.ORACLE_PASSWORD,
@@ -58,6 +59,7 @@ class AuthUser {
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
       let result = await connection.execute(query);
       console.log(result);
+      return result.rows;
       if(connection){
         try{
           await connection.close();
@@ -65,7 +67,9 @@ class AuthUser {
           console.error(err);
         }
       }
-      return result.rows;
+    } catch(e){
+      console.log(e);
+    }
   }
   async update(options) {
     let connection = await oracledb.getConnection({
