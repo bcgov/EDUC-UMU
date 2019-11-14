@@ -51,6 +51,7 @@ class AuthUser {
   //select all users from table
   async selectAll() {
     try{
+      console.log("Testing connection...");
       let connection = await oracledb.getConnection({
         user: process.env.ORACLE_USER,
         password : process.env.ORACLE_PASSWORD,
@@ -64,12 +65,14 @@ class AuthUser {
         try{
           await connection.close();
         } catch(err){
+          console.log("Error occured during database interaction");
           console.error(err);
         }
       }
       return result.rows;
     } catch(e){
-      console.log(e);
+      console.log("Connection failed");
+      console.error(e);
     }
   }
   async update(options) {
