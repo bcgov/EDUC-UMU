@@ -84,7 +84,7 @@ class AuthUser {
      { name: 'UPDATE_DATE' }
 
      */
-    var returnJson
+      var returnJson;
       rows.foreach(function(element){
         returnJson.system =  element[0],
         returnJson.username = element[1],
@@ -96,7 +96,7 @@ class AuthUser {
         returnJson.createDate = element[7],
         returnJson.update = element[8],
         returnJson.updateDate = element[9]
-      })
+      });
       return returnJson;
     } catch(e){
       console.log("Connection failed");
