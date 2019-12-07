@@ -69,7 +69,9 @@ class AuthUser {
           console.error(err);
         }
       }
-      return result.rows;
+      const rows =  result.rows;
+      console.log(rows);
+      return rows;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
