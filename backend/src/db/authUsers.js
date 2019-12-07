@@ -71,7 +71,33 @@ class AuthUser {
       }
       const rows =  result.rows;
       console.log(rows);
-      return rows;
+/*
+      { name: 'SYSTEM' },
+     { name: 'USERNAME' },
+     { name: 'NAME' },
+     { name: 'VALUE' },
+     { name: 'AUTHDIRNAME' },
+     { name: 'USERGUID' },
+     { name: 'CREATE_BY' },
+     { name: 'CREATE_DATE' },
+     { name: 'UPDATE_BY' },
+     { name: 'UPDATE_DATE' }
+
+     */
+    var returnJson
+      rows.foreach(function(element){
+        returnJson.system =  element[0],
+        returnJson.username = element[1],
+        returnJson.name = element[2],
+        returnJson.value = element[3],
+        returnJson.authSource = element[4],
+        returnJson.guid = element[5],
+        returnJson.create = element[6];
+        returnJson.createDate = element[7],
+        returnJson.update = element[8],
+        returnJson.updateDate = element[9]
+      })
+      return returnJson;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
