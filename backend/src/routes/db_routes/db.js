@@ -19,11 +19,7 @@ dbRouter.get('/database', (_req, res) => {
 
 dbRouter.get('/users', async(_req, res) => {
   let response = await database.selectUsers();
-  if(Array.isArray(response)){
-    res.status(200).json(response);
-  } else {
-    res.status(500).json({ message: "Unable to retrieve users from database"});
-  }
+  res.status(200).json(response);
 });
 
 dbRouter.put('/users', async(_req, res) => {
