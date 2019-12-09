@@ -59,7 +59,7 @@ class AuthUser {
       });
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
       let result = await connection.execute(query);
-  
+      const rows =  result.rows;
       if(connection){
         try{
           await connection.close();
@@ -68,8 +68,7 @@ class AuthUser {
           console.error(err);
         }
       }
-      const rows =  result.rows;
-      console.log('Result: ' + result);
+      console.log('Rows: ' + rows);
 /*
       { name: 'SYSTEM' },
      { name: 'USERNAME' },
