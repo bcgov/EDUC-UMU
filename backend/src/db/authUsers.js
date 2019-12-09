@@ -83,7 +83,7 @@ class AuthUser {
 
      */
       var returnJson;
-      rows.foreach(function(element, index){
+      rows.forEach(function(element, index){
         returnJson[index].system =  element[0],
         returnJson[index].username = element[1],
         returnJson[index].name = element[2],
