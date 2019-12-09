@@ -84,8 +84,8 @@ export default {
       /*if(response.status === 500){
         return response.status;
       }*/
-      console.log('Response from nodejs: ' + response.data);
       const rows = response.data;
+      console.log(rows);
       var returnJson;
       rows.forEach(function(element, index){
         returnJson[index].system =  element[0],

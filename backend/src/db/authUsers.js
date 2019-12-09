@@ -96,7 +96,8 @@ class AuthUser {
         returnJson[index].updateDate = element[9]
       });
       */
-      return result.rows;
+     js = JSON.parse(result.rows);
+      return js;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
