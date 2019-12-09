@@ -69,6 +69,7 @@ class AuthUser {
         }
       }
       const rows =  result.rows;
+      console.log(rows);
 /*
       { name: 'SYSTEM' },
      { name: 'USERNAME' },
