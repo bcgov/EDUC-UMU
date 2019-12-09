@@ -96,7 +96,7 @@ class AuthUser {
         returnJson[index].updateDate = element[9]
       });
       */
-     js = JSON.parse(result.rows);
+     js = JSON.parse(result);
      console.log(js);
       return js;
     } catch(e){
