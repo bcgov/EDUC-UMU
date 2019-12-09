@@ -69,7 +69,7 @@ class AuthUser {
         }
       }
       const rows =  result.rows;
-      console.log(rows);
+      console.log('Rows: ' + rows);
 /*
       { name: 'SYSTEM' },
      { name: 'USERNAME' },
@@ -96,7 +96,6 @@ class AuthUser {
         returnJson[index].update = element[8],
         returnJson[index].updateDate = element[9]
       });
-      console.log(returnJson);
       return returnJson;
     } catch(e){
       console.log("Connection failed");
