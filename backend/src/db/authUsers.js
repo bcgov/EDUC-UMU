@@ -59,7 +59,6 @@ class AuthUser {
       });
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
       let result = await connection.execute(query);
-      console.log(result);
   
       if(connection){
         try{
@@ -70,7 +69,6 @@ class AuthUser {
         }
       }
       const rows =  result.rows;
-      console.log(rows);
 /*
       { name: 'SYSTEM' },
      { name: 'USERNAME' },
@@ -97,6 +95,7 @@ class AuthUser {
         returnJson.update = element[8],
         returnJson.updateDate = element[9]
       });
+      console.log(returnJson);
       return returnJson;
     } catch(e){
       console.log("Connection failed");
