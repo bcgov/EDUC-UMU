@@ -63,6 +63,7 @@ class AuthUser {
       if(connection){
         try{
           await connection.close();
+          console.log('Connection closed successfully');
         } catch(err){
           console.log("Error occured during database interaction");
           console.error(err);
