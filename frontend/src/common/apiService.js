@@ -81,9 +81,9 @@ export default {
   async getUsers() {
     try{
       const response = await apiAxios.get(ApiRoutes.USERS);
-      if(response.status == 500){
+      /*if(response.status === 500){
         return response.status;
-      }
+      }*/
       console.log('Response from nodejs: ' + response.data);
       const rows = response.data.rows;
       var returnJson;
