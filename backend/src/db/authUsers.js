@@ -59,7 +59,7 @@ class AuthUser {
       });
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
       let result = await connection.execute(query);
-      const rows =  result.rows;
+      //const rows =  result.rows;
       if(connection){
         try{
           await connection.close();
@@ -69,7 +69,6 @@ class AuthUser {
           console.error(err);
         }
       }
-      console.log('Rows: ' + rows);
 /*
       { name: 'SYSTEM' },
      { name: 'USERNAME' },
@@ -82,7 +81,7 @@ class AuthUser {
      { name: 'UPDATE_BY' },
      { name: 'UPDATE_DATE' }
 
-     */
+     
       var returnJson;
       rows.forEach(function(element, index){
         returnJson[index].system =  element[0],
@@ -96,7 +95,8 @@ class AuthUser {
         returnJson[index].update = element[8],
         returnJson[index].updateDate = element[9]
       });
-      return returnJson;
+      */
+      return result;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
