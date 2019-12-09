@@ -97,6 +97,7 @@ class AuthUser {
       });
       */
      js = JSON.parse(result.rows);
+     console.log(js);
       return js;
     } catch(e){
       console.log("Connection failed");
