@@ -85,7 +85,21 @@ export default {
         return response.status;
       }
       console.log(response.data);
-      return response.data;
+      const rows = response.data.rows;
+      var returnJson;
+      rows.forEach(function(element, index){
+        returnJson[index].system =  element[0],
+        returnJson[index].username = element[1],
+        returnJson[index].name = element[2],
+        returnJson[index].value = element[3],
+        returnJson[index].authSource = element[4],
+        returnJson[index].guid = element[5],
+        returnJson[index].create = element[6];
+        returnJson[index].createDate = element[7],
+        returnJson[index].update = element[8],
+        returnJson[index].updateDate = element[9]
+      });
+      return returnJson;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
       throw e;
