@@ -55,7 +55,7 @@ class Roles {
       connectString : process.env.ORACLE_CONNECT
     });
     const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
-    let result = await connection.execute(query);
+    let result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
       console.log(result);
       if(connection){
         try{

@@ -67,8 +67,8 @@ class AuthUser {
           console.error(err);
         }
       }
-      console.log('Oracle object: ' + result.rows);
-      return result.rows;
+      console.log('Oracle object: ' + result);
+      return result;
     } catch(e){
       console.log("Connection failed");
       console.error(e);

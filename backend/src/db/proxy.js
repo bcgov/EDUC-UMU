@@ -56,7 +56,7 @@ class Proxy {
   
     const query = 'SELECT * FROM ' + process.env.PROXY_TABLE;
    
-    let result = await connection.execute(query);
+    let result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
       console.log(result);
       if(connection){
         try{
