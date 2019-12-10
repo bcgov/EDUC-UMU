@@ -58,7 +58,7 @@ class AuthUser {
         connectString : process.env.ORACLE_CONNECT
       });
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-      let result = await connection.execute(query);
+      const result = await connection.execute(query);
       //const rows =  result.rows;
       if(connection){
         try{
@@ -69,35 +69,8 @@ class AuthUser {
           console.error(err);
         }
       }
-/*
-      { name: 'SYSTEM' },
-     { name: 'USERNAME' },
-     { name: 'NAME' },
-     { name: 'VALUE' },
-     { name: 'AUTHDIRNAME' },
-     { name: 'USERGUID' },
-     { name: 'CREATE_BY' },
-     { name: 'CREATE_DATE' },
-     { name: 'UPDATE_BY' },
-     { name: 'UPDATE_DATE' }
-
-     
-      var returnJson;
-      rows.forEach(function(element, index){
-        returnJson[index].system =  element[0],
-        returnJson[index].username = element[1],
-        returnJson[index].name = element[2],
-        returnJson[index].value = element[3],
-        returnJson[index].authSource = element[4],
-        returnJson[index].guid = element[5],
-        returnJson[index].create = element[6];
-        returnJson[index].createDate = element[7],
-        returnJson[index].update = element[8],
-        returnJson[index].updateDate = element[9]
-      });
-      */
-     js = JSON.parse(result);
-     console.log(js);
+      const js = JSON.parse(result);
+      console.log(js);
       return js;
     } catch(e){
       console.log("Connection failed");
