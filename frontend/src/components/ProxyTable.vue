@@ -18,6 +18,7 @@
       :items="itemJson"
       :search="search"
       :loading="isLoading"
+      v-if="guidsConverted"
     >
 
     <template v-slot:item.proxyName="{ item }">
@@ -210,6 +211,8 @@ export default {
     dialog_pDelete: false,
     isLoading: true,
 
+    guidsConverted: false,
+
     updateProxyInput: null,
     updateTarget: null,
     updateLevel: null,
@@ -297,6 +300,7 @@ export default {
           }
         });
       });
+      this.guidsConverted = true;
       return arr;
     },
     //Passes information from a specific row to the Update dialog box
