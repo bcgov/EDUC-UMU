@@ -21,16 +21,16 @@
     >
 
     <template v-slot:item.proxyName="{ item }">
-      <b>{{ item.proxyName }}</b>{{ ' (' + item.proxy + ')' }}
+      <b>{{ item.proxyName }}</b>{{ ' (' + item.PROXYID + ')' }}
     </template>
     <template v-slot:item.targetName="{ item }">
-      <b>{{ item.targetName }}</b>{{ ' (' + item.target + ')' }}
+      <b>{{ item.targetName }}</b>{{ ' (' + item.TARGETID + ')' }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
-        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#d93e45">delete</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.PROXYID, item.TARGETID, item.PROXYLEVEL, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
+        <v-icon class="list_action" @click.stop="deleteForm(item.PROXYID, item.TARGETID, item.PROXYLEVEL)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -130,10 +130,10 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.PROXYID"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.TARGETID"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -146,7 +146,7 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.PROXYLEVEL"></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -243,7 +243,7 @@ export default {
       {
         sortable: true,
         text: 'Proxy Level',
-        value: 'level'
+        value: 'PROXYLEVEL'
       },
       {
         sortable: false,
@@ -289,11 +289,11 @@ export default {
     async mapGuids(arr){
       this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
-          if(response.find(x => x.guid === element.proxy)){
-            element.proxyName = response.find(x => x.guid === element.proxy).username;
+          if(response.find(x => x.USERGUID === element.PROXYID)){
+            element.proxyName = response.find(x => x.USERGUID === element.PROXYID).USERNAME;
           }
-          if(response.find(x => x.guid === element.target)){
-            element.targetName = response.find(x => x.guid === element.target).username;
+          if(response.find(x => x.USERGUID === element.TARGETID)){
+            element.targetName = response.find(x => x.USERGUID === element.TARGETID).USERNAME;
           }
         });
       });
@@ -434,8 +434,8 @@ export default {
     usernameToGuid(userInput) {
       let returnValue = null;
       (this.users).forEach(element => {
-        if(userInput == element.username){
-          returnValue = element.guid;
+        if(userInput == element.USERNAME){
+          returnValue = element.USERGUID;
         }
       });
       return returnValue;
@@ -443,7 +443,7 @@ export default {
     checkGuid(guidInput) {
       let returnValue = false;
       (this.users).forEach(element => {
-        if(guidInput == element.guid){
+        if(guidInput == element.USERGUID){
           returnValue = true;
         }
       });
