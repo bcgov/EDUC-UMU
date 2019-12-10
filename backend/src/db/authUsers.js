@@ -51,15 +51,13 @@ class AuthUser {
   //select all users from table
   async selectAll() {
     try{
-      console.log("Testing connection...");
       let connection = await oracledb.getConnection({
         user: process.env.ORACLE_USER,
         password : process.env.ORACLE_PASSWORD,
         connectString : process.env.ORACLE_CONNECT
       });
       const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-      const result = await connection.execute(query);
-      //const rows =  result.rows;
+      const result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
       if(connection){
         try{
           await connection.close();
@@ -69,9 +67,8 @@ class AuthUser {
           console.error(err);
         }
       }
-      const js = JSON.parse(result);
-      console.log(js);
-      return js;
+      console.log('Oracle object: ' + result);
+      return result;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
