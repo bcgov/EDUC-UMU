@@ -86,8 +86,8 @@ export default {
       }*/
       const rows = response.data;
       console.log(rows);
-      var returnJson;
-      rows.forEach(function(element, index){
+      var returnJson = [];
+      rows.forEach((element, index) => {
         returnJson[index].system =  element[0];
         returnJson[index].username = element[1];
         returnJson[index].name = element[2];
