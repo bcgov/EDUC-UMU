@@ -115,10 +115,10 @@
                       <v-container grid-list-md>
                         <v-row>
                           <v-col>
-                            <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
+                            <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].SYSTEM" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
+                            <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].USERNAME" required></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -134,10 +134,10 @@
                         </v-row>
                         <v-row>
                           <v-col cols="4">
-                            <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
+                            <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].AUTHDIRNAME" :readonly="groupOpen" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].USERGUID" required></v-text-field>
                           </v-col>
                         </v-row>
 
@@ -174,10 +174,10 @@
     <!-- Displays as the row that expands from a row -->
       <template
         v-slot:expanded-item="props">
-            <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
-            <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
-            <td><b>Updated by:</b> {{ props.item.update }}</td>
-            <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
+            <td colspan="2"><b>Created by:</b> {{ props.item.CREATE_BY }}</td>
+            <td colspan="2"><b>Create date:</b> {{ props.item.CREATE_DATE}}</td>
+            <td><b>Updated by:</b> {{ props.item.UPDATE_BY }}</td>
+            <td colspan="2"><b>Update date:</b> {{ props.item.UPDATE_DATE }}</td>
             <td></td>
       </template>
 
@@ -185,9 +185,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-          <v-btn icon class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="deleteForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="selectUsername(item.USERNAME)" color="#5475a7"><v-icon>group</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="updateUserForm(item.SYSTEM, item.USERNAME, item.NAME, item.VALUE, item.AUTHDIRNAME, item.USERGUID)" color="#43893e"><v-icon>edit</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="deleteForm(item.SYSTEM, item.USERNAME, item.NAME, item.VALUE, item.AUTHDIRNAME, item.USERGUID)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
       </template>
 
 
@@ -210,21 +210,21 @@
                       <v-container grid-list-md>
                         <v-row>
                           <v-col>
-                            <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
+                            <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.SYSTEM" name="system" label="System"></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                            <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.USERNAME" required></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
                           <v-col>
-                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
+                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.NAME" :items="nameOptions" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
-                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
+                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="roleList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="districtList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE"></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -232,7 +232,7 @@
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.USERGUID" required></v-text-field>
                           </v-col>
                         </v-row>
                       </v-container>
@@ -344,32 +344,32 @@ export default{
       {
         sortable: true,
         text: 'System',
-        value: 'system'
+        value: 'SYSTEM'
       },
       {
         sortable: true,
         text: 'Username',
-        value: 'username'
+        value: 'USERNAME'
       },
       {
         sortable: true,
         text: 'Name',
-        value: 'name'
+        value: 'NAME'
       },
       {
         sortable: true,
         text: 'Value',
-        value: 'value'
+        value: 'VALUE'
       },
       {
         sortable: true,
         text: 'Auth source',
-        value: 'authSource'
+        value: 'AUTHDIRNAME'
       },
       {
         sortable: true,
         text: 'User GUID',
-        value: 'guid'
+        value: 'USERGUID'
       },
       {
         sortable: false,
@@ -391,14 +391,14 @@ export default{
   },
   mounted: async function(){
     await this.getAuth();
-    this.getItems();
+    await this.getItems();
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');
     }
     (this.roles).forEach( async element => {
-      if(!((list).includes(element.role))){
-        list.push(element.role);
+      if(!((list).includes(element.APPLICATION_ROLE))){
+        list.push(element.APPLICATION_ROLE);
       }
     });
     this.roleList = list;
@@ -419,7 +419,7 @@ export default{
     //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
-      this.usernameArr = [{'system': '', 'username': '', 'guid': '', 'authSource': ''}];
+      this.usernameArr = [{'SYSTEM': '', 'USERNAME': '', 'USERGUID': '', 'AUTHDIRNAME': ''}];
       this.usernameGroup = '';
       this.addSystem = null;
       this.addUsername = null;
@@ -437,14 +437,14 @@ export default{
         this.groupOpen = true;
         this.usernameGroup = usrname;
         this.usernameArr = (this.itemJson).filter(function(item){
-          return item.username == usrname;
+          return item.USERNAME == usrname;
         });
         this.tempArray = this.itemJson;
         this.itemJson = this.usernameArr;
-        this.addSystem = this.itemJson[0].system;
-        this.addUsername = this.itemJson[0].username;
-        this.addAuth = this.itemJson[0].authSource;
-        this.addGuid = this.itemJson[0].guid;
+        this.addSystem = this.itemJson[0].SYSTEM;
+        this.addUsername = this.itemJson[0].USERNAME;
+        this.addAuth = this.itemJson[0].AUTHDIRNAME;
+        this.addGuid = this.itemJson[0].USERGUID;
       }
     },
 
@@ -470,7 +470,7 @@ export default{
       this.updateValue = value;
       this.updateAuth = auth;
       this.updateGuid = guid;
-      this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
+      this.userInfo = {'SYSTEM': system, 'USERNAME': username, 'NAME': name, 'VALUE': value, 'AUTHDIRNAME': auth, 'USERGUID': guid};
       this.dialog_uForm = true;
     },
     async updateUser(){
