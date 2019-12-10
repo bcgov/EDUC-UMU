@@ -85,11 +85,11 @@ export default {
         return response.status;
       }*/
       const rows = response.data;
-      console.log(rows);
       var returnJson = [];
       rows.forEach((element) => {
         returnJson.push({system: element[0], username: element[1], name: element[2], value: element[3], authSource: element[4], guid: element[5], create: element[6], createDate: element[7], update: element[8], updateDate: element[9]});
       });
+      console.log(returnJson);
       return returnJson;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
