@@ -9,6 +9,7 @@ const env = 'default';
 //injects environment variables into the json file
 nconf.overrides({
     environment: env,
+    logoutEndpoint: 'https://sso.pathfinder.gov.bc.ca/auth/realms/jsgbqlip/protocol/openid-connect/logout',
     oidc: {
         clientID: process.env.SSO_CLIENT_ID,
         clientSecret: process.env.SSO_USER_SECRET,

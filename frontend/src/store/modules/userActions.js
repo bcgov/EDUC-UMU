@@ -33,7 +33,6 @@ export default {
       context.commit('setUsers', null);
       try {
         const response = await ApiService.getUsers();
-        console.log(response);
         context.commit('setUsers', response);
         return response;
       } catch(e) {
