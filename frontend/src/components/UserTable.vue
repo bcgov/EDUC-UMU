@@ -569,8 +569,8 @@ export default{
     getSystems() {
       const sysArr = this.systemArray;
       (this.itemJson).forEach(function(element){
-        if(!(sysArr.includes(element.system))){
-          sysArr.push(element.system);
+        if(!(sysArr.includes(element.SYSTEM))){
+          sysArr.push(element.SYSTEM);
         }
       });
       this.systemArray = sysArr;

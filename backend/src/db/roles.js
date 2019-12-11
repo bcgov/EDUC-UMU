@@ -14,6 +14,7 @@ class Roles {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
+    console.log('Inserting role...');
     const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (' + opt.system + ',' + opt.role + ')';
     let result = await connection.execute(query);
     console.log(result);
