@@ -28,6 +28,10 @@ export default {
       state.deleteError = proxyRes;
     }
   },
+
+  //fkgjlflgjkdfjklg
+
+
   actions: {
     async getProxy(context){
       context.commit('setProxy', null);
