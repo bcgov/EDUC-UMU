@@ -392,6 +392,9 @@ export default{
   mounted: async function(){
     await this.getAuth();
     await this.getItems();
+    this.itemJson.forEach((element, index) => {
+      element.id = index;
+    });
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');
