@@ -16,7 +16,7 @@ class AuthUser {
     });
       const query = 'INSERT INTO ' + process.env.AUTH_TABLE + '(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (' + opt.system + ',' + opt.username + ',' + opt.name + ',' + opt.value + ',' + opt.authSource + ',' + opt.guid + ')'; 
       //return false here since there is no error
-      let result = await connection.execute(query);
+      let result = await connection.execute(query, { autoCommit: true });
       console.log(result);
       if(connection){
         try{
@@ -36,7 +36,7 @@ class AuthUser {
     });
     const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
     ' WHERE SYSTEM=' + opt.system + 'AND USERNAME=' + opt.username + 'AND NAME=' + opt.name + 'AND VALUE=' +  opt.value + 'AND AUTHDIRNAME=' + opt.authSource + 'AND USERGUID=' + opt.guid;
-    let result = await connection.execute(query);
+    let result = await connection.execute(query, { autoCommit: true });
     console.log(result);
     if(connection){
       try{
@@ -84,7 +84,7 @@ class AuthUser {
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
         ' SET SYSTEM=' + newJson.system + ', USERNAME=' + newJson.username + ', NAME=' + newJson.name + ', VALUE=' +  newJson.value + ', AUTHDIRNAME=' + newJson.authSource + ', GUID=' + newJson.guid + 
         ' WHERE SYSTEM=' + old.system + 'AND USERNAME=' + old.username + 'AND NAME=' + old.name + 'AND VALUE=' +  old.value + 'AND AUTHDIRNAME=' + old.authSource + 'AND GUID=' + old.guid;
-     let result = await connection.execute(query);
+     let result = await connection.execute(query, { autoCommit: true });
       console.log(result);
       if(connection){
         try{
