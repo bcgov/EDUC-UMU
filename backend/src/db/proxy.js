@@ -13,12 +13,9 @@ class Proxy {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    
-      const bind = [process.env.PROXY_TABLE, JSON.stringify(opt.proxy), JSON.stringify(opt.target), JSON.stringify(opt.level)];
       try{
-        let result = await connection.execute(
-          `INSERT INTO :table (PROXYID, TARGETID, PROXYLEVEL) VALUES (:proxy, :target, :level);`,
-           bind);
+        const query = 'INSERT INTO ' + process.env.PROXY_TABLE + ' (PROXYID, TARGETID, PROXYLEVEL) VALUES (' + opt.proxy + ',' + opt.target + ',' + opt.level + ')';
+        let result = await connection.execute(query);
         console.log(result);
         await connection.commit();
       } catch(e) {

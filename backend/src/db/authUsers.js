@@ -14,13 +14,11 @@ class AuthUser {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-      const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
+      //const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
       //return false here since there is no error
       try{
-        let result = await connection.execute(
-          `INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);`,
-          binds
-        );
+        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (' + opt.system + ',' + opt.username + ',' + opt.name + ',' + opt.value + ',' + opt.authSource + ',' + opt.guid + ')';
+        let result = await connection.execute(query);
         console.log(result);
         await connection.commit();
       } catch(e) {

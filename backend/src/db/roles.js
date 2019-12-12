@@ -18,9 +18,8 @@ class Roles {
     console.log(opt);
     const bind = [process.env.ROLES_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.role)];
     try{
-      let result = await connection.execute(
-        `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`,
-         bind);
+      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (' + opt.system + ',' + opt.role + ')';
+      let result = await connection.execute(query);
       console.log(result);
       await connection.commit();
     } catch(e) {
