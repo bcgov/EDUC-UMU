@@ -17,11 +17,15 @@ class Roles {
     console.log('Inserting role...');
     console.log(opt);
     const bind = [process.env.ROLES_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.role)];
-    let result = await connection.execute(
-      `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`,
-       bind);
-    console.log(result);
-    await connection.commit();
+    try{
+      let result = await connection.execute(
+        `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`,
+         bind);
+      console.log(result);
+      await connection.commit();
+    } catch(e) {
+      console.error(e);
+    }
     if(connection){
       try{
         await connection.close();

@@ -16,12 +16,16 @@ class AuthUser {
     });
       const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
       //return false here since there is no error
-      let result = await connection.execute(
-        `INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);`,
-        binds
-      );
-      console.log(result);
-      await connection.commit();
+      try{
+        let result = await connection.execute(
+          `INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);`,
+          binds
+        );
+        console.log(result);
+        await connection.commit();
+      } catch(e) {
+        console.error(err);
+      }
       if(connection){
         try{
           await connection.close();
