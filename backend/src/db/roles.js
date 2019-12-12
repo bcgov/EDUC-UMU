@@ -17,7 +17,7 @@ class Roles {
     console.log('Inserting role...');
     console.log(opt);
     const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (' + opt.system + ',' + opt.role + ')';
-    let result = await connection.execute(query, { autoCommit: true });
+    let result = await connection.execute(query,[], { autoCommit: true });
     console.log(result);
     if(connection){
       try{
@@ -36,7 +36,7 @@ class Roles {
       connectString : process.env.ORACLE_CONNECT
     });
     const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=' + opt.system + 'AND APPLICATION_ROLE=' + opt.role; 
-    let result = await connection.execute(query, { autoCommit: true });
+    let result = await connection.execute(query, [],{ autoCommit: true });
     console.log(result);
     if(connection){
       try{
@@ -81,7 +81,7 @@ class Roles {
     const newJson = opt.new;
     const old = opt.old;
     const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=' + newJson.system + ', APPLICATION_ROLE=' + newJson.role + ' WHERE SYSTEM=' + old.system + ' AND APPLICATION_ROLE=' + old.role;
-    let result = await connection.execute(query, { autoCommit: true });
+    let result = await connection.execute(query, [],{ autoCommit: true });
     console.log(result);
     if(connection){
       try{
