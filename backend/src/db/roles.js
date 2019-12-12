@@ -18,6 +18,8 @@ class Roles {
     console.log(opt);
     const query = "INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)";
     const bind = [process.env.ROLES_TABLE, opt.system, opt.role];
+    console.log('Query before bind: ' + query);
+    console.log(bind);
     let result = await connection.execute(query, bind, { autoCommit: true });
     console.log(result);
     if(connection){
