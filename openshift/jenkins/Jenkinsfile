@@ -124,27 +124,6 @@ pipeline{
                 }
             }
         }
-       /*stage('e2e Tests'){
-            agent any
-            steps {
-                script {
-                    parallel(
-                        dir('frontend'){
-                            try {
-                                timeout(10){
-                                    echo 'Running Nightwatch on the frontend'
-                                    sh 'npm install'
-                                    sh 'npm run test:e2e'
-                                    echo 'e2e tests passed!'
-                                }
-                            } catch (e) {
-                                echo 'Nightwatch e2e tests failed'
-                            }
-                        }
-                    )
-                }
-            }
-        }*/
         stage('Build') {
             agent any
             steps{
@@ -259,7 +238,7 @@ pipeline{
                     }
                 }
             }
-        }*/
+        }*//*
         stage('SonarQube scan') {
             steps{
                 script{
@@ -287,7 +266,7 @@ pipeline{
                     }
                 }
             }
-        }
+        }*/
         stage('Deploy - Test'){
             agent any
             steps{
