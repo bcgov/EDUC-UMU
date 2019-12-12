@@ -18,9 +18,10 @@ class AuthUser {
       //return false here since there is no error
       let result = await connection.execute(
         `INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);`,
-        binds, { autoCommit: true }
+        binds
       );
       console.log(result);
+      connection.commit();
       if(connection){
         try{
           await connection.close();

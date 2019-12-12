@@ -19,9 +19,9 @@ class Roles {
     const bind = [process.env.ROLES_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.role)];
     let result = await connection.execute(
       `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`,
-       bind, { autoCommit: true
-    });
+       bind);
     console.log(result);
+    connection.commit();
     if(connection){
       try{
         await connection.close();

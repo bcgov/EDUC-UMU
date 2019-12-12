@@ -17,9 +17,9 @@ class Proxy {
       const bind = [process.env.PROXY_TABLE, JSON.stringify(opt.proxy), JSON.stringify(opt.target), JSON.stringify(opt.level)];
       let result = await connection.execute(
         `INSERT INTO :table (PROXYID, TARGETID, PROXYLEVEL) VALUES (:proxy, :target, :level);`,
-         bind, { autoCommit: true 
-      });
+         bind);
       console.log(result);
+      connection.commit();
       if(connection){
         try{
           await connection.close();
