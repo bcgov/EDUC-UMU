@@ -16,8 +16,9 @@ class Roles {
     });
     console.log('Inserting role...');
     console.log(opt);
-    const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (' + opt.system + ',' + opt.role + ')';
-    let result = await connection.execute(query,[], { autoCommit: true });
+    const query = "INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)";
+    const bind = [process.env.ROLES_TABLE, opt.system, opt.role];
+    let result = await connection.execute(query, bind, { autoCommit: true });
     console.log(result);
     if(connection){
       try{
