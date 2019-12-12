@@ -21,7 +21,7 @@ class Roles {
       `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`,
        bind);
     console.log(result);
-    connection.commit();
+    await connection.commit();
     if(connection){
       try{
         await connection.close();

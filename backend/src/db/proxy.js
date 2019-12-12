@@ -19,7 +19,7 @@ class Proxy {
         `INSERT INTO :table (PROXYID, TARGETID, PROXYLEVEL) VALUES (:proxy, :target, :level);`,
          bind);
       console.log(result);
-      connection.commit();
+      await connection.commit();
       if(connection){
         try{
           await connection.close();

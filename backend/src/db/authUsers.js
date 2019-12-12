@@ -21,7 +21,7 @@ class AuthUser {
         binds
       );
       console.log(result);
-      connection.commit();
+      await connection.commit();
       if(connection){
         try{
           await connection.close();
