@@ -16,7 +16,7 @@ class Roles {
     });
     console.log('Inserting role...');
     console.log(opt);
-    const query = "INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)";
+    const query = `INSERT INTO :table (SYSTEM, APPLICATION_ROLE) VALUES (:system, :role)`;
     const bind = [process.env.ROLES_TABLE, opt.system, opt.role];
     console.log('Query before bind: ' + query);
     console.log(bind);

@@ -14,7 +14,7 @@ class AuthUser {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-      const query = "INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);"; 
+      const query = `INSERT INTO :table (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (:system, :username, :name, :value, :auth, :guid);`; 
       const binds = [process.env.AUTH_TABLE, opt.system, opt.username, opt.name, opt.value, opt.authSource, opt.guid];
       //return false here since there is no error
       let result = await connection.execute(query,binds, { autoCommit: true });
