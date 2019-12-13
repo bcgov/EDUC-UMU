@@ -230,7 +230,7 @@ export default{
     ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
   },
   mounted: function() {
-    this.$store.dispatch('auth/getUser');
+    this.loggedInUser = this.$store.dispatch('auth/getUser');
     this.getRoles();
   },
   methods: {

@@ -393,7 +393,7 @@ export default{
   mounted: async function(){
     await this.getAuth();
     await this.getItems();
-    this.$store.dispatch('auth/getUser');
+    this.loggedInUser = this.$store.dispatch('auth/getUser');
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');

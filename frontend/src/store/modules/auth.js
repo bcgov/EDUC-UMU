@@ -106,6 +106,8 @@ export default {
       const jwt = localStorage.getItem('jwtToken');
       const decoded = jwtDecode(jwt);
       console.log(decoded);
+      const split = (decoded.json.preferred_username).split('@');
+      return split[0];
     }
   }
 };
