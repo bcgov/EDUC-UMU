@@ -14,7 +14,7 @@ class Proxy {
       connectString : process.env.ORACLE_CONNECT
     });
       try{
-        const query = 'INSERT INTO ' + process.env.PROXY_TABLE + ' (PROXYID, TARGETID, PROXYLEVEL) VALUES (' + opt.proxy + ',' + opt.target + ',' + opt.level + ')';
+        const query = 'INSERT INTO ' + process.env.PROXY_TABLE + ' (PROXYID, TARGETID, PROXYLEVEL) VALUES (\'' + opt.proxy + '\',\'' + opt.target + '\',\'' + opt.level + '\')';
         let result = await connection.execute(query);
         console.log(result);
         await connection.commit();
@@ -37,7 +37,7 @@ class Proxy {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-      const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=' + opt.proxy + ' AND ' + opt.target + ' AND ' + opt.level; 
+      const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=\'' + opt.proxy + '\' AND TARGETID=\'' + opt.target + '\' AND PROXYLEVEL=\'' + opt.level + '\''; 
       let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
       if(connection){
@@ -79,7 +79,7 @@ class Proxy {
     });
       const newJson = opt.new;
       const old = opt.old;
-      const query = 'UPDATE ' + process.env.PROXY_TABLE + ' SET PROXYID=' + newJson.proxy + ', TARGETID=' + newJson.target + ', PROXYLEVEL=' + newJson.level + ' WHERE PROXYID=' + old.proxy + ', TARGETID=' + old.target + ',PROXYLEVEL=' + old.level;
+      const query = 'UPDATE ' + process.env.PROXY_TABLE + ' SET PROXYID=\'' + newJson.proxy + '\', TARGETID=\'' + newJson.target + '\', PROXYLEVEL=\'' + newJson.level + '\' WHERE PROXYID=\'' + old.proxy + '\', TARGETID=\'' + old.target + '\',PROXYLEVEL=\'' + old.level + '\'';
       let result = await connection.execute(query, [],{ autoCommit: true });
       console.log(result);
       if(connection){

@@ -17,7 +17,8 @@ class AuthUser {
       //const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
       //return false here since there is no error
       try{
-        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) VALUES (' + opt.system + ',' + opt.username + ',' + opt.name + ',' + opt.value + ',' + opt.authSource + ',' + opt.guid + ')';
+        const dt = new Date();
+        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\',\'' + dt + '\')';
         let result = await connection.execute(query);
         console.log(result);
         await connection.commit();
@@ -41,7 +42,7 @@ class AuthUser {
       connectString : process.env.ORACLE_CONNECT
     });
     const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
-    ' WHERE SYSTEM=' + opt.system + 'AND USERNAME=' + opt.username + 'AND NAME=' + opt.name + 'AND VALUE=' +  opt.value + 'AND AUTHDIRNAME=' + opt.authSource + 'AND USERGUID=' + opt.guid;
+    ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\'AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid;
     let result = await connection.execute(query,[], { autoCommit: true });
     console.log(result);
     if(connection){
@@ -87,9 +88,10 @@ class AuthUser {
     });
       const old = options.old;
       const newJson = options.new;
+      const dt = new Date();
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
-        ' SET SYSTEM=' + newJson.system + ', USERNAME=' + newJson.username + ', NAME=' + newJson.name + ', VALUE=' +  newJson.value + ', AUTHDIRNAME=' + newJson.authSource + ', GUID=' + newJson.guid + 
-        ' WHERE SYSTEM=' + old.system + 'AND USERNAME=' + old.username + 'AND NAME=' + old.name + 'AND VALUE=' +  old.value + 'AND AUTHDIRNAME=' + old.authSource + 'AND GUID=' + old.guid;
+        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_USER=\'' + newJson.userUpdate + '\', UPDATE_DATE=\'' + dt +
+        '\' WHERE SYSTEM=\'' + old.system + '\' AND USERNAME=\'' + old.username + '\' AND NAME=\'' + old.name + '\' AND VALUE=\'' +  old.value + '\' AND AUTHDIRNAME=\'' + old.authSource + '\' AND GUID=\'' + old.guid + '\'';
      let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
       if(connection){

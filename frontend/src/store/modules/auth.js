@@ -1,5 +1,6 @@
 import ApiService from '@/common/apiService';
 import AuthService from '@/common/authService';
+import jwtDecode from 'jwt-decode';
 
 export default {
   namespaced: true,
@@ -99,6 +100,12 @@ export default {
         context.commit('setJwtToken');
         context.commit('setRefreshToken');
       }
+    },
+
+    async getUser() {
+      const jwt = localStorage.getItem('jwtToken');
+      const decoded = jwtDecode(jwt);
+      console.log(decoded);
     }
   }
 };

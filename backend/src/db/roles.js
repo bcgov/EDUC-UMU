@@ -18,7 +18,8 @@ class Roles {
     console.log(opt);
     const bind = [process.env.ROLES_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.role)];
     try{
-      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE) VALUES (\'' + opt.system + '\',\'' + opt.role + '\')';
+      const dt = new Date();
+      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE, CREATE_USER, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.role + '\',\'' + opt.userAdd + '\',\'' + dt +'\')';
       let result = await connection.execute(query);
       console.log(result);
       await connection.commit();
@@ -41,7 +42,7 @@ class Roles {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=' + opt.system + 'AND APPLICATION_ROLE=' + opt.role; 
+    const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=\'' + opt.system + '\' AND APPLICATION_ROLE=\'' + opt.role + '\''; 
     let result = await connection.execute(query, [],{ autoCommit: true });
     console.log(result);
     if(connection){
@@ -86,7 +87,8 @@ class Roles {
     });
     const newJson = opt.new;
     const old = opt.old;
-    const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=' + newJson.system + ', APPLICATION_ROLE=' + newJson.role + ' WHERE SYSTEM=' + old.system + ' AND APPLICATION_ROLE=' + old.role;
+    const dt = new Date();
+    const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=\'' + newJson.system + '\', APPLICATION_ROLE=\'' + newJson.role + '\', UPDATE_USER=\''+ newJson.updateUser + '\', UPDATE_DATE=\'' + dt + '\' WHERE SYSTEM=\'' + old.system + '\' AND APPLICATION_ROLE=\'' + old.role + '\'';
     let result = await connection.execute(query, [],{ autoCommit: true });
     console.log(result);
     if(connection){
