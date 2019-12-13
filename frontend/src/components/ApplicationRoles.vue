@@ -160,6 +160,7 @@
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
+    loggedInUser: null,
     statusDialog: false,
     statusMessage: '',
     deleteJson: {},
@@ -229,6 +230,7 @@ export default{
     ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
   },
   mounted: function() {
+    this.$store.dispatch('auth/getUser');
     this.getRoles();
   },
   methods: {
@@ -270,7 +272,7 @@ export default{
         this.statusDialog = true;
         this.statusMessage = 'All fields must have inputs';
       }
-      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
+      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput, 'updateUser': this.loggedInUser};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
       this.statusDialog = true;
@@ -291,7 +293,7 @@ export default{
         this.statusDialog = true;
         this.statusMessage = 'All fields must have inputs';
       }
-      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
+      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput, 'userAdd': this.loggedInUser};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
       this.statusDialog = true;

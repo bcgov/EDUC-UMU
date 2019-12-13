@@ -288,6 +288,7 @@ import axios from 'axios';
 import Papa from 'papaparse';
 export default{
   data: () =>  ({
+    loggedInUser: null,
     csvRoute: DownloadRoutes.CSV,
     usernameGroup: '',
     statusDialog: false,
@@ -392,6 +393,7 @@ export default{
   mounted: async function(){
     await this.getAuth();
     await this.getItems();
+    this.$store.dispatch('auth/getUser');
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');
@@ -482,7 +484,7 @@ export default{
         this.statusMessage = 'All fields must have inputs';
         return;
       }
-      const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
+      const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid, 'userUpdate': this.loggedInUser };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.statusDialog = true;
@@ -508,7 +510,7 @@ export default{
         this.statusMessage = 'All fields must have inputs';
         return;
       }
-      const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
+      const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid, 'userAdd': this.loggedInUser};
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
       if(this.userAddError){
