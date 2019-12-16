@@ -23,7 +23,7 @@ class AuthUser {
         console.log(result);
         await connection.commit();
       } catch(e) {
-        console.error(err);
+        console.error(e);
       }
       if(connection){
         try{
@@ -63,18 +63,22 @@ class AuthUser {
         password : process.env.ORACLE_PASSWORD,
         connectString : process.env.ORACLE_CONNECT
       });
-      const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-      const result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
-      if(connection){
-        try{
-          await connection.close();
-          console.log('Connection closed successfully');
-        } catch(err){
-          console.log("Error occured during database interaction");
-          console.error(err);
+      try{
+        const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
+        const result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
+        if(connection){
+          try{
+            await connection.close();
+            console.log('Connection closed successfully');
+          } catch(err){
+            console.log("Error occured during database interaction");
+            console.error(err);
+          }
         }
+        return result.rows;
+      } catch(e){
+        console.error(e);
       }
-      return result.rows;
     } catch(e){
       console.log("Connection failed");
       console.error(e);
@@ -86,6 +90,7 @@ class AuthUser {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
+    try{
       const old = options.old;
       const newJson = options.new;
       const dt = new Date();
@@ -103,6 +108,9 @@ class AuthUser {
         }
       }
     return {'error': false};
+    } catch(e) {
+      console.error(e);
+    }
   }
 };
 

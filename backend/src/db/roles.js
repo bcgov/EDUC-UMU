@@ -42,6 +42,7 @@ class Roles {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
+    try{
     const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=\'' + opt.system + '\' AND APPLICATION_ROLE=\'' + opt.role + '\''; 
     let result = await connection.execute(query, [],{ autoCommit: true });
     console.log(result);
@@ -54,6 +55,9 @@ class Roles {
       }
     }
     return {'error': false};
+    } catch(e){
+      console.error(e);
+    }
   }
 
   //select all roles from table
@@ -63,17 +67,21 @@ class Roles {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
-    let result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
-      console.log(result);
-      if(connection){
-        try{
-          await connection.close();
-        } catch(err){
-          console.error(err);
+    try{
+      const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
+      let result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
+        console.log(result);
+        if(connection){
+          try{
+            await connection.close();
+          } catch(err){
+            console.error(err);
+          }
         }
-      }
-    return result.rows;
+      return result.rows;
+    } catch(e) {
+      console.error(e);
+    }
   }
   /*
   select(id, callback) {
@@ -85,23 +93,26 @@ class Roles {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    const newJson = opt.new;
-    const old = opt.old;
-    const dt = new Date();
-    const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=\'' + newJson.system + '\', APPLICATION_ROLE=\'' + newJson.role + '\', UPDATE_USER=\''+ newJson.updateUser + '\', UPDATE_DATE=\'' + dt + '\' WHERE SYSTEM=\'' + old.system + '\' AND APPLICATION_ROLE=\'' + old.role + '\'';
-    let result = await connection.execute(query, [],{ autoCommit: true });
-    console.log(result);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-        return {'error': true};
+    try{
+      const newJson = opt.new;
+      const old = opt.old;
+      const dt = new Date();
+      const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=\'' + newJson.system + '\', APPLICATION_ROLE=\'' + newJson.role + '\', UPDATE_USER=\''+ newJson.updateUser + '\', UPDATE_DATE=\'' + dt + '\' WHERE SYSTEM=\'' + old.system + '\' AND APPLICATION_ROLE=\'' + old.role + '\'';
+      let result = await connection.execute(query, [],{ autoCommit: true });
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
       }
+      return {'error': false};
+    } catch(e){
+      console.error(e);
     }
-    return {'error': false};
   }
-
 };
 
 module.exports = Roles;

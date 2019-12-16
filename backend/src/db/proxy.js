@@ -37,6 +37,7 @@ class Proxy {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
+    try{
       const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=\'' + opt.proxy + '\' AND TARGETID=\'' + opt.target + '\' AND PROXYLEVEL=\'' + opt.level + '\''; 
       let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
@@ -49,6 +50,9 @@ class Proxy {
         }
       }
     return {'error': false};
+    } catch(e){
+      console.error(e)
+    }
   }
   //select all proxies from table
   async selectAll() {
@@ -77,6 +81,7 @@ class Proxy {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
+    try{
       const newJson = opt.new;
       const old = opt.old;
       const query = 'UPDATE ' + process.env.PROXY_TABLE + ' SET PROXYID=\'' + newJson.proxy + '\', TARGETID=\'' + newJson.target + '\', PROXYLEVEL=\'' + newJson.level + '\' WHERE PROXYID=\'' + old.proxy + '\', TARGETID=\'' + old.target + '\',PROXYLEVEL=\'' + old.level + '\'';
@@ -91,6 +96,9 @@ class Proxy {
         }
       }
     return {'error': false};
+  } catch(e){
+    console.error(e);
+  }
   }
 };
 
