@@ -102,7 +102,7 @@ export default {
       }
     },
 
-    async getUser() {
+    getUser() {
       const jwt = localStorage.getItem('jwtToken');
       const decoded = jwtDecode(jwt);
       console.log(decoded);
