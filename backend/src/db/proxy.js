@@ -38,6 +38,7 @@ class Proxy {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
+      console.log(opt);
       const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=\'' + opt.proxy + '\' AND TARGETID=\'' + opt.target + '\' AND PROXYLEVEL=\'' + opt.level + '\''; 
       let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
