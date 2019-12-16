@@ -106,7 +106,7 @@ export default {
       const jwt = localStorage.getItem('jwtToken');
       const decoded = jwtDecode(jwt);
       console.log(decoded);
-      const split = (decoded.email).split('@');
+      const split = (decoded.preferred_username).split('@');
       console.log('User IDIR: ' + split[0]);
       return split[0];
     }
