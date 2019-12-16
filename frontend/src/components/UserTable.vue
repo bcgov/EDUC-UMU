@@ -386,6 +386,7 @@ export default{
   computed: {
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
     ...mapGetters('roleActions', ['roles']),
+    ...mapGetters('auth', ['loggedInUser']),
     progress: function () {
       return ((this.bulkComplete / this.bulkTotal) * 100);
     }
@@ -393,9 +394,7 @@ export default{
   mounted: async function(){
     await this.getAuth();
     await this.getItems();
-    this.$store.dispatch('auth/getUser').then(function(result){
-      this.loggedInUser = result;
-    });
+    await this.$store.dispatch('auth/getUser');
     console.log(this.loggedInUser);
     const list = [];
     if(this.roles === null){

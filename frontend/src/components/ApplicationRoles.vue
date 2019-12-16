@@ -160,7 +160,6 @@
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
-    loggedInUser: null,
     statusDialog: false,
     statusMessage: '',
     deleteJson: {},
@@ -227,12 +226,11 @@ export default{
     roleInfo: {}
   }),
   computed: {
-    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
+    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError']),
+    ...mapGetters('auth', ['loggedInUser'])
   },
   mounted: function() {
-    this.$store.dispatch('auth/getUser').then(function(result){
-      this.loggedInUser = result;
-    });
+    this.$store.dispatch('auth/getUser');
     this.getRoles();
   },
   methods: {
