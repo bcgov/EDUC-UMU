@@ -394,6 +394,7 @@ export default{
     await this.getAuth();
     await this.getItems();
     this.loggedInUser = this.$store.dispatch('auth/getUser');
+    console.log(this.loggedInUser);
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');
