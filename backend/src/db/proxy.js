@@ -38,6 +38,7 @@ class Proxy {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
+      console.log('Deleting proxy...');
       console.log(opt);
       const query = 'DELETE FROM ' + process.env.PROXY_TABLE + ' WHERE PROXYID=\'' + opt.proxy + '\' AND TARGETID=\'' + opt.target + '\' AND PROXYLEVEL=\'' + opt.level + '\''; 
       let result = await connection.execute(query,[], { autoCommit: true });
@@ -83,6 +84,8 @@ class Proxy {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
+      console.log('Updating proxy...');
+      console.log(opt);
       const newJson = opt.new;
       const old = opt.old;
       const query = 'UPDATE ' + process.env.PROXY_TABLE + ' SET PROXYID=\'' + newJson.proxy + '\', TARGETID=\'' + newJson.target + '\', PROXYLEVEL=\'' + newJson.level + '\' WHERE PROXYID=\'' + old.proxy + '\', TARGETID=\'' + old.target + '\',PROXYLEVEL=\'' + old.level + '\'';

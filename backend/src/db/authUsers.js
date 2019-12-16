@@ -17,6 +17,8 @@ class AuthUser {
       //const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
       //return false here since there is no error
       try{
+        console.log('Creating user...');
+        console.log(opt);
         const dt = new Date();
         const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\',\'' + dt + '\')';
         let result = await connection.execute(query);
@@ -41,19 +43,25 @@ class AuthUser {
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
-    ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\'AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid;
-    let result = await connection.execute(query,[], { autoCommit: true });
-    console.log(result);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-        return {'error': true};
+    try{
+      console.log('Deleting user...');
+      console.log(opt);
+      const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
+      ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\'AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid;
+      let result = await connection.execute(query,[], { autoCommit: true });
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
       }
+      return {'error': false };
+    } catch(e){
+      console.error(e);
     }
-    return {'error': false };
   }
   //select all users from table
   async selectAll() {
@@ -91,6 +99,8 @@ class AuthUser {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
+      console.log('Updating user...');
+      console.log(options);
       const old = options.old;
       const newJson = options.new;
       const dt = new Date();

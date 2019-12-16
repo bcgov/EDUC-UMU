@@ -43,18 +43,20 @@ class Roles {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
-    const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=\'' + opt.system + '\' AND APPLICATION_ROLE=\'' + opt.role + '\''; 
-    let result = await connection.execute(query, [],{ autoCommit: true });
-    console.log(result);
-    if(connection){
-      try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
-        return {'error': true};
+      console.log('Deleting role...');
+      console.log(opt);
+      const query = 'DELETE FROM ' + process.env.ROLES_TABLE + ' WHERE SYSTEM=\'' + opt.system + '\' AND APPLICATION_ROLE=\'' + opt.role + '\''; 
+      let result = await connection.execute(query, [],{ autoCommit: true });
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
       }
-    }
-    return {'error': false};
+      return {'error': false};
     } catch(e){
       console.error(e);
     }
@@ -70,14 +72,14 @@ class Roles {
     try{
       const query = 'SELECT * FROM ' + process.env.ROLES_TABLE;
       let result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
-        console.log(result);
-        if(connection){
-          try{
-            await connection.close();
-          } catch(err){
-            console.error(err);
-          }
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
         }
+      }
       return result.rows;
     } catch(e) {
       console.error(e);
@@ -94,6 +96,8 @@ class Roles {
       connectString : process.env.ORACLE_CONNECT
     });
     try{
+      console.log('Updating role...');
+      console.log(opt);
       const newJson = opt.new;
       const old = opt.old;
       const dt = new Date();
