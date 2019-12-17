@@ -41,7 +41,7 @@ dbRouter.post('/users', async(req, res) => {
     }
 });
 dbRouter.delete('/users', async(req, res) => {
-    let data = req.body;
+    let data = req.params;
     const response = await database.deleteUser(data);
     if(response){
         res.status(200).send(response);
@@ -79,7 +79,7 @@ dbRouter.post('/proxy', async(req, res) => {
     }
 });
 dbRouter.delete('/proxy', async(req, res) => {
-    let data = req.body;
+    let data = req.params;
     console.log(data);
     const response = await database.deleteProxy(data);
     if(response){
@@ -119,7 +119,7 @@ dbRouter.post('/roles', async(req, res) => {
     }
 });
 dbRouter.delete('/roles', async(req, res) => {
-    let data = req.body;
+    let data = req.params;
     const response = await database.deleteRole(data);
     if(response){
         res.status(200).json(response);
