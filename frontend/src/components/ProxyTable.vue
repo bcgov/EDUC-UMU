@@ -17,14 +17,14 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      :loading="isLoading"
+      :loading="guidsConverted"
     >
 
-    <template v-slot:item.proxyName="{ item }" v-if="guidsConverted">
-      <b>{{ item.proxyName }}</b>{{ ' (' + item.PROXYID + ')' }}
+    <template v-slot:item.proxyName="{ item }">
+      {{ item.proxyName }}
     </template>
-    <template v-slot:item.targetName="{ item }" v-if="guidsConverted">
-      <b>{{ item.targetName }}</b>{{ ' (' + item.TARGETID + ')' }}
+    <template v-slot:item.targetName="{ item }">
+      {{ item.targetName }}
     </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
