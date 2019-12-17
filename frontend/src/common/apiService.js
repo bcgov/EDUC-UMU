@@ -118,7 +118,7 @@ export default {
   },
   async deleteUser(userInfo){
     try{
-      const response = await apiAxios.delete(ApiRoutes.USERS, userInfo);
+      const response = await apiAxios.delete(ApiRoutes.USERS, {params: userInfo});
       if(response.status == 500){
         return true;
       }
@@ -166,7 +166,7 @@ export default {
   },
   async deleteRole(roleInfo){
     try{
-      const response = await apiAxios.delete(ApiRoutes.ROLES, roleInfo);
+      const response = await apiAxios.delete(ApiRoutes.ROLES, {params: roleInfo});
       if(response.status == 500){
         return true;
       }
@@ -214,8 +214,9 @@ export default {
   },
   async deleteProxy(proxyInfo){
     try{
-      console.log('In API Service: ' + proxyInfo);
-      const response = await apiAxios.delete(ApiRoutes.PROXY, proxyInfo);
+      console.log('Sending data to API for deletion')
+      console.log(proxyInfo);
+      const response = await apiAxios.delete(ApiRoutes.PROXY, {params: proxyInfo});
       if(response.status === 500){
         return true;
       }

@@ -65,7 +65,6 @@ export default {
     },
     async deleteProxy(context, info){
       try {
-        console.log('In store: ' + info);
         const response = await ApiService.deleteProxy(info);
         context.commit('deleteProxy', response);
       } catch(e) {
