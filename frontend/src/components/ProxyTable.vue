@@ -419,6 +419,7 @@ export default {
       this.deleteJson = {'proxy': proxy, 'target': target, 'level': level};
     },
     async deleteProxy() {
+      console.log(this.deleteJson);
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
       this.statusDialog = true;
       if(this.proxyDeleteError){
