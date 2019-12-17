@@ -80,7 +80,7 @@ dbRouter.post('/proxy', async(req, res) => {
 });
 dbRouter.delete('/proxy', async(req, res) => {
     let data = req.body;
-    console.log('Response Body: ' + data);
+    console.log(data);
     const response = await database.deleteProxy(data);
     if(response){
         res.status(200).send(response);
