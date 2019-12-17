@@ -19,7 +19,8 @@ class AuthUser {
       try{
         console.log('Creating user...');
         console.log(opt);
-        const dt = new Date();
+        const dateJs = new Date();
+        const dt = dateJs.toISOString();
         console.log(dt);
         const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\',\'' + dt + '\')';
         let result = await connection.execute(query);
@@ -104,7 +105,8 @@ class AuthUser {
       console.log(options);
       const old = options.old;
       const newJson = options.new;
-      const dt = new Date();
+      const dateJs = new Date();
+      const dt = dateJs.toISOString();
       console.log(dt);
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
         ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=\'' + dt +
