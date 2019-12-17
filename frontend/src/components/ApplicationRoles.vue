@@ -157,6 +157,7 @@
 </template>
 
 <script>
+import jwtDecode from 'jwt-decode';
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
