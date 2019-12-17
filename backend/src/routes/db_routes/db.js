@@ -40,7 +40,7 @@ dbRouter.post('/users', async(req, res) => {
         res.status(500).json({ message: "Unable to add user to database"});
     }
 });
-dbRouter.delete('/users', async(req, res) => {
+dbRouter.post('/users/delete', async(req, res) => {
     let data = req.params;
     const response = await database.deleteUser(data);
     if(response){
@@ -78,8 +78,8 @@ dbRouter.post('/proxy', async(req, res) => {
         res.status(500).json({ message: "Unable to add user proxy to database."});
     }
 });
-dbRouter.delete('/proxy', async(req, res) => {
-    let data = req.params;
+dbRouter.post('/proxy/delete', async(req, res) => {
+    let data = req.body;
     console.log(data);
     const response = await database.deleteProxy(data);
     if(response){
@@ -118,8 +118,8 @@ dbRouter.post('/roles', async(req, res) => {
         res.status(500).json({ message: "Unable to add role to database."});
     }
 });
-dbRouter.delete('/roles', async(req, res) => {
-    let data = req.params;
+dbRouter.post('/roles/delete', async(req, res) => {
+    let data = req.body;
     const response = await database.deleteRole(data);
     if(response){
         res.status(200).json(response);
