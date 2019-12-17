@@ -381,7 +381,8 @@ export default{
     ],
     itemJson: [],
     items: [],
-    userInfo: {}
+    userInfo: {},
+    loggedInUser: null
   }),
   computed: {
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
@@ -392,10 +393,14 @@ export default{
     }
   },
   mounted: async function(){
+    const jwt = localStorage.getItem('jwtToken');
+    const decoded = jwtDecode(jwt);
+    const split = (decoded.preferred_username).split('@');
+    this.loggedInUser = split[0];
     await this.getAuth();
     await this.getItems();
-    await this.$store.dispatch('auth/getUser');
-    console.log(this.loggedInUser);
+    console.log('User IDIR: ' + split[0]);
+
     const list = [];
     if(this.roles === null){
       await this.$store.dispatch('roleActions/getRoles');

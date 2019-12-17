@@ -223,14 +223,18 @@ export default{
     items: [],
     systemArray: [],
     itemJson: [],
-    roleInfo: {}
+    roleInfo: {},
+    loggedInUser: null
   }),
   computed: {
     ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError']),
     ...mapGetters('auth', ['loggedInUser'])
   },
   mounted: function() {
-    this.$store.dispatch('auth/getUser');
+    const jwt = localStorage.getItem('jwtToken');
+    const decoded = jwtDecode(jwt);
+    const split = (decoded.preferred_username).split('@');
+    this.loggedInUser = split[0];
     this.getRoles();
   },
   methods: {
