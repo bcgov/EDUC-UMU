@@ -8,7 +8,7 @@ export default {
     acronyms: [],
     isAuthenticated: localStorage.getItem('jwtToken') !== null,
     accessDenied: false,
-    loggedInUser: null
+    loggedInUser: ''
   },
   getters: {
     acronyms: state => state.acronyms,
@@ -108,7 +108,7 @@ export default {
       }
     },
 
-    async getUser(context) {
+    getUser(context) {
       const jwt = localStorage.getItem('jwtToken');
       const decoded = jwtDecode(jwt);
       console.log(decoded);
