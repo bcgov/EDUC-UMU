@@ -286,6 +286,7 @@ import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
 import Papa from 'papaparse';
+import jwtDecode from 'jwt-decode';
 export default{
   data: () =>  ({
     loggedInUser: null,
