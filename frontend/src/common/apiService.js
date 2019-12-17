@@ -216,7 +216,7 @@ export default {
     try{
       console.log('Sending data to API for deletion')
       console.log(proxyInfo);
-      const response = await apiAxios.post(ApiRoutes.PROXY, proxyInfo);
+      const response = await apiAxios.post(ApiRoutes.PROXY + '/delete', proxyInfo);
       if(response.status === 500){
         return true;
       }

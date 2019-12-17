@@ -41,7 +41,7 @@ dbRouter.post('/users', async(req, res) => {
     }
 });
 dbRouter.post('/users/delete', async(req, res) => {
-    let data = req.params;
+    let data = req.body;
     const response = await database.deleteUser(data);
     if(response){
         res.status(200).send(response);
