@@ -20,9 +20,9 @@ class AuthUser {
         console.log('Creating user...');
         console.log(opt);
         const dateJs = new Date();
-        const dt = dateJs.toISOString();
+        const dt = dateJs.toISOString().split('T')[0]
         console.log(dt);
-        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\', ' + dt + ')';
+        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\', TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')';
         console.log(query);
         let result = await connection.execute(query);
         console.log(result);
@@ -107,10 +107,10 @@ class AuthUser {
       const old = options.old;
       const newJson = options.new;
       const dateJs = new Date();
-      const dt = dateJs.toISOString();
+      const dt = dateJs.toISOString().split('T')[0]
       console.log(dt);
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
-        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=' + dt +
+        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')' +
         ' WHERE SYSTEM=\'' + old.system + '\' AND USERNAME=\'' + old.username + '\' AND NAME=\'' + old.name + '\' AND VALUE=\'' +  old.value + '\' AND AUTHDIRNAME=\'' + old.authSource + '\' AND GUID=\'' + old.guid + '\'';
      let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);

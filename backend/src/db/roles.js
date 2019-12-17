@@ -19,8 +19,8 @@ class Roles {
     const bind = [process.env.ROLES_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.role)];
     try{
       const dateJs = new Date();
-      const dt = dateJs.toISOString();
-      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.role + '\',\'' + opt.userAdd + '\',' + dt +')';
+      const dt = dateJs.toISOString().split('T')[0]
+      const query = 'INSERT INTO ' + process.env.ROLES_TABLE + ' (SYSTEM, APPLICATION_ROLE, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.role + '\',\'' + opt.userAdd + '\', TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')';
       let result = await connection.execute(query);
       console.log(result);
       await connection.commit();
@@ -102,8 +102,8 @@ class Roles {
       const newJson = opt.new;
       const old = opt.old;
       const dateJs = new Date();
-      const dt = dateJs.toISOString();
-      const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=\'' + newJson.system + '\', APPLICATION_ROLE=\'' + newJson.role + '\', UPDATE_BY=\''+ newJson.updateUser + '\', UPDATE_DATE=' + dt + ' WHERE SYSTEM=\'' + old.system + '\' AND APPLICATION_ROLE=\'' + old.role + '\'';
+      const dt = dateJs.toISOString().split('T')[0];
+      const query = 'UPDATE ' + process.env.ROLES_TABLE + ' SET SYSTEM=\'' + newJson.system + '\', APPLICATION_ROLE=\'' + newJson.role + '\', UPDATE_BY=\''+ newJson.updateUser + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\') WHERE SYSTEM=\'' + old.system + '\' AND APPLICATION_ROLE=\'' + old.role + '\'';
       let result = await connection.execute(query, [],{ autoCommit: true });
       console.log(result);
       if(connection){
