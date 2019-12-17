@@ -50,7 +50,7 @@ class AuthUser {
       console.log('Deleting user...');
       console.log(opt);
       const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
-      ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\'AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid;
+      ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\' AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid + '\'';
       let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
       if(connection){

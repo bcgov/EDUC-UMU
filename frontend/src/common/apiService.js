@@ -214,8 +214,9 @@ export default {
   },
   async deleteProxy(proxyInfo){
     try{
+      console.log('In API Service: ' + proxyInfo);
       const response = await apiAxios.delete(ApiRoutes.PROXY, proxyInfo);
-      if(response.status == 500){
+      if(response.status === 500){
         return true;
       }
       return response.data.error;
