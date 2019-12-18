@@ -274,6 +274,7 @@ export default {
       this.isLoading = true;
       await this.$store.dispatch('proxyActions/getProxy');
       this.mapGuids(this.proxy).then(response => {
+        console.log(response);
         this.itemJson = response;
         this.isLoading = false;
       });
