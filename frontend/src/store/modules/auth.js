@@ -1,12 +1,14 @@
 import ApiService from '@/common/apiService';
 import AuthService from '@/common/authService';
+import jwtDecode from 'jwt-decode';
 
 export default {
   namespaced: true,
   state: {
     acronyms: [],
     isAuthenticated: localStorage.getItem('jwtToken') !== null,
-    accessDenied: false
+    accessDenied: false,
+    loggedInUser: ''
   },
   getters: {
     acronyms: state => state.acronyms,
@@ -14,6 +16,7 @@ export default {
     accessDenied: state => state.accessDenied,
     jwtToken: () => localStorage.getItem('jwtToken'),
     refreshToken: () => localStorage.getItem('refreshToken'),
+    loggedInUser: state => state.loggedInUser
   },
   mutations: {
 
@@ -56,10 +59,18 @@ export default {
       } else {
         localStorage.removeItem('refreshToken');
       }
+    },
+    logoutState: (state) => {
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('jwtToken');
+      state.isAuthenticated = false;
+    },
+
+    setLoggedInUser: (state, user) => {
+      state.loggedInUser = user;
     }
   },
   actions: {
-
     //retrieves the json web token from local storage. If not in local storage, retrieves it from API
     async getJwtToken(context) {
       try {
@@ -95,6 +106,15 @@ export default {
         context.commit('setJwtToken');
         context.commit('setRefreshToken');
       }
+    },
+
+    getUser(context) {
+      const jwt = localStorage.getItem('jwtToken');
+      const decoded = jwtDecode(jwt);
+      console.log(decoded);
+      const split = (decoded.preferred_username).split('@');
+      console.log('User IDIR: ' + split[0]);
+      context.commit('setLoggedInUser', split[0]);
     }
   }
 };

@@ -19,18 +19,11 @@
       :search="search"
       :loading="isLoading"
     >
-
-    <template v-slot:item.proxyName="{ item }">
-      <b>{{ item.proxyName }}</b>{{ ' (' + item.proxy + ')' }}
-    </template>
-    <template v-slot:item.targetName="{ item }">
-      <b>{{ item.targetName }}</b>{{ ' (' + item.target + ')' }}
-    </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
-        <v-icon class="list_action" @click.stop="updateProxyForm(item.proxy, item.target, item.level, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
-        <v-icon class="list_action" @click.stop="deleteForm(item.proxy, item.target, item.level)" color="#d93e45">delete</v-icon>
+        <v-icon class="list_action" @click.stop="updateProxyForm(item.PROXYID, item.TARGETID, item.PROXYLEVEL, item.proxyName, item.targetName)" color="#43893e">edit</v-icon>
+        <v-icon class="list_action" @click.stop="deleteForm(item.PROXYID, item.TARGETID, item.PROXYLEVEL)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -130,10 +123,10 @@
                       </v-radio-group>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.proxy"></v-text-field>
+                          <v-text-field v-model="updateProxyInput" :disabled="userSelect" label="Proxy ID" :value="proxyInfo.PROXYID"></v-text-field>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.target"></v-text-field>
+                          <v-text-field v-model="updateTarget" :disabled="userSelect" label="Target ID" :value="proxyInfo.TARGETID"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
@@ -146,7 +139,7 @@
                       </v-row>
                       <v-row>
                         <v-col>
-                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.level"></v-text-field>
+                          <v-text-field v-model="updateLevel" label="Proxy Level" required :value="proxyInfo.PROXYLEVEL"></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
@@ -186,7 +179,6 @@
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card class="textOnlyCard">
           <v-card-text>
-
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -209,6 +201,8 @@ export default {
     dialog_b: false,
     dialog_pDelete: false,
     isLoading: true,
+
+    guidsConverted: false,
 
     updateProxyInput: null,
     updateTarget: null,
@@ -243,7 +237,7 @@ export default {
       {
         sortable: true,
         text: 'Proxy Level',
-        value: 'level'
+        value: 'PROXYLEVEL'
       },
       {
         sortable: false,
@@ -260,7 +254,7 @@ export default {
   }),
   computed: {
     ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError']),
-    ...mapGetters('userActions', ['users'])
+    ...mapGetters('userActions', ['users']),
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
@@ -279,21 +273,21 @@ export default {
       this.itemJson = [];
       this.isLoading = true;
       await this.$store.dispatch('proxyActions/getProxy');
-      this.mapGuids(this.proxy).then(response => {
-        this.itemJson = response;
-        this.isLoading = false;
-      });
+      const arr = await this.mapGuids(this.proxy);
+      console.log(arr);
+      this.itemJson = arr;
+      this.isLoading = false;
     },
 
     //map each user GUID to a readable username
     async mapGuids(arr){
       this.$store.dispatch('userActions/getUsers').then(response => {
         arr.forEach(element => {
-          if(response.find(x => x.guid === element.proxy)){
-            element.proxyName = response.find(x => x.guid === element.proxy).username;
+          if(response.find(x => x.USERGUID === element.PROXYID)){
+            element.proxyName = response.find(x => x.USERGUID === element.PROXYID).USERNAME;
           }
-          if(response.find(x => x.guid === element.target)){
-            element.targetName = response.find(x => x.guid === element.target).username;
+          if(response.find(x => x.USERGUID === element.TARGETID)){
+            element.targetName = response.find(x => x.USERGUID === element.TARGETID).USERNAME;
           }
         });
       });
@@ -416,6 +410,7 @@ export default {
       this.deleteJson = {'proxy': proxy, 'target': target, 'level': level};
     },
     async deleteProxy() {
+      console.log(this.deleteJson);
       await this.$store.dispatch('proxyActions/deleteProxy', this.deleteJson);
       this.statusDialog = true;
       if(this.proxyDeleteError){
@@ -434,8 +429,8 @@ export default {
     usernameToGuid(userInput) {
       let returnValue = null;
       (this.users).forEach(element => {
-        if(userInput == element.username){
-          returnValue = element.guid;
+        if(userInput == element.USERNAME){
+          returnValue = element.USERGUID;
         }
       });
       return returnValue;
@@ -443,7 +438,7 @@ export default {
     checkGuid(guidInput) {
       let returnValue = false;
       (this.users).forEach(element => {
-        if(guidInput == element.guid){
+        if(guidInput == element.USERGUID){
           returnValue = true;
         }
       });

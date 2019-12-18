@@ -100,10 +100,12 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
+            <!--
             <v-btn class="ma-2" dark color="#003366" :href='csvRoute'>
               <v-icon left>save_alt</v-icon>
               CSV Template
             </v-btn>
+            -->
             <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth Item</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
@@ -115,10 +117,10 @@
                       <v-container grid-list-md>
                         <v-row>
                           <v-col>
-                            <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].system" required></v-select>
+                            <v-select v-model="addSystem" label="System" :items="systemArray" :readonly="groupOpen" :value="usernameArr[0].SYSTEM" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].username" required></v-text-field>
+                            <v-text-field v-model="addUsername" label="Username" name="username" :readonly="groupOpen" :value="usernameArr[0].USERNAME" required></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -134,10 +136,10 @@
                         </v-row>
                         <v-row>
                           <v-col cols="4">
-                            <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].authSource" :readonly="groupOpen" required></v-select>
+                            <v-select v-model="addAuth" :items="authSources" label="Auth Source" name="auth" :value="usernameArr[0].AUTHDIRNAME" :readonly="groupOpen" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].guid" required></v-text-field>
+                            <v-text-field v-model="addGuid" label="User GUID" name="guid" :readonly="groupOpen" :value="usernameArr[0].USERGUID" required></v-text-field>
                           </v-col>
                         </v-row>
 
@@ -146,7 +148,7 @@
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <!--<v-file-input v-if="!groupOpen" v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>-->
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -174,10 +176,10 @@
     <!-- Displays as the row that expands from a row -->
       <template
         v-slot:expanded-item="props">
-            <td colspan="2"><b>Created by:</b> {{ props.item.create }}</td>
-            <td colspan="2"><b>Create date:</b> {{ props.item.createDate }}</td>
-            <td><b>Updated by:</b> {{ props.item.update }}</td>
-            <td colspan="2"><b>Update date:</b> {{ props.item.updateDate }}</td>
+            <td colspan="2"><b>Created by:</b> {{ props.item.CREATE_BY }}</td>
+            <td colspan="2"><b>Create date:</b> {{ props.item.CREATE_DATE}}</td>
+            <td><b>Updated by:</b> {{ props.item.UPDATE_BY }}</td>
+            <td colspan="2"><b>Update date:</b> {{ props.item.UPDATE_DATE }}</td>
             <td></td>
       </template>
 
@@ -185,9 +187,9 @@
     <!-- The delete and edit user actions that are available to each row -->
       <template
         v-slot:item.action="{ item }">
-          <v-btn icon class="list_action" @click.stop="selectUsername(item.username)" color="#5475a7"><v-icon>group</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="updateUserForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#43893e"><v-icon>edit</v-icon></v-btn>
-          <v-btn icon class="list_action" @click.stop="deleteForm(item.system, item.username, item.name, item.value, item.authSource, item.guid)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="selectUsername(item.USERNAME)" color="#5475a7"><v-icon>group</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="updateUserForm(item.SYSTEM, item.USERNAME, item.NAME, item.VALUE, item.AUTHDIRNAME, item.USERGUID)" color="#43893e"><v-icon>edit</v-icon></v-btn>
+          <v-btn icon class="list_action" @click.stop="deleteForm(item.SYSTEM, item.USERNAME, item.NAME, item.VALUE, item.AUTHDIRNAME, item.USERGUID)" color="#d93e45"><v-icon>delete</v-icon></v-btn>
       </template>
 
 
@@ -210,21 +212,21 @@
                       <v-container grid-list-md>
                         <v-row>
                           <v-col>
-                            <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.system" name="system" label="System"></v-select>
+                            <v-select v-model="updateSystem" :items="systemArray" :value="userInfo.SYSTEM" name="system" label="System"></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.username" required></v-text-field>
+                            <v-text-field v-model="updateUsername" label="Username" name="username" :value="userInfo.USERNAME" required></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
                           <v-col>
-                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.name" :items="nameOptions" required></v-select>
+                            <v-select v-model="updateName" label="Name" name="name" :value="userInfo.NAME" :items="nameOptions" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="roleList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="districtList" required></v-select>
-                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.value" :items="schoolList" required></v-select>
-                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.value"></v-text-field>
+                            <v-select v-if="updateName === 'ROLES'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="roleList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_DISTRICT'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="districtList" required></v-select>
+                            <v-select v-else-if="updateName === 'EDW_MASKING_USER_SCHOOL'" v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE" :items="schoolList" required></v-select>
+                            <v-text-field v-else v-model="updateValue" label="Value" name="value" :value="userInfo.VALUE"></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -232,7 +234,7 @@
                             <v-select v-model="updateAuth" label="Auth Source" :items="authSources" name="auth" required></v-select>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.guid" required></v-text-field>
+                            <v-text-field v-model="updateGuid" label="User GUID" name="guid" :value="userInfo.USERGUID" required></v-text-field>
                           </v-col>
                         </v-row>
                       </v-container>
@@ -286,8 +288,10 @@ import { DownloadRoutes, FormLists, ApiRoutes } from '@/utils/constants';
 import { mapGetters } from 'vuex';
 import axios from 'axios';
 import Papa from 'papaparse';
+import jwtDecode from 'jwt-decode';
 export default{
   data: () =>  ({
+    loggedInUser: null,
     csvRoute: DownloadRoutes.CSV,
     usernameGroup: '',
     statusDialog: false,
@@ -344,32 +348,32 @@ export default{
       {
         sortable: true,
         text: 'System',
-        value: 'system'
+        value: 'SYSTEM'
       },
       {
         sortable: true,
         text: 'Username',
-        value: 'username'
+        value: 'USERNAME'
       },
       {
         sortable: true,
         text: 'Name',
-        value: 'name'
+        value: 'NAME'
       },
       {
         sortable: true,
         text: 'Value',
-        value: 'value'
+        value: 'VALUE'
       },
       {
         sortable: true,
         text: 'Auth source',
-        value: 'authSource'
+        value: 'AUTHDIRNAME'
       },
       {
         sortable: true,
         text: 'User GUID',
-        value: 'guid'
+        value: 'USERGUID'
       },
       {
         sortable: false,
@@ -380,23 +384,33 @@ export default{
     ],
     itemJson: [],
     items: [],
-    userInfo: {}
+    userInfo: {},
+    loggedInUser: null
   }),
   computed: {
     ...mapGetters('userActions', ['users', 'userAddError', 'userUpdateError', 'userDeleteError']),
     ...mapGetters('roleActions', ['roles']),
+    ...mapGetters('auth', ['loggedInUser']),
     progress: function () {
       return ((this.bulkComplete / this.bulkTotal) * 100);
     }
   },
   mounted: async function(){
+    const jwt = localStorage.getItem('jwtToken');
+    const decoded = jwtDecode(jwt);
+    const split = (decoded.preferred_username).split('@');
+    this.loggedInUser = split[0];
     await this.getAuth();
-    this.getItems();
+    await this.getItems();
+    console.log('User IDIR: ' + split[0]);
+
     const list = [];
-    await this.$store.dispatch('roleActions/getRoles');
+    if(this.roles === null){
+      await this.$store.dispatch('roleActions/getRoles');
+    }
     (this.roles).forEach( async element => {
-      if(!((list).includes(element.role))){
-        list.push(element.role);
+      if(!((list).includes(element.APPLICATION_ROLE))){
+        list.push(element.APPLICATION_ROLE);
       }
     });
     this.roleList = list;
@@ -417,7 +431,7 @@ export default{
     //remove the user group that is currently selected
     resetUsername(){
       this.groupOpen = false;
-      this.usernameArr = [{'system': '', 'username': '', 'guid': '', 'authSource': ''}];
+      this.usernameArr = [{'SYSTEM': '', 'USERNAME': '', 'USERGUID': '', 'AUTHDIRNAME': ''}];
       this.usernameGroup = '';
       this.addSystem = null;
       this.addUsername = null;
@@ -435,14 +449,14 @@ export default{
         this.groupOpen = true;
         this.usernameGroup = usrname;
         this.usernameArr = (this.itemJson).filter(function(item){
-          return item.username == usrname;
+          return item.USERNAME == usrname;
         });
         this.tempArray = this.itemJson;
         this.itemJson = this.usernameArr;
-        this.addSystem = this.itemJson[0].system;
-        this.addUsername = this.itemJson[0].username;
-        this.addAuth = this.itemJson[0].authSource;
-        this.addGuid = this.itemJson[0].guid;
+        this.addSystem = this.itemJson[0].SYSTEM;
+        this.addUsername = this.itemJson[0].USERNAME;
+        this.addAuth = this.itemJson[0].AUTHDIRNAME;
+        this.addGuid = this.itemJson[0].USERGUID;
       }
     },
 
@@ -453,6 +467,9 @@ export default{
       await this.$store.dispatch('userActions/getUsers');
       this.itemJson = this.users;
       this.getSystems();
+      this.itemJson.forEach((element, index) => {
+        element.id = index;
+      });
       this.isLoading = false;
     },
     /*
@@ -468,7 +485,7 @@ export default{
       this.updateValue = value;
       this.updateAuth = auth;
       this.updateGuid = guid;
-      this.userInfo = {'system': system, 'username': username, 'name': name, 'value': value, 'auth': auth, 'guid': guid};
+      this.userInfo = {'SYSTEM': system, 'USERNAME': username, 'NAME': name, 'VALUE': value, 'AUTHDIRNAME': auth, 'USERGUID': guid};
       this.dialog_uForm = true;
     },
     async updateUser(){
@@ -477,7 +494,7 @@ export default{
         this.statusMessage = 'All fields must have inputs';
         return;
       }
-      const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid };
+      const updateInfo = {'system': this.updateSystem, 'username': this.updateUsername, 'name': this.updateName, 'value': this.updateValue, 'authSource':this.updateAuth, 'guid':this.updateGuid, 'userUpdate': this.loggedInUser };
       const UpdateJson = {'old': this.userInfo, 'new': updateInfo};
       await this.$store.dispatch('userActions/updateUser', UpdateJson);
       this.statusDialog = true;
@@ -503,7 +520,7 @@ export default{
         this.statusMessage = 'All fields must have inputs';
         return;
       }
-      const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid};
+      const userJson = {'system': this.addSystem, 'username': this.addUsername, 'name': this.addName, 'value': this.addValue, 'authSource': this.addAuth, 'guid': this.addGuid, 'userAdd': this.loggedInUser};
       await this.$store.dispatch('userActions/addNewUser', userJson);
       this.statusDialog = true;
       if(this.userAddError){
@@ -550,7 +567,8 @@ export default{
           await this.$store.dispatch('userActions/deleteUser', element);
         });
         this.statusDialog = true;
-        this.statusMessage = 'Username Group successfully deleted';
+        this.statusMessage = 'Username group successfully deleted';
+        this.bulkDelete = false;
       }
       this.dialog_uDelete = false;
       this.deleteJson = {};
@@ -566,8 +584,8 @@ export default{
     getSystems() {
       const sysArr = this.systemArray;
       (this.itemJson).forEach(function(element){
-        if(!(sysArr.includes(element.system))){
-          sysArr.push(element.system);
+        if(!(sysArr.includes(element.SYSTEM))){
+          sysArr.push(element.SYSTEM);
         }
       });
       this.systemArray = sysArr;

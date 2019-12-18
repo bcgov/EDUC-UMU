@@ -65,8 +65,8 @@
     <!-- The actions you can take on any row of the table -->
       <template
         v-slot:item.action="{ item }">
-              <v-icon class="list_action" @click.stop="updateRoleForm(item.system, item.role)" color="#43893e">edit</v-icon>
-              <v-icon class="list_action" @click="deleteForm(item.system, item.role)" color="#d93e45">delete</v-icon>
+              <v-icon class="list_action" @click.stop="updateRoleForm(item.SYSTEM, item.APPLICATION_ROLE)" color="#43893e">edit</v-icon>
+              <v-icon class="list_action" @click="deleteForm(item.SYSTEM, item.APPLICATION_ROLE)" color="#d93e45">delete</v-icon>
       </template>
 
 
@@ -105,10 +105,10 @@
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12 sm6>
-                          <v-select :items="systemArray" label="System" v-model="updateSystem" :value="roleInfo.system" required></v-select>
+                          <v-select :items="systemArray" label="System" v-model="updateSystem" :value="roleInfo.SYSTEM" required></v-select>
                         </v-flex>
                         <v-flex xs12 sm6>
-                          <v-text-field label="Application Role" v-model="updateRoleInput" :value="roleInfo.role" required></v-text-field>
+                          <v-text-field label="Application Role" v-model="updateRoleInput" :value="roleInfo.APPLICATION_ROLE" required></v-text-field>
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -157,6 +157,7 @@
 </template>
 
 <script>
+import jwtDecode from 'jwt-decode';
 import { mapGetters } from 'vuex';
 export default{
   data: () => ({
@@ -186,32 +187,32 @@ export default{
       {
         sortable: true,
         text: 'System',
-        value: 'system'
+        value: 'SYSTEM'
       },
       {
         sortable: true,
         text: 'Application Role',
-        value: 'role'
+        value: 'APPLICATION_ROLE'
       },
       {
         sortable: true,
         text: 'Created By',
-        value: 'create'
+        value: 'CREATE_BY'
       },
       {
         sortable: true,
         text: 'Create Date',
-        value: 'createDate'
+        value: 'CREATE_DATE'
       },
       {
         sortable: true,
         text: 'Updated By',
-        value: 'update'
+        value: 'UPDATE_BY'
       },
       {
         sortable: true,
         text: 'Update Date',
-        value: 'updateDate'
+        value: 'UPDATE_DATE'
       },
       {
         sortable: false,
@@ -223,12 +224,18 @@ export default{
     items: [],
     systemArray: [],
     itemJson: [],
-    roleInfo: {}
+    roleInfo: {},
+    loggedInUser: null
   }),
   computed: {
-    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError'])
+    ...mapGetters('roleActions', ['roles', 'roleAddError', 'roleUpdateError', 'roleDeleteError']),
+    ...mapGetters('auth', ['loggedInUser'])
   },
   mounted: function() {
+    const jwt = localStorage.getItem('jwtToken');
+    const decoded = jwtDecode(jwt);
+    const split = (decoded.preferred_username).split('@');
+    this.loggedInUser = split[0];
     this.getRoles();
   },
   methods: {
@@ -251,8 +258,8 @@ export default{
     getSystems() {
       const sysArr = [];
       (this.itemJson).forEach(function(element){
-        if(!(sysArr.includes(element.system))){
-          sysArr.push(element.system);
+        if(!(sysArr.includes(element.SYSTEM))){
+          sysArr.push(element.SYSTEM);
         }
       });
       this.systemArray = sysArr;
@@ -270,7 +277,7 @@ export default{
         this.statusDialog = true;
         this.statusMessage = 'All fields must have inputs';
       }
-      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput};
+      const roleInfo = {'system': this.updateSystem, 'role': this.updateRoleInput, 'updateUser': this.loggedInUser};
       const UpdateJson = {'old': this.oldRoleData, 'new': roleInfo};
       await this.$store.dispatch('roleActions/updateRole', UpdateJson);
       this.statusDialog = true;
@@ -291,7 +298,7 @@ export default{
         this.statusDialog = true;
         this.statusMessage = 'All fields must have inputs';
       }
-      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput};
+      const roleInfo = {'system': this.addSystem, 'role': this.addRoleInput, 'userAdd': this.loggedInUser};
       this.dialog_c = false;
       await this.$store.dispatch('roleActions/addRole', roleInfo);
       this.statusDialog = true;

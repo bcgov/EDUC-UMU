@@ -14,7 +14,8 @@
     "rebuild": "npm run clean && npm run build",
     "reinstall": "npm run purge && npm install",
     "test:unit": "node_modules/.bin/vue-cli-service test:unit",
-    "test:e2e": "./node_modules/nightwatch/bin/nightwatch -e chrome -t ./tests/e2e/specs/test"
+    "test:e2e": "node_modules/nightwatch/bin/nightwatch -e chrome -t ./tests/e2e/specs/test",
+    "test:e2e-local": "node_modules/.bin/vue-cli-service test:e2e"
   },
   "homepage": "https://github.com/bcgov/EDUC-UMU",
   "dependencies": {
@@ -37,7 +38,8 @@
     "dotenv": "^8.0.0",
     "regenerator-runtime": "^0.13.3",
     "jest-junit": "^7.0.0",
-    "papaparse": "5.1.0"
+    "papaparse": "5.1.0",
+    "jwt-decode": "2.2.0"
   },
   "devDependencies": {
     "@vue/cli": "^3.10.0",
@@ -46,6 +48,7 @@
     "@vue/cli-plugin-unit-jest": "^3.10.0",
     "@vue/cli-service": "^3.10.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "@vue/cli-plugin-e2e-nightwatch": "3.10.0",
     "@babel/core": "^7.5.5",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",

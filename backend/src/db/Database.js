@@ -29,7 +29,7 @@ class Database {
     return result;
   }
   async selectUsers() {
-    let result = this.authUsers.selectAll();
+    let result = await this.authUsers.selectAll();
     return result;
   }
 

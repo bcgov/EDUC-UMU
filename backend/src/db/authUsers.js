@@ -1,6 +1,7 @@
 /* eslint-disable */
 'use strict'
 
+const oracledb = require('oracledb');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -8,77 +9,123 @@ class AuthUser {
   constructor() {}
   
   async create(opt) {
-      /*
-      const query = 'INSERT INTO ' + process.env.AUTH_TABLE + '(SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, GUID) 
-      VALUES (' + opt.system + ',' + opt.username + ',' + opt.name + ',' + opt.value + ',' + opt.authSource + ',' + opt.guid + ')'; */
-      //return false here since there is no error
-      if(opt != null){
-        return {'error': false};
-      }
-      //there was an error
-      return {'error': true};
-  }
-  async delete(opt) {
-    //const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
-    //' WHERE SYSTEM=' + opt.system + 'AND USERNAME=' + opt.username + 'AND NAME=' + opt.name + 'AND VALUE=' +  opt.value + 'AND AUTHDIRNAME=' + opt.authSource + 'AND USERGUID=' + opt.guid';
-     if(opt != null){
-       return {'error': false};
-     }
-     return {'error': true};
-  }
-  //select all users from table
-  async selectAll() {
-    const users =  [{"system": "EDW","username": "NDenny","name": "lkfsdjafs", "value": "sdgjhndffsd", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 1 },
-    {"system": "EDW","username": "NDenny","name": "sdfsad", "value": "sdfasdf", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 3 },
-    {"system": "EDW","username": "SShaw","name": "ntw3462nwer", "value": "nqertnwern", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 18 },
-    {"system": "EDW","username": "NDenny","name": "gfdagdfe", "value": "hgj5effa", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 5 },
-    {"system": "EDW","username": "PHolland","name": "54fq34yu", "value": "23589yht9", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 6 },
-    {"system": "EDW","username": "PHolland","name": "refgwe54tui90", "value": "afwer2nn54", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 7 },
-    {"system": "EDW","username": "PHolland","name": "qv3jhun34", "value": "q4tv", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 8 },
-    {"system": "EDW","username": "NDenny","name": "sdfsdfas", "value": "wefaweff", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 4 },
-    {"system": "EDW","username": "PHolland","name": "nwh456", "value": "25yn4nwertwb", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 9 },
-    {"system": "EDW","username": "PHolland","name": "qwbtqtret", "value": "wetbrtbwertt34", "authSource": "IDIR", "guid": "54789THERIFU23G54WYRT", "id": 10 },
-    {"system": "EDW","username": "TRankin","name": "4tbbq4t", "value": "qetbrbbt", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 11 },
-    {"system": "EDW","username": "NDenny","name": "dfgagfasdf", "value": "sadfsdfs", "authSource": "IDIR", "guid": "239786FWEUHDFGSDKFASDF", "id": 2 },
-    {"system": "EDW","username": "TRankin","name": "436bbqwrtbrbe", "value": "yjumsea", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 12 },
-    {"system": "EDW","username": "TRankin","name": "34tbw34bg", "value": "weby6um3", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 14 },
-    {"system": "EDW","username": "TRankin","name": "b3wtwtbwer", "value": "btrnurnrew", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 15 },
-    {"system": "EDW","username": "SShaw","name": "n625nwerv", "value": "wbtrt324n62", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 16 },
-    {"system": "EDW","username": "SShaw","name": "rewtn34n63", "value": "wernt3562", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 17 },
-    {"system": "EDW","username": "TRankin","name": "vqwe5qvfmhjf", "value": "mjrtyw45", "authSource": "IDIR", "guid": "FVBNJTY89WEFUHEFIBRQ", "id": 13 },
-    {"system": "EDW","username": "SShaw","name": "wernt66546", "value": "wnt43626n2n", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 19 },
-    {"system": "EDW","username": "SShaw","name": "nt3w6562", "value": "n265462ewtn", "authSource": "IDIR", "guid": "UYJM56890FQWUIBHF", "id": 20 }];
-    /*
     let connection = await oracledb.getConnection({
       user: process.env.ORACLE_USER,
       password : process.env.ORACLE_PASSWORD,
       connectString : process.env.ORACLE_CONNECT
     });
-    const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
-    let result = await connection.execute(query);
-    console.log(result);
-    if(connection){
+      //const binds = [process.env.AUTH_TABLE, JSON.stringify(opt.system), JSON.stringify(opt.username), JSON.stringify(opt.name), JSON.stringify(opt.value), JSON.stringify(opt.authSource), JSON.stringify(opt.guid)];
+      //return false here since there is no error
       try{
-        await connection.close();
-      } catch(err){
-        console.error(err);
+        console.log('Creating user...');
+        console.log(opt);
+        const dateJs = new Date();
+        const dt = dateJs.toISOString().split('T')[0]
+        console.log(dt);
+        const query = 'INSERT INTO ' + process.env.AUTH_TABLE + ' (SYSTEM, USERNAME, NAME, VALUE, AUTHDIRNAME, USERGUID, CREATE_BY, CREATE_DATE) VALUES (\'' + opt.system + '\',\'' + opt.username + '\',\'' + opt.name + '\',\'' + opt.value + '\',\'' + opt.authSource + '\',\'' + opt.guid + '\',\'' + opt.userAdd + '\', TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\'))';
+        console.log(query);
+        let result = await connection.execute(query);
+        console.log(result);
+        await connection.commit();
+      } catch(e) {
+        console.error(e);
       }
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
+      }
+      return {'error': false};
+  }
+  async delete(opt) {
+    let connection = await oracledb.getConnection({
+      user: process.env.ORACLE_USER,
+      password : process.env.ORACLE_PASSWORD,
+      connectString : process.env.ORACLE_CONNECT
+    });
+    try{
+      console.log('Deleting user...');
+      console.log(opt);
+      const query = 'DELETE FROM ' + process.env.AUTH_TABLE + 
+      ' WHERE SYSTEM=\'' + opt.system + '\' AND USERNAME=\'' + opt.username + '\' AND NAME=\'' + opt.name + '\' AND VALUE=\'' +  opt.value + '\' AND AUTHDIRNAME=\'' + opt.authSource + '\' AND USERGUID=\'' + opt.guid + '\'';
+      let result = await connection.execute(query,[], { autoCommit: true });
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
+      }
+      return {'error': false };
+    } catch(e){
+      console.error(e);
     }
-    return result.rows;*/
-    return users;
+  }
+  //select all users from table
+  async selectAll() {
+    try{
+      let connection = await oracledb.getConnection({
+        user: process.env.ORACLE_USER,
+        password : process.env.ORACLE_PASSWORD,
+        connectString : process.env.ORACLE_CONNECT
+      });
+      try{
+        const query = 'SELECT * FROM ' + process.env.AUTH_TABLE;
+        const result = await connection.execute(query, [], {outFormat: oracledb.OBJECT});
+        if(connection){
+          try{
+            await connection.close();
+            console.log('Connection closed successfully');
+          } catch(err){
+            console.log("Error occured during database interaction");
+            console.error(err);
+          }
+        }
+        return result.rows;
+      } catch(e){
+        console.error(e);
+      }
+    } catch(e){
+      console.log("Connection failed");
+      console.error(e);
+    }
   }
   async update(options) {
-      /*
+    let connection = await oracledb.getConnection({
+      user: process.env.ORACLE_USER,
+      password : process.env.ORACLE_PASSWORD,
+      connectString : process.env.ORACLE_CONNECT
+    });
+    try{
+      console.log('Updating user...');
+      console.log(options);
       const old = options.old;
-      const new = options.new;
+      const newJson = options.new;
+      const dateJs = new Date();
+      const dt = dateJs.toISOString().split('T')[0]
+      console.log(dt);
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
-        ' SET SYSTEM=' + new.system + ', USERNAME=' + new.username + ', NAME=' + new.name + ', VALUE=' +  new.value + ', AUTHDIRNAME=' + new.authSource + ', GUID=' + new.guid + 
-        ' WHERE SYSTEM=' + old.system + 'AND USERNAME=' + old.username + 'AND NAME=' + old.name + 'AND VALUE=' +  old.value + 'AND AUTHDIRNAME=' + old.authSource + 'AND GUID=' + old.guid';
-      */
-      if(options != null){
-        return {'error': false};
-     }
-     return {'error': true};
+        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', USERGUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')' +
+        ' WHERE SYSTEM=\'' + old.SYSTEM + '\' AND USERNAME=\'' + old.USERNAME + '\' AND NAME=\'' + old.NAME + '\' AND VALUE=\'' +  old.VALUE + '\' AND AUTHDIRNAME=\'' + old.AUTHDIRNAME + '\' AND USERGUID=\'' + old.USERGUID + '\'';
+     let result = await connection.execute(query,[], { autoCommit: true });
+      console.log(result);
+      if(connection){
+        try{
+          await connection.close();
+        } catch(err){
+          console.error(err);
+          return {'error': true};
+        }
+      }
+    return {'error': false};
+    } catch(e) {
+      console.error(e);
+    }
   }
 };
 

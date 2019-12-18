@@ -28,11 +28,16 @@ export default {
       state.deleteError = proxyRes;
     }
   },
+
+  //fkgjlflgjkdfjklg
+
+
   actions: {
     async getProxy(context){
       context.commit('setProxy', null);
       try {
         const response = await ApiService.getProxy();
+        console.log(response);
         context.commit('setProxy', response);
         return response;
       } catch(e) {

@@ -81,10 +81,11 @@ export default {
   async getUsers() {
     try{
       const response = await apiAxios.get(ApiRoutes.USERS);
-      if(response.status == 500){
+      /*if(response.status === 500){
         return response.status;
-      }
-      return response.data;
+      }*/
+      const rows = response.data;
+      return rows;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
       throw e;
@@ -117,7 +118,7 @@ export default {
   },
   async deleteUser(userInfo){
     try{
-      const response = await apiAxios.delete(ApiRoutes.USERS, userInfo);
+      const response = await apiAxios.post(ApiRoutes.USERS + '/delete', userInfo);
       if(response.status == 500){
         return true;
       }
@@ -165,7 +166,7 @@ export default {
   },
   async deleteRole(roleInfo){
     try{
-      const response = await apiAxios.delete(ApiRoutes.ROLES, roleInfo);
+      const response = await apiAxios.post(ApiRoutes.ROLES + '/delete', roleInfo);
       if(response.status == 500){
         return true;
       }
@@ -213,8 +214,10 @@ export default {
   },
   async deleteProxy(proxyInfo){
     try{
-      const response = await apiAxios.delete(ApiRoutes.PROXY, proxyInfo);
-      if(response.status == 500){
+      console.log('Sending data to API for deletion')
+      console.log(proxyInfo);
+      const response = await apiAxios.post(ApiRoutes.PROXY + '/delete', proxyInfo);
+      if(response.status === 500){
         return true;
       }
       return response.data.error;
