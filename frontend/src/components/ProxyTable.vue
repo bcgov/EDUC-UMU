@@ -15,7 +15,7 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="tableItems"
+      :items="itemJson"
       :search="search"
       :loading="isLoading"
     >
@@ -255,9 +255,6 @@ export default {
   computed: {
     ...mapGetters('proxyActions', ['proxy', 'proxyAddError', 'proxyUpdateError', 'proxyDeleteError']),
     ...mapGetters('userActions', ['users']),
-    tableItems: () => {
-      return this.itemJson;
-    }
   },
   //Automatically fetches the table contents from the database on page load
   mounted: function() {
