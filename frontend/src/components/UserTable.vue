@@ -100,10 +100,12 @@
           <td colspan="9">
             <v-layout row justify-center>
             <!-- Add user form -->
+            <!--
             <v-btn class="ma-2" dark color="#003366" :href='csvRoute'>
               <v-icon left>save_alt</v-icon>
               CSV Template
             </v-btn>
+            -->
             <v-btn class="ma-2" color="#003366" @click="dialog_a = true" dark v-on="on">Add Auth Item</v-btn>
               <v-dialog v-model="dialog_a" persistent max-width="700px">
                 <v-form>
@@ -143,13 +145,11 @@
 
                       </v-container>
                     </v-card-text>
-                    <!--
                     <v-card-actions>
                       <v-btn color="#003366" dark text @click="cancelAdd()">Close</v-btn>
                       <v-btn color="#003366" dark text @click="addUser()">Add</v-btn>
-                      <v-file-input v-if="!groupOpen" v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>
+                      <!--<v-file-input v-if="!groupOpen" v-model="fileInput" accept=".csv" color="#003366" class="file_in" chips multiple label="Add CSV File"></v-file-input>-->
                     </v-card-actions>
-                    -->
                   </v-card>
                 </v-form>
               </v-dialog>
