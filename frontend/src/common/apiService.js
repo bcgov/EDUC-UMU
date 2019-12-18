@@ -193,6 +193,7 @@ export default {
         }
       });
       proxyArr.forEach(element => {
+        console.log(element.proxyName);
         if(element.proxyName === null){
           element.proxyName = element.PROXYID;
         }
