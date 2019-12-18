@@ -273,11 +273,10 @@ export default {
       this.itemJson = [];
       this.isLoading = true;
       await this.$store.dispatch('proxyActions/getProxy');
-      this.mapGuids(this.proxy).then(response => {
-        console.log(response);
-        this.itemJson = response;
-        this.isLoading = false;
-      });
+      const arr = await mapGuids(this.proxy);
+      console.log(arr);
+      this.itemJson = arr;
+      this.isLoading = false;
     },
 
     //map each user GUID to a readable username
