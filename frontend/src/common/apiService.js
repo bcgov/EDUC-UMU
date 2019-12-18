@@ -182,7 +182,17 @@ export default {
       if(response.status == 500){
         return response.status;
       }
-      return response.data;
+      const proxyArr = response.data;
+      const arr = await this.getUsers();
+      proxyArr.forEach(element => {
+        if(arr.find(x => x.USERGUID === element.PROXYID)){
+          element.proxyName = arr.find(x => x.USERGUID === element.PROXYID).USERNAME;
+        }
+        if(arr.find(x => x.USERGUID === element.TARGETID)){
+          element.targetName = arr.find(x => x.USERGUID === element.TARGETID).USERNAME;
+        }
+      });
+      return proxyArr;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
       throw e;
