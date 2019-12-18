@@ -111,7 +111,7 @@ class AuthUser {
       console.log(dt);
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
         ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', USERGUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')' +
-        ' WHERE SYSTEM=\'' + old.system + '\' AND USERNAME=\'' + old.username + '\' AND NAME=\'' + old.name + '\' AND VALUE=\'' +  old.value + '\' AND AUTHDIRNAME=\'' + old.authSource + '\' AND USERGUID=\'' + old.guid + '\'';
+        ' WHERE SYSTEM=\'' + old.SYSTEM + '\' AND USERNAME=\'' + old.USERNAME + '\' AND NAME=\'' + old.NAME + '\' AND VALUE=\'' +  old.VALUE + '\' AND AUTHDIRNAME=\'' + old.AUTHDIRNAME + '\' AND USERGUID=\'' + old.USERGUID + '\'';
      let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
       if(connection){
