@@ -17,15 +17,8 @@
       :headers="headers"
       :items="itemJson"
       :search="search"
-      :loading="guidsConverted"
+      :loading="isLoading"
     >
-
-    <template v-slot:item.proxyName="{ item }">
-      {{ item.proxyName }}
-    </template>
-    <template v-slot:item.targetName="{ item }">
-      {{ item.targetName }}
-    </template>
     <!-- Delete and Update actions you can perform on each row of the table -->
       <template
         v-slot:item.action="{ item }">
@@ -186,7 +179,6 @@
       <v-dialog v-model="statusDialog" persistent max-width="320px">
         <v-card class="textOnlyCard">
           <v-card-text>
-
             {{ statusMessage }}
           </v-card-text>
           <v-card-actions>
@@ -299,7 +291,6 @@ export default {
           }
         });
       });
-      this.guidsConverted = true;
       return arr;
     },
     //Passes information from a specific row to the Update dialog box
