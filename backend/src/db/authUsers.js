@@ -110,7 +110,7 @@ class AuthUser {
       const dt = dateJs.toISOString().split('T')[0]
       console.log(dt);
       const query = 'UPDATE ' + process.env.AUTH_TABLE + 
-        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\'))' +
+        ' SET SYSTEM=\'' + newJson.system + '\', USERNAME=\'' + newJson.username + '\', NAME=\'' + newJson.name + '\', VALUE=\'' +  newJson.value + '\', AUTHDIRNAME=\'' + newJson.authSource + '\', GUID=\'' + newJson.guid + '\', UPDATE_BY=\'' + newJson.userUpdate + '\', UPDATE_DATE=TO_DATE(\'' + dt + '\', \'YYYY-MM-DD\')' +
         ' WHERE SYSTEM=\'' + old.system + '\' AND USERNAME=\'' + old.username + '\' AND NAME=\'' + old.name + '\' AND VALUE=\'' +  old.value + '\' AND AUTHDIRNAME=\'' + old.authSource + '\' AND GUID=\'' + old.guid + '\'';
      let result = await connection.execute(query,[], { autoCommit: true });
       console.log(result);
