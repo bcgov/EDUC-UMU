@@ -273,7 +273,7 @@ export default {
       this.itemJson = [];
       this.isLoading = true;
       await this.$store.dispatch('proxyActions/getProxy');
-      const arr = await mapGuids(this.proxy);
+      const arr = await this.mapGuids(this.proxy);
       console.log(arr);
       this.itemJson = arr;
       this.isLoading = false;
