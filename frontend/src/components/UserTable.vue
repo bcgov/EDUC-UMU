@@ -129,8 +129,6 @@
                           </v-col>
                           <v-col>
                             <v-select v-if="addName === 'ROLES'" v-model="addValue" label="Value" name="value" :items="roleList" required></v-select>
-                            <v-select v-else-if="addName === 'EDW_MASKING_USER_DISTRICT'" v-model="addValue" label="Value" name="value" :items="districtList" required></v-select>
-                            <v-select v-else-if="addName === 'EDW_MASKING_USER_SCHOOL'" v-model="addValue" label="Value" name="value" :items="schoolList" required></v-select>
                             <v-text-field v-else v-model="addValue" label="Value" name="value"></v-text-field>
                           </v-col>
                         </v-row>

@@ -192,6 +192,14 @@ export default {
           element.targetName = arr.find(x => x.USERGUID === element.TARGETID).USERNAME;
         }
       });
+      proxyArr.forEach(element => {
+        if(element.proxyName === null){
+          element.proxyName = element.PROXYID;
+        }
+        if(element.targetName === null){
+          element.targetName = element.TARGETID;
+        }
+      });
       return proxyArr;
     } catch(e) {
       console.log(`Failed to fetch from API - ${e}`);
