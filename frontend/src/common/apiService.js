@@ -194,10 +194,10 @@ export default {
       });
       proxyArr.forEach(element => {
         console.log(element.proxyName);
-        if(element.proxyName === null){
+        if(element.proxyName === undefined){
           element.proxyName = element.PROXYID;
         }
-        if(element.targetName === null){
+        if(element.targetName === undefined){
           element.targetName = element.TARGETID;
         }
       });
