@@ -6,12 +6,12 @@ def BE_COV_STASH = 'backend-coverage'
 def FE_COV_STASH = 'frontend-coverage'
 
 def SONAR_ROUTE_NAME = 'sonarqube'
-def SONAR_ROUTE_NAMESPACE = 'pbuo5q-tools'
+def SONAR_ROUTE_NAMESPACE = '9daef1-tools'
 def SONAR_PROJECT_NAME = 'UMU'
 def SONAR_PROJECT_KEY = 'UMU'
 def SONAR_PROJECT_BASE_DIR = '../'
 def SONAR_SOURCES = './'
-def SONARQUBE_URL = 'https://sonarqube-pbuo5q-tools.pathfinder.gov.bc.ca/projects'
+def SONARQUBE_URL = 'https://sonarqube-9daef1-tools.pathfinder.gov.bc.ca/projects'
 
 pipeline{
     agent any
@@ -21,15 +21,15 @@ pipeline{
     environment{
         DEBUG_OUTPUT = 'false'
 
-        DEV_PROJECT = 'pbuo5q-dev'
-        TEST_PROJECT = 'pbuo5q-test'
-        PROD_PROJECT = 'pbuo5q-prod'
-        TOOLS_PROJECT = 'pbuo5q-tools'
+        DEV_PROJECT = '9daef1-dev'
+        TEST_PROJECT = '9daef1-test'
+        PROD_PROJECT = '9daef1-prod'
+        TOOLS_PROJECT = '9daef1-tools'
 
         REPO_NAME = 'educ-umu'
 
         //with multiple developers, these variables should be dynamic to allow for multiple builds within the same OpenShift namespace
-        OWNER = 'ndenny1'
+        OWNER = 'bcgov'
         JOB_NAME = 'demo'
 
         APP_NAME = 'obiee-umu'
